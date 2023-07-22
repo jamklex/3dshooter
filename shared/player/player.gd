@@ -20,10 +20,11 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
+		if velocity.length() > 0.2:
+			var look_direction = Vector2(velocity.z, velocity.x)
+			_model.rotation.y = look_direction.angle()
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
-	if velocity.length() > 0.2:
-		var look_direction = Vector2(velocity.z, velocity.x)
-		_model.rotation.y = look_direction.angle()
+	
