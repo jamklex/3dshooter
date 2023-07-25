@@ -33,9 +33,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.009332, 0.406482, 0.
 mesh = SubResource("BoxMesh_l0a1o")
 
 [node name="CameraArm" type="SpringArm3D" parent="."]
-spring_length = 7.0
+spring_length = 3.0
 margin = 0.2
 script = ExtResource("2_g5ejs")
 
 [node name="Camera" type="Camera3D" parent="CameraArm"]
+transform = Transform3D(1, 0, 0, 0, 0.906307, -0.422618, 0, 0.422618, 0.906307, 0, 0, 0)
 current = true

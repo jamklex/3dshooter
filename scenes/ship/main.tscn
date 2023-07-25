@@ -1,24 +1,54 @@
 [gd_scene load_steps=4 format=3 uid="uid://dw0d5aewfj07j"]
 
 [ext_resource type="PackedScene" uid="uid://dmewbrgwb041y" path="res://shared/player/_main.tscn" id="1_f4lyt"]
-[ext_resource type="PackedScene" uid="uid://0dtxiooimu2g" path="res://assets/hammer/hammer.tscn" id="2_stkpf"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubxqj"]
-albedo_color = Color(0.843137, 0.686275, 0.952941, 1)
+[ext_resource type="PackedScene" uid="uid://dhixyipw2c601" path="res://assets/models/craft-ship/craft-ship.tscn" id="4_btabh"]
+[ext_resource type="PackedScene" uid="uid://cd8mil1mx018d" path="res://assets/models/floor/floor_mid.tscn" id="4_karwf"]
 
 [node name="main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.0505929, -0.672151, -0.738684, 0, -0.739631, 0.673012, -0.998719, 0.0340497, 0.0374201, -21.0784, 45.3141, -0.415649)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.189297, 0.0183859, -0.0146475)
-use_collision = true
-size = Vector3(100, 1, 100)
-material = SubResource("StandardMaterial3D_ubxqj")
-
 [node name="Player" parent="." instance=ExtResource("1_f4lyt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.633438, 10.0189, 1.45557)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.633438, 10.0189, 15.4556)
 
-[node name="hammer" parent="." instance=ExtResource("2_stkpf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.2105, 6.66962, -3.63625)
+[node name="craft-ship" parent="." instance=ExtResource("4_btabh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5403, 2.36095, 22.7702)
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="floor_mid2" parent="Floor" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9049, 0, -0.0271447)
+
+[node name="floor_mid2" parent="Floor/floor_mid2" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00779152, 0, 6.00515)
+
+[node name="floor_mid2" parent="Floor/floor_mid2/floor_mid2" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00779152, 0, 6.00515)
+
+[node name="floor_mid2" parent="Floor/floor_mid2/floor_mid2/floor_mid2" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00779152, 0, 6.00515)
+
+[node name="floor_mid2" parent="Floor/floor_mid2/floor_mid2/floor_mid2/floor_mid2" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00779152, 0, 6.00515)
+
+[node name="floor_mid2" parent="Floor/floor_mid2/floor_mid2/floor_mid2/floor_mid2/floor_mid2" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00779152, 0, 6.00515)
+
+[node name="floor_mid" parent="Floor" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.72483, 0, -0.0259945)
+
+[node name="floor_mid" parent="Floor/floor_mid" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00936222, 0, 6.00041)
+
+[node name="floor_mid" parent="Floor/floor_mid/floor_mid" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00936222, 0, 6.00041)
+
+[node name="floor_mid" parent="Floor/floor_mid/floor_mid/floor_mid" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00936222, 0, 6.00041)
+
+[node name="floor_mid" parent="Floor/floor_mid/floor_mid/floor_mid/floor_mid" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00936222, 0, 6.00041)
+
+[node name="floor_mid" parent="Floor/floor_mid/floor_mid/floor_mid/floor_mid/floor_mid" instance=ExtResource("4_karwf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00936222, 0, 6.0004)

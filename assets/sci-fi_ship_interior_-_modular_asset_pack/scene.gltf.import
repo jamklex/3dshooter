@@ -1,0 +1,45 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://gov7souq0mjb"
+path="res://.godot/imported/scene.gltf-1cb367ae4cf8014696ef8707a0ab43f7.scn"
+
+[deps]
+
+source_file="res://assets/sci-fi_ship_interior_-_modular_asset_pack/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-1cb367ae4cf8014696ef8707a0ab43f7.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"meshes": {
+"Sketchfab_Scene_Craft_ShipA_0": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://assets/models/craft-ship/craft-ship.res"
+}
+}
+}
+gltf/embedded_image_handling=1
