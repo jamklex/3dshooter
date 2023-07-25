@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dw0d5aewfj07j"]
 
 [ext_resource type="PackedScene" uid="uid://dmewbrgwb041y" path="res://shared/player/_main.tscn" id="1_f4lyt"]
-[ext_resource type="PackedScene" uid="uid://0dtxiooimu2g" path="res://assets/hammer/hammer.tscn" id="2_stkpf"]
+[ext_resource type="PackedScene" uid="uid://0dtxiooimu2g" path="res://assets/items/hammer/hammer.tscn" id="2_stkpf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ubxqj"]
 albedo_color = Color(0.843137, 0.686275, 0.952941, 1)
