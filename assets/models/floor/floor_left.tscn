@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqigsr2loa3m"]
+
+[ext_resource type="ArrayMesh" uid="uid://2q3d0wk6qlq6" path="res://assets/models/floor/floor_left.res" id="1_pm1i0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_27cyx"]
+points = PackedVector3Array(-1.50016, 0, -1.5, -1.50016, 3.1, -1.5, -1.45667, 0.0643305, -1.43579, -1.49984, 0, 1.4998, -1.49984, 0, 1.66854, -1.45667, 3.03537, -1.43579, -1.49984, 3.1, 1.66854, -1.49984, 3.1, 1.4998, -1.45636, 3.03537, 1.43559, -1.4566, 0.580188, -0.810149, -1.45644, 0.497954, 0.727438, -1.45636, 0.623884, 1.43559, -1.45636, 0.0643305, 1.43559, -1.4566, 2.51951, -0.810149)
+
+[node name="floor_left" type="StaticBody3D"]
+
+[node name="FloorLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0, 2, 0, 3, 0)
+mesh = ExtResource("1_pm1i0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0, 2, 0, 3, 0)
+shape = SubResource("ConvexPolygonShape3D_27cyx")

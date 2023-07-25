@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd8mil1mx018d"]
+
+[ext_resource type="ArrayMesh" uid="uid://def3xjwlb040v" path="res://assets/models/floor/floor_mid.res" id="1_ps3y5"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q6rrb"]
+points = PackedVector3Array(-1.49984, 3.1, 1.5, -1.45636, 3.03537, 1.4354, -1.50016, 3.1, -1.5, -1.49984, 0, 1.5, -1.4566, 2.51951, -0.809906, -1.45667, 3.03537, -1.43569, -1.45636, 0.623884, 1.4354, -1.50016, 0, -1.5, -1.45667, 0.0643305, -1.43569, -1.45636, 0.0643305, 1.4354, -1.4566, 0.580188, -0.809906)
+
+[node name="floor_mid" type="StaticBody3D"]
+
+[node name="FloorMid" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0, 2, 0, 3, 0)
+mesh = ExtResource("1_ps3y5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-8.74228e-08, -2, 0, 2, -8.74228e-08, 0, 0, 0, 2, 0, 3, 0)
+shape = SubResource("ConvexPolygonShape3D_q6rrb")

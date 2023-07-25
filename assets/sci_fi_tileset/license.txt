@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sci Fi Tileset
+* source:	https://sketchfab.com/3d-models/sci-fi-tileset-0b248a53adae4787b3f2ff258fed2f3b
+* author:	lukky_nl (https://sketchfab.com/lukky_nl)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sci Fi Tileset" (https://sketchfab.com/3d-models/sci-fi-tileset-0b248a53adae4787b3f2ff258fed2f3b) by lukky_nl (https://sketchfab.com/lukky_nl) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
