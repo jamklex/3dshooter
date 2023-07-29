@@ -5,70 +5,70 @@
 [node name="stairs" type="Node3D"]
 
 [node name="step1" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.05, 0)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 1)
 material = ExtResource("1_wmddc")
 
 [node name="step2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.075, -0.05)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.15, -0.1)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.9)
 material = ExtResource("1_wmddc")
 
 [node name="step3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, -0.1)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.25, -0.2)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.8)
 material = ExtResource("1_wmddc")
 
 [node name="step4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, -0.15)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.35, -0.3)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.7)
 material = ExtResource("1_wmddc")
 
 [node name="step5" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.225, -0.2)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.45, -0.4)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.6)
 material = ExtResource("1_wmddc")
 
 [node name="step6" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275, -0.25)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.55, -0.5)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.5)
 material = ExtResource("1_wmddc")
 
 [node name="step7" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.325, -0.3)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.65, -0.6)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.4)
 material = ExtResource("1_wmddc")
 
 [node name="step8" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, -0.35)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.75, -0.7)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.3)
 material = ExtResource("1_wmddc")
 
 [node name="step9" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425, -0.4)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.85, -0.8)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.2)
 material = ExtResource("1_wmddc")
 
 [node name="step10" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475, -0.45)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.95, -0.9)
 material_override = ExtResource("1_wmddc")
 use_collision = true
 size = Vector3(1, 0.05, 0.1)
