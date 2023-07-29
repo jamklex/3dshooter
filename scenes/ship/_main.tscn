@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjs346sprn81u"]
+[gd_scene load_steps=6 format=3 uid="uid://bjs346sprn81u"]
 
 [ext_resource type="PackedScene" uid="uid://dmewbrgwb041y" path="res://assets/models/player/player.tscn" id="1_nxnoa"]
-[ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/floor/floor.tscn" id="2_t4oyc"]
+[ext_resource type="PackedScene" uid="uid://bj0dmkliaxidt" path="res://assets/models/table/table.tscn" id="2_a5rda"]
+[ext_resource type="PackedScene" uid="uid://qqm10wa2jy86" path="res://assets/models/bed/bed.tscn" id="3_dttri"]
+[ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/chest/chest.tscn" id="4_hcurt"]
+[ext_resource type="PackedScene" uid="uid://d2208iqm07icf" path="res://assets/models/chair/chair.tscn" id="5_g6pr5"]
 
 [node name="_main" type="Node3D"]
 
@@ -9,7 +12,16 @@
 transform = Transform3D(1, 0, 0, 0, 0.325882, 0.945411, 0, -0.945411, 0.325882, 0, 241.731, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_nxnoa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.242119, -1.19209e-07, -0.649748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83974, 1.79401, -0.903078)
 
-[node name="floor" parent="." instance=ExtResource("2_t4oyc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.144094, 0, 1.02571)
+[node name="table" parent="." instance=ExtResource("2_a5rda")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="bed" parent="." instance=ExtResource("3_dttri")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="chest" parent="." instance=ExtResource("4_hcurt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.52641, -0.0784573, 1.81188)
+
+[node name="chair" parent="." instance=ExtResource("5_g6pr5")]
+transform = Transform3D(-0.997574, 0, -0.0696173, 0, 1, 0, 0.0696173, 0, -0.997574, 0.0427959, -0.157461, 3.38089)
