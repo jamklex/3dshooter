@@ -23,11 +23,11 @@ material = SubResource("StandardMaterial3D_qf3dd")
 script = ExtResource("1_l743w")
 
 [node name="Collission" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, -0.0163364, 0.0339056)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
 shape = SubResource("CapsuleShape3D_vveou")
 
 [node name="Skin" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, -0.019741, 0.0355329)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.0355329)
 mesh = SubResource("CapsuleMesh_mdxky")
 
 [node name="Front" type="MeshInstance3D" parent="Skin"]
@@ -35,6 +35,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.009332, 0.406482, 0.
 mesh = SubResource("BoxMesh_l0a1o")
 
 [node name="CameraArm" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.866516, 0)
 spring_length = 3.0
 margin = 0.3
 script = ExtResource("2_g5ejs")
