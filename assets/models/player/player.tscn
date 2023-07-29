@@ -4,12 +4,14 @@
 [ext_resource type="Script" path="res://assets/models/player/camera-arm.gd" id="2_g5ejs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vveou"]
+height = 1.72733
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oexap"]
 albedo_color = Color(1, 0.372549, 0.435294, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mdxky"]
 material = SubResource("StandardMaterial3D_oexap")
+height = 1.7
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf3dd"]
 albedo_color = Color(1, 1, 0.427451, 1)
@@ -34,7 +36,7 @@ mesh = SubResource("BoxMesh_l0a1o")
 
 [node name="CameraArm" type="SpringArm3D" parent="."]
 spring_length = 3.0
-margin = 0.2
+margin = 0.3
 script = ExtResource("2_g5ejs")
 
 [node name="Camera" type="Camera3D" parent="CameraArm"]
