@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://d2s7qbth7nb27"]
+
+[node name="floor" type="Node3D"]
