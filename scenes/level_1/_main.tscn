@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b62862nehx1gk"]
+
+[ext_resource type="PackedScene" uid="uid://c0xn6kt4cmxpp" path="res://assets/models/floor/long-floor.tscn" id="1_c2l71"]
+
+[node name="Level 1" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="long-floor" parent="." instance=ExtResource("1_c2l71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="long-floor" parent="long-floor" instance=ExtResource("1_c2l71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="long-floor2" parent="long-floor" instance=ExtResource("1_c2l71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
