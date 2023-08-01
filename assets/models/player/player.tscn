@@ -21,6 +21,8 @@ material = SubResource("StandardMaterial3D_qf3dd")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_l743w")
+speed = 3.0
+jump_strength = 10.0
 
 [node name="Collission" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
