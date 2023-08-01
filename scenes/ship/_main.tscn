@@ -15,6 +15,8 @@ transform = Transform3D(1, 0, 0, 0, 0.325882, 0.945411, 0, -0.945411, 0.325882, 
 
 [node name="Player" parent="." instance=ExtResource("1_nxnoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.961289, 0, -0.903)
+speed = 3.0
+jump_strength = 10.0
 
 [node name="table" parent="." instance=ExtResource("2_a5rda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
