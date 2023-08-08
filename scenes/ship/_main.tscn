@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjs346sprn81u"]
+[gd_scene load_steps=18 format=3 uid="uid://bjs346sprn81u"]
 
 [ext_resource type="PackedScene" uid="uid://dmewbrgwb041y" path="res://assets/models/player/player.tscn" id="1_nxnoa"]
 [ext_resource type="PackedScene" uid="uid://bj0dmkliaxidt" path="res://assets/models/table/table.tscn" id="2_a5rda"]
@@ -10,7 +10,24 @@
 [ext_resource type="PackedScene" uid="uid://bhdudjag6gu48" path="res://assets/models/roof/roof.tscn" id="6_0otia"]
 [ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/floor/floor.tscn" id="6_jis07"]
 [ext_resource type="PackedScene" uid="uid://b0txtjr8s3wtd" path="res://assets/models/stairs/stairs.tscn" id="7_hgcep"]
+[ext_resource type="Script" path="res://shared/scripts/npc.gd" id="9_gwpfa"]
 [ext_resource type="PackedScene" uid="uid://bjck182qlnf7v" path="res://assets/models/glassFloor/glassFloor.tscn" id="10_cff1o"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vveou"]
+height = 1.72733
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oexap"]
+albedo_color = Color(1, 0.372549, 0.435294, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mdxky"]
+material = SubResource("StandardMaterial3D_oexap")
+height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf3dd"]
+albedo_color = Color(1, 1, 0.427451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l0a1o"]
+material = SubResource("StandardMaterial3D_qf3dd")
 
 [node name="_main" type="Node3D"]
 
@@ -19,8 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 0.325882, 0.945411, 0, -0.945411, 0.325882, 
 
 [node name="Player" parent="." instance=ExtResource("1_nxnoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111711, 0, -7.43068)
-speed = 5.0
-jump_strength = 10.0
 
 [node name="cockpit" type="Node3D" parent="."]
 
@@ -240,7 +255,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 4)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
 
 [node name="chair" parent="cockpit" instance=ExtResource("5_g6pr5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.20735)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.64552)
+
+[node name="captain" type="StaticBody3D" parent="cockpit"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6.91226)
+script = ExtResource("9_gwpfa")
+
+[node name="Collission" type="CollisionShape3D" parent="cockpit/captain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
+shape = SubResource("CapsuleShape3D_vveou")
+
+[node name="Skin" type="MeshInstance3D" parent="cockpit/captain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.0355329)
+mesh = SubResource("CapsuleMesh_mdxky")
+
+[node name="Front" type="MeshInstance3D" parent="cockpit/captain/Skin"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
+mesh = SubResource("BoxMesh_l0a1o")
 
 [node name="upperShip" type="Node3D" parent="."]
 

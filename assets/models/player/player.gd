@@ -1,16 +1,30 @@
 extends CharacterBody3D
+class_name Player
 
 @export var speed := 7.0
 @export var jump_strength := 20.0
 @export var gravity := 50.0
+var isInConversation = false
 
 @onready var _spring_arm: SpringArm3D = $CameraArm
 @onready var _model: Node3D = $Skin
 
+func _ready():
+	WorldUtil.player = self
+	WorldUtil.playerCam = get_node("CameraArm/Camera")
+	
+func _exit_tree():
+	WorldUtil.player = null
+	WorldUtil.playerCam = null
+	WorldUtil.playerCamRaycast = null
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	
+	if isInConversation:
+		return
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_strength
 
