@@ -3,7 +3,7 @@ extends SpringArm3D
 @export var mouse_sensitivity := 0.05
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # locks mouse to screen
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion: # or controller right stick
