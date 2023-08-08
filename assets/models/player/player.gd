@@ -73,7 +73,7 @@ func handle_show_inventory():
 	if !Input.is_action_just_pressed("inventory"):
 		return
 	if run_inventory.is_empty():
-		print("not items collected")
+		print("no items collected")
 		return
 	print(run_inventory)
 
