@@ -1,7 +1,6 @@
 class_name Player
-
 extends CharacterBody3D
-class_name Player
+
 
 @export var speed := 7.0
 @export var jump_strength := 20.0
@@ -19,10 +18,8 @@ var run_inventory: Array
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # locks mouse to screen
 	run_inventory = []
-
-func _ready():
 	WorldUtil.player = self
-	WorldUtil.playerCam = get_node("CameraArm/Camera")
+	WorldUtil.playerCam = get_node("Camera")
 	
 func _exit_tree():
 	WorldUtil.player = null
