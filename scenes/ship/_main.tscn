@@ -260,6 +260,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.64552)
 [node name="captain" type="StaticBody3D" parent="cockpit"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6.91226)
 script = ExtResource("9_gwpfa")
+dialog_data_path = "res://scenes/ship/dialogs/captain.json"
 
 [node name="Collission" type="CollisionShape3D" parent="cockpit/captain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
