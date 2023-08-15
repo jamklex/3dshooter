@@ -3,3 +3,5 @@
 [resource]
 albedo_color = Color(0.490196, 0.490196, 0.490196, 1)
 metallic = 0.5
+emission = Color(0.752941, 0.0313726, 0.305882, 1)
+emission_energy_multiplier = 16.0

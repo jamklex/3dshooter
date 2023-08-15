@@ -12,19 +12,22 @@ var isInConversation = false
 @onready var _camera: Camera3D = $Camera
 @onready var _model: Node3D = $Skin
 @onready var _raycast: RayCast3D = $Camera/RayCast3D
+@onready var last_drop: RichTextLabel = $Camera/LastDrop
+@onready var inventory_output: RichTextLabel = $Camera/RunInventory
 
-var run_inventory: Array
+var run_inventory: Dictionary
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # locks mouse to screen
-	run_inventory = []
+	run_inventory = {}
 	WorldUtil.player = self
 	WorldUtil.playerCam = get_node("Camera")
+	refresh_inventory_output()
 	
 func _exit_tree():
 	WorldUtil.player = null
 	WorldUtil.playerCam = null
-	WorldUtil.playerCamRaycast = null
+	#WorldUtil.playerCamRaycast = null
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -59,7 +62,7 @@ func handle_interaction():
 	if !collider or !collider.has_method("can_interact") or !collider.can_interact():
 		return
 	if collider.has_method("highlight"):
-		collider.highlight(200)
+		collider.highlight(1000)
 	if !Input.is_action_just_pressed("interact"):
 		return
 	var distance = self.global_position.distance_to(collider.global_position)
@@ -72,10 +75,17 @@ func handle_interaction():
 func handle_show_inventory():
 	if !Input.is_action_just_pressed("inventory"):
 		return
-	if run_inventory.is_empty():
-		print("no items collected")
-		return
-	print(run_inventory)
+	refresh_inventory_output()
+	inventory_output.visible = !inventory_output.visible
+
+func refresh_inventory_output():
+	var inventory_text = "no items collected"
+	if !run_inventory.is_empty():
+		inventory_text = JSON.stringify(run_inventory, "\t")
+	inventory_output.text = "Inventory: " + inventory_text
+
+func show_last_drop(text):
+	last_drop.text = text
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion: # or controller right stick
