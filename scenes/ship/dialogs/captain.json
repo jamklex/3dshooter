@@ -1,0 +1,23 @@
+{
+	"text": "Hello",
+	"answers":
+	{
+		"Hey": {
+			"text": "Can you help me?",
+			"answers":
+			{
+				"Sure": {
+					"text": "Thanks man, please go and get my hammer back!",
+					"answers": {
+						"Alright, see ya!": {
+							"action": "giveTaskToPlayer",
+							"id": "1"
+						}
+					}
+				},
+				"No!": {}
+			}
+		},
+		"Bye": {}
+	}
+}
