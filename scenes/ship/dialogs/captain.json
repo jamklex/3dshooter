@@ -10,7 +10,7 @@
 					"text": "Thanks man, please go and get my hammer back!",
 					"answers": {
 						"Alright, see ya!": {
-							"action": "giveTaskToPlayer",
+							"action": "teleportToMissionMap",
 							"id": "1"
 						}
 					}

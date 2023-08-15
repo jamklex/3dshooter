@@ -24,7 +24,6 @@ func _ready():
 func _exit_tree():
 	WorldUtil.player = null
 	WorldUtil.playerCam = null
-	WorldUtil.playerCamRaycast = null
 
 func _physics_process(delta):
 	if not is_on_floor():

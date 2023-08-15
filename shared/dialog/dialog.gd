@@ -25,6 +25,7 @@ func _loadNextPart():
 	if not "text" in dialog_data:
 		if "action" in dialog_data:
 			print("do action '", dialog_data["action"], "' with id '", dialog_data["id"], "'")
+			get_tree().change_scene_to_file("res://scenes/level_1/_main.tscn")
 		_closeDialog()
 		return
 	_showText(dialog_data["text"])
@@ -62,16 +63,11 @@ func _input(event):
 			_handleSelection(index)
 			
 func _handleSelection(index):
-#	if index == -1:   - for basic close on 0-Key
-#		_closeDialog()
-#		return
 	if index < len(answers.keys()):
-		print("index: " + str(index))
 		dialog_data = answers[answers.keys()[index]]
 		_loadNextPart()
 			
 func _getIndex(keycode):
-#	keycode >= 48 - for basic close on 0-Key
 	if keycode >= 49 and keycode <= 57:
 		return keycode - 49
 	return null
