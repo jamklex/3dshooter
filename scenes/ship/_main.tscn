@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b0txtjr8s3wtd" path="res://assets/models/stairs/stairs.tscn" id="7_hgcep"]
 [ext_resource type="Script" path="res://shared/scripts/npc.gd" id="9_gwpfa"]
 [ext_resource type="PackedScene" uid="uid://bjck182qlnf7v" path="res://assets/models/glassFloor/glassFloor.tscn" id="10_cff1o"]
-[ext_resource type="Environment" uid="uid://b3d10lm251cel" path="res://scenes/ship/shipEnvironment.tres" id="13_vfn25"]
+[ext_resource type="Environment" uid="uid://bdsi47qs3trw3" path="res://scenes/ship/shipEnvironment.tres" id="13_vfn25"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vveou"]
 height = 1.72733
@@ -37,6 +37,7 @@ transform = Transform3D(1, 0, 0, 0, 0.325882, 0.945411, 0, -0.945411, 0.325882, 
 
 [node name="Player" parent="." instance=ExtResource("1_nxnoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111711, 0, -7.43068)
+interact_distance = 5
 
 [node name="cockpit" type="Node3D" parent="."]
 
