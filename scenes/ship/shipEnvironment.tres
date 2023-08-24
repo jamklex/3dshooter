@@ -1,0 +1,16 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://b3d10lm251cel"]
+
+[ext_resource type="Texture2D" uid="uid://bjldt6rnsnlu0" path="res://scenes/ship/loc00180_2_Space_Sky_watermark.jpg" id="1_y4kkj"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0jwpf"]
+panorama = ExtResource("1_y4kkj")
+
+[sub_resource type="Sky" id="Sky_tqcj1"]
+sky_material = SubResource("PanoramaSkyMaterial_0jwpf")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_tqcj1")
+ambient_light_source = 2
+ambient_light_color = Color(0.337255, 0.337255, 0.337255, 1)
+glow_intensity = 4.25

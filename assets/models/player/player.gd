@@ -18,6 +18,8 @@ var isInConversation = false
 var run_inventory: Dictionary
 
 func _ready():
+	if WorldUtil.playerStartPos and WorldUtil.playerStartPos != Vector3.ZERO:
+		position = WorldUtil.playerStartPos
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # locks mouse to screen
 	run_inventory = {}
 	WorldUtil.player = self

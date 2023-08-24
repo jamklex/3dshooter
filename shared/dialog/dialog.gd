@@ -24,8 +24,15 @@ func _getFileContent(filePath:String):
 func _loadNextPart():
 	if not "text" in dialog_data:
 		if "action" in dialog_data:
-			print("do action '", dialog_data["action"], "' with id '", dialog_data["id"], "'")
-			get_tree().change_scene_to_file("res://scenes/level_1/_main.tscn")
+			var action = dialog_data["action"]
+			if "id" in dialog_data:
+				print("call '" + action + "' with id: " + str(dialog_data["id"]))
+				if WorldUtil.has_method(action):
+					WorldUtil.call(action, int(dialog_data["id"]))
+			else:
+				print("call '" + action + "'")
+				if WorldUtil.has_method(action):
+					WorldUtil.call(action)
 		_closeDialog()
 		return
 	_showText(dialog_data["text"])

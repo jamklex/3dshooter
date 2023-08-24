@@ -19,6 +19,7 @@ func can_interact():
 	return interactable
 
 func interact(player: Player):
+	WorldUtil.teleport("ship", Vector3(-1,-3,-12))
 	InteractionHelper.add_onto(player, {"collectable_item_" + str(id):1})
 	interactable = false
 	self.queue_free()
