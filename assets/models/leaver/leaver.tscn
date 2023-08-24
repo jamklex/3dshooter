@@ -18,7 +18,6 @@ use_collision = true
 size = Vector3(0.14, 0.02, 0.06)
 material = ExtResource("2_dw64c")
 script = ExtResource("3_8s8u0")
-highlight_seconds = 0.1
 default_texture = "res://assets/models/leaver/leaver_on.tres"
 glow_texture = "res://assets/models/leaver/leaver_on_glow.tres"
 
@@ -29,6 +28,5 @@ size = Vector3(0.14, 0.02, 0.06)
 material = ExtResource("3_rpi6c")
 script = ExtResource("3_8s8u0")
 action = 1
-highlight_seconds = 0.1
 default_texture = "res://assets/models/leaver/leaver_off.tres"
 glow_texture = "res://assets/models/leaver/leaver_off_glow.tres"

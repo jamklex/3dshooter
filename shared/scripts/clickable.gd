@@ -6,6 +6,7 @@ var highlightTimer = Timer.new()
 @onready var id = get_instance_id()
 @export var interactable = true
 @export var highlighted = false
+@export var disable_on_interact = false
 @export var action: Actions.TYPE
 @export var highlight_seconds = 0.1 as float
 @export_file("*.tres") var default_texture
@@ -24,6 +25,8 @@ func can_interact():
 func interact(player: Player):
 	InteractionHelper.execute_action(action)
 	await click_animation()
+	if(disable_on_interact):
+		interactable = false
 
 func highlight():
 	highlightTimer.wait_time = highlight_seconds
@@ -36,7 +39,7 @@ func remove_highlight():
 	change_texture(default_mat)
 
 func click_animation():
-	print("clicking")
+	print("click animation")
 	return true
 
 func change_texture(texture: Material):
