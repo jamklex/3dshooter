@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2dk5nxi2ti7c"]
 
-[ext_resource type="Script" path="res://assets/models/item/item.gd" id="1_oi1o5"]
+[ext_resource type="Script" path="res://shared/scripts/pickable.gd" id="1_ld5ou"]
 [ext_resource type="Material" uid="uid://vxuutc161cxa" path="res://assets/models/item/item.tres" id="1_t13qh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vuup1"]
@@ -13,7 +13,9 @@ radial_segments = 4
 rings = 1
 
 [node name="item" type="RigidBody3D"]
-script = ExtResource("1_oi1o5")
+script = ExtResource("1_ld5ou")
+default_texture = "res://assets/models/item/item.tres"
+glow_texture = "res://assets/models/item/item-glow.tres"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_vuup1")

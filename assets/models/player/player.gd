@@ -63,11 +63,10 @@ func handle_interaction():
 	if !collider or !collider.has_method("can_interact") or !collider.can_interact():
 		return
 	if collider.has_method("highlight"):
-		collider.highlight(1000)
+		collider.highlight()
 	if !Input.is_action_just_pressed("interact"):
 		return
 	var distance = self.global_position.distance_to(collider.global_position)
-	print("distance: ", distance)
 	if distance > interact_distance:
 		return
 	if collider.has_method("interact"):

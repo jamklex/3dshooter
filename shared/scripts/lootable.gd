@@ -1,13 +1,15 @@
-class_name InteractableChest
+class_name Lootable
 
 extends CSGBox3D
-
-var interactable = true
-var highlighted = false
 var highlightTimer = Timer.new()
 @onready var id = get_instance_id()
-@onready var no_glow_texture = preload("res://assets/models/chest/lock.tres") as Material
-@onready var glow_texture = preload("res://assets/models/chest/lock-glow.tres") as Material
+@export var interactable = true
+@export var highlighted = false
+@export var highlight_seconds = 1.0 as float
+@export_file("*.tres") var default_texture
+@export_file("*.tres") var glow_texture
+@onready var default_mat = load(default_texture) as Material
+@onready var glow_mat = load(glow_texture) as Material
 
 func _ready():
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
@@ -21,16 +23,18 @@ func interact(player: Player):
 	InteractionHelper.add_onto(player, get_random_items())
 	if await open_animation():
 		interactable = false
+		remove_highlight()
+		highlightTimer.stop()
 
-func highlight(ms: int):
-	highlightTimer.wait_time = ms/1000
+func highlight():
+	highlightTimer.wait_time = highlight_seconds
 	highlightTimer.start()
 	highlighted = true
-	change_texture(glow_texture)
+	change_texture(glow_mat)
 
 func remove_highlight():
 	highlighted = false
-	change_texture(no_glow_texture)
+	change_texture(default_mat)
 
 func open_animation():
 	print("opening box")
