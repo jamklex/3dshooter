@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 WorldUtil="*res://shared/scripts/worldUtil.gd"
-InteractionHelper="*res://shared/scripts/InteractionHelper.gd"
 
 [input]
 

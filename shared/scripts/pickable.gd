@@ -1,14 +1,18 @@
-class_name InteractableItem
+class_name Pickable
 
 extends RigidBody3D
 
-var interactable = true
-var highlighted = false
 var highlightTimer = Timer.new()
 @onready var id = get_instance_id()
+@export var interactable = true
+@export var highlighted = false
+@export var item_type: Items.TYPE
 @onready var mesh = $CollisionShape3D/MeshInstance3D
-@onready var no_glow_texture = preload("res://assets/models/item/item.tres") as Material
-@onready var glow_texture = preload("res://assets/models/item/item-glow.tres") as Material
+@export var highlight_seconds = 1.0 as float
+@export_file("*.tres") var default_texture
+@export_file("*.tres") var glow_texture
+@onready var default_mat = load(default_texture) as Material
+@onready var glow_mat = load(glow_texture) as Material
 
 func _ready():
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
@@ -19,19 +23,19 @@ func can_interact():
 	return interactable
 
 func interact(player: Player):
-	InteractionHelper.add_onto(player, {"collectable_item_" + str(id):1})
+	InteractionHelper.add_onto(player, {"item_" + str(id):1})
 	interactable = false
 	self.queue_free()
 
-func highlight(ms: int):
-	highlightTimer.wait_time = ms/1000
+func highlight():
+	highlightTimer.wait_time = highlight_seconds
 	highlightTimer.start()
 	highlighted = true
-	change_texture(glow_texture)
+	change_texture(glow_mat)
 
 func remove_highlight():
 	highlighted = false
-	change_texture(no_glow_texture)
+	change_texture(default_mat)
 
 func change_texture(texture: Material):
 	mesh.set_surface_override_material(0, texture)

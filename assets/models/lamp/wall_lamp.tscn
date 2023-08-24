@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://crn8jtwfkuoq3"]
+
+[node name="wall_lamp" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(0.05, 0.05, 0.05)
