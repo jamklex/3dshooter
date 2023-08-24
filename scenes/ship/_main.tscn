@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjs346sprn81u"]
+[gd_scene load_steps=19 format=3 uid="uid://bjs346sprn81u"]
 
 [ext_resource type="PackedScene" uid="uid://dmewbrgwb041y" path="res://assets/models/player/player.tscn" id="1_nxnoa"]
 [ext_resource type="PackedScene" uid="uid://bj0dmkliaxidt" path="res://assets/models/table/table.tscn" id="2_a5rda"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b0txtjr8s3wtd" path="res://assets/models/stairs/stairs.tscn" id="7_hgcep"]
 [ext_resource type="Script" path="res://shared/scripts/npc.gd" id="9_gwpfa"]
 [ext_resource type="PackedScene" uid="uid://bjck182qlnf7v" path="res://assets/models/glassFloor/glassFloor.tscn" id="10_cff1o"]
+[ext_resource type="Environment" uid="uid://b3d10lm251cel" path="res://scenes/ship/shipEnvironment.tres" id="13_vfn25"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vveou"]
 height = 1.72733
@@ -1075,7 +1076,41 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.734,
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.9045, 9.49949e-08, -15.3886)
 
 [node name="table7" parent="upperShip" instance=ExtResource("2_a5rda")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.506, 0, -15.378)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.38095, 0, -15.378)
+
+[node name="roboUpgrader" type="StaticBody3D" parent="upperShip"]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -6.04289e-07, 0, -20.3693)
+script = ExtResource("9_gwpfa")
+dialog_data_path = "res://scenes/ship/dialogs/roboUpgrader.json"
+
+[node name="Collission" type="CollisionShape3D" parent="upperShip/roboUpgrader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
+shape = SubResource("CapsuleShape3D_vveou")
+
+[node name="Skin" type="MeshInstance3D" parent="upperShip/roboUpgrader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.0355329)
+mesh = SubResource("CapsuleMesh_mdxky")
+
+[node name="Front" type="MeshInstance3D" parent="upperShip/roboUpgrader/Skin"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
+mesh = SubResource("BoxMesh_l0a1o")
+
+[node name="weaponShop" type="StaticBody3D" parent="upperShip"]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 6.05326, 0, -4.27917)
+script = ExtResource("9_gwpfa")
+dialog_data_path = "res://scenes/ship/dialogs/weaponShop.json"
+
+[node name="Collission" type="CollisionShape3D" parent="upperShip/weaponShop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
+shape = SubResource("CapsuleShape3D_vveou")
+
+[node name="Skin" type="MeshInstance3D" parent="upperShip/weaponShop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.0355329)
+mesh = SubResource("CapsuleMesh_mdxky")
+
+[node name="Front" type="MeshInstance3D" parent="upperShip/weaponShop/Skin"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
+mesh = SubResource("BoxMesh_l0a1o")
 
 [node name="lowerShip" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.005, 0)
@@ -1296,3 +1331,23 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -2.
 
 [node name="table" parent="lowerShip" instance=ExtResource("2_a5rda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3, -10.212)
+
+[node name="itemSeller" type="StaticBody3D" parent="lowerShip"]
+transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 3.08714, -2.94661, -8.84602)
+script = ExtResource("9_gwpfa")
+dialog_data_path = "res://scenes/ship/dialogs/itemSeller.json"
+
+[node name="Collission" type="CollisionShape3D" parent="lowerShip/itemSeller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
+shape = SubResource("CapsuleShape3D_vveou")
+
+[node name="Skin" type="MeshInstance3D" parent="lowerShip/itemSeller"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129073, 0.846775, 0.035533)
+mesh = SubResource("CapsuleMesh_mdxky")
+
+[node name="Front" type="MeshInstance3D" parent="lowerShip/itemSeller/Skin"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
+mesh = SubResource("BoxMesh_l0a1o")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("13_vfn25")

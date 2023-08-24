@@ -1,0 +1,11 @@
+{
+	"text": "Hey, how can i help you?",
+	"answers":
+	{
+		"Let me see your weapons!": {
+			"action": "openWeaponShop",
+			"id": "1"
+		},
+		"Bye": {}
+	}
+}

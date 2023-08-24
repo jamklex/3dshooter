@@ -1,5 +1,6 @@
 extends Node
 
+var playerStartPos: Vector3
 var player: Player
 var playerCam: Camera3D
 var currentDialog: Dialog
@@ -18,3 +19,10 @@ func deleteDialog():
 	remove_child(currentDialog)
 	currentDialog = null
 	WorldUtil.player.isInConversation = false
+
+func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
+	playerStartPos = pos
+	get_tree().change_scene_to_file("res://scenes/" + sceneName + "/_main.tscn")
+
+func teleportToMissionMap(levelId:int):
+	teleport("level_" + str(levelId))
