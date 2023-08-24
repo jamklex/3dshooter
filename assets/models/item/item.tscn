@@ -14,8 +14,6 @@ rings = 1
 
 [node name="item" type="RigidBody3D"]
 script = ExtResource("1_ld5ou")
-default_texture = "res://assets/models/item/item.tres"
-glow_texture = "res://assets/models/item/item-glow.tres"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_vuup1")

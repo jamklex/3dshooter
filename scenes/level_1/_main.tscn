@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b62862nehx1gk"]
+[gd_scene load_steps=14 format=3 uid="uid://b62862nehx1gk"]
 
 [ext_resource type="PackedScene" uid="uid://c0xn6kt4cmxpp" path="res://assets/models/floor/long-floor.tscn" id="1_c2l71"]
 [ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/floor/floor.tscn" id="2_li6ox"]
@@ -12,18 +12,15 @@
 [ext_resource type="PackedScene" uid="uid://bj0dmkliaxidt" path="res://assets/models/table/table.tscn" id="8_eopf7"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/item/item.tscn" id="11_0wgjw"]
 [ext_resource type="PackedScene" uid="uid://cpa6tt7ijrjsb" path="res://assets/models/leaver/leaver.tscn" id="12_udwnb"]
+[ext_resource type="PackedScene" uid="uid://crn8jtwfkuoq3" path="res://assets/models/lamp/wall_lamp.tscn" id="13_ia30y"]
 
 [node name="Level 1" type="Node3D"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.965926, -1.13133e-08, 0.258819, -0.258819, 4.2222e-08, -0.965926, 0, -1, -4.37114e-08, -0.00037384, -34.1778, 0.00356102)
-visible = false
 
 [node name="item" parent="." instance=ExtResource("11_0wgjw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 1.08818, -6.5)
 
 [node name="Player" parent="." instance=ExtResource("5_si87g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+transform = Transform3D(0.00057596, 0, 1, 0, 1, 0, -1, 0, 0.00057596, 4, 0, 0)
 
 [node name="Roof" type="Node3D" parent="."]
 
@@ -287,7 +284,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 0, 0.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, -6.5)
 
 [node name="chair2" parent="Props" instance=ExtResource("7_di6w3")]
-transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, 1.91069e-15, -4.37114e-08, 0, -1, -4.37114e-08, -23, 0.5, 0)
+transform = Transform3D(-4.37114e-08, 4.37114e-08, -1, 1, 1.91069e-15, -4.37114e-08, 0, -1, -4.37114e-08, -23, 0.30556, 0)
 
 [node name="table" parent="Props" instance=ExtResource("8_eopf7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 1.5)
@@ -476,3 +473,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, -7)
 
 [node name="leaver" parent="." instance=ExtResource("12_udwnb")]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -33.9671, 1.29327, -4.99951)
+
+[node name="wall_lamp" parent="." instance=ExtResource("13_ia30y")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.93239, 1.23272, 0.020648)
+
+[node name="wall_lamp2" parent="." instance=ExtResource("13_ia30y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.0382, 1.3812, 2.07007)
+
+[node name="wall_lamp3" parent="." instance=ExtResource("13_ia30y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0406, 1.5996, 1.92503)

@@ -6,10 +6,6 @@ var highlightTimer = Timer.new()
 @export var interactable = true
 @export var highlighted = false
 @export var highlight_seconds = 1.0 as float
-@export_file("*.tres") var default_texture
-@export_file("*.tres") var glow_texture
-@onready var default_mat = load(default_texture) as Material
-@onready var glow_mat = load(glow_texture) as Material
 
 func _ready():
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
@@ -30,11 +26,12 @@ func highlight():
 	highlightTimer.wait_time = highlight_seconds
 	highlightTimer.start()
 	highlighted = true
-	change_texture(glow_mat)
+	material.emission_enabled = true
+	material.emission = material.albedo_color
 
 func remove_highlight():
 	highlighted = false
-	change_texture(default_mat)
+	material.emission_enabled = false
 
 func open_animation():
 	print("opening box")
@@ -44,6 +41,3 @@ func get_random_items():
 	var drops = {}
 	drops["item_" + str(randi_range(1,9))] = randi_range(1,10)
 	return drops
-
-func change_texture(texture: Material):
-	get_meshes()[1].surface_set_material(0, texture)

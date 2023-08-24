@@ -9,10 +9,6 @@ var highlightTimer = Timer.new()
 @export var disable_on_interact = false
 @export var action: Actions.TYPE
 @export var highlight_seconds = 0.1 as float
-@export_file("*.tres") var default_texture
-@export_file("*.tres") var glow_texture
-@onready var default_mat = load(default_texture) as Material
-@onready var glow_mat = load(glow_texture) as Material
 
 func _ready():
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
@@ -23,7 +19,7 @@ func can_interact():
 	return interactable
 
 func interact(player: Player):
-	InteractionHelper.execute_action(action)
+	Actions.execute_action(action)
 	await click_animation()
 	if(disable_on_interact):
 		interactable = false
@@ -32,15 +28,13 @@ func highlight():
 	highlightTimer.wait_time = highlight_seconds
 	highlightTimer.start()
 	highlighted = true
-	change_texture(glow_mat)
+	material.emission_enabled = true
+	material.emission = material.albedo_color
 
 func remove_highlight():
 	highlighted = false
-	change_texture(default_mat)
+	material.emission_enabled = false
 
 func click_animation():
 	print("click animation")
 	return true
-
-func change_texture(texture: Material):
-	get_meshes()[1].surface_set_material(0, texture)

@@ -18,5 +18,3 @@ use_collision = true
 size = Vector3(0.05, 0.1, 0.1)
 material = ExtResource("2_mi286")
 script = ExtResource("3_jhytr")
-default_texture = "res://assets/models/chest/lock.tres"
-glow_texture = "res://assets/models/chest/lock-glow.tres"

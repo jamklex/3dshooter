@@ -9,10 +9,6 @@ var highlightTimer = Timer.new()
 @export var item_type: Items.TYPE
 @onready var mesh = $CollisionShape3D/MeshInstance3D
 @export var highlight_seconds = 1.0 as float
-@export_file("*.tres") var default_texture
-@export_file("*.tres") var glow_texture
-@onready var default_mat = load(default_texture) as Material
-@onready var glow_mat = load(glow_texture) as Material
 
 func _ready():
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
@@ -31,11 +27,13 @@ func highlight():
 	highlightTimer.wait_time = highlight_seconds
 	highlightTimer.start()
 	highlighted = true
-	change_texture(glow_mat)
+	var material = get_material()
+	material.emission_enabled = true
+	material.emission = material.albedo_color
 
 func remove_highlight():
 	highlighted = false
-	change_texture(default_mat)
+	get_material().emission_enabled = false
 
-func change_texture(texture: Material):
-	mesh.set_surface_override_material(0, texture)
+func get_material():
+	return mesh.get_surface_override_material(0)
