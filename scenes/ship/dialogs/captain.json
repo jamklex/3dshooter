@@ -3,6 +3,12 @@
 	"answers":
 	{
 		"Hey": {
+			"condition": {
+				"result": false,
+				"action": "checkPlayerInventory",
+				"item": "item_goldenSphere",
+				"amount": 2
+			},
 			"text": "Can you help me?",
 			"answers":
 			{
@@ -11,9 +17,36 @@
 					"answers": {
 						"Alright, see ya!": {
 							"action": "teleportToMissionMap",
-							"id": "1"
+							"levelId": 1
 						}
 					}
+				},
+				"No!": {}
+			}
+		},
+		"Hey, look what i got!": {
+			"condition": {
+				"result": true,
+				"action": "checkPlayerInventory",
+				"item": "item_goldenSphere",
+				"amount": 2
+			},
+			"text": "Oh u got my stuff!",
+			"answers":
+			{
+				"Yeah, here you are": {
+					"actions": [
+						{
+							"action": "removeFromPlayerInventory",
+							"item": "item_goldenSphere",
+							"amount": 2
+						},
+						{
+							"action": "addToPlayerInventory",
+							"item": "item_sword",
+							"amount": 1
+						},
+					]
 				},
 				"No!": {}
 			}

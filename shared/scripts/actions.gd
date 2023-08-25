@@ -14,5 +14,7 @@ static func execute_action(action: Actions.TYPE):
 			print("off")
 		Actions.TYPE.TELEPORT_TO_BASE:
 			print("teleport back")
+			WorldUtil.player.saveRunInventory()
+			WorldUtil.teleportToLowerShip()
 		_:
 			print("action " + str(action) + " is not implemented")

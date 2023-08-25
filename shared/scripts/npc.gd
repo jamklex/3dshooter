@@ -23,8 +23,8 @@ func stopConversation():
 	resetPosition()
 
 func lookToPlayer():
-	if WorldUtil.player:
-		transform = transform.looking_at(WorldUtil.player.position)
+	if WorldUtil.player.body:
+		transform = transform.looking_at(WorldUtil.player.body.position)
 		
 func resetPosition():
 	transform = normalTransform

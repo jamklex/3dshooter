@@ -1,10 +1,12 @@
 extends Node
 
-var playerStartPos: Vector3
-var player: Player
-var playerCam: Camera3D
+
+var player: Player = Player.new()
 var currentDialog: Dialog
 var dialogScene = preload("res://shared/dialog/dialog.tscn")
+
+func _enter_tree():
+	add_child(player)
 
 func createDialog(dialog_data_path:String) -> Dialog:
 	if currentDialog:
@@ -19,10 +21,31 @@ func deleteDialog():
 	remove_child(currentDialog)
 	currentDialog = null
 	WorldUtil.player.isInConversation = false
-
-func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
-	playerStartPos = pos
-	get_tree().change_scene_to_file("res://scenes/" + sceneName + "/_main.tscn")
-
+	
 func teleportToMissionMap(levelId:int):
-	teleport("level_" + str(levelId))
+	player.teleport("level_" + str(levelId))
+	
+func teleportToLowerShip():
+	player.teleport("ship", Vector3(-1,-3,-12))
+	
+func removeFromPlayerInventory(item:String, amount:int):
+	if !checkPlayerInventory(item, amount):
+		return false
+	player.inventory[item] -= amount
+	if !checkPlayerInventory(item, 1):
+		player.inventory.erase(item)
+	return true
+	
+func addToPlayerInventory(item:String, amount:int):
+	if item in player.inventory:
+		player.inventory[item] += amount
+	else:
+		player.inventory[item] = amount
+	
+func checkPlayerInventory(item:String, minAmount:int):
+	if item in player.inventory:
+		return player.inventory[item] >= minAmount
+	return false
+		
+func save():
+	player.save()

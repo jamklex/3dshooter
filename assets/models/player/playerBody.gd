@@ -1,11 +1,10 @@
-class_name Player
+class_name PlayerBody
 extends CharacterBody3D
 
 
 @export var speed := 7.0
 @export var jump_strength := 20.0
 @export var gravity := 50.0
-var isInConversation = false
 @export var mouse_sensitivity := 0.05
 @export var interact_distance := 2
 
@@ -15,26 +14,26 @@ var isInConversation = false
 @onready var last_drop: RichTextLabel = $Camera/LastDrop
 @onready var inventory_output: RichTextLabel = $Camera/RunInventory
 
-var run_inventory: Dictionary
+
 
 func _ready():
-	if WorldUtil.playerStartPos and WorldUtil.playerStartPos != Vector3.ZERO:
-		position = WorldUtil.playerStartPos
+	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
+		position = WorldUtil.player.bodyStartPos
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # locks mouse to screen
-	run_inventory = {}
-	WorldUtil.player = self
-	WorldUtil.playerCam = get_node("Camera")
+	WorldUtil.player.body = self
+	WorldUtil.player.cam = get_node("Camera")
 	refresh_inventory_output()
 	
 func _exit_tree():
-	WorldUtil.player = null
-	WorldUtil.playerCam = null
+	WorldUtil.player.bodyLastPos = position
+	WorldUtil.player.body = null
+	WorldUtil.player.cam = null
 
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
-	if isInConversation:
+	if WorldUtil.player.isInConversation:
 		return
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -42,6 +41,7 @@ func _physics_process(delta):
 
 	handle_interaction()
 	handle_show_inventory()
+	handle_show_menu()
 
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -55,6 +55,12 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
+	
+func handle_show_menu():
+	if !Input.is_action_just_pressed("menu"):
+		return
+	WorldUtil.save()
+	get_tree().quit()
 	
 func handle_interaction():
 	if !_raycast.is_colliding():
@@ -70,7 +76,7 @@ func handle_interaction():
 	if distance > interact_distance:
 		return
 	if collider.has_method("interact"):
-		collider.interact(self)
+		collider.interact(WorldUtil.player)
 
 func handle_show_inventory():
 	if !Input.is_action_just_pressed("inventory"):
@@ -79,10 +85,14 @@ func handle_show_inventory():
 	inventory_output.visible = !inventory_output.visible
 
 func refresh_inventory_output():
-	var inventory_text = "no items collected"
-	if !run_inventory.is_empty():
-		inventory_text = JSON.stringify(run_inventory, "\t")
-	inventory_output.text = "Inventory: " + inventory_text
+	var inventory_text = ""
+	if !WorldUtil.player.run_inventory.is_empty():
+		inventory_text += "RunInventory: " + JSON.stringify(WorldUtil.player.run_inventory, "\t") + "\n"
+	if !WorldUtil.player.inventory.is_empty():
+		inventory_text += "Inventory: " + JSON.stringify(WorldUtil.player.inventory, "\t") + "\n"
+	if inventory_text == "":
+		inventory_text = "no items collected"
+	inventory_output.text = inventory_text
 
 func show_last_drop(text):
 	last_drop.text = text

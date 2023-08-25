@@ -7,5 +7,5 @@ static func add_onto(player: Player, drops: Dictionary):
 		if inventory.has(key):
 			value += inventory[key]
 		inventory[key] = value
-	player.show_last_drop("found: " + str(drops))
-	player.refresh_inventory_output()
+	player.body.show_last_drop("found: " + str(drops))
+	player.body.refresh_inventory_output()

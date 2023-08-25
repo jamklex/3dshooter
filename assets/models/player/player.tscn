@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmewbrgwb041y"]
+[gd_scene load_steps=6 format=3 uid="uid://cj6rwih0ie5mw"]
 
-[ext_resource type="Script" path="res://assets/models/player/player.gd" id="1_l743w"]
+[ext_resource type="Script" path="res://assets/models/player/playerBody.gd" id="1_xhk0a"]
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="2_xctsq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vveou"]
@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_oexap")
 height = 1.7
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_l743w")
+script = ExtResource("1_xhk0a")
 speed = 5.0
 jump_strength = 10.0
 

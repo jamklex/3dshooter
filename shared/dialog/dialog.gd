@@ -20,26 +20,52 @@ func _getFileContent(filePath:String):
 		return ""
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	return file.get_as_text()
+	
+func _executeAction(actionData:Dictionary):
+	var action = actionData["action"]
+	if action == "teleportToMissionMap":
+		WorldUtil.call(action, actionData["levelId"])
+	elif action == "removeFromPlayerInventory" or action == "addToPlayerInventory" :
+		WorldUtil.call(action, actionData["item"], actionData["amount"])
+		WorldUtil.player.body.refresh_inventory_output()
+	else:
+		print("dont know what to do with action '" + action + "'")
 			
 func _loadNextPart():
 	if not "text" in dialog_data:
 		if "action" in dialog_data:
-			var action = dialog_data["action"]
-			if "id" in dialog_data:
-				print("call '" + action + "' with id: " + str(dialog_data["id"]))
-				if WorldUtil.has_method(action):
-					WorldUtil.call(action, int(dialog_data["id"]))
-			else:
-				print("call '" + action + "'")
-				if WorldUtil.has_method(action):
-					WorldUtil.call(action)
+			_executeAction(dialog_data)
+		elif "actions" in dialog_data:
+			var actions = dialog_data["actions"]
+			for i in range(len(actions)):
+				_executeAction(actions[i])
 		_closeDialog()
 		return
 	_showText(dialog_data["text"])
 	if "answers" in dialog_data:
-		answers = dialog_data["answers"]
+		answers = _removeUnavailableAnswers(dialog_data["answers"])
 		_showAnswers(answers.keys())
 
+func _removeUnavailableAnswers(dialogAnswers:Dictionary):
+	var availableAnswers = {}
+	for answerKey in dialogAnswers:
+		var answerData = dialogAnswers[answerKey]
+		if not "condition" in answerData:
+			availableAnswers[answerKey] = answerData
+			continue
+		if _isConditionFulfilled(answerData["condition"]):
+			availableAnswers[answerKey] = answerData
+	return availableAnswers
+	
+func _isConditionFulfilled(condition:Dictionary):
+	var action = condition["action"]
+	var result = condition["result"]
+	if action == "checkPlayerInventory":
+		return result == WorldUtil.call(action, condition["item"], condition["amount"])
+	else:
+		print("dont know what to do with action '" + action + "'... return false")
+		return false
+	
 func _closeDialog():
 	onExit.emit()
 	WorldUtil.deleteDialog()
