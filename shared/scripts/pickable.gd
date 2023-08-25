@@ -9,6 +9,7 @@ var highlightTimer = Timer.new()
 @export var item_type: Items.TYPE
 @onready var mesh = $CollisionShape3D/MeshInstance3D
 @export var highlight_seconds = 1.0 as float
+@export var interact_distance_m = 2.0
 
 func _ready():
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
@@ -37,4 +38,6 @@ func remove_highlight():
 	get_material().emission_enabled = false
 
 func get_material():
-	return mesh.get_surface_override_material(0)
+	var duplicate = mesh.get_surface_override_material(0).duplicate() # individual material
+	mesh.set_surface_override_material(0, duplicate)
+	return duplicate

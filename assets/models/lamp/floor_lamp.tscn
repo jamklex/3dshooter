@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://6wpg15f3dwxv"]
+
+[ext_resource type="Script" path="res://shared/scripts/glowable.gd" id="1_gu2pa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yk6wy"]
+
+[node name="top_lamp" type="CSGBox3D"]
+size = Vector3(0.1, 0.05, 0.1)
+material = SubResource("StandardMaterial3D_yk6wy")
+script = ExtResource("1_gu2pa")
+color = Color(0.419608, 0.588235, 0.345098, 1)
+
+[node name="light" type="OmniLight3D" parent="."]
+shadow_enabled = true
+omni_range = 3.0

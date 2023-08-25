@@ -6,8 +6,10 @@ var highlightTimer = Timer.new()
 @export var interactable = true
 @export var highlighted = false
 @export var highlight_seconds = 1.0 as float
+@export var interact_distance_m = 2.0 as float
 
 func _ready():
+	material = material.duplicate(true) # individual material
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
 	highlightTimer.one_shot = true
 	add_child(highlightTimer)
@@ -34,7 +36,7 @@ func remove_highlight():
 	material.emission_enabled = false
 
 func open_animation():
-	print("opening box")
+	print("TODO: opening animation")
 	return true
 
 func get_random_items():

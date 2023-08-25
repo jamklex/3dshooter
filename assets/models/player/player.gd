@@ -67,7 +67,7 @@ func handle_interaction():
 	if !Input.is_action_just_pressed("interact"):
 		return
 	var distance = self.global_position.distance_to(collider.global_position)
-	if distance > interact_distance:
+	if distance > InteractionHelper.interact_distance(collider, interact_distance):
 		return
 	if collider.has_method("interact"):
 		collider.interact(self)
