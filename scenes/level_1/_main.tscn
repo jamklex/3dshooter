@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b62862nehx1gk"]
+[gd_scene load_steps=17 format=3 uid="uid://b62862nehx1gk"]
 
 [ext_resource type="PackedScene" uid="uid://c0xn6kt4cmxpp" path="res://assets/models/floor/long-floor.tscn" id="1_c2l71"]
 [ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/floor/floor.tscn" id="2_li6ox"]
@@ -11,8 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bhdudjag6gu48" path="res://assets/models/roof/roof.tscn" id="7_mlhrq"]
 [ext_resource type="PackedScene" uid="uid://bj0dmkliaxidt" path="res://assets/models/table/table.tscn" id="8_eopf7"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/item/item.tscn" id="11_0wgjw"]
+[ext_resource type="PackedScene" uid="uid://de1t4ilfnctum" path="res://assets/models/boxes/boxes.tscn" id="11_pbjhs"]
 [ext_resource type="PackedScene" uid="uid://cpa6tt7ijrjsb" path="res://assets/models/leaver/leaver.tscn" id="12_udwnb"]
-[ext_resource type="PackedScene" uid="uid://crn8jtwfkuoq3" path="res://assets/models/lamp/wall_lamp.tscn" id="13_ia30y"]
+[ext_resource type="PackedScene" uid="uid://c6oqupr7ertgm" path="res://assets/models/lamp/wall_lamp.tscn" id="13_ia30y"]
+[ext_resource type="PackedScene" uid="uid://c0xarjkovxkuc" path="res://assets/models/lamp/top_lamp.tscn" id="14_xkeo5"]
+[ext_resource type="PackedScene" uid="uid://dq7k23rt2b1yq" path="res://assets/models/airvent/airvent.tscn" id="15_532me"]
 
 [node name="Level 1" type="Node3D"]
 
@@ -400,6 +403,24 @@ transform = Transform3D(-0.473919, 0, 0.880568, 0, 1, 0, -0.880568, 0, -0.473919
 [node name="chest9" parent="Props" instance=ExtResource("6_y0qcw")]
 transform = Transform3D(0.971681, 0, 0.236295, 0, 1, 0, -0.236295, 0, 0.971681, -16.5, 0.758034, -5.5)
 
+[node name="leaver" parent="Props" instance=ExtResource("12_udwnb")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -33.9671, 1.29327, -4.99951)
+
+[node name="boxes" parent="Props" instance=ExtResource("11_pbjhs")]
+transform = Transform3D(0.212041, 0, -0.977261, 0, 1, 0, 0.977261, 0, 0.212041, -26.8502, -1.43424e-07, -6.81196)
+
+[node name="boxes2" parent="Props" instance=ExtResource("11_pbjhs")]
+transform = Transform3D(-0.936959, 0, 0.349439, 0, 1, 0, -0.349439, 0, -0.936959, -20.9895, 9.49949e-08, -4.95725)
+
+[node name="boxes3" parent="Props" instance=ExtResource("11_pbjhs")]
+transform = Transform3D(-0.992474, 0, 0.122458, 0, 1, 0, -0.122458, 0, -0.992474, -27.3139, 3.33413e-07, -2.6727)
+
+[node name="boxes4" parent="Props" instance=ExtResource("11_pbjhs")]
+transform = Transform3D(-0.207656, 0, 0.978203, 0, 1, 0, -0.978203, 0, -0.207656, -31.5, 0, -3.39434)
+
+[node name="boxes5" parent="Props" instance=ExtResource("11_pbjhs")]
+transform = Transform3D(-0.93696, 0, 0.349439, 0, 1, 0, -0.349439, 0, -0.93696, -5.41483, 0, 2.52482)
+
 [node name="Floor" type="Node3D" parent="."]
 
 [node name="long-floor" parent="Floor" instance=ExtResource("1_c2l71")]
@@ -471,14 +492,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, -5)
 [node name="long-floor21" parent="Floor" instance=ExtResource("1_c2l71")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 0, -7)
 
-[node name="leaver" parent="." instance=ExtResource("12_udwnb")]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -33.9671, 1.29327, -4.99951)
+[node name="lamps" type="Node3D" parent="."]
 
-[node name="wall_lamp" parent="." instance=ExtResource("13_ia30y")]
+[node name="wall_lamp" parent="lamps" instance=ExtResource("13_ia30y")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.93239, 1.23272, 0.020648)
+flicker_enabled = true
 
-[node name="wall_lamp2" parent="." instance=ExtResource("13_ia30y")]
+[node name="wall_lamp2" parent="lamps" instance=ExtResource("13_ia30y")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.0382, 1.3812, 2.07007)
+flicker_enabled = true
 
-[node name="wall_lamp3" parent="." instance=ExtResource("13_ia30y")]
+[node name="wall_lamp3" parent="lamps" instance=ExtResource("13_ia30y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0406, 1.5996, 1.92503)
+flicker_enabled = true
+
+[node name="top_lamp" parent="lamps" instance=ExtResource("14_xkeo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45413, 2.99964, -1.20282)
+color = Color(0.917647, 0, 0.137255, 1)
+flicker_enabled = true
+flicker_interval_sec = [2.0, 0.3]
+flicker_natural = false
+
+[node name="vents" type="Node3D" parent="."]
+
+[node name="airvent" parent="vents" instance=ExtResource("15_532me")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 2, -8)

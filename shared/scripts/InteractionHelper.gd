@@ -8,4 +8,10 @@ static func add_onto(player: Player, drops: Dictionary):
 			value += inventory[key]
 		inventory[key] = value
 	player.body.show_last_drop("found: " + str(drops))
-	player.body.refresh_inventory_output()
+	player.body.refresh_inventory_output()	
+
+static func interact_distance(interactable, default_distance):
+	var item_distance = interactable.get("interact_distance_m")
+	if item_distance != null:
+		return item_distance
+	return default_distance
