@@ -5,15 +5,16 @@ extends CSGBox3D
 var highlightTimer = Timer.new()
 @onready var id = get_instance_id()
 @export var interactable = true
-@export var highlighted = false
+@export var enable_highlight = true
 @export var disable_on_interact = false
 @export var action: Actions.TYPE
 @export var highlight_seconds = 0.1 as float
 @export var interact_distance_m = 2.0
+var highlighted = false
 
 func _ready():
 	material = material.duplicate(true) # individual material
-	if highlight_seconds > 0:
+	if enable_highlight:
 		highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
 		highlightTimer.one_shot = true
 		add_child(highlightTimer)
@@ -29,7 +30,7 @@ func interact(player: Player):
 		remove_highlight()
 
 func highlight():
-	if !interactable:
+	if !enable_highlight:
 		return
 	highlightTimer.wait_time = highlight_seconds
 	highlightTimer.start()

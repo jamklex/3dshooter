@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://6wpg15f3dwxv"]
+[gd_scene load_steps=3 format=3 uid="uid://di1isv72hnmoo"]
 
 [ext_resource type="Script" path="res://shared/scripts/glowable.gd" id="1_gu2pa"]
 
