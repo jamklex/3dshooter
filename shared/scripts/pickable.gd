@@ -20,7 +20,7 @@ func can_interact():
 	return interactable
 
 func interact(player: Player):
-	InteractionHelper.add_onto(player, {"item_" + name:1})
+	InteractionHelper.add_drop(player, DropItem.create_fix("item_" + name))
 	interactable = false
 	self.queue_free()
 

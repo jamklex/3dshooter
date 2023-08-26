@@ -1,13 +1,13 @@
 class_name InteractionHelper
 
-static func add_onto(player: Player, drops: Dictionary):
+static func add_drop(player: Player, drop: DropItem):
 	var inventory = player.run_inventory
-	for key in drops.keys():
-		var value = drops[key]
-		if inventory.has(key):
-			value += inventory[key]
-		inventory[key] = value
-	player.body.show_last_drop("found: " + str(drops))
+	var drop_key = drop.id
+	var drop_value = drop.get_amount()
+	if inventory.has(drop_key):
+		drop_value += inventory[drop_key]
+	inventory[drop_key] = drop_value
+	player.body.show_last_drop("found: " + drop.loot_message())
 	player.body.refresh_inventory_output()
 
 static func interact_distance(interactable, default_distance):

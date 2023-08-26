@@ -8,6 +8,7 @@ var bodyStartPos: Vector3
 var bodyLastPos: Vector3
 var run_inventory: Dictionary
 var inventory: Dictionary
+var store_inventory: Dictionary
 var isInConversation = false
 var _savePath = "res://player.json" #"user://settings.json"
 
@@ -15,15 +16,17 @@ func _init():
 	print("load player")
 	if FileAccess.file_exists(_savePath):
 		var file = FileAccess.open(_savePath, FileAccess.READ)
-		var loadDict = JSON.parse_string(file.get_as_text())
-		run_inventory = loadDict["runInv"]
-		inventory = loadDict["inv"]
+		var loadDict = JSON.parse_string(file.get_as_text()) as Dictionary
+		run_inventory = loadDict.get("runInv", {})
+		inventory = loadDict.get("inv", {})
+		run_inventory = loadDict.get("storeInv", {})
 	
 func save():
 	print("save player")
 	var saveDict = {
 		"runInv": run_inventory,
-		"inv": inventory
+		"inv": inventory,
+		"storeInv": store_inventory
 	}
 	var file = FileAccess.open(_savePath, FileAccess.WRITE)
 	file.store_line(JSON.stringify(saveDict, "\t"))
@@ -33,9 +36,16 @@ func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
 	get_tree().change_scene_to_file("res://scenes/" + sceneName + "/_main.tscn")
 
 func saveRunInventory():
-	for key in run_inventory.keys():
-		if key in inventory:
-			inventory[key] += run_inventory[key]
+	move_all(run_inventory, inventory)
+
+func storeRunInventory():
+	move_all(run_inventory, store_inventory)
+	body.refresh_inventory_output()
+
+func move_all(from: Dictionary, to: Dictionary):
+	for key in from.keys():
+		if key in to:
+			to[key] += from[key]
 		else:
-			inventory[key] = run_inventory[key]
-	run_inventory.clear()
+			to[key] = from[key]
+	from.clear()

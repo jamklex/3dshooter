@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjs346sprn81u"]
+[gd_scene load_steps=21 format=3 uid="uid://bjs346sprn81u"]
 
 [ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="1_nxnoa"]
 [ext_resource type="PackedScene" uid="uid://bj0dmkliaxidt" path="res://assets/models/table/table.tscn" id="2_a5rda"]
@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://b0txtjr8s3wtd" path="res://assets/models/stairs/stairs.tscn" id="7_hgcep"]
 [ext_resource type="Script" path="res://shared/scripts/npc.gd" id="9_gwpfa"]
 [ext_resource type="PackedScene" uid="uid://bjck182qlnf7v" path="res://assets/models/glassFloor/glassFloor.tscn" id="10_cff1o"]
+[ext_resource type="PackedScene" uid="uid://c0xarjkovxkuc" path="res://assets/models/lamp/top_lamp.tscn" id="13_2x4r5"]
 [ext_resource type="Environment" uid="uid://bdsi47qs3trw3" path="res://scenes/ship/shipEnvironment.tres" id="13_vfn25"]
+[ext_resource type="PackedScene" uid="uid://c6oqupr7ertgm" path="res://assets/models/lamp/wall_lamp.tscn" id="13_vojef"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vveou"]
 height = 1.72733
@@ -31,9 +33,6 @@ albedo_color = Color(1, 1, 0.427451, 1)
 material = SubResource("StandardMaterial3D_qf3dd")
 
 [node name="_main" type="Node3D"]
-
-[node name="sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.325882, 0.945411, 0, -0.945411, 0.325882, 0, 241.731, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_nxnoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111711, 0, -7.43068)
@@ -275,6 +274,16 @@ mesh = SubResource("CapsuleMesh_mdxky")
 [node name="Front" type="MeshInstance3D" parent="cockpit/captain/Skin"]
 transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
 mesh = SubResource("BoxMesh_l0a1o")
+
+[node name="lamps" type="Node3D" parent="cockpit"]
+
+[node name="wall_lamp" parent="cockpit/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4.93163, 2, 1.07482)
+color = Color(0.898039, 0.643137, 0.0784314, 1)
+
+[node name="wall_lamp2" parent="cockpit/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.92386, 2, 1.07482)
+color = Color(0.898039, 0.643137, 0.0784314, 1)
 
 [node name="upperShip" type="Node3D" parent="."]
 
@@ -1056,13 +1065,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 6, -20)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.83867, 9.49949e-08, -2.07798)
 
 [node name="table4" parent="upperShip" instance=ExtResource("2_a5rda")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -19.078)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -20.4711)
 
 [node name="table5" parent="upperShip" instance=ExtResource("2_a5rda")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 0, -19.078)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 0, -20.4711)
 
 [node name="table6" parent="upperShip" instance=ExtResource("2_a5rda")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 0, -19.078)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 0, -20.4711)
 
 [node name="table2" parent="upperShip" instance=ExtResource("2_a5rda")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.83867, 9.49949e-08, -4.07798)
@@ -1080,7 +1089,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.9045
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.38095, 0, -15.378)
 
 [node name="roboUpgrader" type="StaticBody3D" parent="upperShip"]
-transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -6.04289e-07, 0, -20.3693)
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -6.04289e-07, 0, -21.8895)
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/roboUpgrader.json"
 
@@ -1089,7 +1098,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.033905
 shape = SubResource("CapsuleShape3D_vveou")
 
 [node name="Skin" type="MeshInstance3D" parent="upperShip/roboUpgrader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.0355329)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.035532)
 mesh = SubResource("CapsuleMesh_mdxky")
 
 [node name="Front" type="MeshInstance3D" parent="upperShip/roboUpgrader/Skin"]
@@ -1112,6 +1121,80 @@ mesh = SubResource("CapsuleMesh_mdxky")
 [node name="Front" type="MeshInstance3D" parent="upperShip/weaponShop/Skin"]
 transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
 mesh = SubResource("BoxMesh_l0a1o")
+
+[node name="lamps" type="Node3D" parent="upperShip"]
+
+[node name="top_lamp" parent="upperShip/lamps" instance=ExtResource("13_2x4r5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02175, 3, -21.7231)
+color = Color(0.701961, 0.145098, 0.219608, 1)
+
+[node name="top_lamp2" parent="upperShip/lamps" instance=ExtResource("13_2x4r5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.978251, 3, -21.7231)
+color = Color(0.701961, 0.145098, 0.219608, 1)
+
+[node name="wall_lamp" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -3.00255)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp2" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -7.00255)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp3" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -11.0025)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp4" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -15.0025)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp5" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -19.0025)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp6" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -19.0025)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp7" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -15.0025)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp8" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -11.0025)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp9" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -7.00255)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp10" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -3.00255)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp11" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.007, 3.713, -20.93)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp12" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.993, 3.713, -20.93)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp13" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.00699997, 3.713, -20.93)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp14" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.993, 3.713, -1.06997)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp15" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.007, 3.713, -1.06997)
+color = Color(0.309804, 0.513726, 0.235294, 1)
+
+[node name="wall_lamp16" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00699997, 3.713, -1.06997)
+color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="lowerShip" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.005, 0)
@@ -1322,13 +1405,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -3, -8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 4)
 
 [node name="stairs" parent="lowerShip/stairs" instance=ExtResource("7_hgcep")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.996033, -12)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.996033, -11.9332)
 
 [node name="stairs2" parent="lowerShip/stairs" instance=ExtResource("7_hgcep")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.99603, -14)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.99603, -13.6654)
 
 [node name="stairs3" parent="lowerShip/stairs" instance=ExtResource("7_hgcep")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -2.99603, -16)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -2.99603, -15.3958)
 
 [node name="table" parent="lowerShip" instance=ExtResource("2_a5rda")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3, -10.212)
@@ -1349,6 +1432,32 @@ mesh = SubResource("CapsuleMesh_mdxky")
 [node name="Front" type="MeshInstance3D" parent="lowerShip/itemSeller/Skin"]
 transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
 mesh = SubResource("BoxMesh_l0a1o")
+
+[node name="lamps" type="Node3D" parent="lowerShip"]
+
+[node name="wall_lamp" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.94589, -1.3892, -16.994)
+color = Color(0.294118, 0.345098, 0.67451, 1)
+
+[node name="wall_lamp2" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.94589, -1.3892, -12.994)
+color = Color(0.294118, 0.345098, 0.67451, 1)
+
+[node name="wall_lamp3" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.94589, -1.3892, -8.99401)
+color = Color(0.294118, 0.345098, 0.67451, 1)
+
+[node name="wall_lamp4" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.94589, -1.3892, -4.99401)
+color = Color(0.294118, 0.345098, 0.67451, 1)
+
+[node name="wall_lamp5" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0541062, -1.3892, -3.08329)
+color = Color(0.294118, 0.345098, 0.67451, 1)
+
+[node name="wall_lamp6" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0541062, -1.3892, -18.9242)
+color = Color(0.294118, 0.345098, 0.67451, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("13_vfn25")
