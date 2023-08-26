@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1dgspiie0v1o"]
+
+[ext_resource type="Script" path="res://shared/trade/trade.gd" id="1_pov6p"]
+[ext_resource type="StyleBox" uid="uid://cufqtj4raux37" path="res://shared/trade/inventoryBg.tres" id="2_cku0r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jplul"]
+bg_color = Color(0, 0, 0, 0.301961)
+
+[node name="tradeUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pov6p")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jplul")
+
+[node name="leftInv" type="Panel" parent="bg"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 520.0
+offset_bottom = -20.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_cku0r")
+
+[node name="scroll" type="ScrollContainer" parent="bg/leftInv"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="items" type="VBoxContainer" parent="bg/leftInv/scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="rightInv" type="Panel" parent="bg"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -520.0
+offset_top = 60.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_cku0r")
+
+[node name="scroll" type="ScrollContainer" parent="bg/rightInv"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="items" type="VBoxContainer" parent="bg/rightInv/scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="done" type="Button" parent="bg"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = 2.0
+offset_right = 30.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Done"
+
+[node name="cancel" type="Button" parent="bg"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = 41.0
+offset_right = 30.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cancel"
+
+[connection signal="pressed" from="bg/done" to="." method="_on_done_pressed"]
+[connection signal="pressed" from="bg/cancel" to="." method="_on_cancel_pressed"]

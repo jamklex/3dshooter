@@ -6,6 +6,7 @@ var body: PlayerBody
 var cam: Camera3D
 var bodyStartPos: Vector3
 var bodyLastPos: Vector3
+var money:int = 0
 var run_inventory: Dictionary
 var inventory: Dictionary
 var isInConversation = false

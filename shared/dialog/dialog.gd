@@ -28,18 +28,20 @@ func _executeAction(actionData:Dictionary):
 	elif action == "removeFromPlayerInventory" or action == "addToPlayerInventory" :
 		WorldUtil.call(action, actionData["item"], actionData["amount"])
 		WorldUtil.player.body.refresh_inventory_output()
+	elif action == "openLastLootInventory":
+		WorldUtil.call(action)
 	else:
 		print("dont know what to do with action '" + action + "'")
 			
 func _loadNextPart():
 	if not "text" in dialog_data:
+		_closeDialog()
 		if "action" in dialog_data:
 			_executeAction(dialog_data)
 		elif "actions" in dialog_data:
 			var actions = dialog_data["actions"]
 			for i in range(len(actions)):
 				_executeAction(actions[i])
-		_closeDialog()
 		return
 	_showText(dialog_data["text"])
 	if "answers" in dialog_data:

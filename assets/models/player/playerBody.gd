@@ -13,8 +13,14 @@ extends CharacterBody3D
 @onready var _raycast: RayCast3D = $Camera/RayCast3D
 @onready var last_drop: RichTextLabel = $Camera/LastDrop
 @onready var inventory_output: RichTextLabel = $Camera/RunInventory
+@onready var crosshair = $Camera/Crosshair
 
 
+func setInDialog(inDialog:bool):
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if inDialog else Input.MOUSE_MODE_CAPTURED
+	crosshair.visible = !inDialog
+	inventory_output.visible = !inDialog
+	last_drop.visible = !inDialog
 
 func _ready():
 	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
