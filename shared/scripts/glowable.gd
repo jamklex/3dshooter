@@ -13,6 +13,7 @@ extends CSGBox3D
 @export var flicker_enabled = false
 @export var flicker_interval_sec = [0.2,0.5,0.1,0.1,2,0.3]
 @export var flicker_natural = true
+@export var flicker_intensity = 3
 var flicker_timer = Timer.new()
 var flicker_pos = 0
 
@@ -26,9 +27,16 @@ func _ready():
 		return
 	lights_on()
 	if flicker_enabled:
-		add_child(flicker_timer)
-		flicker_timer.connect("timeout", Callable(self, "trigger_flicker"), 0)
-		flicker_timer.start()
+		add_flicker_timer()
+
+func _process(delta):
+	if not active:
+		lights_off()
+
+func add_flicker_timer():
+	add_child(flicker_timer)
+	flicker_timer.connect("timeout", Callable(self, "trigger_flicker"), 0)
+	flicker_timer.start()
 
 func lights_on():
 	if color:
@@ -40,22 +48,27 @@ func lights_on():
 	light.light_volumetric_fog_energy = light_volumetric_fog_energy
 	material.emission_energy_multiplier = emission_energy_multiplier
 
+func lights_dimm():
+	light.light_energy = light_energy/flicker_intensity
+	light.light_indirect_energy = light_indirect_energy/flicker_intensity
+	light.light_volumetric_fog_energy = light_volumetric_fog_energy/flicker_intensity
+	material.emission_energy_multiplier = emission_energy_multiplier/flicker_intensity
+
 func lights_off():
-	if flicker_natural:
-		if randf() <= 0.3:
-			light.light_energy = light_energy/3
-			light.light_indirect_energy = light_indirect_energy/3
-			light.light_volumetric_fog_energy = light_volumetric_fog_energy/3
-			material.emission_energy_multiplier = emission_energy_multiplier/3
-			return
 	material.emission_enabled = false
 	light.visible = false
 
 func trigger_flicker():
-	if light.visible:
-		lights_off()
-	else:
+	if not active:
+		flicker_timer.stop()
+		return
+	if not light.visible or light.light_energy < light_energy:
 		lights_on()
+	else:
+		if flicker_natural:
+			lights_dimm()
+		else:
+			lights_off()
 	flicker_pos = (flicker_pos + 1) % flicker_interval_sec.size()
 	var flicker_time = flicker_interval_sec[flicker_pos]
 	if flicker_natural:
