@@ -64,5 +64,6 @@ offset_right = 582.0
 grow_vertical = 0
 
 [node name="RunInventory" type="RichTextLabel" parent="Camera"]
+visible = false
 offset_right = 363.0
 offset_bottom = 331.0
