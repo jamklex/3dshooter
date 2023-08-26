@@ -8,6 +8,7 @@ enum TYPE {
 }
 
 static func execute_action(action: Actions.TYPE):
+	var player = WorldUtil.player as Player
 	match (action):
 		Actions.TYPE.PRINT_ON:
 			print("on")
@@ -15,9 +16,9 @@ static func execute_action(action: Actions.TYPE):
 			print("off")
 		Actions.TYPE.TELEPORT_TO_BASE:
 			print("teleport back")
-			WorldUtil.player.saveRunInventory()
+			player.saveRunInventory()
 			WorldUtil.teleportToLowerShip()
 		Actions.TYPE.STORE_LOOT:
-			print("TODO: store loot")
+			player.storeRunInventory()
 		_:
 			print("action " + str(action) + " is not implemented")
