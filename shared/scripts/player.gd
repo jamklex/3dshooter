@@ -20,7 +20,7 @@ func _init():
 		var loadDict = JSON.parse_string(file.get_as_text()) as Dictionary
 		run_inventory = loadDict.get("runInv", {})
 		inventory = loadDict.get("inv", {})
-		run_inventory = loadDict.get("storeInv", {})
+		store_inventory = loadDict.get("storeInv", {})
 	
 func save():
 	print("save player")

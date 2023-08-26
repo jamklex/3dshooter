@@ -29,7 +29,7 @@ func openLastLootInventory():
 		return null
 	currentTrade = tradeScene.instantiate()
 	currentTrade.setLeftInventory(player.inventory)
-	currentTrade.setRightInventory(player.run_inventory)
+	currentTrade.setRightInventory(player.store_inventory)
 	currentTrade.onDone.connect(applyTrade)
 #	currentTrade.setPriceList({
 #		"item_123123": 12
@@ -41,7 +41,7 @@ func openLastLootInventory():
 	
 func applyTrade(newLeftInv:Dictionary, newRightInv: Dictionary):
 	player.inventory = newLeftInv
-	player.run_inventory = newRightInv
+	player.store_inventory = newRightInv
 	
 func deleteTrade():
 	remove_child(currentTrade)
