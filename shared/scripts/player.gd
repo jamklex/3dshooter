@@ -10,7 +10,6 @@ var money:int = 0
 var run_inventory: Dictionary
 var inventory: Dictionary
 var store_inventory: Dictionary
-var isInConversation = false
 var _savePath = "res://player.json" #"user://settings.json"
 
 func _init():
@@ -38,10 +37,6 @@ func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
 
 func saveRunInventory():
 	move_all(run_inventory, inventory)
-
-func storeRunInventory():
-	move_all(run_inventory, store_inventory)
-	body.refresh_inventory_output()
 
 func move_all(from: Dictionary, to: Dictionary):
 	for key in from.keys():

@@ -16,11 +16,7 @@ func interact(player: Player):
 
 func startConversation():
 	lookToPlayer()
-	var dialog = WorldUtil.createDialog(dialog_data_path)
-	dialog.onExit.connect(stopConversation)
-	
-func stopConversation():
-	resetPosition()
+	WorldUtil.createDialog(dialog_data_path).onExit.connect(resetPosition)
 
 func lookToPlayer():
 	if WorldUtil.player.body:

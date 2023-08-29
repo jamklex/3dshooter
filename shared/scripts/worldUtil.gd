@@ -3,7 +3,6 @@ extends Node
 
 var player: Player = Player.new()
 var currentDialog: Dialog
-var dialogScene = preload("res://shared/dialog/dialog.tscn")
 var currentTrade: Trade
 var testPriceList = {
 	"item_goldenSphere": 10,
@@ -14,17 +13,11 @@ func _enter_tree():
 	add_child(player)
 
 func createDialog(dialog_data_path:String) -> Dialog:
-	currentDialog = dialogScene.instantiate()
-	currentDialog.loadDialogData(dialog_data_path)
-	add_child(currentDialog)
-	player.isInConversation = true
+	if !currentDialog:
+		currentDialog = Dialog.new_instance(dialog_data_path, Callable(player.body, "setInDialog"))
+		add_child(currentDialog)
 	return currentDialog
 
-func deleteDialog():
-	remove_child(currentDialog)
-	currentDialog = null
-	player.isInConversation = false
-	
 func openLastLootInventory():
 	if currentTrade:
 		return null
@@ -32,7 +25,6 @@ func openLastLootInventory():
 	currentTrade = Trade.new_instance(player.inventory, player.store_inventory,
 		 onTradeAction, testPriceList)
 	add_child(currentTrade)
-	player.isInConversation = true
 	player.body.setInDialog(true)
 	return currentTrade
 
@@ -45,7 +37,6 @@ func onTradeAction(action: Trade.Actions, payload: Array = []):
 			return false
 		player.inventory = payload[0]
 		player.store_inventory = payload[1]
-	player.isInConversation = false
 	player.body.setInDialog(false)
 	currentTrade = null
 	return true

@@ -7,20 +7,27 @@ var dialog_data
 var dialogStarted:bool = false
 signal onExit
 var answers
+var dialogTracker: Callable
 
+static func new_instance(dialog_data_path: String, tracker: Callable):
+	var dialog = load("res://shared/dialog/dialog.tscn").instantiate()
+	dialog.dialogTracker = tracker
+	dialog.loadDialogData(dialog_data_path)
+	return dialog
 
 func loadDialogData(dataPath:String):
 	var fileCont = _getFileContent(dataPath)
 	dialog_data = JSON.parse_string(fileCont)
+	dialogTracker.call(true)
 	if textLabel and not dialogStarted:
 		_loadNextPart()
-		
+
 func _getFileContent(filePath:String):
 	if not FileAccess.file_exists(filePath):
 		return ""
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	return file.get_as_text()
-	
+
 func _executeAction(actionData:Dictionary):
 	var action = actionData["action"]
 	if action == "teleportToMissionMap":
@@ -32,7 +39,7 @@ func _executeAction(actionData:Dictionary):
 		WorldUtil.call(action)
 	else:
 		print("dont know what to do with action '" + action + "'")
-			
+
 func _loadNextPart():
 	if not "text" in dialog_data:
 		_closeDialog()
@@ -58,7 +65,7 @@ func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 		if _isConditionFulfilled(answerData["condition"]):
 			availableAnswers[answerKey] = answerData
 	return availableAnswers
-	
+
 func _isConditionFulfilled(condition:Dictionary):
 	var action = condition["action"]
 	var result = condition["result"]
@@ -67,11 +74,12 @@ func _isConditionFulfilled(condition:Dictionary):
 	else:
 		print("dont know what to do with action '" + action + "'... return false")
 		return false
-	
+
 func _closeDialog():
 	onExit.emit()
-	WorldUtil.deleteDialog()
-	
+	dialogTracker.call(false)
+	await queue_free()
+
 func _showAnswers(answers):
 	textLabel.add_text("\n\n")
 	for index in range(len(answers)):
