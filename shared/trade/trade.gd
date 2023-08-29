@@ -1,7 +1,7 @@
 extends Control
 class_name Trade
 
-signal onDone
+signal onAction
 var _playerInventory: Dictionary
 var _otherInventory: Dictionary
 var _priceList:Dictionary
@@ -9,10 +9,18 @@ var _tradeVal:int = 0
 
 var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
 
-static func new_instance(playerInv: Dictionary, otherInv: Dictionary):
+enum TradeActions {
+	SAVE_TRADE,
+	LOAD,
+	CLOSE_TRADE,
+	CANCEL_PRESSED
+}
+
+static func new_instance(playerInv: Dictionary, otherInv: Dictionary, onAction: Callable):
 	var trade = load("res://shared/trade/trade.tscn").instantiate()
 	trade.setPlayerInventory(playerInv)
 	trade.setOtherInventory(otherInv)
+	trade.onAction.connect(onAction)
 	return trade
 
 func setPlayerInventory(playerInventory:Dictionary):
@@ -76,13 +84,16 @@ func _checkIfMoneyTrade():
 		print("its NOT a money trade")
 
 func _load():
+	onAction.emit(TradeActions.LOAD)
 	_refreshInventories()
 	_checkIfMoneyTrade()
 
 func _closeTrade():
-	WorldUtil.deleteTrade()
+	onAction.emit(TradeActions.CLOSE_TRADE)
+	self.queue_free()
 
 func _on_cancel_pressed():
+	onAction.emit(TradeActions.CANCEL_PRESSED)
 	_closeTrade()
 	
 func _playerMoneyIsNegativ(_tradeVal):
@@ -93,7 +104,7 @@ func _on_done_pressed():
 		print("player has not enough money")
 		return
 	WorldUtil.player.money += _tradeVal
-	onDone.emit(_playerInventory, _otherInventory)
+	onAction.emit(TradeActions.SAVE_TRADE, [_playerInventory, _otherInventory])
 	_closeTrade()
 
 func removeFromInventory(inv:Dictionary, item:String):
