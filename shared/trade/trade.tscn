@@ -24,14 +24,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jplul")
 
-[node name="playerMoney" type="Label" parent="bg"]
-layout_mode = 1
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 65.0
-offset_bottom = 46.0
-text = "Gold: "
-
 [node name="leftInv" type="Panel" parent="bg"]
 layout_mode = 1
 anchors_preset = 9
@@ -101,6 +93,7 @@ grow_vertical = 2
 text = "000"
 horizontal_alignment = 1
 vertical_alignment = 1
+
 
 [node name="done" type="Button" parent="bg"]
 layout_mode = 1

@@ -1,7 +1,7 @@
 extends Control
 class_name Trade
 
-signal onAction
+var onAction: Callable
 var _playerInventory: Dictionary
 var _otherInventory: Dictionary
 var _priceList:Dictionary
@@ -20,7 +20,7 @@ static func new_instance(playerInv: Dictionary, otherInv: Dictionary, onTradeAct
 	var trade = load("res://shared/trade/trade.tscn").instantiate()
 	trade.setPlayerInventory(playerInv)
 	trade.setOtherInventory(otherInv)
-	trade.onAction.connect(onTradeAction)
+	trade.onAction = onTradeAction
 	return trade
 
 func setPlayerInventory(playerInventory:Dictionary):
@@ -84,20 +84,20 @@ func _checkIfMoneyTrade():
 		print("its NOT a money trade")
 
 func _load():
-	onAction.emit(TradeActions.LOAD)
+	onAction.call(TradeActions.LOAD)
 	_refreshInventories()
 	_checkIfMoneyTrade()
 
 func _closeTrade():
-	onAction.emit(TradeActions.CLOSE_TRADE)
+	onAction.call(TradeActions.CLOSE_TRADE)
 	self.queue_free()
 
 func _on_cancel_pressed():
-	onAction.emit(TradeActions.CANCEL_PRESSED)
+	onAction.call(TradeActions.CANCEL_PRESSED)
 	_closeTrade()
 
 func _on_done_pressed():
-	if (onAction.emit(TradeActions.SAVE_TRADE, [_playerInventory, _otherInventory])):
+	if (onAction.call(TradeActions.SAVE_TRADE, [_playerInventory, _otherInventory])):
 		_closeTrade()
 
 func removeFromInventory(inv:Dictionary, item:String):
