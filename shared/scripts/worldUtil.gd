@@ -5,7 +5,6 @@ var player: Player = Player.new()
 var currentDialog: Dialog
 var dialogScene = preload("res://shared/dialog/dialog.tscn")
 var currentTrade: Trade
-var tradeScene = preload("res://shared/trade/trade.tscn")
 
 func _enter_tree():
 	add_child(player)
@@ -27,9 +26,7 @@ func deleteDialog():
 func openLastLootInventory():
 	if currentTrade:
 		return null
-	currentTrade = tradeScene.instantiate()
-	currentTrade.setLeftInventory(player.inventory)
-	currentTrade.setRightInventory(player.store_inventory)
+	currentTrade = Trade.new_instance(player.inventory, player.store_inventory)
 	currentTrade.onDone.connect(applyTrade)
 #	currentTrade.setPriceList({
 #		"item_123123": 12
@@ -39,13 +36,13 @@ func openLastLootInventory():
 	player.body.setInDialog(true)
 	return currentTrade
 	
-func applyTrade(newLeftInv:Dictionary, newRightInv: Dictionary):
-	player.inventory = newLeftInv
-	player.store_inventory = newRightInv
+func applyTrade(newPlayerInv:Dictionary, newOtherInv: Dictionary):
+	player.inventory = newPlayerInv
+	player.store_inventory = newOtherInv
 	
 func deleteTrade():
 	remove_child(currentTrade)
-	currentTrade = null
+	currentTrade.queue_free()
 	player.isInConversation = false
 	player.body.setInDialog(false)
 	
