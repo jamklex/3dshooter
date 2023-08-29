@@ -2,122 +2,116 @@ extends Control
 class_name Trade
 
 var onAction: Callable
-var _playerInventory: Dictionary
-var _otherInventory: Dictionary
-var _priceList:Dictionary
-var _tradeVal:int = 0
+var playerInventory: Dictionary
+var otherInventory: Dictionary
+var priceList:Dictionary
+var diffMoney:int = 0
+var playerMoney:int = 0
 
 var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
+@onready var playerMoneyLabel = $bg/playerMoney
+@onready var diffMoneyLabel = $bg/diffMoney
 
-enum TradeActions {
+enum Actions {
 	SAVE_TRADE, # has to return boolean true to close trade
 	LOAD,
 	CLOSE_TRADE,
 	CANCEL_PRESSED
 }
 
-static func new_instance(playerInv: Dictionary, otherInv: Dictionary, onTradeAction: Callable, priceList: Dictionary = {}):
-	var trade = load("res://shared/trade/trade.tscn").instantiate()
-	trade.setPlayerInventory(playerInv)
-	trade.setOtherInventory(otherInv)
+static func new_instance(playerInv: Dictionary, otherInv: Dictionary,
+			 onTradeAction: Callable, priceList: Dictionary = {}):
+	var trade = load("res://shared/trade/trade.tscn").instantiate() as Trade
+	trade.playerInventory = playerInv.duplicate(true)
+	trade.otherInventory = otherInv.duplicate(true)
+	trade.priceList = priceList
 	trade.onAction = onTradeAction
 	return trade
-
-func setPlayerInventory(playerInventory:Dictionary):
-	_playerInventory = playerInventory.duplicate(true)
-	
-func setOtherInventory(otherInventory:Dictionary):
-	_otherInventory = otherInventory.duplicate(true)
-	
-func setPriceList(priceList:Dictionary):
-	_priceList = priceList
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_load()
+	onAction.call(Actions.LOAD)
+	if priceList:
+		if not "gold" in playerInventory:
+			playerInventory["gold"] = 0
+		playerMoney = playerInventory["gold"]
+	refreshUi()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
 func _moveItemLeftToRightInv(itemName):
-	removeFromInventory(_playerInventory, itemName)
-	addToInventory(_otherInventory, itemName)
-	_refreshInventories()
+	InventoryUtil.moveItems(playerInventory, otherInventory, itemName, 1)
+	if priceList:
+		var itemPrice = getPrice(itemName)
+		diffMoney += itemPrice
+		playerInventory["gold"] += itemPrice
+	refreshUi()
 	
 func _moveItemRightToLeftInv(itemName):
-	removeFromInventory(_otherInventory, itemName)
-	addToInventory(_playerInventory, itemName)
-	_refreshInventories()
+	InventoryUtil.moveItems(otherInventory, playerInventory, itemName, 1)
+	if priceList:
+		var itemPrice = getPrice(itemName)
+		diffMoney -= getPrice(itemName)
+		playerInventory["gold"] -= itemPrice
+	refreshUi()
+	
+func getPrice(itemName):
+	if itemName in priceList:
+		return priceList[itemName]
+	return 0
 
-func _refreshplayerInventory():
+func refreshPlayerInventory():
 	var itemContainer = $bg/leftInv/scroll/items as VBoxContainer
-	_clearItems(itemContainer)
-	for leftItemName in _playerInventory.keys():
+	clearItems(itemContainer)
+	for itemName in playerInventory.keys():
+		if itemName == "gold":
+			continue
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
-		tradeItem.setItem(leftItemName, _playerInventory[leftItemName])
+		tradeItem.setItem(itemName, playerInventory[itemName])
 		tradeItem.onPressed.connect(_moveItemLeftToRightInv)
 		itemContainer.add_child(tradeItem)
 		
 	
-func _refreshotherInventory():
+func refreshOtherInventory():
 	var itemContainer = $bg/rightInv/scroll/items as VBoxContainer
-	_clearItems(itemContainer)
-	for leftItemName in _otherInventory.keys():
+	clearItems(itemContainer)
+	for itemName in otherInventory.keys():
+		if itemName == "gold":
+			continue
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
-		tradeItem.setItem(leftItemName, _otherInventory[leftItemName])
+		tradeItem.setItem(itemName, otherInventory[itemName])
 		tradeItem.onPressed.connect(_moveItemRightToLeftInv)
 		itemContainer.add_child(tradeItem)
 	
-func _clearItems(itemContainer: VBoxContainer):
+func clearItems(itemContainer: VBoxContainer):
 	for child in itemContainer.get_children():
 		itemContainer.remove_child(child)
 	
-func _refreshInventories():
-	_refreshplayerInventory()
-	_refreshotherInventory()
+func refreshUi():
+	refreshPlayerInventory()
+	refreshOtherInventory()
+	if priceList:
+		setMoneyLabelVisibility(true)
+		refreshMoneyLabels()
+		
+func setMoneyLabelVisibility(visible:bool):
+	playerMoneyLabel.visible = visible
+	diffMoneyLabel.visible = visible
 	
-func _checkIfMoneyTrade():
-	if _priceList:
-		print("its a money trade")
-	else:
-		print("its NOT a money trade")
+func refreshMoneyLabels():
+	playerMoneyLabel.text = "Gold: " + str(playerMoney)
+	diffMoneyLabel.text = ("+" if diffMoney > 0 else "") + str(diffMoney)
 
-func _load():
-	onAction.call(TradeActions.LOAD)
-	_refreshInventories()
-	_checkIfMoneyTrade()
-
-func _closeTrade():
-	onAction.call(TradeActions.CLOSE_TRADE)
+func closeTrade():
+	onAction.call(Actions.CLOSE_TRADE)
 	self.queue_free()
 
 func _on_cancel_pressed():
-	onAction.call(TradeActions.CANCEL_PRESSED)
-	_closeTrade()
+	onAction.call(Actions.CANCEL_PRESSED)
+	closeTrade()
 
 func _on_done_pressed():
-	if (onAction.call(TradeActions.SAVE_TRADE, [_playerInventory, _otherInventory])):
-		_closeTrade()
-
-func removeFromInventory(inv:Dictionary, item:String):
-	var amount = 1
-	if !checkInventory(inv, item):
-		return false
-	inv[item] -= amount
-	if !checkInventory(inv, item):
-		inv.erase(item)
-	return true
-	
-func addToInventory(inv:Dictionary, item:String):
-	var amount = 1
-	if item in inv:
-		inv[item] += amount
-	else:
-		inv[item] = amount
-	
-func checkInventory(inv:Dictionary, item:String):
-	var minAmount = 1
-	if item in inv:
-		return inv[item] >= minAmount
-	return false
+	if (onAction.call(Actions.SAVE_TRADE, [playerInventory, otherInventory])):
+		closeTrade()
