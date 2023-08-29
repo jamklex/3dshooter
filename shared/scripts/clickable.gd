@@ -76,15 +76,15 @@ func initiate_airvent():
 	player.add_child(Trade.new_instance(player.run_inventory, {}, exit_airvent))
 	player.body.setInDialog(true)
 
-func exit_airvent(action: Trade.TradeActions, params: Array = []):
+func exit_airvent(action: Trade.Actions, params: Array = []):
 	var player = get_player()
 	match (action):
-		Trade.TradeActions.SAVE_TRADE:
+		Trade.Actions.SAVE_TRADE:
 			player.run_inventory = params[0]
 			player.move_all(params[1], player.store_inventory)
 			player.body.setInDialog(false)
 			player.body.refresh_inventory_output()
-		Trade.TradeActions.CANCEL_PRESSED:
+		Trade.Actions.CANCEL_PRESSED:
 			if (disable_on_interact):
 				set_interactable(true)
 			player.body.setInDialog(false)
