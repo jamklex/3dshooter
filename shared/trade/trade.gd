@@ -2,18 +2,24 @@ extends Control
 class_name Trade
 
 signal onDone
-var _leftInventory: Dictionary
-var _rightInventory: Dictionary
+var _playerInventory: Dictionary
+var _otherInventory: Dictionary
 var _priceList:Dictionary
 var _tradeVal:int = 0
 
 var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
 
-func setLeftInventory(leftInventory:Dictionary):
-	_leftInventory = leftInventory.duplicate(true)
+static func new_instance(playerInv: Dictionary, otherInv: Dictionary):
+	var trade = load("res://shared/trade/trade.tscn").instantiate()
+	trade.setPlayerInventory(playerInv)
+	trade.setOtherInventory(otherInv)
+	return trade
+
+func setPlayerInventory(playerInventory:Dictionary):
+	_playerInventory = playerInventory.duplicate(true)
 	
-func setRightInventory(rightInventory:Dictionary):
-	_rightInventory = rightInventory.duplicate(true)
+func setOtherInventory(otherInventory:Dictionary):
+	_otherInventory = otherInventory.duplicate(true)
 	
 func setPriceList(priceList:Dictionary):
 	_priceList = priceList
@@ -27,31 +33,31 @@ func _process(delta):
 	pass
 	
 func _moveItemLeftToRightInv(itemName):
-	removeFromInventory(_leftInventory, itemName)
-	addToInventory(_rightInventory, itemName)
+	removeFromInventory(_playerInventory, itemName)
+	addToInventory(_otherInventory, itemName)
 	_refreshInventories()
 	
 func _moveItemRightToLeftInv(itemName):
-	removeFromInventory(_rightInventory, itemName)
-	addToInventory(_leftInventory, itemName)
+	removeFromInventory(_otherInventory, itemName)
+	addToInventory(_playerInventory, itemName)
 	_refreshInventories()
 
-func _refreshLeftInventory():
+func _refreshplayerInventory():
 	var itemContainer = $bg/leftInv/scroll/items as VBoxContainer
 	_clearItems(itemContainer)
-	for leftItemName in _leftInventory.keys():
+	for leftItemName in _playerInventory.keys():
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
-		tradeItem.setItem(leftItemName, _leftInventory[leftItemName])
+		tradeItem.setItem(leftItemName, _playerInventory[leftItemName])
 		tradeItem.onPressed.connect(_moveItemLeftToRightInv)
 		itemContainer.add_child(tradeItem)
 		
 	
-func _refreshRightInventory():
+func _refreshotherInventory():
 	var itemContainer = $bg/rightInv/scroll/items as VBoxContainer
 	_clearItems(itemContainer)
-	for leftItemName in _rightInventory.keys():
+	for leftItemName in _otherInventory.keys():
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
-		tradeItem.setItem(leftItemName, _rightInventory[leftItemName])
+		tradeItem.setItem(leftItemName, _otherInventory[leftItemName])
 		tradeItem.onPressed.connect(_moveItemRightToLeftInv)
 		itemContainer.add_child(tradeItem)
 	
@@ -60,8 +66,8 @@ func _clearItems(itemContainer: VBoxContainer):
 		itemContainer.remove_child(child)
 	
 func _refreshInventories():
-	_refreshLeftInventory()
-	_refreshRightInventory()
+	_refreshplayerInventory()
+	_refreshotherInventory()
 	
 func _checkIfMoneyTrade():
 	if _priceList:
@@ -87,7 +93,7 @@ func _on_done_pressed():
 		print("player has not enough money")
 		return
 	WorldUtil.player.money += _tradeVal
-	onDone.emit(_leftInventory, _rightInventory)
+	onDone.emit(_playerInventory, _otherInventory)
 	_closeTrade()
 
 func removeFromInventory(inv:Dictionary, item:String):
