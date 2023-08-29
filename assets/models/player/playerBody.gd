@@ -14,9 +14,10 @@ extends CharacterBody3D
 @onready var last_drop: RichTextLabel = $Camera/LastDrop
 @onready var inventory_output: RichTextLabel = $Camera/RunInventory
 @onready var crosshair = $Camera/Crosshair
+var inDialog = false
 
-
-func setInDialog(inDialog:bool):
+func setInDialog(value:bool):
+	inDialog = value
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if inDialog else Input.MOUSE_MODE_CAPTURED
 	crosshair.visible = !inDialog
 	inventory_output.visible = !inDialog
@@ -38,10 +39,9 @@ func _exit_tree():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	
-	if WorldUtil.player.isInConversation:
+	if inDialog:
+		print("in dialog")
 		return
-	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_strength
 

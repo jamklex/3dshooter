@@ -3,32 +3,22 @@ extends Node
 
 var player: Player = Player.new()
 var currentDialog: Dialog
-var dialogScene = preload("res://shared/dialog/dialog.tscn")
 var currentTrade: Trade
 
 func _enter_tree():
 	add_child(player)
 
 func createDialog(dialog_data_path:String) -> Dialog:
-	if currentDialog:
-		return null
-	currentDialog = dialogScene.instantiate()
-	currentDialog.loadDialogData(dialog_data_path)
-	add_child(currentDialog)
-	player.isInConversation = true
+	if !currentDialog:
+		currentDialog = Dialog.new_instance(dialog_data_path, Callable(player.body, "setInDialog"))
+		add_child(currentDialog)
 	return currentDialog
 
-func deleteDialog():
-	remove_child(currentDialog)
-	currentDialog = null
-	player.isInConversation = false
-	
 func openLastLootInventory():
 	if currentTrade:
 		return null
 	currentTrade = Trade.new_instance(player.inventory, player.store_inventory, onTradeAction)
 	add_child(currentTrade)
-	player.isInConversation = true
 	player.body.setInDialog(true)
 	return currentTrade
 
@@ -42,9 +32,8 @@ func applyTrade(newPlayerInv:Dictionary, newOtherInv: Dictionary):
 func deleteTrade():
 	remove_child(currentTrade)
 	currentTrade.queue_free()
-	player.isInConversation = false
 	player.body.setInDialog(false)
-	
+
 func teleportToMissionMap(levelId:int):
 	player.teleport("level_" + str(levelId))
 	
