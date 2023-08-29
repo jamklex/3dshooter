@@ -73,7 +73,7 @@ func execute_action(action: Clickable.Actions):
 
 func initiate_airvent():
 	var player = get_player()
-	add_child(Trade.new_instance(player.run_inventory, {}, exit_airvent))
+	player.add_child(Trade.new_instance(player.run_inventory, {}, exit_airvent))
 	player.body.setInDialog(true)
 
 func exit_airvent(action: Trade.TradeActions, params: Array = []):
@@ -85,7 +85,8 @@ func exit_airvent(action: Trade.TradeActions, params: Array = []):
 			player.body.setInDialog(false)
 			player.body.refresh_inventory_output()
 		Trade.TradeActions.CANCEL_PRESSED:
-			set_interactable(true)
+			if (disable_on_interact):
+				set_interactable(true)
 			player.body.setInDialog(false)
 		_:
 			return false
