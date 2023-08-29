@@ -1,7 +1,6 @@
 extends Node
 
 
-
 var player: Player = Player.new()
 var currentDialog: Dialog
 var dialogScene = preload("res://shared/dialog/dialog.tscn")
@@ -28,16 +27,13 @@ func openLastLootInventory():
 	if currentTrade:
 		return null
 	currentTrade = Trade.new_instance(player.inventory, player.store_inventory, onTradeAction)
-#	currentTrade.setPriceList({
-#		"item_123123": 12
-#	})
 	add_child(currentTrade)
 	player.isInConversation = true
 	player.body.setInDialog(true)
 	return currentTrade
 
 func onTradeAction(action: Trade.TradeActions, payload: Array = []):
-	pass
+	return false
 
 func applyTrade(newPlayerInv:Dictionary, newOtherInv: Dictionary):
 	player.inventory = newPlayerInv
