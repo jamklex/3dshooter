@@ -31,9 +31,9 @@ func openLastLootInventory():
 	currentTrade.setLeftInventory(player.inventory)
 	currentTrade.setRightInventory(player.store_inventory)
 	currentTrade.onDone.connect(applyTrade)
-#	currentTrade.setPriceList({
-#		"item_123123": 12
-#	})
+	currentTrade.setPriceList({
+		"item_123123": 12
+	})
 	add_child(currentTrade)
 	player.isInConversation = true
 	player.body.setInDialog(true)
