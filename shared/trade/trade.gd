@@ -1,7 +1,7 @@
 extends Control
 class_name Trade
 
-signal onDone
+signal onAction
 var _playerInventory: Dictionary
 var _otherInventory: Dictionary
 var _priceList:Dictionary
@@ -9,10 +9,18 @@ var _tradeVal:int = 0
 
 var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
 
-static func new_instance(playerInv: Dictionary, otherInv: Dictionary):
+enum TradeActions {
+	SAVE_TRADE, # has to return boolean true to close trade
+	LOAD,
+	CLOSE_TRADE,
+	CANCEL_PRESSED
+}
+
+static func new_instance(playerInv: Dictionary, otherInv: Dictionary, onTradeAction: Callable, priceList: Dictionary = {}):
 	var trade = load("res://shared/trade/trade.tscn").instantiate()
 	trade.setPlayerInventory(playerInv)
 	trade.setOtherInventory(otherInv)
+	trade.onAction.connect(onTradeAction)
 	return trade
 
 func setPlayerInventory(playerInventory:Dictionary):
@@ -76,25 +84,21 @@ func _checkIfMoneyTrade():
 		print("its NOT a money trade")
 
 func _load():
+	onAction.emit(TradeActions.LOAD)
 	_refreshInventories()
 	_checkIfMoneyTrade()
 
 func _closeTrade():
-	WorldUtil.deleteTrade()
+	onAction.emit(TradeActions.CLOSE_TRADE)
+	self.queue_free()
 
 func _on_cancel_pressed():
+	onAction.emit(TradeActions.CANCEL_PRESSED)
 	_closeTrade()
-	
-func _playerMoneyIsNegativ(_tradeVal):
-	return WorldUtil.player.money + _tradeVal >= 0
 
 func _on_done_pressed():
-	if _checkIfMoneyTrade() and _playerMoneyIsNegativ(_tradeVal):
-		print("player has not enough money")
-		return
-	WorldUtil.player.money += _tradeVal
-	onDone.emit(_playerInventory, _otherInventory)
-	_closeTrade()
+	if (onAction.emit(TradeActions.SAVE_TRADE, [_playerInventory, _otherInventory])):
+		_closeTrade()
 
 func removeFromInventory(inv:Dictionary, item:String):
 	var amount = 1

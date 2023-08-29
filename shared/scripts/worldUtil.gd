@@ -26,16 +26,15 @@ func deleteDialog():
 func openLastLootInventory():
 	if currentTrade:
 		return null
-	currentTrade = Trade.new_instance(player.inventory, player.store_inventory)
-	currentTrade.onDone.connect(applyTrade)
-	currentTrade.setPriceList({
-		"item_123123": 12
-	})
+	currentTrade = Trade.new_instance(player.inventory, player.store_inventory, onTradeAction)
 	add_child(currentTrade)
 	player.isInConversation = true
 	player.body.setInDialog(true)
 	return currentTrade
-	
+
+func onTradeAction(action: Trade.TradeActions, payload: Array = []):
+	return false
+
 func applyTrade(newPlayerInv:Dictionary, newOtherInv: Dictionary):
 	player.inventory = newPlayerInv
 	player.store_inventory = newOtherInv
