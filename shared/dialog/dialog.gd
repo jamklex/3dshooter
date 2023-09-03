@@ -16,17 +16,10 @@ static func new_instance(dialog_data_path: String, tracker: Callable):
 	return dialog
 
 func loadDialogData(dataPath:String):
-	var fileCont = _getFileContent(dataPath)
-	dialog_data = JSON.parse_string(fileCont)
+	dialog_data = FileUtil.getContentAsJson(dataPath)
 	dialogTracker.call(true)
 	if textLabel and not dialogStarted:
 		_loadNextPart()
-
-func _getFileContent(filePath:String):
-	if not FileAccess.file_exists(filePath):
-		return ""
-	var file = FileAccess.open(filePath, FileAccess.READ)
-	return file.get_as_text()
 
 func _executeAction(actionData:Dictionary):
 	var action = actionData["action"]
@@ -36,7 +29,7 @@ func _executeAction(actionData:Dictionary):
 		WorldUtil.call(action, actionData["item"], actionData["amount"])
 		WorldUtil.player.body.refresh_inventory_output()
 	elif action == "openLastLootInventory":
-		WorldUtil.call(action)
+		WorldUtil.call(action, actionData["priceListPath"])
 	else:
 		print("dont know what to do with action '" + action + "'")
 

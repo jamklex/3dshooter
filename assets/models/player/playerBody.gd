@@ -64,8 +64,7 @@ func _physics_process(delta):
 func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
 		return
-	WorldUtil.save()
-	get_tree().quit()
+	WorldUtil.quitGame()
 	
 func handle_interaction():
 	if !_raycast.is_colliding():

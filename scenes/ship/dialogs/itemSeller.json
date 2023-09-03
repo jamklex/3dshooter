@@ -4,7 +4,7 @@
 	{
 		"Let me see my last loot!": {
 			"action": "openLastLootInventory",
-			"id": "1"
+			"priceListPath": "res://scenes/ship/priceList.json"
 		},
 		"Bye": {}
 	}

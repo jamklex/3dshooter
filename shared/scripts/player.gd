@@ -10,7 +10,7 @@ var money:int = 0
 var run_inventory: Dictionary
 var inventory: Dictionary
 var store_inventory: Dictionary
-var _savePath = "res://player.json" #"user://settings.json"
+var _savePath = "user://player.json" #"user://settings.json"
 
 func _init():
 	print("load player")

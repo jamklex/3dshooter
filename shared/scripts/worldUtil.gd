@@ -4,10 +4,6 @@ extends Node
 var player: Player = Player.new()
 var currentDialog: Dialog
 var currentTrade: Trade
-var testPriceList = {
-	"item_goldenSphere": 10,
-	"too_expensive": 110
-}
 
 func _enter_tree():
 	add_child(player)
@@ -18,12 +14,12 @@ func createDialog(dialog_data_path:String) -> Dialog:
 		add_child(currentDialog)
 	return currentDialog
 
-func openLastLootInventory():
+func openLastLootInventory(price_list_path:String):
 	if currentTrade:
 		return null
 	InventoryUtil.moveAllItems(player.store_inventory, player.inventory, "gold")
 	currentTrade = Trade.new_instance(player.inventory, player.store_inventory,
-		 onTradeAction, testPriceList)
+		 onTradeAction, FileUtil.getContentAsJson(price_list_path))
 	add_child(currentTrade)
 	player.body.setInDialog(true)
 	return currentTrade
@@ -67,5 +63,9 @@ func checkPlayerInventory(item:String, minAmount:int):
 		return player.inventory[item] >= minAmount
 	return false
 		
+func quitGame():
+	save()
+	get_tree().quit()
+
 func save():
 	player.save()
