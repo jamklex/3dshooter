@@ -2,7 +2,7 @@
 	"text": "Hey, how can i help you?",
 	"answers":
 	{
-		"Let me see my last loot!": {
+		"Let me see my saved loot!": {
 			"condition": {
 				"result": true,
 				"action": "hasStoreInventoryItems"
