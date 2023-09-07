@@ -262,6 +262,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.64552)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 6.91226)
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/captain.json"
+npc_name = "Madelyn (Captain)"
 
 [node name="Collission" type="CollisionShape3D" parent="cockpit/captain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
@@ -1092,6 +1093,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.3809
 transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -6.04289e-07, 0, -21.8895)
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/roboUpgrader.json"
+npc_name = "Igor (Body-Manager)"
 
 [node name="Collission" type="CollisionShape3D" parent="upperShip/roboUpgrader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
@@ -1109,6 +1111,7 @@ mesh = SubResource("BoxMesh_l0a1o")
 transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 6.05326, 0, -4.27917)
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/weaponShop.json"
+npc_name = "Henry (Weapon-Smith)"
 
 [node name="Collission" type="CollisionShape3D" parent="upperShip/weaponShop"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
@@ -1420,6 +1423,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3, -10.212)
 transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 3.08714, -2.94661, -8.84602)
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/itemSeller.json"
+npc_name = "Trish (Salvager)"
 
 [node name="Collission" type="CollisionShape3D" parent="lowerShip/itemSeller"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
