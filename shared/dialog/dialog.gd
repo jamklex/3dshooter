@@ -71,7 +71,7 @@ func _isConditionFulfilled(condition:Dictionary):
 func _closeDialog():
 	onExit.emit()
 	dialogTracker.call(false)
-	await queue_free()
+	queue_free()
 
 func _showAnswers(answers):
 	textLabel.add_text("\n\n")

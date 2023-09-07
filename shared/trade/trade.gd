@@ -106,7 +106,7 @@ func refreshMoneyLabels():
 
 func closeTrade():
 	onAction.call(Actions.CLOSE_TRADE)
-	await queue_free()
+	queue_free()
 
 func _on_cancel_pressed():
 	onAction.call(Actions.CANCEL_PRESSED)
