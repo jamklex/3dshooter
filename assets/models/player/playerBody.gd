@@ -2,11 +2,11 @@ class_name PlayerBody
 extends CharacterBody3D
 
 
-@export var speed := 7.0
-@export var jump_strength := 20.0
-@export var gravity := 50.0
-@export var mouse_sensitivity := 0.05
-@export var interact_distance := 2
+@export var speed = 7.0
+@export var jump_strength = 20.0
+@export var gravity = 50.0
+@export var mouse_sensitivity = 0.05
+@export var interact_distance = 3
 
 @onready var _camera: Camera3D = $Camera
 @onready var _model: Node3D = $Skin
@@ -14,6 +14,8 @@ extends CharacterBody3D
 @onready var last_drop: RichTextLabel = $Camera/LastDrop
 @onready var inventory_output: RichTextLabel = $Camera/RunInventory
 @onready var crosshair = $Camera/Crosshair
+@onready var interactionPopup = $Camera/InteractionPopup as Label
+@onready var interactionFeedback = $Camera/InteractionFeedback as Label
 var inDialog = false
 
 func setInDialog(value:bool):
@@ -30,6 +32,7 @@ func _ready():
 	WorldUtil.player.body = self
 	WorldUtil.player.cam = get_node("Camera")
 	refresh_inventory_output()
+	fade_interaction_feedback(1)
 	
 func _exit_tree():
 	WorldUtil.player.bodyLastPos = position
@@ -39,6 +42,7 @@ func _exit_tree():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	fade_interaction_feedback()
 	if inDialog:
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -60,13 +64,22 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
-	
+
+func fade_interaction_feedback(rate = 0.025 as float, reset = false as bool):
+	var new_modulate = interactionFeedback.modulate
+	if reset:
+		new_modulate.a = 1
+	if new_modulate.a > 0:
+		new_modulate.a = new_modulate.a * (1 - rate)
+	interactionFeedback.set_modulate(new_modulate)
+
 func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
 		return
 	WorldUtil.quitGame()
 	
 func handle_interaction():
+	interactionPopup.text = ""
 	if !_raycast.is_colliding():
 		return
 	var collider = _raycast.get_collider()
@@ -74,13 +87,19 @@ func handle_interaction():
 		return
 	if collider.has_method("highlight"):
 		collider.highlight()
-	if !Input.is_action_just_pressed("interact"):
-		return
 	var distance = self.global_position.distance_to(collider.global_position)
 	if distance > InteractionHelper.interact_distance(collider, interact_distance):
 		return
+	if !inDialog and collider.has_method("popup_message"):
+		interactionPopup.text = collider.popup_message()
+	if !Input.is_action_just_pressed("interact"):
+		return
 	if collider.has_method("interact"):
-		collider.interact(WorldUtil.player)
+		var feedback = collider.interact(WorldUtil.player)
+		if feedback:
+			interactionFeedback.text = feedback
+			fade_interaction_feedback(0, true)
+	interactionPopup.text = ""
 
 func handle_show_inventory():
 	if !Input.is_action_just_pressed("inventory"):

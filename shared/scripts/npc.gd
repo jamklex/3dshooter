@@ -4,6 +4,9 @@ class_name NPC
 var normalTransform: Transform3D
 
 @export_file(".json") var dialog_data_path
+@export var npc_name = "<NPC_NAME>"
+const POPUP_MESSAGE_FORMAT = "Talk to <NPC_NAME>"
+@export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_messages: String
 
 func _ready():
 	normalTransform = transform
@@ -24,3 +27,9 @@ func lookToPlayer():
 		
 func resetPosition():
 	transform = normalTransform
+
+func popup_message():
+	var message = default_popup_messages
+	if !message:
+		message = POPUP_MESSAGE_FORMAT.replace("<NPC_NAME>", npc_name)
+	return InteractionHelper.popup_message(message)

@@ -9,7 +9,11 @@ var highlightTimer = Timer.new()
 @export var disable_on_interact = false
 @export var action: Clickable.Actions
 @export var highlight_seconds = 0.1 as float
-@export var interact_distance_m = 2.0
+@export var interact_distance_m = -1
+const POPUP_MESSAGE_FORMAT = "Take Action"
+@export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_messages: String
+const FEEDBACK_MESSAGE_FORMAT = ""
+@export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
 var highlighted = false
 
 enum Actions {
@@ -38,6 +42,10 @@ func interact(player: Player):
 	if(disable_on_interact):
 		set_interactable(false)
 		remove_highlight()
+	var message = default_feedback_messages
+	if !message:
+		message = FEEDBACK_MESSAGE_FORMAT
+	return message
 
 func highlight():
 	if !enable_highlight:
@@ -94,3 +102,9 @@ func exit_airvent(action: Trade.Actions, params: Array = []):
 
 func get_player() -> Player:
 	return WorldUtil.player
+
+func popup_message():
+	var message = default_popup_messages
+	if !message:
+		message = POPUP_MESSAGE_FORMAT
+	return InteractionHelper.popup_message(message)

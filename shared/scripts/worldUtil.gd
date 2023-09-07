@@ -1,6 +1,5 @@
 extends Node
 
-
 var player: Player = Player.new()
 var currentDialog: Dialog
 var currentTrade: Trade
