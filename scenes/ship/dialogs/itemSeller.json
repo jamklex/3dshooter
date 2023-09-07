@@ -3,7 +3,15 @@
 	"answers":
 	{
 		"Let me see my last loot!": {
-			"action": "openLastLootInventory",
+			"condition": {
+				"result": true,
+				"action": "hasStoreInventoryItems"
+			},
+			"action": "openLastLoot",
+			"priceListPath": "res://scenes/ship/priceList.json"
+		},
+		"I wanna sell some stuff": {
+			"action": "openSellLoot",
 			"priceListPath": "res://scenes/ship/priceList.json"
 		},
 		"Bye": {}

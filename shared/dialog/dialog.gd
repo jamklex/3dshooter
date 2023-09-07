@@ -1,7 +1,9 @@
 extends Control
 class_name Dialog
 
-var textLabel: RichTextLabel
+var questionLabel: RichTextLabel
+var answersContainer: VBoxContainer
+var answerScene = preload("res://shared/dialog/answer.tscn")
 
 var dialog_data
 var dialogStarted:bool = false
@@ -18,7 +20,7 @@ static func new_instance(dialog_data_path: String, tracker: Callable):
 func loadDialogData(dataPath:String):
 	dialog_data = FileUtil.getContentAsJson(dataPath)
 	dialogTracker.call(true)
-	if textLabel and not dialogStarted:
+	if questionLabel and not dialogStarted:
 		_loadNextPart()
 
 func _executeAction(actionData:Dictionary):
@@ -28,7 +30,9 @@ func _executeAction(actionData:Dictionary):
 	elif action == "removeFromPlayerInventory" or action == "addToPlayerInventory" :
 		WorldUtil.call(action, actionData["item"], actionData["amount"])
 		WorldUtil.player.body.refresh_inventory_output()
-	elif action == "openLastLootInventory":
+	elif action == "openLastLoot":
+		WorldUtil.call(action, actionData["priceListPath"])
+	elif action == "openSellLoot":
 		WorldUtil.call(action, actionData["priceListPath"])
 	else:
 		print("dont know what to do with action '" + action + "'")
@@ -64,6 +68,8 @@ func _isConditionFulfilled(condition:Dictionary):
 	var result = condition["result"]
 	if action == "checkPlayerInventory":
 		return result == WorldUtil.call(action, condition["item"], condition["amount"])
+	elif action == "hasStoreInventoryItems":
+		return result == WorldUtil.call(action)
 	else:
 		print("dont know what to do with action '" + action + "'... return false")
 		return false
@@ -73,19 +79,28 @@ func _closeDialog():
 	dialogTracker.call(false)
 	queue_free()
 
+func _clearAnswersContainer():
+	for child in answersContainer.get_children():
+		child.queue_free()
+		answersContainer.remove_child(child)
+
 func _showAnswers(answers):
-	textLabel.add_text("\n\n")
+	_clearAnswersContainer()
 	for index in range(len(answers)):
 		var key = str(index+1)
-		var answer = answers[index]
-		textLabel.add_text(key + " - " + answer + "\n")
+		var text = answers[index]
+		var answer = answerScene.instantiate() as Answer
+		answer.setText(key + " - " + text)
+		answer.onClick.connect(func(): _handleSelection(index))
+		answersContainer.add_child(answer)
 
 func _showText(text:String):
-	textLabel.clear()
-	textLabel.add_text(text)
+	questionLabel.clear()
+	questionLabel.add_text(text)
 
 func _ready():
-	textLabel = $Panel/RichTextLabel
+	questionLabel = $Panel/MarginContainer/VBoxContainer/question
+	answersContainer = $Panel/MarginContainer/VBoxContainer/scrollContainer/answers
 	if not dialogStarted:
 		_loadNextPart()
 

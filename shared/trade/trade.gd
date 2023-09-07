@@ -7,10 +7,14 @@ var otherInventory: Dictionary
 var priceList:Dictionary
 var diffMoney:int = 0
 var playerMoney:int = 0
+var leftInvName:String
+var rightInvName:String
 
 var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
 @onready var playerMoneyLabel = $bg/playerMoney
 @onready var diffMoneyLabel = $bg/diffMoney
+@onready var leftInvNameLabel = $bg/leftInvName
+@onready var rightInvNameLabel = $bg/rightInvName
 
 enum Actions {
 	SAVE_TRADE, # has to return boolean true to close trade
@@ -20,12 +24,15 @@ enum Actions {
 }
 
 static func new_instance(playerInv: Dictionary, otherInv: Dictionary,
-			 onTradeAction: Callable, priceList: Dictionary = {}):
+		onTradeAction: Callable, priceList: Dictionary = {}, 
+		leftInvName: String = "", rightInvName: String = ""):
 	var trade = load("res://shared/trade/trade.tscn").instantiate() as Trade
 	trade.playerInventory = playerInv.duplicate(true)
 	trade.otherInventory = otherInv.duplicate(true)
 	trade.priceList = priceList
 	trade.onAction = onTradeAction
+	trade.leftInvName = leftInvName
+	trade.rightInvName = rightInvName
 	return trade
 	
 # Called when the node enters the scene tree for the first time.
@@ -42,19 +49,17 @@ func _process(delta):
 	pass
 	
 func _moveItemLeftToRightInv(itemName):
-	InventoryUtil.moveItems(playerInventory, otherInventory, itemName, 1)
+	InventoryUtil.moveItem(playerInventory, otherInventory, itemName, 1)
 	if priceList:
 		var itemPrice = getPrice(itemName)
 		diffMoney += itemPrice
-		playerInventory["gold"] += itemPrice
 	refreshUi()
 	
 func _moveItemRightToLeftInv(itemName):
-	InventoryUtil.moveItems(otherInventory, playerInventory, itemName, 1)
+	InventoryUtil.moveItem(otherInventory, playerInventory, itemName, 1)
 	if priceList:
 		var itemPrice = getPrice(itemName)
 		diffMoney -= getPrice(itemName)
-		playerInventory["gold"] -= itemPrice
 	refreshUi()
 	
 func getPrice(itemName):
@@ -90,6 +95,7 @@ func clearItems(itemContainer: VBoxContainer):
 		itemContainer.remove_child(child)
 	
 func refreshUi():
+	refreshInventoryLabels()
 	refreshPlayerInventory()
 	refreshOtherInventory()
 	if priceList:
@@ -99,6 +105,10 @@ func refreshUi():
 func setMoneyLabelVisibility(visible:bool):
 	playerMoneyLabel.visible = visible
 	diffMoneyLabel.visible = visible
+	
+func refreshInventoryLabels():
+	leftInvNameLabel.text = leftInvName
+	rightInvNameLabel.text = rightInvName
 	
 func refreshMoneyLabels():
 	playerMoneyLabel.text = "Gold: " + str(playerMoney)
@@ -113,5 +123,6 @@ func _on_cancel_pressed():
 	closeTrade()
 
 func _on_done_pressed():
+	playerInventory["gold"] = (playerMoney + diffMoney)
 	if (onAction.call(Actions.SAVE_TRADE, [playerInventory, otherInventory])):
 		closeTrade()

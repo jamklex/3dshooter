@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://djp71il113qrx"]
+
+[ext_resource type="Script" path="res://shared/dialog/answer.gd" id="1_7t3km"]
+[ext_resource type="StyleBox" uid="uid://dl74vy0afrm06" path="res://shared/dialog/answerStyle.tres" id="1_xg8ta"]
+
+[node name="answer" type="Button"]
+custom_minimum_size = Vector2(500, 25)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("1_xg8ta")
+theme_override_styles/hover = ExtResource("1_xg8ta")
+theme_override_styles/pressed = ExtResource("1_xg8ta")
+theme_override_styles/disabled = ExtResource("1_xg8ta")
+theme_override_styles/focus = ExtResource("1_xg8ta")
+script = ExtResource("1_7t3km")
+
+[node name="text" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+text = "aaanswer"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="resized" from="text" to="." method="_on_text_resized"]

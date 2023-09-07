@@ -1,16 +1,22 @@
 extends Node
 class_name InventoryUtil
 
-static func moveItems(fromInv:Dictionary, toInv:Dictionary, item:String, amount:int):
+static func moveItem(fromInv:Dictionary, toInv:Dictionary, item:String, amount:int):
 	if removeFromInventory(fromInv, item, amount):
 		addToInventory(toInv, item, amount)
 		return true
 	return false
 	
-static func moveAllItems(fromInv:Dictionary, toInv:Dictionary, item:String):
+static func moveItemComplete(fromInv:Dictionary, toInv:Dictionary, item:String):
 	var itemAmount = getItemCount(fromInv, item)
 	removeFromInventory(fromInv, item, itemAmount)
 	addToInventory(toInv, item, itemAmount)
+	
+static func moveAllItems(fromInv:Dictionary, toInv:Dictionary):
+	for item in fromInv.keys():
+		var itemAmount = getItemCount(fromInv, item)
+		removeFromInventory(fromInv, item, itemAmount)
+		addToInventory(toInv, item, itemAmount)
 	
 static func getItemCount(inv:Dictionary, item:String):
 	if item in inv:

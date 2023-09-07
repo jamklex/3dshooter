@@ -27,10 +27,14 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jplul")
 [node name="playerMoney" type="Label" parent="bg"]
 visible = false
 layout_mode = 1
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 65.0
-offset_bottom = 46.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_top = 55.0
+offset_right = 22.5
+offset_bottom = 81.0
+grow_horizontal = 2
 text = "Gold: "
 
 [node name="diffMoney" type="Label" parent="bg"]
@@ -51,14 +55,26 @@ text = "-/+ 100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="leftInv" type="Panel" parent="bg"]
+[node name="leftInvName" type="Label" parent="bg"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 20.0
+offset_top = 20.0
+offset_right = 520.0
+offset_bottom = -1020.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "NAAAAAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="leftInv" type="Panel" parent="bg"]
+layout_mode = 2
+offset_left = 20.0
 offset_top = 60.0
 offset_right = 520.0
-offset_bottom = -20.0
+offset_bottom = 1060.0
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_cku0r")
 
@@ -75,6 +91,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+
+[node name="rightInvName" type="Label" parent="bg"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -520.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -1020.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "NAAAAAME"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="rightInv" type="Panel" parent="bg"]
 layout_mode = 1

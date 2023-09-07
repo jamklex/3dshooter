@@ -14,29 +14,52 @@ func createDialog(dialog_data_path:String) -> Dialog:
 		add_child(currentDialog)
 	return currentDialog
 
-func openLastLootInventory(price_list_path:String):
+func openLastLoot(price_list_path:String):
 	if currentTrade:
 		return null
-	InventoryUtil.moveAllItems(player.store_inventory, player.inventory, "gold")
-	currentTrade = Trade.new_instance(player.inventory, player.store_inventory,
-		 onTradeAction, FileUtil.getContentAsJson(price_list_path))
+	InventoryUtil.moveItemComplete(player.store_inventory, player.inventory, "gold")
+	var tradeInv = {
+		"gold": InventoryUtil.getItemCount(player.inventory, "gold")
+	}
+	currentTrade = Trade.new_instance(tradeInv, player.store_inventory,
+		 onLastLootAction, FileUtil.getContentAsJson(price_list_path),
+		"Inventory", "Your saved loot")
 	add_child(currentTrade)
 	player.body.setInDialog(true)
 	return currentTrade
 
-func onTradeAction(action: Trade.Actions, payload: Array = []):
+func onLastLootAction(action: Trade.Actions, payload: Array = []):
 	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
 		return
 	if action == Trade.Actions.SAVE_TRADE:
 		var newPlayerGold = InventoryUtil.getItemCount(payload[0], "gold")
 		if newPlayerGold < 0:
 			return false
-		player.inventory = payload[0]
-		player.store_inventory = payload[1]
+		InventoryUtil.moveAllItems(payload[0], player.inventory)
+		player.inventory["gold"] = newPlayerGold
+		player.store_inventory = {}
 	player.body.setInDialog(false)
 	currentTrade = null
 	return true
 
+func openSellLoot(price_list_path:String):
+	if currentTrade:
+		return null
+	currentTrade = Trade.new_instance(player.inventory, {},
+		 onSellLootAction, FileUtil.getContentAsJson(price_list_path),
+		"Inventory", "Your sell items")
+	add_child(currentTrade)
+	player.body.setInDialog(true)
+	return currentTrade
+	
+func onSellLootAction(action: Trade.Actions, payload: Array = []):
+	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
+		return
+	if action == Trade.Actions.SAVE_TRADE:
+		player.inventory = payload[0]
+	player.body.setInDialog(false)
+	currentTrade = null
+	return true
 	
 func teleportToMissionMap(levelId:int):
 	player.teleport("level_" + str(levelId))
@@ -62,6 +85,9 @@ func checkPlayerInventory(item:String, minAmount:int):
 	if item in player.inventory:
 		return player.inventory[item] >= minAmount
 	return false
+	
+func hasStoreInventoryItems():
+	return player.store_inventory.keys().size() > 0
 		
 func quitGame():
 	save()
