@@ -16,10 +16,10 @@ func createDialog(dialog_data_path:String) -> Dialog:
 func openLastLoot(price_list_path:String):
 	if currentTrade:
 		return null
-	InventoryUtil.moveItemComplete(player.store_inventory, player.inventory, "gold")
-	var tradeInv = {
-		"gold": InventoryUtil.getItemCount(player.inventory, "gold")
-	}
+	player.store_inventory.moveItem(player.inventory, Inventory.GOLD_ITEM)
+	var tradeInv = Inventory.from({
+		Inventory.GOLD_ITEM: player.inventory.count(Inventory.GOLD_ITEM)
+	})
 	currentTrade = Trade.new_instance(tradeInv, player.store_inventory,
 		 onLastLootAction, FileUtil.getContentAsJson(price_list_path),
 		"Inventory", "Your saved loot")
@@ -31,12 +31,13 @@ func onLastLootAction(action: Trade.Actions, payload: Array = []):
 	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
 		return
 	if action == Trade.Actions.SAVE_TRADE:
-		var newPlayerGold = InventoryUtil.getItemCount(payload[0], "gold")
+		var inv = payload[0] as Inventory
+		var newPlayerGold = inv.count(Inventory.GOLD_ITEM)
 		if newPlayerGold < 0:
 			return false
-		InventoryUtil.moveAllItems(payload[0], player.inventory)
-		player.inventory["gold"] = newPlayerGold
-		player.store_inventory = {}
+		inv.moveAllItems(player.inventory)
+		player.inventory.set_total(Inventory.GOLD_ITEM, newPlayerGold)
+		player.store_inventory = Inventory.empty()
 	player.body.setInDialog(false)
 	currentTrade = null
 	return true
@@ -44,7 +45,7 @@ func onLastLootAction(action: Trade.Actions, payload: Array = []):
 func openSellLoot(price_list_path:String):
 	if currentTrade:
 		return null
-	currentTrade = Trade.new_instance(player.inventory, {},
+	currentTrade = Trade.new_instance(player.inventory, Inventory.empty(),
 		 onSellLootAction, FileUtil.getContentAsJson(price_list_path),
 		"Inventory", "Your sell items")
 	add_child(currentTrade)
@@ -66,27 +67,17 @@ func teleportToMissionMap(levelId:int):
 func teleportToLowerShip():
 	player.teleport("ship", Vector3(-1,-3,-12))
 	
-func removeFromPlayerInventory(item:String, amount:int):
-	if !checkPlayerInventory(item, amount):
-		return false
-	player.inventory[item] -= amount
-	if !checkPlayerInventory(item, 1):
-		player.inventory.erase(item)
-	return true
+func removeFromPlayerInventory(id:String, amount:int) -> bool:
+	return player.inventory.remove(id, amount)
 	
-func addToPlayerInventory(item:String, amount:int):
-	if item in player.inventory:
-		player.inventory[item] += amount
-	else:
-		player.inventory[item] = amount
+func addToPlayerInventory(id:String, amount:int):
+	player.inventory.add(id, amount)
 	
-func checkPlayerInventory(item:String, minAmount:int):
-	if item in player.inventory:
-		return player.inventory[item] >= minAmount
-	return false
+func checkPlayerInventory(id:String, minAmount:int):
+	return player.inventory.check(id, minAmount)
 	
 func hasStoreInventoryItems():
-	return player.store_inventory.keys().size() > 0
+	return !player.store_inventory.is_empty()
 		
 func quitGame():
 	save()

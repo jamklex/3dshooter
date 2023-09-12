@@ -40,5 +40,5 @@ func get_amount():
 	true_amount = amount_fix if amount_fix > 0 else randi_range(amount_min+1, amount_max)
 	return true_amount
 
-func loot_message():
-	return str({id: get_amount()})
+func pretty_name():
+	return ItemHelper.get_item(id).name

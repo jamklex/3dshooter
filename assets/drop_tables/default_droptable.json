@@ -1,24 +1,24 @@
 {
 	"items": [
 		{
-			"id": "lamp of doom",
-			"amount_fix": 2,
-			"chance": 0.1
-		},
-		{
-			"id": "hammer",
-			"amount_fix": 2,
-			"chance": 0.2
-		},
-		{
-			"id": "gold",
+			"id": "0",
 			"amount_min": 10,
 			"amount_max": 50,
 			"chance": 0.6
 		},
 		{
-			"id": "helm lv 1",
+			"id": "1",
+			"amount_fix": 2,
+			"chance": 0.2
+		},
+		{
+			"id": "2",
 			"amount_fix": 1,
+			"chance": 0.1
+		},
+		{
+			"id": "3",
+			"amount_fix": 2,
 			"chance": 0.1
 		}
 	]

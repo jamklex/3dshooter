@@ -2,8 +2,8 @@ extends Control
 class_name Trade
 
 var onAction: Callable
-var playerInventory: Dictionary
-var otherInventory: Dictionary
+var playerInventory: Inventory
+var otherInventory: Inventory
 var priceList:Dictionary
 var diffMoney:int = 0
 var playerMoney:int = 0
@@ -23,12 +23,12 @@ enum Actions {
 	CANCEL_PRESSED
 }
 
-static func new_instance(playerInv: Dictionary, otherInv: Dictionary,
+static func new_instance(playerInv: Inventory, otherInv: Inventory,
 		onTradeAction: Callable, priceList: Dictionary = {}, 
 		leftInvName: String = "", rightInvName: String = ""):
 	var trade = load("res://shared/trade/trade.tscn").instantiate() as Trade
-	trade.playerInventory = playerInv.duplicate(true)
-	trade.otherInventory = otherInv.duplicate(true)
+	trade.playerInventory = playerInv.duplicate()
+	trade.otherInventory = otherInv.duplicate()
 	trade.priceList = priceList
 	trade.onAction = onTradeAction
 	trade.leftInvName = leftInvName
@@ -39,42 +39,43 @@ static func new_instance(playerInv: Dictionary, otherInv: Dictionary,
 func _ready():
 	onAction.call(Actions.LOAD)
 	if priceList:
-		if not "gold" in playerInventory:
-			playerInventory["gold"] = 0
-		playerMoney = playerInventory["gold"]
+		var gold_amount = playerInventory.count(Inventory.GOLD_ITEM)
+		if gold_amount == 0:
+			playerInventory.add(Inventory.GOLD_ITEM, 0)
+		playerMoney = gold_amount
 	refreshUi()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
-func _moveItemLeftToRightInv(itemName):
-	InventoryUtil.moveItem(playerInventory, otherInventory, itemName, 1)
+func _moveItemLeftToRightInv(id):
+	playerInventory.moveItemSome(otherInventory, id, 1)
 	if priceList:
-		var itemPrice = getPrice(itemName)
+		var itemPrice = getPrice(id)
 		diffMoney += itemPrice
 	refreshUi()
 	
-func _moveItemRightToLeftInv(itemName):
-	InventoryUtil.moveItem(otherInventory, playerInventory, itemName, 1)
+func _moveItemRightToLeftInv(id):
+	otherInventory.moveItemSome(playerInventory, id, 1)
 	if priceList:
-		var itemPrice = getPrice(itemName)
-		diffMoney -= getPrice(itemName)
+		var itemPrice = getPrice(id)
+		diffMoney -= getPrice(id)
 	refreshUi()
 	
-func getPrice(itemName):
-	if itemName in priceList:
-		return priceList[itemName]
+func getPrice(id):
+	if id in priceList:
+		return priceList[id]
 	return 0
 
 func refreshPlayerInventory():
 	var itemContainer = $bg/leftInv/scroll/items as VBoxContainer
 	clearItems(itemContainer)
-	for itemName in playerInventory.keys():
-		if itemName == "gold":
+	for id in playerInventory.item_ids():
+		if id == Inventory.GOLD_ITEM:
 			continue
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
-		tradeItem.setItem(itemName, playerInventory[itemName])
+		tradeItem.setItem(id, playerInventory.count(id))
 		tradeItem.onPressed.connect(_moveItemLeftToRightInv)
 		itemContainer.add_child(tradeItem)
 		
@@ -82,11 +83,11 @@ func refreshPlayerInventory():
 func refreshOtherInventory():
 	var itemContainer = $bg/rightInv/scroll/items as VBoxContainer
 	clearItems(itemContainer)
-	for itemName in otherInventory.keys():
-		if itemName == "gold":
+	for id in otherInventory.item_ids():
+		if id == Inventory.GOLD_ITEM:
 			continue
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
-		tradeItem.setItem(itemName, otherInventory[itemName])
+		tradeItem.setItem(id, otherInventory.count(id))
 		tradeItem.onPressed.connect(_moveItemRightToLeftInv)
 		itemContainer.add_child(tradeItem)
 	
@@ -123,6 +124,6 @@ func _on_cancel_pressed():
 	closeTrade()
 
 func _on_done_pressed():
-	playerInventory["gold"] = (playerMoney + diffMoney)
+	playerInventory.set_total(Inventory.GOLD_ITEM, playerMoney + diffMoney)
 	if (onAction.call(Actions.SAVE_TRADE, [playerInventory, otherInventory])):
 		closeTrade()

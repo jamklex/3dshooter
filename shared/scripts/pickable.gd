@@ -6,7 +6,8 @@ var highlightTimer = Timer.new()
 @onready var id = get_instance_id()
 @export var interactable = true
 @export var highlighted = false
-@export var item_type: Items.TYPE
+@export var item_id = "1"
+@onready var item = ItemHelper.get_item(item_id)
 @onready var mesh = $CollisionShape3D/MeshInstance3D
 @export var highlight_seconds = 1.0 as float
 @export var interact_distance_m = -1
@@ -24,12 +25,12 @@ func can_interact():
 	return interactable
 
 func interact(player: Player):
-	var item = DropItem.create_fix("item_" + name)
-	InteractionHelper.add_drop(player, item)
+	var loot = DropItem.create_fix(item_id) as DropItem
+	InteractionHelper.add_drop(player, loot)
 	interactable = false
 	var message = default_feedback_messages
 	if !message:
-		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", item.loot_message())
+		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", loot.pretty_name())
 	self.queue_free()
 	return message
 
@@ -53,5 +54,5 @@ func get_material():
 func popup_message():
 	var message = default_popup_messages
 	if !message:
-		message = POPUP_MESSAGE_FORMAT.replace("<ITEM>", str(item_type).to_pascal_case())
+		message = POPUP_MESSAGE_FORMAT.replace("<ITEM>", item.name)
 	return InteractionHelper.popup_message(message)

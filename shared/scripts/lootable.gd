@@ -32,7 +32,7 @@ func interact(player: Player):
 		highlightTimer.stop()
 	var message = default_feedback_messages
 	if !message:
-		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", item.loot_message())
+		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", item.pretty_name())
 	return message
 
 func highlight():

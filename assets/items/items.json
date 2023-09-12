@@ -1,0 +1,27 @@
+{
+	"0": {
+		"name": "Gold",
+		"desc": "It is goot to have plenty of it",
+		"image": "res://assets/items/img/1.png"
+	},
+	"1": {
+		"name": "Hammer",
+		"desc": "An Object to hit stuff with",
+		"image": "res://assets/items/img/1.png"
+	},
+	"2": {
+		"name": "Lamp of Doom",
+		"desc": "Better to not ask questions...",
+		"image": "res://assets/items/img/1.png"
+	},
+	"3": {
+		"name": "Helm lv 1",
+		"desc": "Just a helmet, that You can't wear",
+		"image": "res://assets/items/img/1.png"
+	},
+	"4": {
+		"name": "Golden Sphere",
+		"desc": "Shiny little sphere, be careful not to brake it!",
+		"image": "res://assets/items/img/1.png"
+	},
+}
