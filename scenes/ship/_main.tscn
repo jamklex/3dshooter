@@ -36,6 +36,7 @@ material = SubResource("StandardMaterial3D_qf3dd")
 
 [node name="Player" parent="." instance=ExtResource("1_nxnoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111711, 0, -7.43068)
+speed = 3.0
 interact_distance = 5
 
 [node name="cockpit" type="Node3D" parent="."]

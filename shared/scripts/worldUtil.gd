@@ -21,8 +21,8 @@ func openLastLoot(price_list_path:String):
 		Inventory.GOLD_ITEM: player.inventory.count(Inventory.GOLD_ITEM)
 	})
 	currentTrade = Trade.new_instance(tradeInv, player.store_inventory,
-		 onLastLootAction, FileUtil.getContentAsJson(price_list_path),
-		"Inventory", "Your saved loot")
+		onLastLootAction, "Inventory", "Your saved loot",
+		FileUtil.getContentAsJson(price_list_path))
 	add_child(currentTrade)
 	player.body.setInDialog(true)
 	return currentTrade
@@ -46,8 +46,8 @@ func openSellLoot(price_list_path:String):
 	if currentTrade:
 		return null
 	currentTrade = Trade.new_instance(player.inventory, Inventory.empty(),
-		 onSellLootAction, FileUtil.getContentAsJson(price_list_path),
-		"Inventory", "Your sell items")
+		 onSellLootAction, "Inventory", "Your sell items",
+        FileUtil.getContentAsJson(price_list_path))
 	add_child(currentTrade)
 	player.body.setInDialog(true)
 	return currentTrade
