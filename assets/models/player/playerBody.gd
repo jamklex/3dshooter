@@ -8,14 +8,17 @@ extends CharacterBody3D
 @export var mouse_sensitivity = 0.05
 @export var interact_distance = 3
 
-@onready var _camera: Camera3D = $Camera
+@onready var _visuals = $visuals
+@onready var _animation_player = $visuals/mixamo_base/AnimationPlayer
+@onready var _camera_mount = $camera_mount
+@onready var _camera: Camera3D = $camera_mount/camera_offset/camera_rot/camera
 @onready var _model: Node3D = $Skin
-@onready var _raycast: RayCast3D = $Camera/RayCast3D
-@onready var last_drop: RichTextLabel = $Camera/LastDrop
-@onready var inventory_output: RichTextLabel = $Camera/RunInventory
-@onready var crosshair = $Camera/Crosshair
-@onready var interactionPopup = $Camera/InteractionPopup as Label
-@onready var interactionFeedback = $Camera/InteractionFeedback as Label
+@onready var _raycast: RayCast3D = $camera_mount/camera_offset/camera_rot/camera/RayCast3D
+@onready var last_drop: RichTextLabel = $camera_mount/camera_offset/camera_rot/camera/LastDrop
+@onready var inventory_output: RichTextLabel = $camera_mount/camera_offset/camera_rot/camera/RunInventory
+@onready var crosshair = $camera_mount/camera_offset/camera_rot/camera/Crosshair
+@onready var interactionPopup = $camera_mount/camera_offset/camera_rot/camera/InteractionPopup as Label
+@onready var interactionFeedback = $camera_mount/camera_offset/camera_rot/camera/InteractionFeedback as Label
 var inDialog = false
 
 func setInDialog(value:bool):
@@ -56,14 +59,22 @@ func _physics_process(delta):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	direction = direction.rotated(Vector3.UP, _camera.rotation.y).normalized()
 	if direction:
+		_playAnimation("walking")
+		_visuals.look_at(position + direction)
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
 		if velocity.length() > 0.2:
 			var look_direction = Vector2(velocity.z, velocity.x)
 	else:
+		_playAnimation("idle")
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
+	
+	
+func _playAnimation(animationName:String):
+	if _animation_player.current_animation != animationName:
+		_animation_player.play(animationName)	
 
 func fade_interaction_feedback(rate = 0.025 as float, reset = false as bool):
 	var new_modulate = interactionFeedback.modulate
@@ -124,7 +135,9 @@ func show_last_drop(text):
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion: # or controller right stick
-		rotation_degrees.x -= event.relative.y * mouse_sensitivity
-		rotation_degrees.x = clamp(rotation_degrees.x, -90.0, 30.0)
-		rotation_degrees.y -= event.relative.x * mouse_sensitivity
-		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360.0)
+		var yRot = deg_to_rad(event.relative.x*mouse_sensitivity)
+		rotate_y(-yRot)
+		_visuals.rotate_y(yRot)
+		_camera_mount.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
+		_camera_mount.rotation_degrees.x = clamp(_camera_mount.rotation_degrees.x, -80.0, 60.0)
+		

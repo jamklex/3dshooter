@@ -24,8 +24,8 @@ enum Actions {
 }
 
 static func new_instance(playerInv: Dictionary, otherInv: Dictionary,
-		onTradeAction: Callable, priceList: Dictionary = {}, 
-		leftInvName: String = "", rightInvName: String = ""):
+		onTradeAction: Callable, leftInvName: String = "", rightInvName: String = "",
+		priceList: Dictionary = {}):
 	var trade = load("res://shared/trade/trade.tscn").instantiate() as Trade
 	trade.playerInventory = playerInv.duplicate(true)
 	trade.otherInventory = otherInv.duplicate(true)
