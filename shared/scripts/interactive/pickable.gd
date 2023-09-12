@@ -30,7 +30,11 @@ func interact(player: Player):
 	interactable = false
 	var message = default_feedback_messages
 	if !message:
-		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", loot.pretty_name())
+		var str = loot.pretty_name()
+		var amount = loot.get_amount()
+		if amount > 1:
+			str += " x" + str(amount)
+		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", str)
 	self.queue_free()
 	return message
 

@@ -24,15 +24,19 @@ func can_interact():
 	return interactable
 
 func interact(player: Player):
-	var item = get_random_item() as DropItem
-	InteractionHelper.add_drop(player, item)
+	var loot = get_random_item() as DropItem
+	InteractionHelper.add_drop(player, loot)
 	if await open_animation():
 		interactable = false
 		remove_highlight()
 		highlightTimer.stop()
 	var message = default_feedback_messages
 	if !message:
-		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", item.pretty_name())
+		var str = loot.pretty_name()
+		var amount = loot.get_amount()
+		if amount > 1:
+			str += " x" + str(amount)
+		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", str)
 	return message
 
 func highlight():

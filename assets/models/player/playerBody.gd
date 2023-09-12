@@ -121,11 +121,11 @@ func handle_show_inventory():
 func refresh_inventory_output():
 	var inventory_text = ""
 	if !WorldUtil.player.run_inventory.is_empty():
-		inventory_text += "RunInventory: " + JSON.stringify(WorldUtil.player.run_inventory.to_dict(), "\t") + "\n"
+		inventory_text += "RunInventory: " + JSON.stringify(WorldUtil.player.run_inventory.to_readable_dict(), "\t") + "\n"
 	if !WorldUtil.player.inventory.is_empty():
-		inventory_text += "Inventory: " + JSON.stringify(WorldUtil.player.inventory.to_dict(), "\t") + "\n"
+		inventory_text += "Inventory: " + JSON.stringify(WorldUtil.player.inventory.to_readable_dict(), "\t") + "\n"
 	if !WorldUtil.player.store_inventory.is_empty():
-		inventory_text += "StoreInventory: " + JSON.stringify(WorldUtil.player.store_inventory.to_dict(), "\t") + "\n"
+		inventory_text += "StoreInventory: " + JSON.stringify(WorldUtil.player.store_inventory.to_readable_dict(), "\t") + "\n"
 	if inventory_text == "":
 		inventory_text = "no items collected"
 	inventory_output.text = inventory_text

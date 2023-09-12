@@ -84,3 +84,9 @@ func to_dict() -> Dictionary:
 	for key in items.keys():
 		dict[key] = count(key)
 	return dict
+
+func to_readable_dict() -> Dictionary:
+	var dict = {}
+	for invItem in items.values():
+		dict[invItem.item.name] = invItem.amount
+	return dict

@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://mci8b42xb8ru" path="res://assets/models/chest/chest.tres" id="1_fyres"]
 [ext_resource type="Material" uid="uid://c63wdm2fhh2ne" path="res://assets/models/chest/lock.tres" id="2_mi286"]
-[ext_resource type="Script" path="res://shared/scripts/lootable.gd" id="3_jhytr"]
+[ext_resource type="Script" path="res://shared/scripts/interactive/lootable.gd" id="3_jhytr"]
 
 [node name="chest" type="Node3D"]
 

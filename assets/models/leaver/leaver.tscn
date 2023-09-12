@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://eh5auvsra00b" path="res://assets/models/leaver/leaver_base.tres" id="1_ew8fn"]
 [ext_resource type="Material" uid="uid://55ktsfiju2ap" path="res://assets/models/leaver/leaver_on.tres" id="2_dw64c"]
-[ext_resource type="Script" path="res://shared/scripts/clickable.gd" id="3_8s8u0"]
+[ext_resource type="Script" path="res://shared/scripts/interactive/clickable.gd" id="3_8s8u0"]
 [ext_resource type="Material" uid="uid://c1b7fmltwgq8e" path="res://assets/models/leaver/leaver_off.tres" id="3_rpi6c"]
 
 [node name="leaver" type="Node3D"]

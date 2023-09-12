@@ -6,7 +6,7 @@
 			"condition": {
 				"result": false,
 				"action": "checkPlayerInventory",
-				"item": "item_goldenSphere",
+				"item": "4",
 				"amount": 2
 			},
 			"text": "Can you help me?",
@@ -28,7 +28,7 @@
 			"condition": {
 				"result": true,
 				"action": "checkPlayerInventory",
-				"item": "item_goldenSphere",
+				"item": "4",
 				"amount": 2
 			},
 			"text": "Oh u got my stuff!",
@@ -38,12 +38,12 @@
 					"actions": [
 						{
 							"action": "removeFromPlayerInventory",
-							"item": "item_goldenSphere",
+							"item": "4",
 							"amount": 2
 						},
 						{
 							"action": "addToPlayerInventory",
-							"item": "item_sword",
+							"item": "5",
 							"amount": 1
 						},
 					]

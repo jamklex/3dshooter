@@ -47,7 +47,7 @@ func openSellLoot(price_list_path:String):
 		return null
 	currentTrade = Trade.new_instance(player.inventory, Inventory.empty(),
 		 onSellLootAction, "Inventory", "Your sell items",
-        FileUtil.getContentAsJson(price_list_path))
+		FileUtil.getContentAsJson(price_list_path))
 	add_child(currentTrade)
 	player.body.setInDialog(true)
 	return currentTrade

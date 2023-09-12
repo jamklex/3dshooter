@@ -24,4 +24,9 @@
 		"desc": "Shiny little sphere, be careful not to brake it!",
 		"image": "res://assets/items/img/1.png"
 	},
+	"5": {
+		"name": "Holy Sword",
+		"desc": "You currently don't know how to handle it",
+		"image": "res://assets/items/img/1.png"
+	},
 }
