@@ -14,12 +14,13 @@ var _savePath = "user://player.json" #"user://settings.json"
 
 func _init():
 	print("load player")
+	var loadDict = {}
 	if FileAccess.file_exists(_savePath):
 		var file = FileAccess.open(_savePath, FileAccess.READ)
-		var loadDict = JSON.parse_string(file.get_as_text()) as Dictionary
-		run_inventory = Inventory.from(loadDict.get("runInv", {}))
-		inventory = Inventory.from(loadDict.get("inv", {}))
-		store_inventory = Inventory.from(loadDict.get("storeInv", {}))
+		loadDict = JSON.parse_string(file.get_as_text()) as Dictionary
+	run_inventory = Inventory.from(loadDict.get("runInv", {}))
+	inventory = Inventory.from(loadDict.get("inv", {}))
+	store_inventory = Inventory.from(loadDict.get("storeInv", {}))
 
 func save():
 	print("save player")
