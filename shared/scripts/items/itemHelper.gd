@@ -1,8 +1,10 @@
 extends Object
 
-var cache = {} as Dictionary
+class_name ItemHelper
 
-func get_item(id: String) -> GameItem:
+static var cache = {} as Dictionary
+
+static func get_item(id: String) -> GameItem:
 	if cache.has(id):
 		return cache[id]
 	var data = FileUtil.getContentAsJson("res://assets/items/items.json")
