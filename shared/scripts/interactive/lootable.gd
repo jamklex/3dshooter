@@ -7,10 +7,10 @@ var highlightTimer = Timer.new()
 @export var highlighted = false
 @export var highlight_seconds = 1.0 as float
 @export var interact_distance_m = -1
-@export_file("*.json") var drop_table_file = "res://assets/drop_tables/default_droptable.json"
+@export_file("*.json") var drop_table_file = "res://data/drop_tables/default_droptable.json"
 @onready var drop_table = JSON.parse_string(FileAccess.open(drop_table_file, FileAccess.READ).get_as_text()) as Dictionary
 const POPUP_MESSAGE_FORMAT = "Open Container"
-@export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_messages: String
+@export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_message: String
 const FEEDBACK_MESSAGE_FORMAT = "Collected: <ITEM>"
 @export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
 
@@ -77,7 +77,7 @@ func total_chance(items: Array):
 	return total_chance
 
 func popup_message():
-	var message = default_popup_messages
+	var message = default_popup_message
 	if !message:
 		message = POPUP_MESSAGE_FORMAT
 	return InteractionHelper.popup_message(message)

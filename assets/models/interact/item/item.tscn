@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2dk5nxi2ti7c"]
+
+[ext_resource type="Script" path="res://shared/scripts/interactive/pickable.gd" id="1_thb8e"]
+[ext_resource type="Material" uid="uid://vxuutc161cxa" path="res://assets/models/interact/item/item.tres" id="2_laofe"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vuup1"]
+radius = 0.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nc7h6"]
+radius = 0.1
+height = 0.2
+radial_segments = 4
+rings = 1
+
+[node name="item" type="RigidBody3D"]
+script = ExtResource("1_thb8e")
+item_id = "4"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_vuup1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+mesh = SubResource("CapsuleMesh_nc7h6")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_laofe")

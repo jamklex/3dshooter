@@ -8,11 +8,11 @@
 				"action": "hasStoreInventoryItems"
 			},
 			"action": "openLastLoot",
-			"priceListPath": "res://scenes/ship/priceList.json"
+			"priceListPath": "res://data/price_lists/salvager_taxes.json"
 		},
 		"I wanna sell some stuff": {
 			"action": "openSellLoot",
-			"priceListPath": "res://scenes/ship/priceList.json"
+			"priceListPath": "res://data/price_lists/default.json"
 		},
 		"Bye": {}
 	}

@@ -14,19 +14,16 @@ extends CharacterBody3D
 @onready var _camera: Camera3D = $camera_mount/camera_offset/camera_rot/camera
 @onready var _model: Node3D = $Skin
 @onready var _raycast: RayCast3D = $camera_mount/camera_offset/camera_rot/camera/RayCast3D
-@onready var last_drop: RichTextLabel = $camera_mount/camera_offset/camera_rot/camera/LastDrop
-@onready var inventory_output: RichTextLabel = $camera_mount/camera_offset/camera_rot/camera/RunInventory
-@onready var crosshair = $camera_mount/camera_offset/camera_rot/camera/Crosshair
-@onready var interactionPopup = $camera_mount/camera_offset/camera_rot/camera/InteractionPopup as Label
-@onready var interactionFeedback = $camera_mount/camera_offset/camera_rot/camera/InteractionFeedback as Label
+@onready var _ui = $camera_mount/camera_offset/camera_rot/camera/ui
+@onready var inventory_output = _ui.get_node("RunInventory") as RichTextLabel
+@onready var interactionPopup = _ui.get_node("InteractionPopup") as Label
+@onready var interactionFeedback = _ui.get_node("InteractionFeedback") as Label
 var inDialog = false
 
 func setInDialog(value:bool):
 	inDialog = value
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if inDialog else Input.MOUSE_MODE_CAPTURED
-	crosshair.visible = !inDialog
-	inventory_output.visible = !inDialog
-	last_drop.visible = !inDialog
+	_ui.visible = !inDialog
 
 func _ready():
 	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
@@ -129,9 +126,6 @@ func refresh_inventory_output():
 	if inventory_text == "":
 		inventory_text = "no items collected"
 	inventory_output.text = inventory_text
-
-func show_last_drop(text):
-	last_drop.text = text
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion: # or controller right stick

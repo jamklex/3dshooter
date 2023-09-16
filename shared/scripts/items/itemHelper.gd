@@ -7,7 +7,7 @@ static var cache = {} as Dictionary
 static func get_item(id: String) -> GameItem:
 	if cache.has(id):
 		return cache[id]
-	var data = FileUtil.getContentAsJson("res://assets/items/items.json")
+	var data = FileUtil.getContentAsJson("res://data/items/items.json")
 	var item = GameItem.new()
 	if data.has(id):
 		item.id = id

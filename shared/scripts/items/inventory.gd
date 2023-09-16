@@ -19,15 +19,6 @@ func duplicate() -> Inventory:
 	inv.items = items.duplicate(true)
 	return inv
 
-func as_inventory_item(id: String, amount: int) -> InventoryItem:
-	return to_inventory_item(ItemHelper.get_item(id), amount)
-
-func to_inventory_item(item: GameItem, amount: int) -> InventoryItem:
-	var inv_item = InventoryItem.new()
-	inv_item.item = item
-	inv_item.amount = amount
-	return inv_item
-
 func item_ids() -> Array:
 	return items.keys()
 
@@ -57,13 +48,13 @@ func remove(id:String, amount:int) -> bool:
 
 func add(id:String, amount:int):
 	if !items.has(id):
-		items[id] = as_inventory_item(id, amount)
+		items[id] = InventoryItem.from(id, amount)
 	else:
 		items.get(id).add(amount)
 
 func set_total(id:String, amount:int):
 	if !items.has(id):
-		items[id] = as_inventory_item(id, amount)
+		items[id] = InventoryItem.from(id, amount)
 	else:
 		items.get(id).amount = amount
 

@@ -12,7 +12,7 @@ var highlightTimer = Timer.new()
 @export var highlight_seconds = 1.0 as float
 @export var interact_distance_m = -1
 const POPUP_MESSAGE_FORMAT = "Pick up <ITEM>"
-@export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_messages: String
+@export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_message: String
 const FEEDBACK_MESSAGE_FORMAT = "Collected: <ITEM>"
 @export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
 
@@ -56,7 +56,7 @@ func get_material():
 	return duplicate
 
 func popup_message():
-	var message = default_popup_messages
+	var message = default_popup_message
 	if !message:
 		message = POPUP_MESSAGE_FORMAT.replace("<ITEM>", item.name)
 	return InteractionHelper.popup_message(message)

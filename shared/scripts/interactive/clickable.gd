@@ -11,7 +11,7 @@ var highlightTimer = Timer.new()
 @export var highlight_seconds = 0.1 as float
 @export var interact_distance_m = -1
 const POPUP_MESSAGE_FORMAT = "Take Action"
-@export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_messages: String
+@export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_message: String
 const FEEDBACK_MESSAGE_FORMAT = ""
 @export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
 var highlighted = false
@@ -105,7 +105,7 @@ func get_player() -> Player:
 	return WorldUtil.player
 
 func popup_message():
-	var message = default_popup_messages
+	var message = default_popup_message
 	if !message:
 		message = POPUP_MESSAGE_FORMAT
 	return InteractionHelper.popup_message(message)
