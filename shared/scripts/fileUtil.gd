@@ -10,6 +10,8 @@ static func getContentAsString(filePath:String):
 	return file.get_as_text()
 
 static func getContentAsJson(filePath:String):
-	if(!cache.has(filePath)):
-		cache[filePath] = JSON.parse_string(getContentAsString(filePath))
-	return cache.get(filePath)
+	if cache.has(filePath):
+		return cache.get(filePath)
+	var content = JSON.parse_string(getContentAsString(filePath))
+	cache[filePath] = content
+	return content

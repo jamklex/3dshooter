@@ -16,8 +16,7 @@ static func empty() -> Inventory:
 
 func duplicate() -> Inventory:
 	var inv = Inventory.new()
-	for key in items.keys():
-		inv.add(key, count(key))
+	inv.items = items.duplicate(true)
 	return inv
 
 func as_inventory_item(id: String, amount: int) -> InventoryItem:

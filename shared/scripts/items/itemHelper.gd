@@ -1,8 +1,10 @@
 extends Object
 
-class_name ItemHelper
+var cache = {} as Dictionary
 
-static func get_item(id: String) -> GameItem:
+func get_item(id: String) -> GameItem:
+	if cache.has(id):
+		return cache[id]
 	var data = FileUtil.getContentAsJson("res://assets/items/items.json")
 	var item = GameItem.new()
 	if data.has(id):
@@ -11,4 +13,5 @@ static func get_item(id: String) -> GameItem:
 		item.description = data.get("desc")
 		if data.has("image"):
 			item.image = load(data.get("image"))
+	cache[id] = item
 	return item
