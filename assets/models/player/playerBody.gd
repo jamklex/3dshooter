@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var mouse_sensitivity = 0.05
 @export var interact_distance = 3
 
+@onready var _shooter:Shooter = $shooter
 @onready var _visuals = $visuals
 @onready var _animation_player = $visuals/mixamo_base/AnimationPlayer
 @onready var _camera_mount = $camera_mount
@@ -51,6 +52,8 @@ func _physics_process(delta):
 	handle_interaction()
 	handle_show_inventory()
 	handle_show_menu()
+	if _shooter:
+		_shooter.handle()
 
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
