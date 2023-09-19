@@ -1,0 +1,58 @@
+{
+	"name": "How can I help?",
+	"desc": "Your are new to this crew and haven't really had the chance of getting to know them.\nMaybe it's time to talk to the Captain first and ask if You can help in any way.",
+	"short": "Check if the Captain needs something",
+	"dialog": {
+		"npc": "CAPTAIN",
+		"answer": "Oh Hi, You must be the new one They've sent.\nHow about I let You know how the missions will work.\nYou see this Ship down there?\nIt's abandonned but we need to clear it first, before we can demolish it.\nCould You go down there and pick up a glowing ball?\n You should find it near the exit ramp.",
+		"options": {
+			"Sure, I've nothing else to do": {
+				"answer": "Alright, let's get You in there!",
+				"actions": [
+					{
+						"action": "succeedTask",
+						"payload": []
+					},
+					{
+						"action": "setActiveTask",
+						"payload": [
+							"2"
+						]
+					},
+					{
+						"action": "teleportToMissionMap",
+						"payload": [
+							"1"
+						]
+					}
+				]
+			},
+			"I'm not quite ready yet": {
+				"answer": "It's ok, come back if You feel ready!",
+			},
+			"I want to skip the tutorial!": {
+				"answer": "Are You sure about that?",
+				"options": {
+					"Yes": {
+						"answer": "Alright, looks like You don't need any introduction.",
+						"actions": [
+							{
+								"action": "succeedQuest",
+								"payload": []
+							},
+							{
+								"action": "unlockQuest",
+								"payload": [
+									"itemSeller"
+								]
+							}
+						]
+					},
+					"No": {
+						"answer": "It's ok, come back if You feel ready!",
+					}
+				}
+			}
+		}
+	}
+}

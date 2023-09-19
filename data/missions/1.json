@@ -1,0 +1,27 @@
+{
+	"name": "Gather Items",
+	"desc": "Do Your thing",
+	"short": "...",
+	"seed": "238910823202312",
+	"min_level": 15,
+	"max_level": 25,
+	"kills": [
+		{
+			"1": 200
+		}
+	],
+	"resources": [
+		{
+			"1": 150
+		}
+	],
+	"rewards": [
+		{
+			"0": 150000,
+		},
+		{
+			"12": 3000
+		},
+	],
+	"exp": 50000
+}

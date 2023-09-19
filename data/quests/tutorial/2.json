@@ -1,0 +1,48 @@
+{
+	"desc": "The Captain wants You to look for a glowing ball inside of the Shipwreck, maybe You should have a look around.",
+	"short": "Get the glowing ball",
+	"success": {
+		"conditions": [
+			{
+				"condition": "hasItemCount",
+				"payload": [
+					"4", "1"
+				]
+			}
+		],
+		"actions": [
+			{
+				"action": "succeedTask",
+				"payload": []
+			},
+			{
+				"action": "setActiveTask",
+				"payload": [
+					"3"
+				]
+			},
+		]
+	},
+	"failure": {
+		"conditions": [
+			{
+				"condition": "hasItemCount",
+				"payload": [
+					"9", "1"
+				]
+			}
+		],
+		"actions": [
+			{
+				"action": "failTask",
+				"payload": []
+			},
+			{
+				"action": "setActiveTask",
+				"payload": [
+					"4"
+				]
+			},
+		]
+	}
+}

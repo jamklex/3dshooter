@@ -1,0 +1,29 @@
+{
+	"desc": "",
+	"short": "",
+	"dialog": {
+		"npc": "CAPTAIN",
+		"answer": "Oh Thanks!\nTake some Money, You will need it.",
+		"actions": [
+			{
+				"action": "succeedQuest",
+				"payload": []
+			},
+			{
+				"action": "unlockQuest",
+				"payload": [
+					"itemSeller"
+				]
+			},
+			{
+				"action": "giveRewards",
+				"payload": []
+			}
+		]
+	},
+	"rewards": [
+		{
+			"0": 100
+		}
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"name": "I think I screwed up...",
+	"desc": "",
+	"short": "",
+	"dialog": {
+		"npc": "CAPTAIN",
+		"answer": "What the hell is this!\nI can't work whith this.",
+		"actions": [
+			{
+				"action": "failQuest",
+				"payload": []
+			},
+			{
+				"action": "unlockQuest",
+				"payload": [
+					"itemSeller"
+				]
+			}
+		]
+	}
+}
