@@ -7,9 +7,15 @@ enum WeaponType {PISTOL, RIFLE, SNIPER}
 @export var description:String
 @export var magSize:int
 @export var weaponType:WeaponType
+var restMagShoots:int
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	print("Weapon got initialized!")
-	print("WeaponName:" + weaponName)
-	print("Description:" + description)
+#func _ready():
+#	print("Weapon got initialized!")
+#	print("WeaponName:" + weaponName)
+#	print("Description:" + description)
+func needReload():
+	return restMagShoots == 0
+	
+func reload():
+	restMagShoots = magSize

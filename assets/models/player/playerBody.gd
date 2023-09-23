@@ -52,8 +52,6 @@ func _physics_process(delta):
 	handle_interaction()
 	handle_show_inventory()
 	handle_show_menu()
-	if _shooter:
-		_shooter.handle()
 
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -70,6 +68,8 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
+	if _shooter:
+		_shooter.handle()
 	
 	
 func _playAnimation(animationName:String):
