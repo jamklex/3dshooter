@@ -19,6 +19,7 @@ extends CharacterBody3D
 @onready var inventory_output = _ui.get_node("RunInventory") as RichTextLabel
 @onready var interactionPopup = _ui.get_node("InteractionPopup") as Label
 @onready var interactionFeedback = _ui.get_node("InteractionFeedback") as Label
+@onready var quests = _ui.get_node("quests") as VBoxContainer
 var inDialog = false
 
 func setInDialog(value:bool):
@@ -34,7 +35,7 @@ func _ready():
 	WorldUtil.player.cam = get_node("Camera")
 	refresh_inventory_output()
 	fade_interaction_feedback(1)
-	
+
 func _exit_tree():
 	WorldUtil.player.bodyLastPos = position
 	WorldUtil.player.body = null
@@ -52,6 +53,7 @@ func _physics_process(delta):
 	handle_interaction()
 	handle_show_inventory()
 	handle_show_menu()
+	handle_show_quests()
 	if _shooter:
 		_shooter.handle()
 
@@ -88,7 +90,13 @@ func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
 		return
 	WorldUtil.quitGame()
-	
+
+func handle_show_quests():
+	if !Input.is_action_just_pressed("questlog"):
+		return
+	for quest in WorldUtil.player.quests:
+		quests.add_child(quest)
+
 func handle_interaction():
 	interactionPopup.text = ""
 	if !_raycast.is_colliding():

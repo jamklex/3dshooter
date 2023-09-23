@@ -5,8 +5,12 @@ class_name TaskResult
 var conditions: Array
 var actions: Array
 
-static func from(json: JSON) -> TaskResult:
+static func from(dict: Dictionary) -> TaskResult:
 	var result = TaskResult.new()
+	for condition in dict.get("conditions", []):
+		result.add_condition(Condition.from(condition))
+	for action in dict.get("actions", []):
+		result.add_action(Action.from(action))
 	return result
 
 static func create(conditions: String, actions: String) -> TaskResult:
