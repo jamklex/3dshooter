@@ -10,17 +10,17 @@
 				"answer": "Alright, let's get You in there!",
 				"actions": [
 					{
-						"action": "succeedTask",
+						"method": "succeedTask",
 						"payload": []
 					},
 					{
-						"action": "setActiveTask",
+						"method": "setActiveTask",
 						"payload": [
 							"2"
 						]
 					},
 					{
-						"action": "teleportToMissionMap",
+						"method": "teleportToMissionMap",
 						"payload": [
 							"1"
 						]
@@ -28,7 +28,7 @@
 				]
 			},
 			"I'm not quite ready yet": {
-				"answer": "It's ok, come back if You feel ready!",
+				"answer": "It's ok, come back if You feel ready!"
 			},
 			"I want to skip the tutorial!": {
 				"answer": "Are You sure about that?",
@@ -37,11 +37,11 @@
 						"answer": "Alright, looks like You don't need any introduction.",
 						"actions": [
 							{
-								"action": "succeedQuest",
+								"method": "succeedQuest",
 								"payload": []
 							},
 							{
-								"action": "unlockQuest",
+								"method": "unlockQuest",
 								"payload": [
 									"itemSeller"
 								]
@@ -49,7 +49,7 @@
 						]
 					},
 					"No": {
-						"answer": "It's ok, come back if You feel ready!",
+						"answer": "It's ok, come back if You feel ready!"
 					}
 				}
 			}

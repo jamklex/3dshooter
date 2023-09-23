@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dpqubtt5d5838"]
+
+[node name="quest" type="Node"]
+
+[node name="panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="container" type="VBoxContainer" parent="panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="name" type="Label" parent="panel/container"]
+layout_mode = 2
+
+[node name="tasks" type="VBoxContainer" parent="panel/container"]
+layout_mode = 2

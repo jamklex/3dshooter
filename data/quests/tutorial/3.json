@@ -1,22 +1,22 @@
 {
-	"desc": "",
-	"short": "",
+	"desc": "You've successfully retrieved the glowing ball.\nNow You only need to bringt it back and maybe there is a reward waiting for You.",
+	"short": "Bring the glowing ball to the captain",
 	"dialog": {
 		"npc": "CAPTAIN",
 		"answer": "Oh Thanks!\nTake some Money, You will need it.",
 		"actions": [
 			{
-				"action": "succeedQuest",
+				"method": "succeedQuest",
 				"payload": []
 			},
 			{
-				"action": "unlockQuest",
+				"method": "unlockQuest",
 				"payload": [
 					"itemSeller"
 				]
 			},
 			{
-				"action": "giveRewards",
+				"method": "giveRewards",
 				"payload": []
 			}
 		]

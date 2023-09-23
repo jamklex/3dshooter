@@ -5,8 +5,10 @@ class_name Condition
 var method: String
 var payload: Array
 
-static func from(json: JSON) -> Condition:
+static func from(dict: Dictionary) -> Condition:
 	var condition = Condition.new()
+	condition.method = dict.get("method")
+	condition.payload = dict.get("payload")
 	return condition
 
 static func create(method: String, payload: Array) -> Condition:

@@ -4,7 +4,7 @@
 	"success": {
 		"conditions": [
 			{
-				"condition": "hasItemCount",
+				"method": "hasItemCount",
 				"payload": [
 					"4", "1"
 				]
@@ -12,11 +12,11 @@
 		],
 		"actions": [
 			{
-				"action": "succeedTask",
+				"method": "succeedTask",
 				"payload": []
 			},
 			{
-				"action": "setActiveTask",
+				"method": "setActiveTask",
 				"payload": [
 					"3"
 				]
@@ -26,7 +26,7 @@
 	"failure": {
 		"conditions": [
 			{
-				"condition": "hasItemCount",
+				"method": "hasItemCount",
 				"payload": [
 					"9", "1"
 				]
@@ -34,11 +34,11 @@
 		],
 		"actions": [
 			{
-				"action": "failTask",
+				"method": "failTask",
 				"payload": []
 			},
 			{
-				"action": "setActiveTask",
+				"method": "setActiveTask",
 				"payload": [
 					"4"
 				]

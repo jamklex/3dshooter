@@ -1,0 +1,20 @@
+{
+	"name": "Where can I sell my Loot?",
+	"desc": "You've got some loot from Your Missions but holding onto it might not be an optimal solution.\nTry to find out where You can sell those items by asking the captain.",
+	"short": "Ask the Captain where You can sell Loot",
+	"dialog": {
+		"npc": "CAPTAIN",
+		"answer": "Now that You mention it, we have a new crew member in the lower decks",
+		"options": {
+			"Ok, I'm gonna ask them": {
+				"answer": "Alright, say greetings from me!",
+				"actions": [
+					{
+						"method": "succeedTask",
+						"payload": []
+					}
+				]
+			}
+		}
+	}
+}

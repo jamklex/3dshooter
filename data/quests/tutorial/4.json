@@ -1,17 +1,17 @@
 {
 	"name": "I think I screwed up...",
-	"desc": "",
-	"short": "",
+	"desc": "You've accidentally destroyed the objective, but maybe the captain is not mad at You.",
+	"short": "Show remorse to the captain",
 	"dialog": {
 		"npc": "CAPTAIN",
 		"answer": "What the hell is this!\nI can't work whith this.",
 		"actions": [
 			{
-				"action": "failQuest",
+				"method": "failQuest",
 				"payload": []
 			},
 			{
-				"action": "unlockQuest",
+				"method": "unlockQuest",
 				"payload": [
 					"itemSeller"
 				]
