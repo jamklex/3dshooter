@@ -60,14 +60,14 @@ func _physics_process(delta):
 
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	direction = direction.rotated(Vector3.UP, _camera.rotation.y).normalized()
+	if _shooter.aiming:
+		_visuals.rotation = Vector3.ZERO
 	if direction:
 		_playAnimation("walking")
-		_visuals.look_at(position + direction)
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-		if velocity.length() > 0.2:
-			var look_direction = Vector2(velocity.z, velocity.x)
+		if not _shooter.aiming:
+			_visuals.look_at(position + direction)
 	else:
 		_playAnimation("idle")
 		velocity.x = move_toward(velocity.x, 0, speed)
@@ -145,7 +145,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseMotion: # or controller right stick
 		var yRot = deg_to_rad(event.relative.x*mouse_sensitivity)
 		rotate_y(-yRot)
-		_visuals.rotate_y(yRot)
+		if not _shooter.aiming:
+			_visuals.rotate_y(yRot)
 		_camera_mount.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		_camera_mount.rotation_degrees.x = clamp(_camera_mount.rotation_degrees.x, -80.0, 60.0)
-		
