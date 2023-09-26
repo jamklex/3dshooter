@@ -8,7 +8,7 @@ static func load_quest(path: String) -> Quest:
 	var tasks = []
 	for file_name in FileUtil.getFilesAt(path):
 		tasks.push_back(FileUtil.getContentAsJson(file_name))
-	return Quest.from(tasks)
+	return Quest.from(tasks, true)
 
 static func load_quests(path: String) -> Array:
 	if !path.ends_with("/"):
@@ -17,3 +17,8 @@ static func load_quests(path: String) -> Array:
 	for dir in DirAccess.get_directories_at(path):
 		quests.push_back(load_quest(path + dir))
 	return quests
+
+static func show_quests(questlog: VBoxContainer, quests: Array):
+	for quest in quests:
+		questlog.add_child(quest)
+		quest.refresh_data()

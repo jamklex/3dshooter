@@ -35,6 +35,7 @@ func _ready():
 	WorldUtil.player.cam = get_node("Camera")
 	refresh_inventory_output()
 	fade_interaction_feedback(1)
+	QuestLoader.show_quests(quests, WorldUtil.player.quests)
 
 func _exit_tree():
 	WorldUtil.player.bodyLastPos = position
@@ -94,8 +95,10 @@ func handle_show_menu():
 func handle_show_quests():
 	if !Input.is_action_just_pressed("questlog"):
 		return
-	for quest in WorldUtil.player.quests:
-		quests.add_child(quest)
+	quests.visible = !quests.visible
+	if !quests.visible:
+		return
+	QuestLoader.show_quests(quests, WorldUtil.player.quests)
 
 func handle_interaction():
 	interactionPopup.text = ""

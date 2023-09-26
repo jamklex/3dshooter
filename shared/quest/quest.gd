@@ -1,19 +1,34 @@
+class_name Quest
 extends Node
 
-class_name Quest
-
-var _name: String = ""
+var title: String = ""
 var tasks: Array = []
+var active: bool = false
+const scene = preload("res://shared/quest/scenes/quest.tscn")
+@onready var layout = $panel/container
 
-static func from(tasks: Array) -> Quest:
-	var quest = Quest.new()
-	for t in tasks:
-		var task = Task.from(t, quest._name)
+static func from(_tasks: Array, _active: bool) -> Quest:
+	var quest = scene.instantiate() as Quest
+	quest.active = _active
+	var first = true
+	for t in _tasks:
+		var task = Task.from(t, quest.title) as Task
+		if _active and first:
+			task.set_active()
+			first = false
 		quest.add_task(task)
-		if !quest._name:
-			quest._name = task._name
-	print("Quest " + quest._name + " loaded")
+		if !quest.title:
+			quest.title = task.title
+	print("Quest " + quest.title + " loaded")
 	return quest
+
+func refresh_data():
+	layout.get_node("name").text = title
+	for task in tasks:
+		if task.status == Task.Status.UNKNOWN and task.hide_if_unknown:
+			continue
+		layout.get_node("tasks").add_child(task)
+		task.refresh_data()
 
 func add_task(task: Task):
 	tasks.push_back(task)

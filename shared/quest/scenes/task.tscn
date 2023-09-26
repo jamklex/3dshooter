@@ -1,20 +1,28 @@
-[gd_scene format=3 uid="uid://dx5vsjve6roxd"]
+[gd_scene load_steps=2 format=3 uid="uid://dx5vsjve6roxd"]
 
-[node name="task" type="Node"]
+[ext_resource type="Script" path="res://shared/quest/task.gd" id="1_ihugl"]
+
+[node name="task" type="Control"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ihugl")
 
 [node name="short" type="Control" parent="."]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 150.0
+offset_bottom = 25.0
 
 [node name="unknown" type="Label" parent="short"]
 visible = false
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 26.0
-theme_override_colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
+theme_override_colors/font_color = Color(0.254902, 0.254902, 0.254902, 1)
 text = "#####"
 
 [node name="active" type="Label" parent="short"]
