@@ -22,5 +22,6 @@ static func show_quests(questlog: VBoxContainer, quests: Array):
 	for quest in quests:
 		if !quest:
 			continue
+		quest.visible = quest.active
 		questlog.add_child(quest)
 		quest.refresh_data()

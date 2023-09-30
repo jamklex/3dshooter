@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsk018800x020"]
+
+[ext_resource type="Script" path="res://shared/scripts/npc.gd" id="1_wjpcm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1gmhh"]
+height = 1.72733
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oexap"]
+albedo_color = Color(1, 0.372549, 0.435294, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rd25r"]
+material = SubResource("StandardMaterial3D_oexap")
+height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qf3dd"]
+albedo_color = Color(1, 1, 0.427451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_88mvh"]
+material = SubResource("StandardMaterial3D_qf3dd")
+
+[node name="roboUpgrader" type="StaticBody3D"]
+script = ExtResource("1_wjpcm")
+dialog_data_path = "res://scenes/ship/dialogs/roboUpgrader.json"
+npc_name = "Igor (Body-Manager)"
+
+[node name="Collission" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
+shape = SubResource("CapsuleShape3D_1gmhh")
+
+[node name="Skin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.035532)
+mesh = SubResource("CapsuleMesh_rd25r")
+
+[node name="Front" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
+mesh = SubResource("BoxMesh_88mvh")

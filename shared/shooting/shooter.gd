@@ -1,6 +1,7 @@
 extends Node3D
 class_name Shooter
 
+@export var raycastMeters:int
 @export var camera:Camera3D
 @export var weaponHolder:Node3D
 @export var playerSkeleton:Skeleton3D
@@ -11,12 +12,15 @@ var aiming:bool = false
 var reloading:bool = false
 @onready var _reloadTimer:Timer = $reloadTimer
 @onready var _magInfo:Label = $magInfo
+var soundPlayer:AudioStreamPlayer
 
 func _ready():
 	_reloadTimer.timeout.connect(_reload)
 	_refreshMagInfo()
-	addWeapon("res://shared/shooting/weapons/pistol.tscn")
-
+	addWeapon("res://shared/shooting/weapons/pistol/_main.tscn")
+	soundPlayer = AudioStreamPlayer.new()
+	add_child(soundPlayer)
+	
 func addWeapon(scenePath:String):
 	var packedScene = load(scenePath) as PackedScene
 	if not packedScene:
@@ -52,11 +56,14 @@ func _handleReloading():
 		return
 	if currentWeapon.isMagFull():
 		return
-	print("Reloading...")
+	if aiming:
+		aimOverride.stop()
 	_startReload()
 	
 func _startReload():
 	reloading = true
+	soundPlayer.stream = currentWeapon.reloadSound
+	soundPlayer.play(0)
 	_reloadTimer.start(currentWeapon.reloadTimeSecs)
 	_refreshMagInfo()
 	
@@ -64,6 +71,8 @@ func _reload():
 	currentWeapon.reload()
 	reloading = false
 	_refreshMagInfo()
+	if aiming:
+		aimOverride.start()
 	
 func _refreshMagInfo():
 	var magInfoText = ""
@@ -76,6 +85,8 @@ func _refreshMagInfo():
 func _handleShooting():
 	if not currentWeapon:
 		return
+	if reloading:
+		return
 	if currentWeapon.needReload():
 		return
 	if not Input.is_action_just_pressed("shoot"):
@@ -87,20 +98,26 @@ func _handleShooting():
 	_refreshMagInfo()
 
 func _shoot():
+	soundPlayer.stream = currentWeapon.shotSound
+	soundPlayer.play(0)
+	currentWeapon.muzzleFlare.restart()
 	var shootable = _raycastForShootable()
 	if not shootable:
 		return
 	shootable.takeDamage(currentWeapon.damage)
 	
-func _raycastForShootable() -> Shootable:
+func _raycastForShootable() -> Node:
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(camera.global_position,
-		camera.global_position - camera.global_transform.basis.z * 1)
+		camera.global_position - camera.global_transform.basis.z * raycastMeters)
 	var collision = space.intersect_ray(query)
 	if not collision:
 		return
-	print("_raycastForShootable")
-	print(collision)
+	var collider = collision.collider as Node
+	if collider.has_method("takeDamage"):
+		return collider
+	elif collider.has_node("shootable"):
+		return collider.get_node("shootable")
 	return null
 
 func _handleAimSwitching():
@@ -112,7 +129,6 @@ func _handleAimSwitching():
 
 func _switchAim():
 	aiming = !aiming
-	print("Aiming: " + str(aiming))
 	if aiming:
 		aimOverride.start()
 	else: 
