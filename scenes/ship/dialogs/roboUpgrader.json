@@ -1,10 +1,12 @@
 {
-	"text": "Hey, how can i help you?",
-	"answers":
+	"answer": "Hey, how can i help you?",
+	"options":
 	{
 		"Let me see your upgrades!": {
 			"action": "openRoboUpgradeShop",
-			"id": "1"
+			"paylod": [
+				"1"
+			]
 		},
 		"Bye": {}
 	}
