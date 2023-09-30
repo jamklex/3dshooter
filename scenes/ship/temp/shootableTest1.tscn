@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://d13lgvtdpyxeb"]
+
+[ext_resource type="Material" uid="uid://020ay8omwase" path="res://scenes/ship/temp/shootableTestColor.tres" id="1_7tj63"]
+[ext_resource type="Script" path="res://scenes/ship/temp/shootableTest1.gd" id="1_xt5sw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eap1h"]
+height = 1.72733
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0h5bp"]
+material = ExtResource("1_7tj63")
+height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8g3xh"]
+albedo_color = Color(1, 1, 0.427451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ldhc"]
+material = SubResource("StandardMaterial3D_8g3xh")
+
+[node name="shootableTest1" type="StaticBody3D"]
+script = ExtResource("1_xt5sw")
+
+[node name="Collission" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
+shape = SubResource("CapsuleShape3D_eap1h")
+
+[node name="Skin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.0355329)
+mesh = SubResource("CapsuleMesh_0h5bp")
+
+[node name="Front" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
+mesh = SubResource("BoxMesh_2ldhc")

@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://xx4ok047mg7w"]
+
+[ext_resource type="Script" path="res://shared/scripts/npc.gd" id="1_inco6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3f56i"]
+height = 1.72733
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rqqr3"]
+albedo_color = Color(1, 0.372549, 0.435294, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3h420"]
+material = SubResource("StandardMaterial3D_rqqr3")
+height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nra6n"]
+albedo_color = Color(1, 1, 0.427451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fdb2q"]
+material = SubResource("StandardMaterial3D_nra6n")
+
+[node name="itemSeller" type="StaticBody3D"]
+transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 0, 0, 0)
+script = ExtResource("1_inco6")
+dialog_data_path = "res://scenes/ship/dialogs/itemSeller.json"
+npc_name = "Trish (Salvager)"
+
+[node name="Collission" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
+shape = SubResource("CapsuleShape3D_3f56i")
+
+[node name="Skin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129073, 0.846775, 0.035533)
+mesh = SubResource("CapsuleMesh_3h420")
+
+[node name="Front" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
+mesh = SubResource("BoxMesh_fdb2q")

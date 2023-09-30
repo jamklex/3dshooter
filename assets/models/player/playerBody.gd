@@ -77,7 +77,7 @@ func _physics_process(delta):
 	
 func _playAnimation(animationName:String):
 	if _animation_player.current_animation != animationName:
-		_animation_player.play(animationName)	
+		_animation_player.play(animationName)
 
 func fade_interaction_feedback(rate = 0.025 as float, reset = false as bool):
 	var new_modulate = interactionFeedback.modulate

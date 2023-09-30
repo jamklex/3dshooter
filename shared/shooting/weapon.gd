@@ -7,15 +7,18 @@ enum WeaponType {PISTOL, RIFLE, SNIPER}
 @export var description:String
 @export var magSize:int
 @export var weaponType:WeaponType
-@export var reloadTimeSecs:int
+@export var reloadTimeSecs:float
 @export var damage:int
+@export var shotSound:AudioStream
+@export var reloadSound:AudioStream
+@export var muzzleFlare:GPUParticles3D
 var restMagShoots:int
 
-# Called when the node enters the scene tree for the first time.
-#func _ready():
-#	print("Weapon got initialized!")
-#	print("WeaponName:" + weaponName)
-#	print("Description:" + description)
+
+func _ready():
+	if reloadSound:
+		reloadTimeSecs = reloadSound.get_length()
+
 func needReload():
 	return restMagShoots == 0
 	
