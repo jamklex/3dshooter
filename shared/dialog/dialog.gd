@@ -23,33 +23,32 @@ func loadDialogData(dataPath:String):
 	if questionLabel and not dialogStarted:
 		_loadNextPart()
 
-func _executeAction(actionData:Dictionary):
-	var action = actionData["action"]
+func _executeAction(action:String, payload:Array):
 	if action == "teleportToMissionMap":
-		WorldUtil.call(action, actionData["levelId"])
+		WorldUtil.call(action, payload[0])
 	elif action == "removeFromPlayerInventory" or action == "addToPlayerInventory" :
-		WorldUtil.call(action, actionData["item"], actionData["amount"])
+		WorldUtil.call(action, payload[0], payload[1])
 		WorldUtil.player.body.refresh_inventory_output()
 	elif action == "openLastLoot":
-		WorldUtil.call(action, actionData["priceListPath"])
+		WorldUtil.call(action, payload[0])
 	elif action == "openSellLoot":
-		WorldUtil.call(action, actionData["priceListPath"])
+		WorldUtil.call(action, payload[0])
 	else:
 		print("dont know what to do with action '" + action + "'")
 
 func _loadNextPart():
-	if not "text" in dialog_data:
+	if not "answer" in dialog_data:
 		_closeDialog()
 		if "action" in dialog_data:
-			_executeAction(dialog_data)
+			_executeAction(dialog_data["action"], dialog_data["payload"])
 		elif "actions" in dialog_data:
 			var actions = dialog_data["actions"]
 			for i in range(len(actions)):
-				_executeAction(actions[i])
+				_executeAction(actions[i]["action"], actions[i]["payload"])
 		return
-	_showText(dialog_data["text"])
-	if "answers" in dialog_data:
-		answers = _removeUnavailableAnswers(dialog_data["answers"])
+	_showText(dialog_data["answer"])
+	if "options" in dialog_data:
+		answers = _removeUnavailableAnswers(dialog_data["options"])
 		_showAnswers(answers.keys())
 
 func _removeUnavailableAnswers(dialogAnswers:Dictionary):
@@ -59,15 +58,17 @@ func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 		if not "condition" in answerData:
 			availableAnswers[answerKey] = answerData
 			continue
-		if _isConditionFulfilled(answerData["condition"]):
+		var condition = answerData["condition"]
+		var action = condition["action"]
+		var result = condition["result"]
+		var payload = condition["payload"]
+		if _isConditionFulfilled(action, result, payload):
 			availableAnswers[answerKey] = answerData
 	return availableAnswers
 
-func _isConditionFulfilled(condition:Dictionary):
-	var action = condition["action"]
-	var result = condition["result"]
+func _isConditionFulfilled(action:String, result:bool, payload:Array):
 	if action == "checkPlayerInventory":
-		return result == WorldUtil.call(action, condition["item"], condition["amount"])
+		return result == WorldUtil.call(action, payload[0], payload[1])
 	elif action == "hasStoreInventoryItems":
 		return result == WorldUtil.call(action)
 	else:

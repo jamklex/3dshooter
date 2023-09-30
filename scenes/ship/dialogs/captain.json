@@ -1,23 +1,26 @@
 {
-	"text": "Hello",
-	"answers":
-	{
+	"answer": "Hello",
+	"options": {
 		"Hey": {
 			"condition": {
 				"result": false,
 				"action": "checkPlayerInventory",
-				"item": "4",
-				"amount": 2
+				"payload": [
+					"4",
+					2
+				]
 			},
-			"text": "Can you help me?",
-			"answers":
+			"answer": "Can you help me?",
+			"options":
 			{
 				"Sure": {
-					"text": "Thanks man, please go and get my hammer back!",
-					"answers": {
+					"answer": "Thanks man, please go and get my hammer back!",
+					"options": {
 						"Alright, see ya!": {
 							"action": "teleportToMissionMap",
-							"levelId": 1
+							"payload": [
+								1
+							]
 						}
 					}
 				},
@@ -28,24 +31,29 @@
 			"condition": {
 				"result": true,
 				"action": "checkPlayerInventory",
-				"item": "4",
-				"amount": 2
+				"payload": [
+					"4",
+					2
+				]
 			},
-			"text": "Oh u got my stuff!",
-			"answers":
-			{
+			"answer": "Oh u got my stuff!",
+			"options": {
 				"Yeah, here you are": {
 					"actions": [
 						{
 							"action": "removeFromPlayerInventory",
-							"item": "4",
-							"amount": 2
+							"payload": [
+								"4",
+								2
+							]
 						},
 						{
 							"action": "addToPlayerInventory",
-							"item": "5",
-							"amount": 1
-						},
+							"payload": [
+								"5",
+								1
+							]
+						}
 					]
 				},
 				"No!": {}

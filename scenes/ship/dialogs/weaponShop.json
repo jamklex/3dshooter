@@ -1,10 +1,12 @@
 {
-	"text": "Hey, how can i help you?",
-	"answers":
+	"answer": "Hey, how can i help you?",
+	"options":
 	{
 		"Let me see your weapons!": {
 			"action": "openWeaponShop",
-			"id": "1"
+			"payload": [
+				"1"
+			]
 		},
 		"Bye": {}
 	}

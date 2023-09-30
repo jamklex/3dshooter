@@ -1,18 +1,22 @@
 {
-	"text": "Hey, how can i help you?",
-	"answers":
-	{
+	"answer": "Hey, how can i help you?",
+	"options": {
 		"Let me see my saved loot!": {
 			"condition": {
 				"result": true,
-				"action": "hasStoreInventoryItems"
+				"action": "hasStoreInventoryItems",
+				"payload": []
 			},
 			"action": "openLastLoot",
-			"priceListPath": "res://data/price_lists/salvager_taxes.json"
+			"payload": [
+				"res://data/price_lists/salvager_taxes.json"
+			]
 		},
 		"I wanna sell some stuff": {
 			"action": "openSellLoot",
-			"priceListPath": "res://data/price_lists/default.json"
+			"payload": [
+				"res://data/price_lists/default.json"
+			]
 		},
 		"Bye": {}
 	}
