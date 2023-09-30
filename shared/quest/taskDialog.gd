@@ -7,6 +7,7 @@ var quote: String # what the player says
 var answer: String # what the npc says
 var options: Array
 var actions: Array
+const DEFAULT_CLOSE_DIALOG = "End Conversation"
 
 static func from(dict: Dictionary, quote: String, npc: String = "") -> TaskDialog:
 	var dialog = TaskDialog.new()
@@ -37,3 +38,22 @@ func add_option(dialog: TaskDialog):
 
 func add_action(action: Action):
 	actions.push_back(action)
+
+func as_dialog_options() -> Dictionary:
+	var _actions = []
+	for _act in actions:
+		_actions.push_back(_act.as_dialog_action())
+	var _options = {}
+	if !options.is_empty():
+		for _opt in options:
+			_options[_opt.quote] = _opt.as_dialog_options()
+	if _options.is_empty():
+		_options[DEFAULT_CLOSE_DIALOG] = {}
+	return {
+		"answer": answer,
+		"actions": _actions,
+		"options": _options
+	}
+
+func get_dialog_key() -> String:
+	return quote

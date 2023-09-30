@@ -36,7 +36,6 @@ material = SubResource("StandardMaterial3D_qf3dd")
 
 [node name="Player" parent="." instance=ExtResource("1_nxnoa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111711, 0, -7.43068)
-speed = 3.0
 interact_distance = 5
 
 [node name="cockpit" type="Node3D" parent="."]
@@ -264,6 +263,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/captain.json"
 npc_name = "Madelyn (Captain)"
+npc_id = "CAPTAIN"
 
 [node name="Collission" type="CollisionShape3D" parent="cockpit/captain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
@@ -1095,6 +1095,7 @@ transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, -6.042
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/roboUpgrader.json"
 npc_name = "Igor (Body-Manager)"
+npc_id = "BODY_MANAGER"
 
 [node name="Collission" type="CollisionShape3D" parent="upperShip/roboUpgrader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
@@ -1113,6 +1114,7 @@ transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 6.0532
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/weaponShop.json"
 npc_name = "Henry (Weapon-Smith)"
+npc_id = "WEAPON_SMITH"
 
 [node name="Collission" type="CollisionShape3D" parent="upperShip/weaponShop"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
@@ -1424,7 +1426,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3, -10.212)
 transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 3.08714, -2.94661, -8.84602)
 script = ExtResource("9_gwpfa")
 dialog_data_path = "res://scenes/ship/dialogs/itemSeller.json"
-npc_name = "Trish (Salvager)"
+npc_name = "Trish (Item-Seller)"
+npc_id = "ITEM_SELLER"
 
 [node name="Collission" type="CollisionShape3D" parent="lowerShip/itemSeller"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)

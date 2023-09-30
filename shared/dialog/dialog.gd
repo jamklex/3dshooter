@@ -5,7 +5,7 @@ var questionLabel: RichTextLabel
 var answersContainer: VBoxContainer
 var answerScene = preload("res://shared/dialog/answer.tscn")
 
-var dialog_data
+var dialog_data: Dictionary
 var dialogStarted:bool = false
 signal onExit
 var answers
@@ -14,27 +14,25 @@ var dialogTracker: Callable
 static func new_instance(dialog_data_path: String, tracker: Callable):
 	var dialog = load("res://shared/dialog/dialog.tscn").instantiate()
 	dialog.dialogTracker = tracker
-	dialog.loadDialogData(dialog_data_path)
+	dialog.set_dialog_data(dialog_data_path)
 	return dialog
 
-func loadDialogData(dataPath:String):
-	dialog_data = FileUtil.getContentAsJson(dataPath)
+func set_dialog_data(data_path:String):
+	dialog_data = FileUtil.getContentAsJson(data_path)
+
+func load_dialog_data():
 	dialogTracker.call(true)
 	if questionLabel and not dialogStarted:
 		_loadNextPart()
 
 func _executeAction(action:String, payload:Array):
-	if action == "teleportToMissionMap":
-		WorldUtil.call(action, payload[0])
-	elif action == "removeFromPlayerInventory" or action == "addToPlayerInventory" :
-		WorldUtil.call(action, payload[0], payload[1])
-		WorldUtil.player.body.refresh_inventory_output()
-	elif action == "openLastLoot":
-		WorldUtil.call(action, payload[0])
-	elif action == "openSellLoot":
-		WorldUtil.call(action, payload[0])
+	if WorldUtil.has_method(action):
+		WorldUtil.call(action, payload)
 	else:
-		print("dont know what to do with action '" + action + "'")
+		print("unknown method with name: '" + action + "' please create in WorldUtil")
+
+func add_options(key:String, data:Dictionary):
+	dialog_data["options"][key] = data
 
 func _loadNextPart():
 	if not "answer" in dialog_data:
@@ -67,10 +65,8 @@ func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 	return availableAnswers
 
 func _isConditionFulfilled(action:String, result:bool, payload:Array):
-	if action == "checkPlayerInventory":
-		return result == WorldUtil.call(action, payload[0], payload[1])
-	elif action == "hasStoreInventoryItems":
-		return result == WorldUtil.call(action)
+	if WorldUtil.has_method(action):
+		return result == WorldUtil.call(action, payload)
 	else:
 		print("dont know what to do with action '" + action + "'... return false")
 		return false

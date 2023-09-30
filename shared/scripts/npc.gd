@@ -5,6 +5,7 @@ var normalTransform: Transform3D
 
 @export_file(".json") var dialog_data_path
 @export var npc_name = "<NPC_NAME>"
+@export var npc_id = "<NPC_ID>"
 const POPUP_MESSAGE_FORMAT = "Talk to <NPC_NAME>"
 @export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_message: String
 
@@ -19,7 +20,7 @@ func interact(player: Player):
 
 func startConversation():
 	lookToPlayer()
-	WorldUtil.createDialog(dialog_data_path).onExit.connect(resetPosition)
+	WorldUtil.createDialog(npc_id, dialog_data_path).onExit.connect(resetPosition)
 
 func lookToPlayer():
 	if WorldUtil.player.body:
