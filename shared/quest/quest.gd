@@ -16,6 +16,8 @@ static func from(_tasks: Array, _active: bool) -> Quest:
 		if _active and first:
 			task.set_active()
 			first = false
+		if task.is_active():
+			quest.active = true
 		quest.add_task(task)
 		if !quest.title:
 			quest.title = task.title

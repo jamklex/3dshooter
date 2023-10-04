@@ -16,3 +16,9 @@ static func create(method: String, payload: Array) -> Action:
 	action.method = method
 	action.payload = payload
 	return action
+
+func as_dialog_action():
+	return {
+		"method": method,
+		"payload": payload
+	}

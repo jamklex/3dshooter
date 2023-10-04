@@ -250,6 +250,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.64552)
 
 [node name="captain" parent="cockpit" instance=ExtResource("9_6uds5")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 6.912)
+npc_id = "CAPTAIN"
 
 [node name="lamps" type="Node3D" parent="cockpit"]
 
@@ -1066,9 +1067,11 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.3809
 
 [node name="roboUpgrader" parent="upperShip" instance=ExtResource("12_3y0wg")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -21.889)
+npc_id = "BODY_MANAGER"
 
 [node name="weaponShop" parent="upperShip" instance=ExtResource("14_tmqxv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6.053, 0, -4.279)
+npc_id = "WEAPON_SHOP"
 
 [node name="lamps" type="Node3D" parent="upperShip"]
 
@@ -1375,6 +1378,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -3, -10.212)
 
 [node name="itemSeller" parent="lowerShip" instance=ExtResource("15_63p7s")]
 transform = Transform3D(1, 0, 3.49691e-07, 0, 1, 0, -3.49691e-07, 0, 1, 3.087, -2.947, -8.846)
+npc_id = "SALVAGER"
 
 [node name="lamps" type="Node3D" parent="lowerShip"]
 

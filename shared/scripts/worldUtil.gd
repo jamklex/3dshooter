@@ -3,17 +3,44 @@ extends Node
 var player: Player = Player.new()
 var currentDialog: Dialog
 var currentTrade: Trade
+var quests: Array = []
 
 func _enter_tree():
 	add_child(player)
 
-func createDialog(dialog_data_path:String) -> Dialog:
+func createDialog(npc_id:String, dialog_data_path:String) -> Dialog:
 	if !currentDialog:
 		currentDialog = Dialog.new_instance(dialog_data_path, Callable(player.body, "setInDialog"))
+		add_quest_dialogs(npc_id, currentDialog)
+		currentDialog.load_dialog_data()
 		add_child(currentDialog)
 	return currentDialog
 
-func openLastLoot(price_list_path:String):
+func add_quest_dialogs(npc_id, currentDialog):
+	for _quest in get_quests():
+		if !_quest.active:
+			continue
+		var _task = _quest.get_active_task()
+		if !_task:
+			return
+		var additional_dialog = _task.dialog as TaskDialog
+		if !additional_dialog or additional_dialog.npc != npc_id:
+			return
+		currentDialog.add_options(additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
+
+func get_quests():
+	quests = clear_nulls(quests)
+	if quests.is_empty():
+		quests = QuestLoader.load_quests("res://data/quests")
+	return quests
+
+func clear_nulls(_array: Array):
+	return _array.filter(func(o): return is_instance_valid(o))
+
+# generic methods under this line #
+###################################
+
+func openLastLoot(payload: Array):
 	if currentTrade:
 		return null
 	player.store_inventory.moveItem(player.inventory, Inventory.GOLD_ITEM)
@@ -22,7 +49,7 @@ func openLastLoot(price_list_path:String):
 	})
 	currentTrade = Trade.new_instance(tradeInv, player.store_inventory,
 		onLastLootAction, "Inventory", "Your saved loot",
-		FileUtil.getContentAsJson(price_list_path))
+		FileUtil.getContentAsJson(payload[0]))
 	add_child(currentTrade)
 	player.body.setInDialog(true)
 	return currentTrade
@@ -42,16 +69,16 @@ func onLastLootAction(action: Trade.Actions, payload: Array = []):
 	currentTrade = null
 	return true
 
-func openSellLoot(price_list_path:String):
+func openSellLoot(payload: Array):
 	if currentTrade:
 		return null
 	currentTrade = Trade.new_instance(player.inventory, Inventory.empty(),
 		 onSellLootAction, "Inventory", "Your sell items",
-		FileUtil.getContentAsJson(price_list_path))
+		FileUtil.getContentAsJson(payload[0]))
 	add_child(currentTrade)
 	player.body.setInDialog(true)
 	return currentTrade
-	
+
 func onSellLootAction(action: Trade.Actions, payload: Array = []):
 	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
 		return
@@ -60,25 +87,28 @@ func onSellLootAction(action: Trade.Actions, payload: Array = []):
 	player.body.setInDialog(false)
 	currentTrade = null
 	return true
+
+func teleportToMissionMap(payload: Array):
+	player.teleport("level_" + str(payload[0]))
 	
-func teleportToMissionMap(levelId:int):
-	player.teleport("level_" + str(levelId))
-	
-func teleportToLowerShip():
+func teleportToLowerShip(payload: Array = []):
 	player.teleport("ship", Vector3(-1,-3,-12))
 	
-func removeFromPlayerInventory(id:String, amount:int) -> bool:
-	return player.inventory.remove(id, amount)
+func removeFromPlayerInventory(payload: Array = []) -> bool:
+	var result = player.inventory.remove(payload[0], payload[1])
+	WorldUtil.player.body.refresh_inventory_output()
+	return result
 	
-func addToPlayerInventory(id:String, amount:int):
-	player.inventory.add(id, amount)
+func addToPlayerInventory(payload: Array):
+	player.inventory.add(payload[0], payload[1])
+	WorldUtil.player.body.refresh_inventory_output()
 	
-func checkPlayerInventory(id:String, minAmount:int):
-	return player.inventory.check(id, minAmount)
+func checkPlayerInventory(payload: Array):
+	return player.inventory.check(payload[0], payload[1])
 	
-func hasStoreInventoryItems():
+func hasStoreInventoryItems(payload: Array = []):
 	return !player.store_inventory.is_empty()
-		
+
 func quitGame():
 	save()
 	get_tree().quit()

@@ -11,7 +11,6 @@ var run_inventory: Inventory
 var inventory: Inventory
 var store_inventory: Inventory
 var _savePath = "user://player.json" #"user://settings.json"
-var quests: Array = QuestLoader.load_quests("res://data/quests")
 
 func _init():
 	print("load player")

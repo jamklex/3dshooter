@@ -15,6 +15,8 @@ const scene = preload("res://shared/quest/scenes/task.tscn")
 
 static func from(dict: Dictionary, name: String = "") -> Task:
 	var task = scene.instantiate()
+	if dict.get("active", false):
+		task.set_active()
 	task.title = dict.get("name", name)
 	task.desc = dict.get("desc")
 	task.short = dict.get("short")
@@ -34,6 +36,9 @@ enum Status {
 
 func set_active():
 	status = Status.ACTIVE
+
+func is_active() -> bool:
+	return status == Status.ACTIVE
 
 func refresh_data():
 	for s in Status.values():
