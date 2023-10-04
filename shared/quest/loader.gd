@@ -19,6 +19,7 @@ static func load_quests(path: String) -> Array:
 	return quests
 
 static func show_quests(questlog: VBoxContainer, quests: Array):
-	for quest in quests:
-		questlog.add_child(quest)
-		quest.refresh_data()
+	pass
+#	for quest in quests:
+#		questlog.add_child(quest)
+#		quest.refresh_data()

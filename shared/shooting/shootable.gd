@@ -6,11 +6,16 @@ var currentHealth:int
 signal healthReachedZero
 signal onDamageTaken
 
+
 func takeDamage(damage:int):
 	onDamageTaken.emit(damage)
 	currentHealth -= damage
 	if currentHealth <= 0:
 		_die()
+
+func setStartHealth(newHealth:int):
+	health = newHealth
+	currentHealth = newHealth
 			
 func _die():
 	if healthReachedZero.get_connections().size() > 0:

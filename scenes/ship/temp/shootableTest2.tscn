@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cvdovxgjgdyug"]
 
 [ext_resource type="Script" path="res://scenes/ship/temp/shootableTest2.gd" id="1_w22fv"]
-[ext_resource type="PackedScene" path="res://shared/shooting/shootable.tscn" id="2_300u8"]
+[ext_resource type="PackedScene" uid="uid://btelwcsn53o55" path="res://shared/shooting/shootable.tscn" id="2_300u8"]
 [ext_resource type="Material" uid="uid://020ay8omwase" path="res://scenes/ship/temp/shootableTestColor.tres" id="2_tib1v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eap1h"]
