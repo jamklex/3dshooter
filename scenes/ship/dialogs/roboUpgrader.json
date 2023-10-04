@@ -3,7 +3,7 @@
 	"options":
 	{
 		"Let me see your upgrades!": {
-			"action": "openRoboUpgradeShop",
+			"method": "openRoboUpgradeShop",
 			"paylod": [
 				"1"
 			]

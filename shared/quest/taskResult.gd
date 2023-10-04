@@ -4,9 +4,11 @@ class_name TaskResult
 
 var conditions: Array
 var actions: Array
+var quest_listener: Callable
 
-static func from(dict: Dictionary) -> TaskResult:
+static func from(quest_listener: Callable, dict: Dictionary) -> TaskResult:
 	var result = TaskResult.new()
+	result.quest_listener = quest_listener
 	for condition in dict.get("conditions", []):
 		result.add_condition(Condition.from(condition))
 	for action in dict.get("actions", []):

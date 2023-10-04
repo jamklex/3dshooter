@@ -6,6 +6,10 @@
 		"answer": "Oh Thanks!\nTake some Money, You will need it.",
 		"actions": [
 			{
+				"method": "giveRewards",
+				"payload": []
+			},
+			{
 				"method": "succeedQuest",
 				"payload": []
 			},
@@ -14,10 +18,6 @@
 				"payload": [
 					"itemSeller"
 				]
-			},
-			{
-				"method": "giveRewards",
-				"payload": []
 			}
 		]
 	},

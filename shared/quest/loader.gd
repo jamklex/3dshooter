@@ -25,3 +25,10 @@ static func show_quests(questlog: VBoxContainer, quests: Array):
 		quest.visible = quest.active
 		questlog.add_child(quest)
 		quest.refresh_data()
+
+static func get_quest(name: String) -> Quest:
+	var _quests = WorldUtil.get_quests()
+	for _q in _quests:
+		if name == _q.title:
+			return _q
+	return null

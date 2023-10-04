@@ -7,20 +7,20 @@ var quote: String # what the player says
 var answer: String # what the npc says
 var options: Array
 var actions: Array
+var source: QuestSource
 const DEFAULT_CLOSE_DIALOG = "End Conversation"
 
-static func from(dict: Dictionary, quote: String, npc: String = "") -> TaskDialog:
+static func from(source: QuestSource, dict: Dictionary, quote: String, npc: String = "") -> TaskDialog:
 	var dialog = TaskDialog.new()
+	dialog.source = source
 	dialog.npc = dict.get("npc", npc)
 	dialog.quote = quote
 	dialog.answer = dict.get("answer")
-	if dict.has("options"):
-		var options = dict.get("options")
-		for key in options.keys():
-			dialog.add_option(TaskDialog.from(options.get(key), key, npc))
-	if dict.has("actions"):
-		for action in dict.get("actions"):
-			dialog.add_action(Action.from(action))
+	var options = dict.get("options", {})
+	for key in options.keys():
+		dialog.add_option(TaskDialog.from(source, options.get(key), key, npc))
+	for action in dict.get("actions", []):
+		dialog.add_action(Action.from(action))
 	return dialog
 
 static func create(npc: String, quote: String, answer: String, options: Array, actions: Array) -> TaskDialog:

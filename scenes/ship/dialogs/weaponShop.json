@@ -3,7 +3,7 @@
 	"options":
 	{
 		"Let me see your weapons!": {
-			"action": "openWeaponShop",
+			"method": "openWeaponShop",
 			"payload": [
 				"1"
 			]

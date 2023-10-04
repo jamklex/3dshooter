@@ -26,16 +26,16 @@ func add_quest_dialogs(npc_id, currentDialog):
 		var additional_dialog = _task.dialog as TaskDialog
 		if !additional_dialog or additional_dialog.npc != npc_id:
 			return
-		currentDialog.add_options(additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
+		currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
 
-func get_quests():
-	quests = clear_nulls(quests)
+func get_quests() -> Array:
+	quests = quests.filter(func(o): return is_instance_valid(o))
 	if quests.is_empty():
-		quests = QuestLoader.load_quests("res://data/quests")
+		reload_quests()
 	return quests
 
-func clear_nulls(_array: Array):
-	return _array.filter(func(o): return is_instance_valid(o))
+func reload_quests():
+	quests = QuestLoader.load_quests("res://data/quests")
 
 # generic methods under this line #
 ###################################

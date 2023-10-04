@@ -11,8 +11,6 @@ static func from(dict: Dictionary) -> Condition:
 	condition.payload = dict.get("payload")
 	return condition
 
-static func create(method: String, payload: Array) -> Condition:
-	var condition = Condition.new()
-	condition.method = method
-	condition.payload = payload
-	return condition
+func hasItemCount(payload: Array) -> bool:
+	var main_inventory = WorldUtil.player.inventory as Inventory
+	return main_inventory.check(payload[0], payload[1])

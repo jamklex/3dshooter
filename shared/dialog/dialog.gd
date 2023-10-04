@@ -10,6 +10,8 @@ var dialogStarted:bool = false
 signal onExit
 var answers
 var dialogTracker: Callable
+var questSources: Dictionary = {}
+var currentSource: QuestSource
 
 static func new_instance(dialog_data_path: String, tracker: Callable):
 	var dialog = load("res://shared/dialog/dialog.tscn").instantiate()
@@ -28,21 +30,26 @@ func load_dialog_data():
 func _executeAction(action:String, payload:Array):
 	if WorldUtil.has_method(action):
 		WorldUtil.call(action, payload)
+	elif currentSource != null:
+		var quest = QuestLoader.get_quest(currentSource.quest_name)
+		var task = quest.get_task(currentSource.task_index)
+		task.execute(action, payload)
 	else:
 		print("unknown method with name: '" + action + "' please create in WorldUtil")
 
-func add_options(key:String, data:Dictionary):
-	dialog_data["options"][key] = data
+func add_options(source: QuestSource, quote:String, dialog_tree:Dictionary):
+	dialog_data["options"][quote] = dialog_tree
+	questSources[quote] = source
 
 func _loadNextPart():
+	if "method" in dialog_data:
+		_executeAction(dialog_data["method"], dialog_data["payload"])
+	elif "actions" in dialog_data:
+		var actions = dialog_data["actions"]
+		for i in range(len(actions)):
+			_executeAction(actions[i]["method"], actions[i]["payload"])
 	if not "answer" in dialog_data:
 		_closeDialog()
-		if "action" in dialog_data:
-			_executeAction(dialog_data["action"], dialog_data["payload"])
-		elif "actions" in dialog_data:
-			var actions = dialog_data["actions"]
-			for i in range(len(actions)):
-				_executeAction(actions[i]["action"], actions[i]["payload"])
 		return
 	_showText(dialog_data["answer"])
 	if "options" in dialog_data:
@@ -57,7 +64,7 @@ func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 			availableAnswers[answerKey] = answerData
 			continue
 		var condition = answerData["condition"]
-		var action = condition["action"]
+		var action = condition["method"]
 		var result = condition["result"]
 		var payload = condition["payload"]
 		if _isConditionFulfilled(action, result, payload):
@@ -112,7 +119,11 @@ func _input(event):
 			
 func _handleSelection(index):
 	if index < len(answers.keys()):
-		dialog_data = answers[answers.keys()[index]]
+		var quote = answers.keys()[index]
+		var _source = questSources.get(quote)
+		if _source != null:
+			currentSource = _source
+		dialog_data = answers[quote]
 		_loadNextPart()
 			
 func _getIndex(keycode):

@@ -4,7 +4,7 @@
 		"Hey": {
 			"condition": {
 				"result": false,
-				"action": "checkPlayerInventory",
+				"method": "checkPlayerInventory",
 				"payload": [
 					"4",
 					2
@@ -17,7 +17,7 @@
 					"answer": "Thanks man, please go and get my hammer back!",
 					"options": {
 						"Alright, see ya!": {
-							"action": "teleportToMissionMap",
+							"method": "teleportToMissionMap",
 							"payload": [
 								1
 							]
@@ -30,7 +30,7 @@
 		"Hey, look what i got!": {
 			"condition": {
 				"result": true,
-				"action": "checkPlayerInventory",
+				"method": "checkPlayerInventory",
 				"payload": [
 					"4",
 					2
@@ -41,14 +41,14 @@
 				"Yeah, here you are": {
 					"actions": [
 						{
-							"action": "removeFromPlayerInventory",
+							"method": "removeFromPlayerInventory",
 							"payload": [
 								"4",
 								2
 							]
 						},
 						{
-							"action": "addToPlayerInventory",
+							"method": "addToPlayerInventory",
 							"payload": [
 								"5",
 								1

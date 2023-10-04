@@ -6,7 +6,7 @@
 			{
 				"method": "hasItemCount",
 				"payload": [
-					"4", "1"
+					"4", 1
 				]
 			}
 		],
@@ -28,7 +28,7 @@
 			{
 				"method": "hasItemCount",
 				"payload": [
-					"9", "1"
+					"9", 1
 				]
 			}
 		],

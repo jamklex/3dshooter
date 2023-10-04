@@ -4,16 +4,16 @@
 		"Let me see my saved loot!": {
 			"condition": {
 				"result": true,
-				"action": "hasStoreInventoryItems",
+				"method": "hasStoreInventoryItems",
 				"payload": []
 			},
-			"action": "openLastLoot",
+			"method": "openLastLoot",
 			"payload": [
 				"res://data/price_lists/salvager_taxes.json"
 			]
 		},
 		"I wanna sell some stuff": {
-			"action": "openSellLoot",
+			"method": "openSellLoot",
 			"payload": [
 				"res://data/price_lists/default.json"
 			]
