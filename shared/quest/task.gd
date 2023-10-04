@@ -35,12 +35,20 @@ static func from(quest_listener: Callable, dict: Dictionary, index: int, quest_n
 	for _r in rewards:
 		for _key in _r.keys():
 			task.rewards.push_back(DropItem.create_fix(_key, _r[_key]))
-	print("Task " + task.short + " loaded")
 	return task
 
 enum Status {
 	UNKNOWN, ACTIVE, SUCCEEDED, FAILED
 }
+
+func _process(delta):
+	refresh_data()
+	if status != Status.ACTIVE:
+		return
+	if success_result and success_result.is_relevant():
+		success_result.execute()
+	elif fail_result and fail_result.is_relevant():
+		fail_result.execute()
 
 func set_active():
 	status = Status.ACTIVE

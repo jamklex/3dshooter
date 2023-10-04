@@ -2,8 +2,8 @@ extends Object
 
 class_name TaskResult
 
-var conditions: Array
-var actions: Array
+var conditions: Array = []
+var actions: Array = []
 var quest_listener: Callable
 
 static func from(quest_listener: Callable, dict: Dictionary) -> TaskResult:
@@ -26,3 +26,10 @@ func add_condition(condition: Condition):
 
 func add_action(action: Action):
 	actions.push_back(action)
+
+func is_relevant() -> bool:
+	return conditions.all(func(c): return c.check())
+
+func execute():
+	for _act in actions:
+		quest_listener.bind(_act.method, _act.payload).call()

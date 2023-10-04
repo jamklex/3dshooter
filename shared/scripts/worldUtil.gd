@@ -18,7 +18,7 @@ func createDialog(npc_id:String, dialog_data_path:String) -> Dialog:
 
 func add_quest_dialogs(npc_id, currentDialog):
 	for _quest in get_quests():
-		if !_quest.active:
+		if _quest.status != Quest.Status.ACTIVE:
 			continue
 		var _task = _quest.get_active_task()
 		if !_task:
