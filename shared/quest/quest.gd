@@ -46,8 +46,6 @@ func refresh_data():
 	self.visible = status == Status.ACTIVE
 	layout.get_node("name").text = title
 	for task in tasks:
-		if task.status == Task.Status.UNKNOWN:
-			continue
 		layout.get_node("tasks").add_child(task)
 
 func add_task(task: Task):

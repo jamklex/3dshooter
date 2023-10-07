@@ -72,7 +72,8 @@ func refresh_data():
 		if !node:
 			continue
 		node.visible = s == status
-		node.text = short
+		if s > Status.UNKNOWN:
+			node.text = short
 
 func execute(method: String, payload: Array):
 	await quest_listener.bind(method, payload).call()
