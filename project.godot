@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+QuestLoader="*res://shared/quest/loader.gd"
 WorldUtil="*res://shared/scripts/worldUtil.gd"
 
 [display]

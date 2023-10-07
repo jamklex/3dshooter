@@ -1,10 +1,22 @@
 {
 	"desc": "You've successfully retrieved the glowing ball.\nNow You only need to bringt it back and maybe there is a reward waiting for You.",
 	"short": "Bring the glowing ball to the captain",
+	"condition": {
+		"method": "hasItemCount",
+		"payload": [
+			"4", 1
+		]
+	},
 	"dialog": {
 		"npc": "CAPTAIN",
 		"answer": "Oh Thanks!\nTake some Money, You will need it.",
 		"actions": [
+			{
+				"method": "removeItem",
+				"payload": [
+					"4", 1
+				]
+			},
 			{
 				"method": "giveRewards",
 				"payload": []

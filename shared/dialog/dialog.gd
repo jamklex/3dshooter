@@ -43,11 +43,11 @@ func add_options(source: QuestSource, quote:String, dialog_tree:Dictionary):
 
 func _loadNextPart():
 	if "method" in dialog_data:
-		_executeAction(dialog_data["method"], dialog_data["payload"])
+		_executeAction(dialog_data["method"], dialog_data.get("payload", []))
 	elif "actions" in dialog_data:
 		var actions = dialog_data["actions"]
 		for i in range(len(actions)):
-			_executeAction(actions[i]["method"], actions[i]["payload"])
+			_executeAction(actions[i]["method"], actions[i].get("payload", []))
 	if not "answer" in dialog_data:
 		_closeDialog()
 		return

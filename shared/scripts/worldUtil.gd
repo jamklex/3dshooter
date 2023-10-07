@@ -3,7 +3,6 @@ extends Node
 var player: Player = Player.new()
 var currentDialog: Dialog
 var currentTrade: Trade
-var quests: Array = []
 
 func _enter_tree():
 	add_child(player)
@@ -17,7 +16,7 @@ func createDialog(npc_id:String, dialog_data_path:String) -> Dialog:
 	return currentDialog
 
 func add_quest_dialogs(npc_id, currentDialog):
-	for _quest in get_quests():
+	for _quest in QuestLoader.get_quests():
 		if _quest.status != Quest.Status.ACTIVE:
 			continue
 		var _task = _quest.get_active_task()
@@ -27,15 +26,6 @@ func add_quest_dialogs(npc_id, currentDialog):
 		if !additional_dialog or additional_dialog.npc != npc_id:
 			return
 		currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
-
-func get_quests() -> Array:
-	quests = quests.filter(func(o): return is_instance_valid(o))
-	if quests.is_empty():
-		reload_quests()
-	return quests
-
-func reload_quests():
-	quests = QuestLoader.load_quests("res://data/quests")
 
 # generic methods under this line #
 ###################################

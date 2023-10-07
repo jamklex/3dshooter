@@ -3,8 +3,8 @@ class_name FileUtil
 
 static var cache = {} as Dictionary
 
-static func getContentAsString(filePath:String) -> String:
-	if cache.has(filePath):
+static func getContentAsString(filePath:String, cached:bool = true) -> String:
+	if cached and cache.has(filePath):
 		return cache.get(filePath)
 	if not FileAccess.file_exists(filePath):
 		return ""
@@ -13,8 +13,8 @@ static func getContentAsString(filePath:String) -> String:
 	cache[filePath] = content
 	return content
 
-static func getContentAsJson(filePath:String):
-	return JSON.parse_string(getContentAsString(filePath))
+static func getContentAsJson(filePath:String, cached:bool = true):
+	return JSON.parse_string(getContentAsString(filePath, cached))
 
 static func getFilesAt(folder:String) -> PackedStringArray:
 	if !folder.ends_with("/"):

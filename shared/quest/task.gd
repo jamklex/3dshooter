@@ -11,12 +11,14 @@ var fail_result: TaskResult
 var rewards: Array
 var hide_if_unknown: bool
 var quest_listener: Callable
+var index: int
 
 @onready var short_ui = $short as Control
 const scene = preload("res://shared/quest/scenes/task.tscn")
 
 static func from(quest_listener: Callable, dict: Dictionary, index: int, quest_name: String = "") -> Task:
 	var task = scene.instantiate()
+	task.index = index
 	task.quest_listener = quest_listener
 	if dict.get("active", false):
 		task.set_active()
@@ -69,4 +71,5 @@ func refresh_data():
 		node.text = short
 
 func execute(method: String, payload: Array):
-	quest_listener.bind(method, payload).call()
+	await quest_listener.bind(method, payload).call()
+	quest_listener.bind("save_progress", []).call()

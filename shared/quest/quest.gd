@@ -1,34 +1,43 @@
 class_name Quest
 extends Node
 
+var path: String
 var title: String = ""
 var tasks: Array = []
 var status: Status = Status.LOCKED
 const scene = preload("res://shared/quest/scenes/quest.tscn")
 @onready var layout = $panel/container
 
-static func from(_tasks: Array, unlocked: bool) -> Quest:
+static func from(path: String, _tasks: Array, saved: Dictionary = {}) -> Quest:
 	var quest = scene.instantiate() as Quest
-	if unlocked:
+	quest.path = path
+	var auto_unlock = path.ends_with("tutorial/")
+	if auto_unlock:
 		quest.unlock()
-	var first = true
+		quest.set_status(Status.ACTIVE)
 	var i = 0
 	for t in _tasks:
 		var task = Task.from(quest._on_event, t, i, quest.title) as Task
-		i += 1
-		if first:
+		if i == 0 and auto_unlock:
 			task.set_active()
-			first = false
-		if task.is_active() && unlocked:
-			quest.set_status(Status.ACTIVE)
+		task.status = saved.get(str(i), task.status)
 		quest.add_task(task)
 		if !quest.title:
 			quest.title = task.title
+		i += 1
+	quest.status = saved.get("q", quest.status)
 	return quest
 
 enum Status {
-	LOCKED, UNLOCKED, ACTIVE, SUCCEEDED, FAILED
+	LOCKED, ACTIVE, SUCCEEDED, FAILED
 }
+
+func save_dict() -> Dictionary:
+	var save = {}
+	for _t in tasks:
+		save[str(_t.index)] = _t.status
+	save["q"] = status
+	return save
 
 func _process(delta):
 	refresh_data()
@@ -60,17 +69,22 @@ func set_status(_status: Status):
 			set_succeeded(_t)
 
 func get_active_task() -> Task:
-	for task in tasks:
-		if task.status == Task.Status.ACTIVE:
-			return task
-	return null
+	var active_tasks = tasks.filter(func(t): return t.status == Task.Status.ACTIVE)
+	return active_tasks[0] if active_tasks.size() > 0 else null
 
 func get_task(index: int) -> Task:
-	return tasks[index]
+	return tasks[index] if tasks.size() > index else null
 
 func unlock():
-	if status < Status.UNLOCKED:
-		status = Status.UNLOCKED
+	if status >= Status.ACTIVE:
+		return
+	set_status(Status.ACTIVE)
+	if get_active_task():
+		return
+	for _t in tasks:
+		if _t.status < Task.Status.ACTIVE:
+			_t.set_active()
+			break
 
 func _on_event(event_name: String, payload: Array = []):
 	match event_name:
@@ -82,13 +96,19 @@ func _on_event(event_name: String, payload: Array = []):
 			WorldUtil.teleportToMissionMap(payload)
 		"succeedQuest":
 			set_status(Status.SUCCEEDED)
+		"failQuest":
+			set_status(Status.FAILED)
 		"unlockQuest":
-			var target = QuestLoader.get_quest(payload[0])
+			var target = QuestLoader.get_quest(payload[0]) as Quest
 			target.unlock()
-			if QuestLoader.get_active_quests().is_empty():
-				target.set_status(Status.ACTIVE)
+			QuestLoader.save_progress(target)
 		"failTask":
 			set_failed(get_active_task())
 		"giveRewards":
 			for _r in get_active_task().rewards:
-				InteractionHelper.add_drop(WorldUtil.player, _r)
+				InteractionHelper.add_drop_directly(WorldUtil.player, _r)
+		"removeItem":
+			var inv = WorldUtil.player.inventory as Inventory
+			inv.remove(payload[0], payload[1])
+		"save_progress":
+			QuestLoader.save_progress(self)
