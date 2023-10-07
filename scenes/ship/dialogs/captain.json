@@ -1,18 +1,6 @@
 {
 	"answer": "Hello",
 	"options": {
-		"Bring me to Map 1": {
-			"answer": "Are You sure?",
-			"options": {
-				"Yes": {
-					"method": "teleportToMissionMap",
-					"payload": [
-						1
-					]
-				},
-				"No!": {}
-			}
-		},
 		"Bye": {}
 	}
 }
