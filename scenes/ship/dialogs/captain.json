@@ -1,59 +1,13 @@
 {
 	"answer": "Hello",
 	"options": {
-		"Hey": {
-			"condition": {
-				"result": false,
-				"method": "checkPlayerInventory",
-				"payload": [
-					"4",
-					2
-				]
-			},
-			"answer": "Can you help me?",
-			"options":
-			{
-				"Sure": {
-					"answer": "Thanks man, please go and get my hammer back!",
-					"options": {
-						"Alright, see ya!": {
-							"method": "teleportToMissionMap",
-							"payload": [
-								1
-							]
-						}
-					}
-				},
-				"No!": {}
-			}
-		},
-		"Hey, look what i got!": {
-			"condition": {
-				"result": true,
-				"method": "checkPlayerInventory",
-				"payload": [
-					"4",
-					2
-				]
-			},
-			"answer": "Oh u got my stuff!",
+		"Bring me to Map 1": {
+			"answer": "Are You sure?",
 			"options": {
-				"Yeah, here you are": {
-					"actions": [
-						{
-							"method": "removeFromPlayerInventory",
-							"payload": [
-								"4",
-								2
-							]
-						},
-						{
-							"method": "addToPlayerInventory",
-							"payload": [
-								"5",
-								1
-							]
-						}
+				"Yes": {
+					"method": "teleportToMissionMap",
+					"payload": [
+						1
 					]
 				},
 				"No!": {}

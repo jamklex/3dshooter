@@ -29,7 +29,7 @@ static func from(path: String, _tasks: Array, saved: Dictionary = {}) -> Quest:
 	return quest
 
 enum Status {
-	LOCKED, ACTIVE, SUCCEEDED, FAILED
+	LOCKED, ACTIVE, SUCCEEDED, FAILED, SKIPPED
 }
 
 func save_dict() -> Dictionary:
@@ -102,6 +102,8 @@ func _on_event(event_name: String, payload: Array = []):
 			var target = QuestLoader.get_quest(payload[0]) as Quest
 			target.unlock()
 			QuestLoader.save_progress(target)
+		"skipQuest":
+			set_status(Status.SKIPPED)
 		"failTask":
 			set_failed(get_active_task())
 		"giveRewards":

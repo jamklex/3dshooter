@@ -54,7 +54,7 @@ func _loadNextPart():
 	_showText(dialog_data["answer"])
 	if "options" in dialog_data:
 		answers = _removeUnavailableAnswers(dialog_data["options"])
-		_showAnswers(answers.keys())
+		_showOptions(answers)
 
 func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 	var availableAnswers = {}
@@ -88,13 +88,17 @@ func _clearAnswersContainer():
 		child.queue_free()
 		answersContainer.remove_child(child)
 
-func _showAnswers(answers):
+func _showOptions(answers):
 	_clearAnswersContainer()
-	for index in range(len(answers)):
+	var answer_keys = answers.keys()
+	for index in range(len(answer_keys)):
 		var key = str(index+1)
-		var text = answers[index]
+		var text = answer_keys[index]
 		var answer = answerScene.instantiate() as Answer
 		answer.setText(key + " - " + text)
+		var opt_color = answers.get(text, {}).get("color", null)
+		if opt_color:
+			answer.standardTextColor = Color(opt_color)
 		answer.onClick.connect(func(): _handleSelection(index))
 		answersContainer.add_child(answer)
 

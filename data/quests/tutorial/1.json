@@ -19,7 +19,19 @@
 							"2"
 						]
 					}
-				]
+				],
+				"options": {
+					"Go to the Ship": {
+						"actions": [
+							{
+								"method": "teleportToMissionMap",
+								"payload": [
+									1
+								]
+							}
+						]
+					}
+				}
 			},
 			"I'm not quite ready yet": {
 				"answer": "It's ok, come back if You feel ready!"
@@ -31,7 +43,7 @@
 						"answer": "Alright, looks like You don't need any introduction.",
 						"actions": [
 							{
-								"method": "succeedQuest",
+								"method": "skipQuest",
 								"payload": []
 							},
 							{
