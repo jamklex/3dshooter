@@ -1,41 +1,46 @@
 {
-	"desc": "You've successfully retrieved the glowing ball.\nNow You only need to bringt it back and maybe there is a reward waiting for You.",
-	"short": "Bring the glowing ball to the captain",
-	"condition": {
-		"method": "hasItemCount",
-		"payload": [
-			"4", 1
-		]
-	},
+	"name": "Igor send me to get some tools and weapons",
+	"desc": "That was a lot of information to digest but You seem to be odly fine with that, like some part of You was already familiar with that story.\nBut there's no time for more thinking, Your life, wether it be digital or physical is on the line.\nGo and find Henry and ask him for some tools.",
+	"short": "Ask Henry for some tools",
+	"hide": true,
 	"dialog": {
-		"npc": "CAPTAIN",
-		"answer": "Oh Thanks!\nTake some Money, You will need it.",
-		"actions": [
-			{
-				"method": "removeItem",
-				"payload": [
-					"4", 1
-				]
-			},
-			{
-				"method": "giveRewards",
-				"payload": []
-			},
-			{
-				"method": "succeedQuest",
-				"payload": []
-			},
-			{
-				"method": "unlockQuest",
-				"payload": [
-					"itemSeller"
-				]
+		"npc": "WEAPON_SHOP",
+		"answer": "Y-Yes... I'm Henry, n-nice to meet You...",
+		"options": {
+			"Um... The weapons?": {
+				"answer": "Right, right! J-just give me a m-moment...\nH-here is a pistol for the beginning, I-i don't have anything b-bigger until I get some m-materials...",
+				"options": {
+					"Where have I heard that before... Is it just shooting": {
+						"answer": "Y-yeah but You h-have to reload after 10 s-shots...\nM-maybe You should g-go to M-m-madelyn now...",
+						"options": {
+							"Sure... well, thank You.": {
+								"answer": "S-sure, see Y-you...",
+								"actions": [
+									{
+										"method": "giveRewards",
+										"payload": []
+									},
+									{
+										"method": "succeedTask",
+										"payload": []
+									},
+									{
+										"method": "setActiveTask",
+										"payload": [
+											"4"
+										]
+									}
+								]
+							}
+						}
+					}
+				}
 			}
-		]
+		}
 	},
 	"rewards": [
 		{
-			"0": 100
+			"6": 1
 		}
 	]
 }

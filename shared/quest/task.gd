@@ -2,14 +2,13 @@ class_name Task
 extends Node
 
 var title: String
-var status: Status = Status.UNKNOWN
+var status: Status = Status.KNOWN
 var desc: String
 var short: String
 var dialog: TaskDialog
 var success_result: TaskResult
 var fail_result: TaskResult
 var rewards: Array
-var hide_if_unknown: bool
 var quest_listener: Callable
 var index: int
 
@@ -26,7 +25,7 @@ static func from(quest_listener: Callable, dict: Dictionary, index: int, quest_n
 	var source = QuestSource.create(task.title if quest_name.is_empty() else quest_name, index)
 	task.desc = dict.get("desc")
 	task.short = dict.get("short")
-	task.hide_if_unknown = dict.get("hide", false)
+	task.status = Status.UNKNOWN if dict.get("hide", false) else Status.KNOWN
 	if dict.has("dialog"):
 		task.dialog = TaskDialog.from(source, dict.get("dialog"), task.title)
 	if dict.has("success"):
@@ -40,7 +39,7 @@ static func from(quest_listener: Callable, dict: Dictionary, index: int, quest_n
 	return task
 
 enum Status {
-	UNKNOWN, ACTIVE, SUCCEEDED, FAILED
+	UNKNOWN, KNOWN, ACTIVE, SUCCEEDED, FAILED
 }
 
 func _process(delta):
@@ -51,6 +50,9 @@ func _process(delta):
 		success_result.execute()
 	elif fail_result and fail_result.is_relevant():
 		fail_result.execute()
+
+func set_known():
+	status = Status.KNOWN
 
 func set_active():
 	status = Status.ACTIVE
@@ -67,6 +69,8 @@ func is_active() -> bool:
 func refresh_data():
 	for s in Status.values():
 		var node = short_ui.get_node(Status.keys()[s].to_lower()) as Label
+		if !node:
+			continue
 		node.visible = s == status
 		node.text = short
 

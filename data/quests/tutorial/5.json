@@ -1,0 +1,28 @@
+{
+	"name": "First Mission",
+	"desc": "You just remember to look out for a golden sphere and something about the exit...\nShould be easy right?",
+	"short": "Exit the ship with the golden sphere",
+	"hide": true,
+	"success": {
+		"conditions": [
+			{
+				"method": "hasItemCount",
+				"payload": [
+					"4", 1
+				]
+			}
+		],
+		"actions": [
+			{
+				"method": "succeedTask",
+				"payload": []
+			},
+			{
+				"method": "setActiveTask",
+				"payload": [
+					"6"
+				]
+			},
+		]
+	}
+}

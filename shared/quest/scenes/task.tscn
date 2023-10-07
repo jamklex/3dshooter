@@ -17,7 +17,7 @@ anchors_preset = 0
 offset_right = 150.0
 offset_bottom = 25.0
 
-[node name="unknown" type="Label" parent="short"]
+[node name="known" type="Label" parent="short"]
 visible = false
 layout_mode = 0
 offset_right = 52.0

@@ -46,7 +46,7 @@ func refresh_data():
 	self.visible = status == Status.ACTIVE
 	layout.get_node("name").text = title
 	for task in tasks:
-		if task.status == Task.Status.UNKNOWN and task.hide_if_unknown:
+		if task.status == Task.Status.UNKNOWN:
 			continue
 		layout.get_node("tasks").add_child(task)
 
@@ -88,8 +88,6 @@ func unlock():
 
 func _on_event(event_name: String, payload: Array = []):
 	match event_name:
-		"succeedTask":
-			set_succeeded(get_active_task())
 		"setActiveTask":
 			set_active(tasks[int(payload[0])-1])
 		"teleportToMissionMap":
@@ -104,8 +102,15 @@ func _on_event(event_name: String, payload: Array = []):
 			QuestLoader.save_progress(target)
 		"skipQuest":
 			set_status(Status.SKIPPED)
+		"succeedTask":
+			set_succeeded(get_active_task())
 		"failTask":
 			set_failed(get_active_task())
+		"unhideTasks":
+			for _p in payload:
+				var _t = get_task(int(_p)-1)
+				if _t:
+					_t.set_known()
 		"giveRewards":
 			for _r in get_active_task().rewards:
 				InteractionHelper.add_drop_directly(WorldUtil.player, _r)

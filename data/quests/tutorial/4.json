@@ -1,22 +1,48 @@
 {
-	"name": "I think I screwed up...",
-	"desc": "You've accidentally destroyed the objective, but maybe the captain is not mad at You.",
-	"short": "Show remorse to the captain",
+	"name": "I think I'm ready",
+	"desc": "Henry seemed a bit weired but overall a nice guy, maybe it's because the captain told them to not get attached to You.\nMaybe if You show them what You're capable of they start warming up to You.\nAsk Madelyn for a first mission",
+	"short": "Speak with Madelyn",
 	"hide": true,
 	"dialog": {
 		"npc": "CAPTAIN",
-		"answer": "What the hell is this!\nI can't work whith this.",
-		"actions": [
-			{
-				"method": "failQuest",
-				"payload": []
-			},
-			{
-				"method": "unlockQuest",
-				"payload": [
-					"itemSeller"
-				]
+		"answer": "Huh? How would You know unless You've started...\nLet's see if I have something easy...\nHow about just getting a rare collectable first?",
+		"options": {
+			"Sounds like a good first task...": {
+				"answer": "Perfect! We just went by a wrackage that contains a limited edition of Julrúidez golden egg #357 that You can pick up for us.",
+				"options": {
+					"A What...??": {
+						"answer": "just look out for a golden sphere, should be easy, the ship is quiet small...\nJust remeber to exit in the back of the ship when You're done, it's the green button.",
+						"options": {
+							"Ok, get me on the ship": {
+								"actions": [
+									{
+										"method": "succeedTask",
+										"payload": []
+									},
+									{
+										"method": "unhideTasks",
+										"payload": [
+											"5", "6"
+										]
+									},
+									{
+										"method": "setActiveTask",
+										"payload": [
+											"5"
+										]
+									},
+									{
+										"method": "teleportToMissionMap",
+										"payload": [
+											1
+										]
+									}
+								]
+							}
+						}
+					}
+				}
 			}
-		]
+		}
 	}
 }

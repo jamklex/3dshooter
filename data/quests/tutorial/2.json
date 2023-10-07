@@ -1,48 +1,57 @@
 {
-	"desc": "The Captain wants You to look for a glowing ball inside of the Shipwreck, maybe You should have a look around.",
-	"short": "Get the glowing ball",
-	"success": {
-		"conditions": [
-			{
-				"method": "hasItemCount",
-				"payload": [
-					"4", 1
-				]
+	"name": "You must be Igor...",
+	"desc": "The Captain wants You to talk to Igor about the bodies You're going to use...\nThey can't mean litteral bodies right? Right?!",
+	"short": "Speak with Igor",
+	"hide": true,
+	"dialog": {
+		"npc": "BODY_MANAGER",
+		"answer": "That's right, I'm Igor, the Body-Manager!\nNice to finally meet one of You from face to face... well You know how I ment that.",
+		"options": {
+			"Actually no, I have no idea what's going on but Madelyn told me to talk to You...": {
+				"answer": "Oh... Well let's start at the beginning then.\nYou are a Controller, a long dead person whose intellect is saved onto a chip.\nYou are in a drone and can upload part of Your consciousness into robots making You an ideal candidate for the scirmishing role on our ship!",
+				"options": {
+					"Wait... I'm dead?! But how can I speak to You?! That doesn't make sense!!!": {
+						"answer": "I think You're quite alive buddy! But captain told us to not get too close with each other, because Your renting fee is pretty high...\nYou see we've uploaded You into one of the robots I got for a cheap price so we can see if You're capable enough to turn a profit.",
+						"options": {
+							"So You're telling me that I need to work to stay 'alive'?": {
+								"answer": "Haha! Yeah You got it! But don't worry, we all here will try our best to help You reach that Goal!\nWell all but Trish maybe, but that's for another day, let's first focus on Your abilities as a controller.",
+								"options": {
+									"I try focus on what Your telling me but my head is all messed up...": {
+										"answer": "It's pretty easy, Your Job is to gather some meterials and precious items from the wracks we send You in.\nYou will get some weapons and tools to make Your job easier and I will see what I can do to Your bodies in hopes to make You even stronger.",
+										"options": {
+											"Those bodies are just robots I can control right?": {
+												"answer": "That's right but we only can upload You into one body a time and also some of them are...\nWell let me say it this way: there was a reason I've got them this cheap...\nSome of them may are a little rusty, but nothing I couldn't fix, if I have the tools and time",
+												"options": {
+													"And my current body has defects too?": {
+														"answer": "Actually no, that's one of the old ones captain got a few years ago, so no defects, just old technology...\nI'm not sure which of this is better actually but let's see how long You can keep this one right?",
+														"options": {
+															"Well thanks... What do I do now?": {
+																"answer": "You should speak to Henry, he can give You some Tools and Weapons so Your not naked in the first mission.\nHe right there on the left.",
+																"actions": [
+																	{
+																		"method": "succeedTask",
+																		"payload": []
+																	},
+																	{
+																		"method": "setActiveTask",
+																		"payload": [
+																			"3"
+																		]
+																	}
+																]
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
-		],
-		"actions": [
-			{
-				"method": "succeedTask",
-				"payload": []
-			},
-			{
-				"method": "setActiveTask",
-				"payload": [
-					"3"
-				]
-			},
-		]
-	},
-	"failure": {
-		"conditions": [
-			{
-				"method": "hasItemCount",
-				"payload": [
-					"9", 1
-				]
-			}
-		],
-		"actions": [
-			{
-				"method": "failTask",
-				"payload": []
-			},
-			{
-				"method": "setActiveTask",
-				"payload": [
-					"4"
-				]
-			},
-		]
+		}
 	}
 }

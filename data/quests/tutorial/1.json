@@ -1,61 +1,38 @@
 {
-	"name": "How can I help?",
-	"desc": "Your are new to this crew and haven't really had the chance of getting to know them.\nMaybe it's time to talk to the Captain first and ask if You can help in any way.",
-	"short": "Check if the Captain needs something",
+	"name": "Where am I?",
+	"desc": "You woke up, confused of where You are, maybe someone around can tell You more about what is going on.",
+	"short": "Speak with the Captain of this ship",
 	"dialog": {
 		"npc": "CAPTAIN",
-		"answer": "Oh Hi, You must be the new one They've sent.\nHow about I let You know how the missions will work.\nYou see this Ship down there?\nIt's abandonned but we need to clear it first, before we can demolish it.\nCould You go down there and pick up a glowing ball?\n You should find it near the exit ramp.",
+		"answer": "Oh Hi, You must be the new one They've sent down.\nThey've told me You might be confused in the beginning...",
 		"options": {
-			"Sure, I've nothing else to do": {
-				"answer": "Alright, let's get You in there!",
-				"actions": [
-					{
-						"method": "succeedTask",
-						"payload": []
-					},
-					{
-						"method": "setActiveTask",
-						"payload": [
-							"2"
-						]
-					}
-				],
+			"Uhh thank You... What is Your name?": {
+				"answer": "Oh I forgot, my Name is Madelyn, I'm this ships captain and You are now part of our crew!",
 				"options": {
-					"Go to the Ship": {
-						"actions": [
-							{
-								"method": "teleportToMissionMap",
-								"payload": [
-									1
-								]
+					"What do You do here and what is my role in all of that?": {
+						"answer": "Hmmm, You really seem to have no clue...\nWe're here to capture rare Objects from infested or destroyed ships floating in outer space.\nYou will be entering those ships and extracting with the goods, I mean that's Your job...",
+						"options": {
+							"I do WHAT now?!": {
+								"answer": "Relax, You can do that, trust me!\nI've got stuff to do but You should speak to Igor, he will provide You with bodies that You can use.",
+								"options": {
+									"What do I need bodies for?! Please, You're confusing me even more...": {
+										"answer": "Listen, just go over to the other end of the ship and speak with Igor.\nTrust me he can explain this better than I can.",
+										"actions": [
+											{
+												"method": "succeedTask",
+												"payload": []
+											},
+											{
+												"method": "setActiveTask",
+												"payload": [
+													"2"
+												]
+											}
+										],
+									}
+								}
 							}
-						]
-					}
-				}
-			},
-			"I'm not quite ready yet": {
-				"answer": "It's ok, come back if You feel ready!"
-			},
-			"I want to skip the tutorial!": {
-				"answer": "Are You sure about that?",
-				"options": {
-					"Yes": {
-						"answer": "Alright, looks like You don't need any introduction.",
-						"actions": [
-							{
-								"method": "skipQuest",
-								"payload": []
-							},
-							{
-								"method": "unlockQuest",
-								"payload": [
-									"itemSeller"
-								]
-							}
-						]
-					},
-					"No": {
-						"answer": "It's ok, come back if You feel ready!"
+						}
 					}
 				}
 			}
