@@ -17,3 +17,11 @@ func check() -> bool:
 func hasItemCount(payload: Array) -> bool:
 	var main_inventory = WorldUtil.player.inventory as Inventory
 	return main_inventory.check(payload[0], payload[1])
+
+func hasKillCountMin(payload: Array) -> bool:
+	var minKills = payload[0]
+	return true
+
+func hasDummieCountMin(payload: Array) -> bool:
+	var minKills = payload[0]
+	return false

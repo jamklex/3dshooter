@@ -2,7 +2,6 @@
 	"name": "Ok, get me on the ship",
 	"desc": "You just remember to look out for a golden sphere and something about the exit...\nShould be easy right?",
 	"short": "Exit the ship with the golden sphere",
-	"hide": true,
 	"dialog": {
 		"npc": "CAPTAIN",
 		"actions": [

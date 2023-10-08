@@ -25,7 +25,7 @@ static func from(quest_listener: Callable, dict: Dictionary, index: int, quest_n
 	var source = QuestSource.create(task.title if quest_name.is_empty() else quest_name, index)
 	task.desc = dict.get("desc")
 	task.short = dict.get("short")
-	task.status = Status.UNKNOWN if dict.get("hide", false) else Status.KNOWN
+	task.status = Status.UNKNOWN if dict.get("hide", true) else Status.KNOWN
 	if dict.has("dialog"):
 		task.dialog = TaskDialog.from(source, dict.get("dialog"), task.title)
 	if dict.has("success"):
@@ -76,5 +76,5 @@ func refresh_data():
 			node.text = short
 
 func execute(method: String, payload: Array):
-	await quest_listener.bind(method, payload).call()
+	quest_listener.bind(method, payload).call()
 	quest_listener.bind("save_progress", []).call()

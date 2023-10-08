@@ -2,7 +2,6 @@
 	"name": "Igor send me to get some tools and weapons",
 	"desc": "That was a lot of information to digest but You seem to be odly fine with that, like some part of You was already familiar with that story.\nBut there's no time for more thinking, Your life, wether it be digital or physical is on the line.\nGo and find Henry and ask him for some tools.",
 	"short": "Ask Henry for some tools",
-	"hide": true,
 	"dialog": {
 		"npc": "WEAPON_SHOP",
 		"answer": "Y-Yes... I'm Henry, n-nice to meet You...",
@@ -28,6 +27,12 @@
 										"method": "setActiveTask",
 										"payload": [
 											"4"
+										]
+									},
+									{
+										"method": "unlockQuest",
+										"payload": [
+											"weapon"
 										]
 									}
 								]

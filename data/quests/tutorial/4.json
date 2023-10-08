@@ -2,7 +2,6 @@
 	"name": "I think I'm ready",
 	"desc": "Henry seemed a bit weired but overall a nice guy, maybe it's because the captain told them to not get attached to You.\nMaybe if You show them what You're capable of they start warming up to You.\nAsk Madelyn for a first mission",
 	"short": "Speak with Madelyn",
-	"hide": true,
 	"dialog": {
 		"npc": "CAPTAIN",
 		"answer": "Huh? How would You know unless You've started...\nLet's see if I have something easy...\nHow about just getting a rare collectable first?",

@@ -45,20 +45,22 @@ func _process(delta):
 func refresh_data():
 	self.visible = status == Status.ACTIVE
 	layout.get_node("name").text = title
-	for task in tasks:
-		layout.get_node("tasks").add_child(task)
+	for _task in tasks:
+		if _task.status <= Task.Status.UNKNOWN:
+			continue
+		layout.get_node("tasks").add_child(_task)
 
-func add_task(task: Task):
-	tasks.push_back(task)
+func add_task(_task: Task):
+	tasks.push_back(_task)
 
-func set_succeeded(task: Task):
-	task.set_succeeded()
+func set_succeeded(_task: Task):
+	_task.set_succeeded()
 
-func set_failed(task: Task):
-	task.set_failed()
+func set_failed(_task: Task):
+	_task.set_failed()
 
-func set_active(task: Task):
-	task.set_active()
+func set_active(_task: Task):
+	_task.set_active()
 
 func set_status(_status: Status):
 	status = _status

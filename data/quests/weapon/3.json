@@ -1,0 +1,33 @@
+{
+	"name": "Those dummies are tougher than I thought...",
+	"desc": "You managed to destory at least 2 dummies, go tell Henry about it.",
+	"short": "Talk to Henry",
+	"dialog": {
+		"npc": "WEAPON_SHOP",
+		"answer": "Y-yeah I saw Y-you struggled with aiming a b-bit...\nB-but that will come natural to Y-you I belive...",
+		"options": {
+			"Thanks for the 'compliment' Henry...": {
+				"answer": "O-oh I'm s-sorry...\nH-here, have some ammo for Y-your missions.",
+				"actions": [
+					{
+						"method": "giveRewards",
+						"payload": []
+					},
+					{
+						"method": "succeedTask",
+						"payload": []
+					},
+					{
+						"method": "succeedQuest",
+						"payload": []
+					},
+				]
+			}
+		}
+	},
+	"rewards": [
+		{
+			"7": 100
+		}
+	]
+}

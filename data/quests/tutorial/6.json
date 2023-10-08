@@ -2,7 +2,6 @@
 	"name": "I've got the golden thing...",
 	"desc": "Your first mission is a success, go to the captain and present it",
 	"short": "Speak with Madelyn",
-	"hide": true,
 	"dialog": {
 		"npc": "CAPTAIN",
 		"answer": "Well it was easy...\nBut good job on that, looking forward to work with You again.",

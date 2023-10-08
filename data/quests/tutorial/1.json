@@ -2,6 +2,7 @@
 	"name": "Where am I?",
 	"desc": "You woke up, confused of where You are, maybe someone around can tell You more about what is going on.",
 	"short": "Speak with the Captain of this ship",
+	"hide": false,
 	"dialog": {
 		"npc": "CAPTAIN",
 		"answer": "Oh Hi, You must be the new one They've sent down.\nThey've told me You might be confused in the beginning...",

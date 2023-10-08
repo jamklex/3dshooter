@@ -1,0 +1,31 @@
+{
+	"name": "How do I use a gun?",
+	"desc": "You got a small Pistol from Henry but he didn't mention on how to properly use it.\nAsk him about that so You can confidently go in Your first mission.",
+	"short": "Ask Henry on how to use a gun",
+	"dialog": {
+		"npc": "WEAPON_SHOP",
+		"answer": "Y-you have to s-select a weapon with <MOUSE_WHEEL> f-first.",
+		"options": {
+			"Aaand then I can shoot?": {
+				"answer": "N-no! Y-you have to aim f-first with <MOUSE_RIGHT> or else Y-you don't know where to s-shoot.",
+				"options": {
+					"And how do I reload?": {
+						"answer": "When Y-your ammo runs out in the bottom left corner, Y-you can press <R> ro reload Y-your gun.\nTry hitting some of the d-dummies accross.",
+						"actions": [
+							{
+								"method": "succeedTask",
+								"payload": []
+							},
+							{
+								"method": "setActiveTask",
+								"payload": [
+									"2"
+								]
+							}
+						]
+					}
+				}
+			}
+		}
+	}
+}

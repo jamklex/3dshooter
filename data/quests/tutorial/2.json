@@ -2,7 +2,6 @@
 	"name": "You must be Igor...",
 	"desc": "The Captain wants You to talk to Igor about the bodies You're going to use...\nThey can't mean litteral bodies right? Right?!",
 	"short": "Speak with Igor",
-	"hide": true,
 	"dialog": {
 		"npc": "BODY_MANAGER",
 		"answer": "That's right, I'm Igor, the Body-Manager!\nNice to finally meet one of You from face to face... well You know how I ment that.",
