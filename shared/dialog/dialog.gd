@@ -42,19 +42,20 @@ func add_options(source: QuestSource, quote:String, dialog_tree:Dictionary):
 	questSources[quote] = source
 
 func _loadNextPart():
+	var hasAnswers = "answer" in dialog_data
+	if not hasAnswers: # first exit dialog and then execute actions
+		_closeDialog()
 	if "method" in dialog_data:
 		_executeAction(dialog_data["method"], dialog_data.get("payload", []))
 	elif "actions" in dialog_data:
 		var actions = dialog_data["actions"]
 		for i in range(len(actions)):
 			_executeAction(actions[i]["method"], actions[i].get("payload", []))
-	if not "answer" in dialog_data:
-		_closeDialog()
-		return
-	_showText(dialog_data["answer"])
-	if "options" in dialog_data:
-		answers = _removeUnavailableAnswers(dialog_data["options"])
-		_showOptions(answers)
+	if hasAnswers:
+		_showText(dialog_data["answer"])
+		if "options" in dialog_data:
+			answers = _removeUnavailableAnswers(dialog_data["options"])
+			_showOptions(answers)
 
 func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 	var availableAnswers = {}
@@ -120,7 +121,7 @@ func _input(event):
 		var index = _getIndex(event.keycode)
 		if index != null:
 			_handleSelection(index)
-			
+
 func _handleSelection(index):
 	if index < len(answers.keys()):
 		var quote = answers.keys()[index]
@@ -129,7 +130,7 @@ func _handleSelection(index):
 			currentSource = _source
 		dialog_data = answers[quote]
 		_loadNextPart()
-			
+
 func _getIndex(keycode):
 	if keycode >= 49 and keycode <= 57:
 		return keycode - 49

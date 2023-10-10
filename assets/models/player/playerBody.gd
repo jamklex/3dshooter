@@ -21,6 +21,7 @@ extends CharacterBody3D
 @onready var interactionFeedback = _ui.get_node("InteractionFeedback") as Label
 @onready var quests_ui = _ui.get_node("QuestHolder/quests") as VBoxContainer
 var inDialog = false
+var _reward_queue = []
 
 func setInDialog(value:bool):
 	inDialog = value
@@ -55,6 +56,7 @@ func _physics_process(delta):
 	handle_show_inventory()
 	handle_show_menu()
 	handle_show_quests()
+	handle_reward_queue()
 	if _shooter:
 		_shooter.handle()
 
@@ -73,8 +75,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	move_and_slide()
-	
-	
+
 func _playAnimation(animationName:String):
 	if _animation_player.current_animation != animationName:
 		_animation_player.play(animationName)
@@ -129,6 +130,19 @@ func handle_show_inventory():
 	refresh_inventory_output()
 	inventory_output.visible = !inventory_output.visible
 
+func handle_reward_queue():
+	var str = ""
+	while not _reward_queue.is_empty():
+		var reward = _reward_queue.pop_front() as DropItem
+		str += reward.pretty_name()
+		var amount = reward.get_amount()
+		if amount > 1:
+			str += " x" + str(amount)
+		str += "\n"
+	if not str.is_empty():
+		interactionFeedback.text = str
+		fade_interaction_feedback(0, true)
+
 func refresh_inventory_output():
 	var inventory_text = ""
 	if !WorldUtil.player.run_inventory.is_empty():
@@ -140,6 +154,9 @@ func refresh_inventory_output():
 	if inventory_text == "":
 		inventory_text = "no items collected"
 	inventory_output.text = inventory_text
+
+func add_reward_to_queue(reward: DropItem):
+	_reward_queue.push_back(reward)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion: # or controller right stick
