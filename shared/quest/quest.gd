@@ -6,7 +6,7 @@ var title: String = ""
 var tasks: Array = []
 var status: Status = Status.LOCKED
 const scene = preload("res://shared/quest/scenes/quest.tscn")
-@onready var layout = $panel/container
+@onready var layout = $container
 
 static func from(path: String, _tasks: Array, saved: Dictionary = {}) -> Quest:
 	var quest = scene.instantiate() as Quest
@@ -48,7 +48,9 @@ func refresh_data():
 	for _task in tasks:
 		if _task.status <= Task.Status.UNKNOWN:
 			continue
-		layout.get_node("tasks").add_child(_task)
+		var task_node = layout.get_node("tasks")
+		task_node.add_child(_task)
+		task_node.move_child(_task, 0)
 
 func add_task(_task: Task):
 	tasks.push_back(_task)

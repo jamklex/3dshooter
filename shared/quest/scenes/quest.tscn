@@ -2,50 +2,34 @@
 
 [ext_resource type="Script" path="res://shared/quest/quest.gd" id="1_cle2s"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4bh7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbi0i"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0.0235294, 0.0235294, 0.0235294, 0.733333)
 
-[node name="quest" type="Control"]
-layout_mode = 3
-anchors_preset = 15
+[node name="quest" type="PanelContainer"]
+custom_minimum_size = Vector2(25, 0)
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 38.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cbi0i")
 script = ExtResource("1_cle2s")
 
-[node name="bg" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_g4bh7")
-
-[node name="panel" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="container" type="VBoxContainer" parent="panel"]
+[node name="container" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 5
 
-[node name="name" type="Label" parent="panel/container"]
+[node name="name" type="Label" parent="container"]
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.462745, 0.141176, 0.533333, 1)
 
-[node name="tasks" type="VBoxContainer" parent="panel/container"]
+[node name="tasks" type="VBoxContainer" parent="container"]
 layout_mode = 2
 theme_override_constants/separation = 3

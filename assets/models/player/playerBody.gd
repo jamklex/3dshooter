@@ -19,7 +19,7 @@ extends CharacterBody3D
 @onready var inventory_output = _ui.get_node("RunInventory") as RichTextLabel
 @onready var interactionPopup = _ui.get_node("InteractionPopup") as Label
 @onready var interactionFeedback = _ui.get_node("InteractionFeedback") as Label
-@onready var quests_ui = _ui.get_node("quests") as VBoxContainer
+@onready var quests_ui = _ui.get_node("QuestHolder/quests") as VBoxContainer
 var inDialog = false
 
 func setInDialog(value:bool):
