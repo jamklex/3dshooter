@@ -14,10 +14,13 @@ var reloading:bool = false
 @onready var _magInfo:Label = $magInfo
 var soundPlayer:AudioStreamPlayer
 
+const _ITEM_WEAPON_MAP = {
+	"6": "res://shared/shooting/weapons/pistol/_main.tscn"
+}
+
 func _ready():
 	_reloadTimer.timeout.connect(_reload)
 	_refreshMagInfo()
-	addWeapon("res://shared/shooting/weapons/pistol/_main.tscn")
 	soundPlayer = AudioStreamPlayer.new()
 	add_child(soundPlayer)
 	
@@ -32,13 +35,64 @@ func addWeapon(scenePath:String):
 	weapon.reload()
 	weapons.append(weapon)
 	weaponHolder.add_child(weapon)
-
+	
+func unlockPlayerInventoryWeapons(playerInventory:Inventory):
+	for itemId in playerInventory.item_ids():
+		if _isWeaponId(itemId):
+			_addWeaponForItemId(itemId)
+	
+func handlePlayerInventoryChanged(payload:Array):
+	var itemId = payload[0]
+	var newAmount = int(payload[1])
+	if not _isWeaponId(itemId):
+		return
+	var gotWeapon = newAmount >= 1
+	var weaponAlreadyInitizalized = _weaponAlreadyInitizalized(itemId)
+	if gotWeapon and weaponAlreadyInitizalized:
+		return
+	if not gotWeapon and not weaponAlreadyInitizalized:
+		return
+	if gotWeapon:
+		_addWeaponForItemId(itemId)
+	else:
+		_removeWeaponForItemId(itemId)
+		
 func handle():
 	_handleWeaponSwitching()
 	_handleAimSwitching()
 	_handleReloading()
 	_handleShooting()
 	
+func _weaponAlreadyInitizalized(weaponId:String):
+	var scenePathForWeaponId = _ITEM_WEAPON_MAP.get(weaponId)
+	if not scenePathForWeaponId:
+		return
+	for weapon in weapons:
+		if weapon.scene_file_path == scenePathForWeaponId:
+			return true
+	return false
+	
+func _addWeaponForItemId(weaponId:String):
+	var scenePathForWeaponId = _ITEM_WEAPON_MAP.get(weaponId)
+	if not scenePathForWeaponId:
+		return
+	addWeapon(scenePathForWeaponId)
+	
+func _removeWeaponForItemId(weaponId:String):
+	var scenePathForWeaponId = _ITEM_WEAPON_MAP.get(weaponId)
+	if not scenePathForWeaponId:
+		return
+	for weapon in weapons:
+		if weapon.scene_file_path == scenePathForWeaponId:
+			_removeWeapon(weapon)
+			return
+			
+func _removeWeapon(weapon:Weapon):
+	if weapon == currentWeapon:
+		_putWeaponAway()
+	weapons.erase(weapon)
+	weaponHolder.remove_child(weapon)
+
 func set_bone_rot(boneName:String, ang:Vector3):
 	var boneId = playerSkeleton.find_bone(boneName)
 	var newpose = playerSkeleton.get_bone_global_pose_no_override(boneId)
@@ -46,6 +100,9 @@ func set_bone_rot(boneName:String, ang:Vector3):
 	newpose = newpose.rotated(Vector3(0.0, 1.0, 0.0), ang.y)
 	newpose = newpose.rotated(Vector3(0.0, 0.0, 1.0), ang.z)
 	playerSkeleton.set_bone_global_pose_override(boneId, newpose, 1, true)
+	
+func _isWeaponId(itemId:String):
+	return _ITEM_WEAPON_MAP.has(itemId)
 	
 func _handleReloading():
 	if not currentWeapon:

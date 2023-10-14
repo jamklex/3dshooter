@@ -4,6 +4,8 @@ class_name Inventory
 
 const GOLD_ITEM = "0"
 var items = {} as Dictionary
+signal onAddItem
+signal onRemoveItem
 
 static func from(data: Dictionary) -> Inventory:
 	var inv = Inventory.new()
@@ -32,16 +34,19 @@ func moveItem(toInv:Inventory, id:String):
 	var amount = count(id)
 	toInv.add(id, amount)
 	items.erase(id)
+	onRemoveItem.emit([id,0])
 
 func moveAllItems(toInv:Inventory):
 	for key in items.keys():
 		toInv.add(key, count(key))
 		items.erase(key)
+		onRemoveItem.emit([key,0])
 
 func remove(id:String, amount:int) -> bool:
 	if !check(id, amount):
 		return false
 	items.get(id).remove(amount)
+	onRemoveItem.emit([id,count(id)])
 	if !check(id, 1):
 		items.erase(id)
 	return true
@@ -51,6 +56,7 @@ func add(id:String, amount:int):
 		items[id] = InventoryItem.from(id, amount)
 	else:
 		items.get(id).add(amount)
+	onAddItem.emit([id,count(id)])
 
 func set_total(id:String, amount:int):
 	if !items.has(id):

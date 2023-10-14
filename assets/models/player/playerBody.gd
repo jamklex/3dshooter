@@ -37,6 +37,9 @@ func _ready():
 	refresh_inventory_output()
 	fade_interaction_feedback(1)
 	QuestLoader.attach_quests(quests_ui)
+	WorldUtil.player.inventory.onAddItem.connect(_shooter.handlePlayerInventoryChanged)
+	WorldUtil.player.inventory.onRemoveItem.connect(_shooter.handlePlayerInventoryChanged)
+	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.inventory)
 
 func _exit_tree():
 	WorldUtil.player.bodyLastPos = position

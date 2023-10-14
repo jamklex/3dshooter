@@ -31,12 +31,12 @@
 	},
 	"6": {
 		"name": "Small pistol",
-		"desc": "a small pistol, dealing medium damange",
+		"desc": "A small pistol, dealing medium damange",
 		"image": "res://assets/items/img/1.png"
 	},
 	"7": {
-		"name": "pistol ammo",
-		"desc": "ammo for pistols",
+		"name": "Pistol ammo",
+		"desc": "Ammo for pistols",
 		"image": "res://assets/items/img/1.png"
 	}
 }
