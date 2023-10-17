@@ -1,0 +1,36 @@
+{
+	"name": "Get me on the ship please",
+	"desc": "Trish wants You to try out the airlock-System, go to the ship via Madelyn and stuff something inside an airlock",
+	"short": "Get on the ship and put something in an airlock",
+	"dialog": {
+		"npc": "CAPTAIN",
+		"actions": [
+			{
+				"method": "teleportToMissionMap",
+				"payload": [
+					1
+				]
+			}
+		]
+	},
+	"success": {
+		"conditions": [
+			{
+				"method": "anyInSalvager",
+				"payload": []
+			}
+		],
+		"actions": [
+			{
+				"method": "succeedTask",
+				"payload": []
+			},
+			{
+				"method": "setActiveTask",
+				"payload": [
+					"5"
+				]
+			},
+		]
+	}
+}

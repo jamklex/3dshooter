@@ -105,7 +105,7 @@ func _showOptions(answers):
 
 func _showText(text:String):
 	questionLabel.clear()
-	questionLabel.add_text(text)
+	questionLabel.add_text(PlaceholderRemover.sanitize(text))
 
 func _ready():
 	questionLabel = $Panel/MarginContainer/VBoxContainer/question
