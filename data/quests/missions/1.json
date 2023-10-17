@@ -1,0 +1,81 @@
+{
+	"name": "Any new missions?",
+	"desc": "You think You are ready now, ask Madelyn for new missions.",
+	"short": "Request a new mission from the captain",
+	"dialog": {
+		"npc": "CAPTAIN",
+		"answer": "Hmm... We have a customer who bought a shipwreck.\nSome people use this as a way to get rich quick but often they're just full of crap...\nNevertheless You could clean up the ship from some monsters living there.\nYou think You can do this?",
+		"options": {
+			"Sure, I'm ready for it!": {
+				"answer": "Good, the mission is simple, kill all the enemies and come back after You're done.\nOh and before I forget, the client doesn't know what items are on the ship...\nIf You get my hint.",
+				"options": {
+					"No worries, I get it." : {
+						"answer": "Perfect, ready to go?",
+						"options": {
+							"Ok, get me on the ship": {
+								"actions": [
+									{
+										"method": "succeedTask",
+										"payload": []
+									},
+									{
+										"method": "unhideTasks",
+										"payload": [
+											"2", "3"
+										]
+									},
+									{
+										"method": "setActiveTask",
+										"payload": [
+											"2"
+										]
+									},
+									{
+										"method": "teleportToMissionMap",
+										"payload": [
+											1
+										]
+									}
+								]
+							}
+						}
+					},
+					"Actually I'm not sure..." : {
+						"answer": "Well... loot what You can and don't feel bad about it!",
+						"options": {
+							"Ok, get me on the ship": {
+								"actions": [
+									{
+										"method": "succeedTask",
+										"payload": []
+									},
+									{
+										"method": "unhideTasks",
+										"payload": [
+											"2", "3"
+										]
+									},
+									{
+										"method": "setActiveTask",
+										"payload": [
+											"2"
+										]
+									},
+									{
+										"method": "teleportToMissionMap",
+										"payload": [
+											1
+										]
+									}
+								]
+							}
+						}
+					}
+				}
+			},
+			"I think I need some more time...": {
+				"answer": "Ok, just come back if You feel ready."
+			}
+		}
+	}
+}

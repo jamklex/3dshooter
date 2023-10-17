@@ -29,3 +29,8 @@ func hasDummieCountMin(payload: Array) -> bool:
 func anyInSalvager(payload: Array = []) -> bool:
 	var salvager_inventory = WorldUtil.player.store_inventory as Inventory
 	return !salvager_inventory.is_empty()
+
+func hasQuestKills(payload: Array = []) -> bool:
+	var questName = payload[0] as String
+	var killAmount = payload[1] as int
+	return false

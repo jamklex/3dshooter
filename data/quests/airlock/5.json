@@ -19,6 +19,12 @@
 				"payload": [
 					"itemSeller"
 				]
+			},
+			{
+				"method": "unlockQuest",
+				"payload": [
+					"missions"
+				]
 			}
 		]
 	}

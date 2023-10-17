@@ -1,0 +1,38 @@
+{
+	"name": "Let me kill those creatures!",
+	"desc": "You need to clean the whole ship of those monsters.",
+	"short": "Kill every monster on the ship",
+	"dialog": {
+		"npc": "CAPTAIN",
+		"actions": [
+			{
+				"method": "teleportToMissionMap",
+				"payload": [
+					1
+				]
+			}
+		]
+	},
+	"success": {
+		"conditions": [
+			{
+				"method": "hasQuestKills",
+				"payload": [
+					"missions", 15
+				]
+			}
+		],
+		"actions": [
+			{
+				"method": "succeedTask",
+				"payload": []
+			},
+			{
+				"method": "setActiveTask",
+				"payload": [
+					"3"
+				]
+			},
+		]
+	}
+}

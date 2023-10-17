@@ -130,3 +130,5 @@ func _on_event(event_name: String, payload: Array = []):
 		"setSalvagerFee":
 			var salvager_fee = payload[0] as float
 			print("TODO: setSalvagerFee(" + str(salvager_fee) + ")")
+		"unlockMissions":
+			print("TODO: unlockMissions")
