@@ -226,9 +226,9 @@ func _shoot():
 	var shootable = _raycastForShootable()
 	if not shootable:
 		return
-	shootable.takeDamage(currentWeapon.damage)
+	var died = shootable.takeDamage(currentWeapon.damage)
 	shootable = shootable as Shootable
-	if shootable and shootable.currentHealth <= 0 and not shootable.died:
+	if shootable and died:
 		onShootableDie.emit(shootable)
 	
 func _raycastForShootable() -> Node:
