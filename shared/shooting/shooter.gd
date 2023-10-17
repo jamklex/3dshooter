@@ -10,12 +10,17 @@ var weapons:Array[Weapon]
 var currentWeapon:Weapon
 var aiming:bool = false
 var reloading:bool = false
+var useRealMunition:bool = true
 @onready var _reloadTimer:Timer = $reloadTimer
 @onready var _magInfo:Label = $magInfo
 var soundPlayer:AudioStreamPlayer
 
 const _ITEM_WEAPON_MAP = {
 	"6": "res://shared/shooting/weapons/pistol/_main.tscn"
+}
+
+const _MUNITION_MAP = {
+	Weapon.WeaponType.PISTOL: "7"
 }
 
 func _ready():
@@ -32,7 +37,7 @@ func addWeapon(scenePath:String):
 	if not weapon:
 		return
 	weapon.visible = false
-	weapon.reload()
+	_reloadWeapon(weapon)
 	weapons.append(weapon)
 	weaponHolder.add_child(weapon)
 	
@@ -41,7 +46,23 @@ func unlockPlayerInventoryWeapons(playerInventory:Inventory):
 		if _isWeaponId(itemId):
 			_addWeaponForItemId(itemId)
 	
+func putBulletsToInventory():
+	if not currentWeapon:
+		return
+	if not useRealMunition:
+		return
+	var restMun = currentWeapon.restMagShoots
+	if restMun <= 0:
+		return
+	_addRestAmmo(currentWeapon.weaponType, restMun)
+	
 func handlePlayerInventoryChanged(payload:Array):
+	var itemId = payload[0]
+	if not _MUNITION_MAP.has(itemId):
+		return
+	_refreshMagInfo()
+
+func checkForWeaponAction(payload:Array):
 	var itemId = payload[0]
 	var newAmount = int(payload[1])
 	if not _isWeaponId(itemId):
@@ -56,6 +77,11 @@ func handlePlayerInventoryChanged(payload:Array):
 		_addWeaponForItemId(itemId)
 	else:
 		_removeWeaponForItemId(itemId)
+
+func setUseRealMunition(newUseRealMunition:bool):
+	useRealMunition = newUseRealMunition
+	if currentWeapon and not reloading:
+		_refreshMagInfo()
 		
 func handle():
 	_handleWeaponSwitching()
@@ -113,6 +139,8 @@ func _handleReloading():
 		return
 	if currentWeapon.isMagFull():
 		return
+	if _getRestAmmo(currentWeapon.weaponType) == 0:
+		return
 	if aiming:
 		aimOverride.stop()
 	_startReload()
@@ -125,19 +153,55 @@ func _startReload():
 	_refreshMagInfo()
 	
 func _reload():
-	currentWeapon.reload()
+	_reloadWeapon(currentWeapon)
 	reloading = false
 	_refreshMagInfo()
 	if aiming:
 		aimOverride.start()
+		
+func _reloadWeapon(weapon:Weapon):
+	var restAmmo = _getRestAmmo(weapon.weaponType)
+	if restAmmo == -1:
+		weapon.reload(weapon.magSize)
+	else:
+		_removeRestAmmo(weapon.weaponType, weapon.reload(_getRestAmmo(weapon.weaponType)))
 	
+func _removeRestAmmo(weaponType:Weapon.WeaponType, removeShoots:int):
+	var munitionId = _MUNITION_MAP.get(weaponType)
+	if not munitionId:
+		return
+	var playerInv = WorldUtil.player.inventory as Inventory
+	playerInv.remove(munitionId, removeShoots)
+	
+func _addRestAmmo(weaponType:Weapon.WeaponType, addShoots:int):
+	var munitionId = _MUNITION_MAP.get(weaponType)
+	if not munitionId:
+		return
+	var playerInv = WorldUtil.player.inventory as Inventory
+	playerInv.add(munitionId, addShoots)
+
 func _refreshMagInfo():
 	var magInfoText = ""
 	if reloading:
 		magInfoText = "Reloading..."
 	elif currentWeapon:
-		magInfoText = str(currentWeapon.restMagShoots," / ",currentWeapon.magSize)
+		var restAmmo = _getRestAmmo(currentWeapon.weaponType)
+		if restAmmo == -1:
+			restAmmo = "∞"
+		magInfoText = str(currentWeapon.restMagShoots," / ", restAmmo)
 	_magInfo.text = magInfoText
+	
+func _getRestAmmo(weaponType:Weapon.WeaponType):
+	if not useRealMunition:
+		return -1
+	return _getAmmoInInventory(weaponType)
+	
+func _getAmmoInInventory(weaponType:Weapon.WeaponType):
+	var munitionId = _MUNITION_MAP.get(weaponType)
+	if not munitionId:
+		return currentWeapon.magSize
+	var playerInv = WorldUtil.player.inventory as Inventory
+	return playerInv.count(munitionId)
 	
 func _handleShooting():
 	if not currentWeapon:

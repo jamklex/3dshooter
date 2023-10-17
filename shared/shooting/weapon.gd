@@ -20,10 +20,15 @@ func _ready():
 		reloadTimeSecs = reloadSound.get_length()
 
 func needReload():
-	return restMagShoots == 0
+	return restMagShoots <= 0
 	
 func isMagFull():
 	return restMagShoots == magSize
 	
-func reload():
-	restMagShoots = magSize
+func reload(addShoots:int):
+	var reloadedShoots = addShoots
+	if reloadedShoots > magSize:
+		reloadedShoots = magSize
+	reloadedShoots -= restMagShoots
+	restMagShoots += reloadedShoots
+	return reloadedShoots
