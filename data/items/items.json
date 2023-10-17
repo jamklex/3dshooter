@@ -5,18 +5,18 @@
 		"image": "res://assets/items/img/1.png"
 	},
 	"1": {
-		"name": "Hammer",
-		"desc": "An Object to hit stuff with",
+		"name": "Schrott #1",
+		"desc": "just sell it...",
 		"image": "res://assets/items/img/1.png"
 	},
 	"2": {
-		"name": "Lamp of Doom",
-		"desc": "Better to not ask questions...",
+		"name": "Schrott #2",
+		"desc": "just sell it...",
 		"image": "res://assets/items/img/1.png"
 	},
 	"3": {
-		"name": "Helm lv 1",
-		"desc": "Just a helmet, that You can't wear",
+		"name": "Schrott #3",
+		"desc": "just sell it...",
 		"image": "res://assets/items/img/1.png"
 	},
 	"4": {
@@ -25,8 +25,8 @@
 		"image": "res://assets/items/img/1.png"
 	},
 	"5": {
-		"name": "Holy Sword",
-		"desc": "You currently don't know how to handle it",
+		"name": "Schrott #4",
+		"desc": "just sell it...",
 		"image": "res://assets/items/img/1.png"
 	},
 	"6": {
