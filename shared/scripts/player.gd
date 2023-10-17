@@ -42,3 +42,9 @@ func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
 
 func saveRunInventory():
 	run_inventory.moveAllItems(inventory)
+	
+func onShootableKilled(shootable:Shootable):
+	print("Killed shootable :D")
+	print(shootable)
+	var dummy = shootable.get_parent() as Dummy
+	print(dummy)

@@ -14,6 +14,7 @@ var useRealMunition:bool = true
 @onready var _reloadTimer:Timer = $reloadTimer
 @onready var _magInfo:Label = $magInfo
 var soundPlayer:AudioStreamPlayer
+signal onShootableDie
 
 const _ITEM_WEAPON_MAP = {
 	"6": "res://shared/shooting/weapons/pistol/_main.tscn"
@@ -226,6 +227,9 @@ func _shoot():
 	if not shootable:
 		return
 	shootable.takeDamage(currentWeapon.damage)
+	shootable = shootable as Shootable
+	if shootable and shootable.currentHealth <= 0 and not shootable.died:
+		onShootableDie.emit(shootable)
 	
 func _raycastForShootable() -> Node:
 	var space = get_world_3d().direct_space_state

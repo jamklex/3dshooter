@@ -3,6 +3,7 @@ class_name Shootable
 
 @export var health:int
 var currentHealth:int
+var died:bool = false
 signal healthReachedZero
 signal onDamageTaken
 
@@ -10,8 +11,9 @@ signal onDamageTaken
 func takeDamage(damage:int):
 	onDamageTaken.emit(damage)
 	currentHealth -= damage
-	if currentHealth <= 0:
+	if currentHealth <= 0 and not died:
 		_die()
+		died = true
 
 func setStartHealth(newHealth:int):
 	health = newHealth
