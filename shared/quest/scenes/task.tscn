@@ -17,40 +17,58 @@ anchors_preset = 0
 offset_right = 150.0
 offset_bottom = 25.0
 
-[node name="unknown" type="Label" parent="short"]
+[node name="unknown" type="RichTextLabel" parent="short"]
 visible = false
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 26.0
-theme_override_colors/font_color = Color(0.254902, 0.254902, 0.254902, 1)
+bbcode_enabled = true
 text = "???"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
-[node name="known" type="Label" parent="short"]
+[node name="known" type="RichTextLabel" parent="short"]
 visible = false
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 26.0
-theme_override_colors/font_color = Color(0.254902, 0.254902, 0.254902, 1)
+bbcode_enabled = true
 text = "#####"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
-[node name="active" type="Label" parent="short"]
+[node name="active" type="RichTextLabel" parent="short"]
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 26.0
+bbcode_enabled = true
 text = "#####"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
-[node name="succeeded" type="Label" parent="short"]
+[node name="succeeded" type="RichTextLabel" parent="short"]
 visible = false
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 26.0
-theme_override_colors/font_color = Color(0.113725, 0.568627, 0, 1)
-text = "#####"
+theme_override_colors/default_color = Color(0, 0.513726, 0, 1)
+bbcode_enabled = true
+text = "[s]#####[/s]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
-[node name="failed" type="Label" parent="short"]
+[node name="failed" type="RichTextLabel" parent="short"]
 visible = false
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 26.0
-theme_override_colors/font_color = Color(0.8, 0.0745098, 0, 1)
-text = "#####"
+theme_override_colors/default_color = Color(0.560784, 0.0196078, 0.0901961, 1)
+bbcode_enabled = true
+text = "[s]#####[/s]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

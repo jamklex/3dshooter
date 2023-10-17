@@ -1,86 +1,86 @@
 {
-    "name": "Coming to know each other",
-    "desc": "The captain sent You to talk with Trish because she could help You with You missions, go and find out how.",
-    "short": "Speak with Trish in the bottom of the ship",
-    "dialog": {
-        "npc": "SALVAGER",
-        "answer": "Hi, You must be the new one, my name is Trish.\nWhat can I do for You?",
-        "options": {
-            "The Captain sent me to talk to You": {
-                "answer": "Well that can't meen anything good...",
-                "options": {
-                    "She told me You can help me on my missions?": {
-                        "answer": "Oh, if it's just that...\nSure, I can help You getting those valuable items safely onboard.\nAll I take is a little fee in exchange.",
-                        "options": {
-                            "So a kind of ensurance?": {
-                                "answer": "Exactly!\nBut You only need to pay a fee for the items You've sent me.\nSo a pretty good ensurance right?",
-                                "options": {
-                                    "I don't know about that, I can just walk out with them and skip the fee...": {
-                                        "answer": "Buuuut Your body could get destroyed down there and all items will be lost, sadly...\nJust let me show You how it would work and You can decide wether to use my service or not.\nGo to Madelyn and ask her to find another Shipwreck.",
-                                        "actions": [
-                                            {
-                                                "method": "succeedTask",
-                                                "payload": []
-                                            },
-                                            {
-                                            "method": "setActiveTask",
-                                                "payload": [
-                                                    "2"
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "Greetings from the Captain": {
-                "answer": "Really? From her? She couldn't stand me if we were 5 Galaxies apart...\nIs there anything more?",
-                "options": {
-                    "Yes actually, She told my You might help me with my missions?": {
-                        "answer": "Of course I can!\nSee, whenever You get those valuable items they are worth nothing!",
-                        "options": {
-                            "But... they are valuable, You've said it yourself!": {
-                                "answer": "Sure they are valuable!\nBut only in the hands of a collector.\nAaaand if Your body just so happen to be destroyed...\nWell I can help You with that!",
-                                "options": {
-                                    "Help me not die?": {
-                                        "answer": "Hahaha You're funny aren't You?\nNo I can collect some items for You.",
-                                        "options": {
-                                            "And my \"body\" just dies anyways?": {
-                                                "answer": "Well just don't die I guess?\nView my services as a kind of ensurance.\nYou go in, collect some valuable items and send it to me in case You get destroyed onboard.",
-                                                "options": {
-                                                    "An Insurance? So I pay You everytime?": {
-                                                        "answer": "That's the good part!\nYou only need to pay me IF You use my service.\nI will collect Your items and You can get them back for a little fee.",
-                                                        "options": {
-                                                            "How much is this fee?": {
-                                                                "answer": "How about I first show You how it works?\nGo to Madelyn and ask her to find another Shipwreck.",
-                                                                "actions": [
-                                                                    {
-                                                                        "method": "succeedTask",
-                                                                        "payload": []
-                                                                    },
-                                                                    {
-                                                                    "method": "setActiveTask",
-                                                                        "payload": [
-                                                                            "2"
-                                                                        ]
-                                                                    }
-                                                                ]
-                                                            }
-                                                        }	   
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+	"name": "Coming to know each other",
+	"desc": "The captain sent You to talk with Trish because she could help You with You missions, go and find out how.",
+	"short": "Speak with Trish in the bottom of the ship",
+	"dialog": {
+		"npc": "SALVAGER",
+		"answer": "Hi, You must be the new one, my name is Trish.\nWhat can I do for You?",
+		"options": {
+			"The Captain sent me to talk to You": {
+				"answer": "Well that can't meen anything good...",
+				"options": {
+					"She told me You can help me on my missions?": {
+						"answer": "Oh, if it's just that...\nSure, I can help You getting those valuable items safely onboard.\nAll I take is a little fee in exchange.",
+						"options": {
+							"So a kind of ensurance?": {
+								"answer": "Exactly!\nBut You only need to pay a fee for the items You've sent me.\nSo a pretty good ensurance right?",
+								"options": {
+									"I don't know about that, I can just walk out with them and skip the fee...": {
+										"answer": "Buuuut Your body could get destroyed down there and all items will be lost, sadly...\nJust let me show You how it would work and You can decide wether to use my service or not.\nGo to Madelyn and ask her to find another Shipwreck.",
+										"actions": [
+											{
+												"method": "succeedTask",
+												"payload": []
+											},
+											{
+											"method": "setActiveTask",
+												"payload": [
+													"2"
+												]
+											}
+										]
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"Greetings from the Captain": {
+				"answer": "Really? From her? She couldn't stand me if we were 5 Galaxies apart...\nIs there anything more?",
+				"options": {
+					"Yes actually, She told my You might help me with my missions?": {
+						"answer": "Of course I can!\nSee, whenever You get those valuable items they are worth nothing!",
+						"options": {
+							"But... they are valuable, You've said it yourself!": {
+								"answer": "Sure they are valuable!\nBut only in the hands of a collector.\nAaaand if Your body just so happen to be destroyed...\nWell I can help You with that!",
+								"options": {
+									"Help me not die?": {
+										"answer": "Hahaha You're funny aren't You?\nNo I can collect some items for You.",
+										"options": {
+											"And my \"body\" just dies anyways?": {
+												"answer": "Well just don't die I guess?\nView my services as a kind of ensurance.\nYou go in, collect some valuable items and send it to me in case You get destroyed onboard.",
+												"options": {
+													"An Insurance? So I pay You everytime?": {
+														"answer": "That's the good part!\nYou only need to pay me IF You use my service.\nI will collect Your items and You can get them back for a little fee.",
+														"options": {
+															"How much is this fee?": {
+																"answer": "How about I first show You how it works?\nGo to Madelyn and ask her to find another Shipwreck.",
+																"actions": [
+																	{
+																		"method": "succeedTask",
+																		"payload": []
+																	},
+																	{
+																	"method": "setActiveTask",
+																		"payload": [
+																			"2"
+																		]
+																	}
+																]
+															}
+														}	   
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

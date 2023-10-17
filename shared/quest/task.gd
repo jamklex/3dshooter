@@ -68,12 +68,14 @@ func is_active() -> bool:
 
 func refresh_data():
 	for s in Status.values():
-		var node = short_ui.get_node(Status.keys()[s].to_lower()) as Label
+		var node = short_ui.get_node(Status.keys()[s].to_lower()) as RichTextLabel
 		if !node:
 			continue
 		node.visible = s == status
 		if s > Status.UNKNOWN:
 			node.text = short
+		if s > Status.ACTIVE:
+			node.text = "[s]" + node.text + "[/s]"
 
 func execute(method: String, payload: Array):
 	quest_listener.bind(method, payload).call()
