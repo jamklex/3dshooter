@@ -19,6 +19,9 @@ static func popup_message(message: String) -> String:
 	return message + " " + control_key_for_event("interact")
 
 static func control_key_for_event(control_event: String) -> String:
-	var event = InputMap.action_get_events(control_event)[0] as InputEvent
+	var action_events = InputMap.action_get_events(control_event)
+	if action_events.is_empty():
+		return ""
+	var event = action_events[0] as InputEvent
 	var relevant_key = event.as_text().split(" (")[0]
 	return "[" + relevant_key + "]"

@@ -1,0 +1,25 @@
+{
+	"name": "Did You get it?",
+	"desc": "You've sent something out the airlock.\nGo ask Trish if she got it.",
+	"short": "Talk to Trish",
+	"dialog": {
+		"npc": "SALVAGER",
+		"answer": "Yeah I have it here, good Job!\nThis one is for free but next time expect to pay <SALVAGER_FEE_PERCENT>% of it's value.\nConsider it a deal among \"friends\".",
+		"actions": [
+			{
+				"method": "giveSalvagerItems",
+				"payload": []
+			},
+			{
+				"method": "succeedQuest",
+				"payload": []
+			},
+			{
+				"method": "unlockQuest",
+				"payload": [
+					"itemSeller"
+				]
+			}
+		]
+	}
+}

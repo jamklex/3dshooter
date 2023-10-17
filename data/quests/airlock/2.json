@@ -1,0 +1,26 @@
+{
+	"name": "A Request from Trish",
+	"desc": "Trish wants to sell her service but is it actually of good use?\nGo to Madelyn and ask her to find a shipwreck where You can try out what Trish has to offer.",
+	"short": "Ask the Captain to find a shipwreck",
+	"dialog": {
+		"npc": "CAPTAIN",
+		"answer": "What does she want from me?\nI shouldn't have sent You with regards from me...",
+		"options": {
+			"She wants to show me something and needs a shipwreck for it": {
+				"answer": "I see, she's trying to convey You to use the airlocks onboard...\nFine, I will stear towards an empty shipwreck where You can play around.\nBut be warned, she is hungry for money like no one else on this ship.\nDon't overdo it or You won't get Your items back...",
+				"actions": [
+					{
+						"method": "succeedTask",
+						"payload": []
+					},
+					{
+						"method": "setActiveTask",
+						"payload": [
+							"3"
+						]
+					}
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,60 @@
+{
+	"name": "About ther Airlocks...",
+	"desc": "Madelyn will find an empty shipwreck nearby and she said something about airlocks that seem to have something to do with what Trish is about to show You.\nGo talk to her and find out more.",
+	"short": "Ask Trish about the airlocks",
+	"dialog": {
+		"npc": "SALVAGER",
+		"answer": "You've probably heard that from Madelyn.\nSee most ships have bins onboard that are used to throw out trash.\nIn our case we use them to send out treasures.",
+		"options": {
+			"But what if they are not powered?": {
+				"answer": "I see what You meen but no worries, the wrecks should have enough energy left for at least one last usage.\nIf You want to throw out more than fits inside, just search another one.",
+				"options": {
+					"What happens after I used it?": {
+						"answer": "After that I'm going to catch and store it.\nWhen You come back on board or Your body gets, well... destroyed unfortunately, You can come back to me and get it for a little fee.",
+						"options": {
+							"Can I put anything in there?": {
+								"answer": "almost anything...\nSome stuff is just to big to fit inside the airlocks.\nAnd If You even dare to put items which Madelyn is looking for in there...\nWell, I want to stay out of that.",
+								"actions": [
+									{
+										"method": "succeedTask",
+										"payload": []
+									},
+									{
+										"method": "setActiveTask",
+										"payload": [
+											"4"
+										]
+									}
+								],
+								"options": {
+									"So I go to this shipwreck now and use the airlock?": {
+										"answer": "Right, just look around and find something of interest and put it inside of a nearby airlock.",
+										"actions": [
+											{
+												"method": "setSalvagerFee",
+												"payload": [
+													10
+												]
+											}
+										]
+									},
+									"Which means You're just a parasite of this ship...": {
+										"answer": "I'm not one to get angry easily...\nBut You've stepped over a line there.\nWhich reminds me, we didn't even had a talk about the fee yet...",
+										"actions": [
+											{
+												"method": "setSalvagerFee",
+												"payload": [
+													20
+												]
+											}
+										]
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

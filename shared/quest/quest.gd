@@ -121,3 +121,12 @@ func _on_event(event_name: String, payload: Array = []):
 			inv.remove(payload[0], payload[1])
 		"save_progress":
 			QuestLoader.save_progress(self)
+		"unlockSeller":
+			print("TODO: unlockSeller")
+		"giveSalvagerItems":
+			var salvager_inventory = WorldUtil.player.store_inventory as Inventory
+			var player_inventory = WorldUtil.player.inventory as Inventory
+			salvager_inventory.moveAllItems(player_inventory)
+		"setSalvagerFee":
+			var salvager_fee = payload[0] as float
+			print("TODO: setSalvagerFee(" + str(salvager_fee) + ")")
