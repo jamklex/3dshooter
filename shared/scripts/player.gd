@@ -11,6 +11,7 @@ var run_inventory: Inventory
 var inventory: Inventory
 var store_inventory: Inventory
 var _savePath = "user://player.json" #"user://settings.json"
+var inMissionMap = false
 
 func _init():
 	print("load player")
@@ -24,6 +25,8 @@ func _init():
 
 func save():
 	print("save player")
+	if body and body._shooter:
+		body._shooter.putBulletsToInventory()
 	var saveDict = {
 		"runInv": run_inventory.to_dict(),
 		"inv": inventory.to_dict(),
@@ -35,6 +38,13 @@ func save():
 func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
 	bodyStartPos = pos
 	get_tree().change_scene_to_file("res://scenes/" + sceneName + "/_main.tscn")
+	inMissionMap = sceneName != "ship"
 
 func saveRunInventory():
 	run_inventory.moveAllItems(inventory)
+	
+func onShootableKilled(shootable:Shootable):
+	print("Killed shootable :D")
+	print(shootable)
+	var dummy = shootable.get_parent() as Dummy
+	print(dummy)

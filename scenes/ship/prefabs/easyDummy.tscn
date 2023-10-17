@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://c581k2rjfgohj"]
+
+[ext_resource type="Script" path="res://scenes/ship/prefabs/dummy.gd" id="1_an31a"]
+[ext_resource type="PackedScene" uid="uid://btelwcsn53o55" path="res://shared/shooting/shootable.tscn" id="1_b43sj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eap1h"]
+height = 1.72733
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1k7s1"]
+albedo_color = Color(0.266667, 0.443137, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ha4rk"]
+material = SubResource("StandardMaterial3D_1k7s1")
+height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8g3xh"]
+albedo_color = Color(1, 1, 0.427451, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ldhc"]
+material = SubResource("StandardMaterial3D_8g3xh")
+
+[node name="easyDummy" type="StaticBody3D"]
+script = ExtResource("1_an31a")
+respawn_scene_path = "res://scenes/ship/prefabs/easyDummy.tscn"
+respawnTime = 3
+
+[node name="Collission" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
+shape = SubResource("CapsuleShape3D_eap1h")
+
+[node name="Skin" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0129072, 0.846775, 0.0355329)
+mesh = SubResource("CapsuleMesh_ha4rk")
+
+[node name="Front" type="MeshInstance3D" parent="Skin"]
+transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
+mesh = SubResource("BoxMesh_2ldhc")
+
+[node name="shootable" parent="." instance=ExtResource("1_b43sj")]
+health = 2
+
+[connection signal="healthReachedZero" from="shootable" to="." method="hideAndStartRespawnTimer"]

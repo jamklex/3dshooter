@@ -13,14 +13,14 @@
 [ext_resource type="PackedScene" uid="uid://doi0g01pdcoad" path="res://assets/models/npcs/captain.tscn" id="9_6uds5"]
 [ext_resource type="PackedScene" uid="uid://bjck182qlnf7v" path="res://assets/models/room/glassFloor/glassFloor.tscn" id="10_cff1o"]
 [ext_resource type="PackedScene" uid="uid://dsk018800x020" path="res://assets/models/npcs/roboUpgrader.tscn" id="12_3y0wg"]
+[ext_resource type="PackedScene" uid="uid://c581k2rjfgohj" path="res://scenes/ship/prefabs/easyDummy.tscn" id="12_uc3ei"]
 [ext_resource type="PackedScene" uid="uid://c0xarjkovxkuc" path="res://assets/models/objects/lamp/top_lamp.tscn" id="13_2x4r5"]
+[ext_resource type="PackedScene" uid="uid://djtdsjclcocap" path="res://scenes/ship/prefabs/midDummy.tscn" id="13_b0qgo"]
 [ext_resource type="PackedScene" uid="uid://c6oqupr7ertgm" path="res://assets/models/objects/lamp/wall_lamp.tscn" id="13_vojef"]
 [ext_resource type="PackedScene" uid="uid://ct6xi61pryikk" path="res://assets/models/npcs/weaponShop.tscn" id="14_tmqxv"]
+[ext_resource type="PackedScene" uid="uid://ddj8qd6iog53t" path="res://scenes/ship/prefabs/hardDummy.tscn" id="14_ymjtc"]
 [ext_resource type="PackedScene" uid="uid://xx4ok047mg7w" path="res://assets/models/npcs/itemSeller.tscn" id="15_63p7s"]
-[ext_resource type="PackedScene" uid="uid://d13lgvtdpyxeb" path="res://scenes/ship/temp/shootableTest1.tscn" id="15_jwovt"]
 [ext_resource type="Environment" uid="uid://bdsi47qs3trw3" path="res://assets/bg/shipEnvironment.tres" id="15_p7ie7"]
-[ext_resource type="PackedScene" uid="uid://cvdovxgjgdyug" path="res://scenes/ship/temp/shootableTest2.tscn" id="16_0xwtg"]
-[ext_resource type="PackedScene" uid="uid://c581k2rjfgohj" path="res://scenes/ship/temp/shootableTest3.tscn" id="17_qoaau"]
 
 [node name="_main" type="Node3D"]
 
@@ -1065,6 +1065,16 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.9045
 [node name="table7" parent="upperShip" instance=ExtResource("2_a5rda")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8.38095, 0, -15.378)
 
+[node name="easyDummy" parent="upperShip" instance=ExtResource("12_uc3ei")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.33286, -1.43424e-07, -2.28582)
+
+[node name="midDummy" parent="upperShip" instance=ExtResource("13_b0qgo")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.33325, 0, -3.69907)
+
+[node name="hardDummy" parent="upperShip" instance=ExtResource("14_ymjtc")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.333, 0, -5.208)
+respawnTime = 3
+
 [node name="roboUpgrader" parent="upperShip" instance=ExtResource("12_3y0wg")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -21.889)
 npc_id = "BODY_MANAGER"
@@ -1146,15 +1156,6 @@ color = Color(0.309804, 0.513726, 0.235294, 1)
 [node name="wall_lamp16" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00699997, 3.713, -1.06997)
 color = Color(0.309804, 0.513726, 0.235294, 1)
-
-[node name="shootableTest1" parent="upperShip" instance=ExtResource("15_jwovt")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.94021, 0, -2.16869)
-
-[node name="shootableTest2" parent="upperShip" instance=ExtResource("16_0xwtg")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8, 0, -4)
-
-[node name="shootableTest3" parent="upperShip" instance=ExtResource("17_qoaau")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.05184, 9.49949e-08, -5.82668)
 
 [node name="lowerShip" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.005, 0)

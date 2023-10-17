@@ -39,8 +39,10 @@ func _ready():
 	QuestLoader.attach_quests(quests_ui)
 	WorldUtil.player.inventory.onAddItem.connect(_shooter.handlePlayerInventoryChanged)
 	WorldUtil.player.inventory.onRemoveItem.connect(_shooter.handlePlayerInventoryChanged)
+	_shooter.setUseRealMunition(WorldUtil.player.inMissionMap)
 	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.inventory)
-
+	_shooter.onShootableDie.connect(WorldUtil.player.onShootableKilled)
+	
 func _exit_tree():
 	WorldUtil.player.bodyLastPos = position
 	WorldUtil.player.body = null
