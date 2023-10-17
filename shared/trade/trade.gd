@@ -72,10 +72,11 @@ func refreshPlayerInventory():
 	var itemContainer = $bg/leftInv/scroll/items as VBoxContainer
 	clearItems(itemContainer)
 	for id in playerInventory.item_ids():
-		if id == Inventory.GOLD_ITEM:
+		var game_item = ItemHelper.get_item(id)
+		if not game_item.tradeable:
 			continue
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
-		tradeItem.setItem(id, playerInventory.count(id))
+		tradeItem.setItem(game_item, playerInventory.count(id))
 		tradeItem.onPressed.connect(_moveItemLeftToRightInv)
 		itemContainer.add_child(tradeItem)
 		
@@ -84,10 +85,9 @@ func refreshOtherInventory():
 	var itemContainer = $bg/rightInv/scroll/items as VBoxContainer
 	clearItems(itemContainer)
 	for id in otherInventory.item_ids():
-		if id == Inventory.GOLD_ITEM:
-			continue
+		var game_item = ItemHelper.get_item(id)
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
-		tradeItem.setItem(id, otherInventory.count(id))
+		tradeItem.setItem(game_item, otherInventory.count(id))
 		tradeItem.onPressed.connect(_moveItemRightToLeftInv)
 		itemContainer.add_child(tradeItem)
 	

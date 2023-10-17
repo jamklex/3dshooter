@@ -2,7 +2,8 @@
 	"0": {
 		"name": "Gold",
 		"desc": "It is goot to have plenty of it",
-		"image": "res://assets/items/img/1.png"
+		"image": "res://assets/items/img/1.png",
+		"trade": false
 	},
 	"1": {
 		"name": "Schrott #1",
@@ -22,7 +23,8 @@
 	"4": {
 		"name": "Golden Sphere",
 		"desc": "Shiny little sphere, be careful not to brake it!",
-		"image": "res://assets/items/img/1.png"
+		"image": "res://assets/items/img/1.png",
+		"trade": false
 	},
 	"5": {
 		"name": "Schrott #4",

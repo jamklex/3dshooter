@@ -14,12 +14,12 @@ func _ready():
 func _process(delta):
 	pass
 	
-func setItem(id, amount):
-	_itemId = id
-	_item = ItemHelper.get_item(_itemId)
+func setItem(item: GameItem, amount):
+	_itemId = item.id
+	_item = item
 	_itemCount = amount
 	_setText(str(_itemCount) + "x " + _item.name)
-	
+
 func _setText(newText):
 	text = newText
 
