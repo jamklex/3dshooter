@@ -4,21 +4,35 @@
 			"id": "0",
 			"amount_min": 10,
 			"amount_max": 50,
-			"chance": 0.6
+			"chance": 0.35
 		},
 		{
 			"id": "1",
-			"amount_fix": 2,
+			"amount_min": 1,
+			"amount_max": 3,
 			"chance": 0.2
 		},
 		{
 			"id": "2",
-			"amount_fix": 1,
-			"chance": 0.1
+			"amount_min": 2,
+			"amount_max": 5,
+			"chance": 0.15
 		},
 		{
 			"id": "3",
-			"amount_fix": 2,
+			"amount_min": 1,
+			"amount_max": 5,
+			"chance": 0.15
+		},
+		{
+			"id": "5",
+			"amount_min": 5,
+			"amount_max": 10,
+			"chance": 0.05
+		},
+		{
+			"id": "7",
+			"amount_fix": 3,
 			"chance": 0.1
 		}
 	]
