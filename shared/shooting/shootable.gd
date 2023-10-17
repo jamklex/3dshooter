@@ -14,6 +14,8 @@ func takeDamage(damage:int):
 	if currentHealth <= 0 and not died:
 		_die()
 		died = true
+		return true
+	return false
 
 func setStartHealth(newHealth:int):
 	health = newHealth
