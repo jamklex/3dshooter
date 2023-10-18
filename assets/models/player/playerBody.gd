@@ -51,7 +51,7 @@ func _exit_tree():
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	fade_interaction_feedback()
+	fade_interaction_feedback(0.5*delta)
 	if inDialog:
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -85,12 +85,12 @@ func _playAnimation(animationName:String):
 	if _animation_player.current_animation != animationName:
 		_animation_player.play(animationName)
 
-func fade_interaction_feedback(rate = 0.025 as float, reset = false as bool):
+func fade_interaction_feedback(rate = 0.5 as float, reset = false as bool):
 	var new_modulate = interactionFeedback.modulate
 	if reset:
 		new_modulate.a = 1
 	if new_modulate.a > 0:
-		new_modulate.a = new_modulate.a * (1 - rate)
+		new_modulate.a = new_modulate.a - rate
 	interactionFeedback.set_modulate(new_modulate)
 
 func handle_show_menu():
