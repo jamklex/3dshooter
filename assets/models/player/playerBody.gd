@@ -87,10 +87,8 @@ func _playAnimation(animationName:String):
 
 func fade_interaction_feedback(rate = 0.5 as float, reset = false as bool):
 	var new_modulate = interactionFeedback.modulate
-	if reset:
-		new_modulate.a = 1
-	if new_modulate.a > 0:
-		new_modulate.a = new_modulate.a - rate
+	var target_value = 1 if reset else 0
+	new_modulate.a = max(target_value, new_modulate.a - rate)
 	interactionFeedback.set_modulate(new_modulate)
 
 func handle_show_menu():
