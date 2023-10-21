@@ -7,8 +7,10 @@
 		"answer": "You have a good eye for a trader my friend.\nI'm interested in most items yes, and my prices are guaranteed to be the best on this ship!\nJust come by when You have something of interest.",
 		"actions": [
 			{
-				"method": "unlockSeller",
-				"payload": []
+				"method": "unlock",
+				"payload": [
+					"SALVAGER_STORE"
+				]
 			},
 			{
 				"method": "succeedQuest",

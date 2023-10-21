@@ -1,19 +1,28 @@
 {
 	"answer": "Hey, how can i help you?",
 	"options": {
+		"I wanna sell some stuff": {
+			"condition": {
+				"result": true,
+				"method": "hasUnlocked",
+				"payload": [
+					"SALVAGER_STORE"
+				]
+			},
+			"method": "openSellLoot",
+			"payload": [
+				"res://data/price_lists/default.json"
+			]
+		},
 		"Let me see my saved loot!": {
 			"condition": {
 				"result": true,
-				"method": "hasStoreInventoryItems",
-				"payload": []
+				"method": "hasUnlocked",
+				"payload": [
+					"SALVAGER"
+				]
 			},
 			"method": "openLastLoot",
-			"payload": [
-				"res://data/price_lists/salvager_taxes.json"
-			]
-		},
-		"I wanna sell some stuff": {
-			"method": "openSellLoot",
 			"payload": [
 				"res://data/price_lists/default.json"
 			]

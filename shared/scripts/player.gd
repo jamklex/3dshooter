@@ -7,6 +7,8 @@ var cam: Camera3D
 var bodyStartPos: Vector3
 var bodyLastPos: Vector3
 var money:int = 0
+var taxes:float
+var unlocks:Array
 var run_inventory: Inventory
 var inventory: Inventory
 var store_inventory: Inventory
@@ -22,6 +24,8 @@ func _init():
 	run_inventory = Inventory.from(loadDict.get("runInv", {}))
 	inventory = Inventory.from(loadDict.get("inv", {}))
 	store_inventory = Inventory.from(loadDict.get("storeInv", {}))
+	taxes = loadDict.get("taxes", 100)
+	unlocks = loadDict.get("unlocks", [])
 
 func save():
 	print("save player")
@@ -30,7 +34,9 @@ func save():
 	var saveDict = {
 		"runInv": run_inventory.to_dict(),
 		"inv": inventory.to_dict(),
-		"storeInv": store_inventory.to_dict()
+		"storeInv": store_inventory.to_dict(),
+		"taxes": taxes,
+		"unlocks": unlocks
 	}
 	var file = FileAccess.open(_savePath, FileAccess.WRITE)
 	file.store_line(JSON.stringify(saveDict, "\t"))
