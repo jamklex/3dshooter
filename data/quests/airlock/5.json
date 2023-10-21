@@ -25,6 +25,12 @@
 				"payload": [
 					"missions"
 				]
+			},
+			{
+				"method": "unlock",
+				"payload": [
+					"SALVAGER"
+				]
 			}
 		]
 	}

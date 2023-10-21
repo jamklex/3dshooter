@@ -30,6 +30,12 @@ func add_quest_dialogs(npc_id, currentDialog):
 # generic methods under this line #
 ###################################
 
+func hasUnlocked(payload: Array):
+	for key in payload:
+		if !player.unlocks.has(key):
+			return false
+	return true
+
 func openLastLoot(payload: Array):
 	if currentTrade:
 		return null
@@ -37,9 +43,9 @@ func openLastLoot(payload: Array):
 	var tradeInv = Inventory.from({
 		Inventory.GOLD_ITEM: player.inventory.count(Inventory.GOLD_ITEM)
 	})
+	var taxList = Trader.get_taxes(FileUtil.getContentAsJson(payload[0]))
 	currentTrade = Trade.new_instance(tradeInv, player.store_inventory,
-		onLastLootAction, "Inventory", "Your saved loot",
-		FileUtil.getContentAsJson(payload[0]))
+		onLastLootAction, "Inventory", "Your saved loot", taxList)
 	add_child(currentTrade)
 	player.body.setInDialog(true)
 	return currentTrade

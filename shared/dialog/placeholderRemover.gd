@@ -5,7 +5,7 @@ class_name PlaceholderRemover
 static func sanitize(content:String) -> String:
 	var color = Color.LIME_GREEN as Color
 	var mapping = {
-		"SALVAGER_FEE_PERCENT": "???",
+		"SALVAGER_FEE_PERCENT": Trader.get_tax_value_percent(),
 	}
 	for action in InputMap.get_actions():
 		mapping["ACTION_" + action] = InteractionHelper.control_key_for_event(action)
