@@ -38,7 +38,6 @@ static func new_instance(playerInv: Inventory, otherInv: Inventory,
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	onAction.call(Actions.LOAD)
-#	if priceList:
 	var gold_amount = playerInventory.count(Inventory.GOLD_ITEM)
 	if gold_amount == 0:
 		playerInventory.add(Inventory.GOLD_ITEM, 0)
