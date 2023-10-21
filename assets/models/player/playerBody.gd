@@ -53,6 +53,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	fade_interaction_feedback(0.5*delta)
 	if inDialog:
+		_playAnimation("idle")
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_strength

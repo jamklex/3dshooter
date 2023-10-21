@@ -5,21 +5,19 @@ class_name Dummy
 @export var respawnTime:int
 
 var _spawnTimer:Timer
+@onready var _shootable:Shootable = $shootable
 
 func _ready():
+	if _spawnTimer:
+		return
 	_spawnTimer = Timer.new()
+	_spawnTimer.one_shot = true
 	_spawnTimer.timeout.connect(_respawn)
 	add_child(_spawnTimer)
 
 func _respawn():
-	var packedScene = load(respawn_scene_path) as PackedScene
-	if not packedScene:
-		return
-	var newDummy = packedScene.instantiate() as Dummy
-	WorldUtil.add_child(newDummy)
-	newDummy.global_position = global_position
-	newDummy.global_rotation = global_rotation
-	queue_free()
+	visible = true
+	_shootable.resetHealth()
 
 func hideAndStartRespawnTimer():
 	if not visible:

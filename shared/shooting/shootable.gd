@@ -7,6 +7,9 @@ var died:bool = false
 signal healthReachedZero
 signal onDamageTaken
 
+func resetHealth():
+	currentHealth = health
+	died = false
 
 func takeDamage(damage:int):
 	onDamageTaken.emit(damage)

@@ -17,9 +17,7 @@ static func empty() -> Inventory:
 	return Inventory.new()
 
 func duplicate() -> Inventory:
-	var inv = Inventory.new()
-	inv.items = items.duplicate(true)
-	return inv
+	return Inventory.from(to_dict())
 
 func item_ids() -> Array:
 	return items.keys()
@@ -34,13 +32,13 @@ func moveItem(toInv:Inventory, id:String):
 	var amount = count(id)
 	toInv.add(id, amount)
 	items.erase(id)
-	onRemoveItem.emit([id,0])
+	onRemoveItem.emit([id,amount])
 
 func moveAllItems(toInv:Inventory):
 	for key in items.keys():
 		toInv.add(key, count(key))
 		items.erase(key)
-		onRemoveItem.emit([key,0])
+		onRemoveItem.emit([key,count(key)])
 
 func remove(id:String, amount:int) -> bool:
 	if !check(id, amount):
