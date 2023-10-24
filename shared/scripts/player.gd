@@ -50,6 +50,7 @@ func save():
 	file.store_line(JSON.stringify(saveDict, "\t"))
 
 func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
+	body._shooter.putWeaponAway()
 	bodyStartPos = pos
 	get_tree().change_scene_to_file("res://scenes/" + sceneName + "/_main.tscn")
 	inMissionMap = sceneName != "ship"

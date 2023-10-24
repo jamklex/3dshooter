@@ -38,7 +38,7 @@ func addWeapon(scenePath:String):
 	if not weapon:
 		return
 	weapon.visible = false
-	_reloadWeapon(weapon)
+	weapon.reload(weapon.magSize)
 	weapons.append(weapon)
 	weaponHolder.add_child(weapon)
 	
@@ -116,7 +116,7 @@ func _removeWeaponForItemId(weaponId:String):
 			
 func _removeWeapon(weapon:Weapon):
 	if weapon == currentWeapon:
-		_putWeaponAway()
+		putWeaponAway()
 	weapons.erase(weapon)
 	weaponHolder.remove_child(weapon)
 
@@ -261,7 +261,7 @@ func _switchAim():
 
 func _handleWeaponSwitching():
 	if Input.is_action_just_pressed("putWeaponAway"):
-		_putWeaponAway()
+		putWeaponAway()
 	if weapons.size() == 0:
 		return 
 	if Input.is_action_just_pressed("nextWeapon"):
@@ -269,7 +269,7 @@ func _handleWeaponSwitching():
 	elif Input.is_action_just_pressed("prevWeapon"):
 		_prevWeapon()
 		
-func _putWeaponAway():
+func putWeaponAway():
 	_putCurrentWeaponAway()
 	if aiming:
 		_switchAim()
