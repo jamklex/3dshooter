@@ -37,8 +37,10 @@ func addWeapon(scenePath:String):
 	var weapon = packedScene.instantiate() as Weapon
 	if not weapon:
 		return
+	if _getWeaponForScenePath(scenePath):
+		return
 	weapon.visible = false
-	weapon.reload(weapon.magSize)
+	_reloadWeapon(weapon)
 	weapons.append(weapon)
 	weaponHolder.add_child(weapon)
 	
@@ -58,18 +60,21 @@ func putBulletsToInventory():
 	_addRestAmmo(currentWeapon.weaponType, restMun)
 	
 func handlePlayerInventoryChanged(payload:Array):
+	_checkForMunitionAction(payload)
+	_checkForWeaponAction(payload)
+			
+func _checkForMunitionAction(payload:Array):
 	var itemId = payload[0]
-	if not _MUNITION_MAP.has(itemId):
-		return
-	_refreshMagInfo()
+	if _MUNITION_MAP.has(itemId):
+		_refreshMagInfo()
 
-func checkForWeaponAction(payload:Array):
+func _checkForWeaponAction(payload:Array):
 	var itemId = payload[0]
 	var newAmount = int(payload[1])
 	if not _isWeaponId(itemId):
 		return
 	var gotWeapon = newAmount >= 1
-	var weaponAlreadyInitizalized = _weaponAlreadyInitizalized(itemId)
+	var weaponAlreadyInitizalized = _hasWeaponWithId(itemId)	
 	if gotWeapon and weaponAlreadyInitizalized:
 		return
 	if not gotWeapon and not weaponAlreadyInitizalized:
@@ -90,14 +95,8 @@ func handle():
 	_handleReloading()
 	_handleShooting()
 	
-func _weaponAlreadyInitizalized(weaponId:String):
-	var scenePathForWeaponId = _ITEM_WEAPON_MAP.get(weaponId)
-	if not scenePathForWeaponId:
-		return
-	for weapon in weapons:
-		if weapon.scene_file_path == scenePathForWeaponId:
-			return true
-	return false
+func _hasWeaponWithId(weaponId:String):
+	return _getWeaponForItemId(weaponId) != null
 	
 func _addWeaponForItemId(weaponId:String):
 	var scenePathForWeaponId = _ITEM_WEAPON_MAP.get(weaponId)
@@ -106,13 +105,30 @@ func _addWeaponForItemId(weaponId:String):
 	addWeapon(scenePathForWeaponId)
 	
 func _removeWeaponForItemId(weaponId:String):
+	var weaponForId = _getWeaponForItemId(weaponId)
+	if not weaponForId:
+		return
+	_removeWeapon(weaponForId)
+
+func _getWeaponForItemId(weaponId:String):
 	var scenePathForWeaponId = _ITEM_WEAPON_MAP.get(weaponId)
 	if not scenePathForWeaponId:
-		return
+		return null
+	return _getWeaponForScenePath(scenePathForWeaponId)
+	
+func _getWeaponForScenePath(scenePath:String):
 	for weapon in weapons:
-		if weapon.scene_file_path == scenePathForWeaponId:
-			_removeWeapon(weapon)
-			return
+		if weapon.scene_file_path == scenePath:
+			return weapon
+	return null
+			
+func _getWeaponIdForScenePath(scenePath:String):
+	var index = 0
+	for path in _ITEM_WEAPON_MAP.values():
+		if path == scenePath:
+			return _ITEM_WEAPON_MAP.keys()[index]
+		index += 1
+	return null
 			
 func _removeWeapon(weapon:Weapon):
 	if weapon == currentWeapon:
@@ -140,7 +156,7 @@ func _handleReloading():
 		return
 	if currentWeapon.isMagFull():
 		return
-	if _getRestAmmo(currentWeapon.weaponType) == 0:
+	if _getAmmoInInventory(currentWeapon.weaponType) <= 0:
 		return
 	if aiming:
 		aimOverride.stop()
@@ -161,11 +177,13 @@ func _reload():
 		aimOverride.start()
 		
 func _reloadWeapon(weapon:Weapon):
-	var restAmmo = _getRestAmmo(weapon.weaponType)
-	if restAmmo == -1:
-		weapon.reload(weapon.magSize)
+	if useRealMunition:
+		var restAmmo = _getAmmoInInventory(weapon.weaponType)
+		if restAmmo <= 0:
+			return
+		_removeRestAmmo(weapon.weaponType, weapon.reload(restAmmo))
 	else:
-		_removeRestAmmo(weapon.weaponType, weapon.reload(_getRestAmmo(weapon.weaponType)))
+		weapon.reload(weapon.magSize)
 	
 func _removeRestAmmo(weaponType:Weapon.WeaponType, removeShoots:int):
 	var munitionId = _MUNITION_MAP.get(weaponType)
@@ -186,16 +204,11 @@ func _refreshMagInfo():
 	if reloading:
 		magInfoText = "Reloading..."
 	elif currentWeapon:
-		var restAmmo = _getRestAmmo(currentWeapon.weaponType)
-		if restAmmo == -1:
-			restAmmo = "∞"
+		var restAmmo = "∞"
+		if useRealMunition:
+			restAmmo = _getAmmoInInventory(currentWeapon.weaponType)
 		magInfoText = str(currentWeapon.restMagShoots," / ", restAmmo)
 	_magInfo.text = magInfoText
-	
-func _getRestAmmo(weaponType:Weapon.WeaponType):
-	if not useRealMunition:
-		return -1
-	return _getAmmoInInventory(weaponType)
 	
 func _getAmmoInInventory(weaponType:Weapon.WeaponType):
 	var munitionId = _MUNITION_MAP.get(weaponType)

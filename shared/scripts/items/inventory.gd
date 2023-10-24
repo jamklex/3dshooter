@@ -68,7 +68,7 @@ func check(id:String, minAmount:int):
 func count(id:String) -> int:
 	if items.has(id):
 		return items.get(id).amount
-	return -1
+	return 0
 
 func is_empty():
 	return items.keys().is_empty()
