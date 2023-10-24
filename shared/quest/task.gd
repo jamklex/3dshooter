@@ -15,25 +15,25 @@ var index: int
 @onready var short_ui = $short as Control
 const scene = preload("res://shared/quest/scenes/task.tscn")
 
-static func from(quest_listener: Callable, dict: Dictionary, index: int, quest_name: String = "") -> Task:
+static func from(_quest_listener: Callable, dict: Dictionary, _index: int, quest_name: String = "") -> Task:
 	var task = scene.instantiate()
-	task.index = index
-	task.quest_listener = quest_listener
+	task.index = _index
+	task.quest_listener = _quest_listener
 	if dict.get("active", false):
 		task.set_active()
 	task.title = dict.get("name", quest_name)
-	var source = QuestSource.create(task.title if quest_name.is_empty() else quest_name, index)
+	var source = QuestSource.create(task.title if quest_name.is_empty() else quest_name, _index)
 	task.desc = dict.get("desc")
 	task.short = dict.get("short")
 	task.status = Status.UNKNOWN if dict.get("hide", true) else Status.KNOWN
 	if dict.has("dialog"):
 		task.dialog = TaskDialog.from(source, dict.get("dialog"), task.title)
 	if dict.has("success"):
-		task.success_result = TaskResult.from(quest_listener, dict.get("success"))
+		task.success_result = TaskResult.from(_quest_listener, dict.get("success"))
 	if dict.has("failure"):
-		task.fail_result = TaskResult.from(quest_listener, dict.get("failure"))
-	var rewards = dict.get("rewards", [])
-	for _r in rewards:
+		task.fail_result = TaskResult.from(_quest_listener, dict.get("failure"))
+	var _rewards = dict.get("rewards", [])
+	for _r in _rewards:
 		for _key in _r.keys():
 			task.rewards.push_back(DropItem.create_fix(_key, _r[_key]))
 	return task
@@ -42,7 +42,7 @@ enum Status {
 	UNKNOWN, KNOWN, ACTIVE, SUCCEEDED, FAILED
 }
 
-func _process(delta):
+func _process(_delta):
 	refresh_data()
 	if status != Status.ACTIVE:
 		return

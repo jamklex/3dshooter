@@ -4,11 +4,11 @@ var quest_matcher: Dictionary = {}
 static var quests: Array = []
 const _savePath: String = "user://quests.json"
 
-func load_quest(path: String, save_state: Dictionary) -> Quest:
+func load_quest(path: String, state: Dictionary) -> Quest:
 	var tasks = []
 	for file_name in FileUtil.getFilesAt(path):
 		tasks.push_back(FileUtil.getContentAsJson(file_name))
-	return Quest.from(path, tasks, save_state)
+	return Quest.from(path, tasks, state)
 
 func load_quests(path: String) -> Array:
 	if !path.ends_with("/"):
@@ -31,10 +31,10 @@ func attach_quests(questlog: VBoxContainer):
 		questlog.add_child(quest)
 		quest.refresh_data()
 
-func get_quest(name: String) -> Quest:
+func get_quest(_name: String) -> Quest:
 	var _quests = get_quests()
 	for _q in _quests:
-		if quest_matcher.get(name, name) == _q.title:
+		if quest_matcher.get(_name, _name) == _q.title:
 			return _q
 	return null
 
@@ -47,8 +47,8 @@ func get_quests() -> Array:
 func reload_quests():
 	quests = load_quests("res://data/quests")
 
-func get_active_quests() -> Array:
-	return get_quests().filter(func(q): q.status == Quest.Status.ACTIVE)
+#func get_active_quests() -> Array:
+#	return get_quests().filter(func(q): q.status == Quest.Status.ACTIVE)
 
 func save_progress(_quest: Quest):
 	var content = save_state()

@@ -18,9 +18,9 @@ static func from(_source: QuestSource, dict: Dictionary, _quote: String, _npc: S
 	dialog.color = dict.get("color", _color)
 	dialog.quote = _quote
 	dialog.answer = dict.get("answer", "")
-	var options = dict.get("options", {})
-	for key in options.keys():
-		dialog.add_option(TaskDialog.from(_source, options.get(key), key, _npc, dialog.color))
+	var _options = dict.get("options", {})
+	for key in _options.keys():
+		dialog.add_option(TaskDialog.from(_source, _options.get(key), key, _npc, dialog.color))
 	for action in dict.get("actions", []):
 		dialog.add_action(Action.from(action))
 	return dialog

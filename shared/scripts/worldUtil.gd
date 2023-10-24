@@ -15,7 +15,7 @@ func createDialog(npc_id:String, dialog_data_path:String) -> Dialog:
 		add_child(currentDialog)
 	return currentDialog
 
-func add_quest_dialogs(npc_id, currentDialog):
+func add_quest_dialogs(npc_id, _currentDialog):
 	for _quest in QuestLoader.get_quests():
 		if _quest.status != Quest.Status.ACTIVE:
 			continue
@@ -25,7 +25,7 @@ func add_quest_dialogs(npc_id, currentDialog):
 		var additional_dialog = _task.dialog as TaskDialog
 		if !additional_dialog or additional_dialog.npc != npc_id:
 			continue
-		currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
+		_currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
 
 # generic methods under this line #
 ###################################
@@ -87,7 +87,7 @@ func onSellLootAction(action: Trade.Actions, payload: Array = []):
 func teleportToMissionMap(payload: Array):
 	player.teleport("level_" + str(payload[0]))
 	
-func teleportToLowerShip(payload: Array = []):
+func teleportToLowerShip(_payload: Array = []):
 	player.teleport("ship", Vector3(-1,-3,-12))
 	
 func removeFromPlayerInventory(payload: Array = []) -> bool:
@@ -102,7 +102,7 @@ func addToPlayerInventory(payload: Array):
 func checkPlayerInventory(payload: Array):
 	return player.inventory.check(payload[0], payload[1])
 	
-func hasStoreInventoryItems(payload: Array = []):
+func hasStoreInventoryItems(_payload: Array = []):
 	return !player.store_inventory.is_empty()
 
 func quitGame():

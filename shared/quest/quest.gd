@@ -8,10 +8,10 @@ var status: Status = Status.LOCKED
 const scene = preload("res://shared/quest/scenes/quest.tscn")
 @onready var layout = $container
 
-static func from(path: String, _tasks: Array, saved: Dictionary = {}) -> Quest:
+static func from(_path: String, _tasks: Array, saved: Dictionary = {}) -> Quest:
 	var quest = scene.instantiate() as Quest
-	quest.path = path
-	var auto_unlock = path.ends_with("tutorial/")
+	quest.path = _path
+	var auto_unlock = quest.path.ends_with("tutorial/")
 	if auto_unlock:
 		quest.unlock()
 		quest.set_status(Status.ACTIVE)
@@ -39,7 +39,7 @@ func save_dict() -> Dictionary:
 	save["q"] = status
 	return save
 
-func _process(delta):
+func _process(_delta):
 	refresh_data()
 
 func refresh_data():
@@ -48,9 +48,10 @@ func refresh_data():
 	for _task in tasks:
 		if _task.status <= Task.Status.UNKNOWN:
 			continue
-		var task_node = layout.get_node("tasks")
-		task_node.add_child(_task)
-		task_node.move_child(_task, 0)
+		if not _task.get_parent():
+			var task_node = layout.get_node("tasks")
+			task_node.add_child(_task)
+			task_node.move_child(_task, 0)
 
 func add_task(_task: Task):
 	tasks.push_back(_task)

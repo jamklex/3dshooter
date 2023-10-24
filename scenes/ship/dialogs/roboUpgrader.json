@@ -3,6 +3,13 @@
 	"options":
 	{
 		"Let me see your upgrades!": {
+			"condition": {
+				"result": true,
+				"method": "hasUnlocked",
+				"payload": [
+					"BODY_MANAGER"
+				]
+			},
 			"method": "openRoboUpgradeShop",
 			"paylod": [
 				"1"

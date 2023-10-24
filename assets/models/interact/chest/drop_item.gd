@@ -20,17 +20,17 @@ static func get_from(json: Dictionary):
 		item.amount_max = json.get("amount_max")
 	return item
 
-static func create_fix(id: String, amount_fix: int = 1):
+static func create_fix(_id: String, _amount_fix: int = 1):
 	var item = DropItem.new()
-	item.id = id
-	item.amount_fix = amount_fix
+	item.id = _id
+	item.amount_fix = _amount_fix
 	return item
 
-static func create_random(id: String, amount_min: int, amount_max: int):
+static func create_random(_id: String, _amount_min: int, _amount_max: int):
 	var item = DropItem.new()
-	item.id = id
-	item.amount_min = amount_min
-	item.amount_max = amount_max
+	item.id = _id
+	item.amount_min = _amount_min
+	item.amount_max = _amount_max
 	item.fix_item = false
 	return item
 

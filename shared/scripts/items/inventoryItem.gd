@@ -5,11 +5,11 @@ class_name InventoryItem
 var item: GameItem
 var amount: int
 
-static func from(id: String, amount: int) -> InventoryItem:
-	var item = InventoryItem.new()
-	item.item = ItemHelper.get_item(id)
-	item.amount = amount
-	return item
+static func from(id: String, _amount: int) -> InventoryItem:
+	var _item = InventoryItem.new()
+	_item.item = ItemHelper.get_item(id)
+	_item.amount = _amount
+	return _item
 
 func add(value: int):
 	amount += value

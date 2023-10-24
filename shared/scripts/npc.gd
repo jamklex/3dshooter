@@ -15,7 +15,7 @@ func _ready():
 func can_interact():
 	return true
 
-func interact(player: Player):
+func interact(_player: Player):
 	startConversation()
 
 func startConversation():

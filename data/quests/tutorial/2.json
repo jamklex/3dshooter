@@ -36,6 +36,12 @@
 																		"payload": [
 																			"3"
 																		]
+																	},
+																	{
+																		"method": "unlock",
+																		"payload": [
+																			"BODY_MANAGER"
+																		]
 																	}
 																]
 															}

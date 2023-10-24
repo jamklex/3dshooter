@@ -6,19 +6,19 @@ var conditions: Array = []
 var actions: Array = []
 var quest_listener: Callable
 
-static func from(quest_listener: Callable, dict: Dictionary) -> TaskResult:
+static func from(_quest_listener: Callable, dict: Dictionary) -> TaskResult:
 	var result = TaskResult.new()
-	result.quest_listener = quest_listener
+	result.quest_listener = _quest_listener
 	for condition in dict.get("conditions", []):
 		result.add_condition(Condition.from(condition))
 	for action in dict.get("actions", []):
 		result.add_action(Action.from(action))
 	return result
 
-static func create(conditions: String, actions: String) -> TaskResult:
+static func create(_conditions: String, _actions: String) -> TaskResult:
 	var result = TaskResult.new()
-	result.conditions = conditions
-	result.actions = actions
+	result.conditions = _conditions
+	result.actions = _actions
 	return result
 
 func add_condition(condition: Condition):

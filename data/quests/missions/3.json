@@ -1,17 +1,17 @@
 {
 	"name": "Ship should be clean now",
 	"desc": "You've killed all creatures on the ship, go tell Madelyn about it.",
-	"short": "Kill every monster on the ship",
+	"short": "Talk to Madelyn",
 	"dialog": {
 		"npc": "CAPTAIN",
 		"answer": "Good, I'll tell the client about it.\nYou did well, here is Your split as a reward.\nWhenever You want to do something, just have a look at the blackboard to Your left, there You will find missions that I can give You.\nbetter rewards obvbiously will meen harder missions, keep that in mind.",
 		"actions": [
 			{
-				"method": "succeedQuest",
+				"method": "giveRewards",
 				"payload": []
 			},
 			{
-				"method": "giveRewards",
+				"method": "succeedQuest",
 				"payload": []
 			},
 			{

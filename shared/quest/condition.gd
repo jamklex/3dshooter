@@ -14,23 +14,22 @@ static func from(dict: Dictionary) -> Condition:
 func check() -> bool:
 	return Callable(self, method).bind(payload).call()
 
-func hasItemCount(payload: Array) -> bool:
+func hasItemCount(_payload: Array) -> bool:
 	var main_inventory = WorldUtil.player.inventory as Inventory
-	return main_inventory.check(payload[0], payload[1])
+	return main_inventory.check(_payload[0], _payload[1])
 
-func hasKillCountMin(payload: Array) -> bool:
-	var minKills = payload[0]
+func hasKillCountMin(_payload: Array) -> bool:
+	var minKills = _payload[0]
 	return WorldUtil.player.kills >= minKills
 
-func hasDummieCountMin(payload: Array) -> bool:
-	var minKills = payload[0]
+func hasDummieCountMin(_payload: Array) -> bool:
+	var minKills = _payload[0]
 	return WorldUtil.player.dummy_kills >= minKills
 
-func anyInSalvager(payload: Array = []) -> bool:
+func anyInSalvager(_payload: Array = []) -> bool:
 	var salvager_inventory = WorldUtil.player.store_inventory as Inventory
 	return !salvager_inventory.is_empty()
 
-func hasQuestKills(payload: Array = []) -> bool:
-	var questName = payload[0] as String
-	var killAmount = payload[1] as int
+func hasMissionKills(_payload: Array) -> bool:
+	var killAmount = _payload[0] as int
 	return WorldUtil.player.mission_kills >= killAmount
