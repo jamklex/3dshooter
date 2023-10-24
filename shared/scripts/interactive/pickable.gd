@@ -30,11 +30,11 @@ func interact(player: Player):
 	interactable = false
 	var message = default_feedback_messages
 	if !message:
-		var str = loot.pretty_name()
+		var interact_feedback = loot.pretty_name()
 		var amount = loot.get_amount()
 		if amount > 1:
-			str += " x" + str(amount)
-		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", str)
+			interact_feedback += " x" + str(amount)
+		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", interact_feedback)
 	self.queue_free()
 	return message
 
@@ -51,9 +51,9 @@ func remove_highlight():
 	get_material().emission_enabled = false
 
 func get_material():
-	var duplicate = mesh.get_surface_override_material(0).duplicate() # individual material
-	mesh.set_surface_override_material(0, duplicate)
-	return duplicate
+	var _duplicate = mesh.get_surface_override_material(0).duplicate() # individual material
+	mesh.set_surface_override_material(0, _duplicate)
+	return _duplicate
 
 func popup_message():
 	var message = default_popup_message

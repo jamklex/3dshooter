@@ -23,7 +23,7 @@ func _die():
 	_animation_player.play("knock_down")
 	_animation_player.animation_finished.connect(_dead)
 	
-func _dead(animationName):
+func _dead(_animationName):
 	queue_free()
 	
 func _getNextMoveVector2(prevMoveVector2:Vector2):
@@ -35,7 +35,7 @@ func _getNextMoveVector2(prevMoveVector2:Vector2):
 func _ready():
 	_shootable.setStartHealth(randi_range(1,10))
 
-func _physics_process(delta):		
+func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		
@@ -47,9 +47,6 @@ func _physics_process(delta):
 		currentMoveVector2 = _getNextMoveVector2(currentMoveVector2)
 		elapsedTimeWithCurrentMoveVector2 = 0
 		triggerTimeForNextMoveVector = randi_range(1,5) if currentMoveVector2 == Vector2.ZERO else 1
-
-#	if _wannaJump() and is_on_floor():
-#		velocity.y = JUMP_VELOCITY
 
 	var input_dir = currentMoveVector2
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -63,7 +60,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	move_and_slide()
-		
+
 func _playAnimation(animationName:String):
 	if _animation_player.current_animation != animationName:
 		_animation_player.play(animationName)

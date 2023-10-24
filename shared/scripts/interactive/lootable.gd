@@ -32,11 +32,11 @@ func interact(player: Player):
 		highlightTimer.stop()
 	var message = default_feedback_messages
 	if !message:
-		var str = loot.pretty_name()
+		var loot_feedback = loot.pretty_name()
 		var amount = loot.get_amount()
 		if amount > 1:
-			str += " x" + str(amount)
-		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", str)
+			loot_feedback += " x" + str(amount)
+		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", loot_feedback)
 	return message
 
 func highlight():
@@ -56,8 +56,8 @@ func open_animation():
 
 func get_random_item():
 	var drop_items = get_drop_items()
-	var total_chance = total_chance(drop_items)
-	var rng = randf_range(0, total_chance)
+	var _total_chance = total_chance(drop_items)
+	var rng = randf_range(0, _total_chance)
 	var current_chance = 0
 	for item in drop_items:
 		current_chance += item.chance
@@ -71,10 +71,10 @@ func get_drop_items():
 	return items
 
 func total_chance(items: Array):
-	var total_chance = 0
+	var _total_chance = 0
 	for item in items:
-		total_chance += item.chance
-	return total_chance
+		_total_chance += item.chance
+	return _total_chance
 
 func popup_message():
 	var message = default_popup_message

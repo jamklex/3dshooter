@@ -36,7 +36,7 @@ func set_interactable(value: bool):
 func can_interact():
 	return interactable
 
-func interact(player: Player):
+func interact(_player: Player):
 	execute_action(action)
 	await click_animation()
 	if(disable_on_interact):
@@ -64,9 +64,9 @@ func click_animation():
 	print("TODO: click animation")
 	return true
 
-func execute_action(action: Clickable.Actions):
+func execute_action(_action: Clickable.Actions):
 	var player = WorldUtil.player as Player
-	match (action):
+	match (_action):
 		Actions.PRINT_ON:
 			print("on")
 		Actions.PRINT_OFF:
@@ -77,16 +77,16 @@ func execute_action(action: Clickable.Actions):
 		Actions.AIR_VENT:
 			initiate_airvent()
 		_:
-			print("action " + str(action) + " is not implemented")
+			print("action " + str(_action) + " is not implemented")
 
 func initiate_airvent():
 	var player = get_player()
 	player.add_child(Trade.new_instance(player.run_inventory, Inventory.empty(), exit_airvent))
 	player.body.setInDialog(true)
 
-func exit_airvent(action: Trade.Actions, params: Array = []):
+func exit_airvent(_action: Trade.Actions, params: Array = []):
 	var player = get_player()
-	match (action):
+	match (_action):
 		Trade.Actions.SAVE_TRADE:
 			player.run_inventory = params[0]
 			var airlock_inv = params[1] as Inventory

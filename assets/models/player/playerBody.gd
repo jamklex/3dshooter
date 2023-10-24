@@ -11,7 +11,6 @@ extends CharacterBody3D
 @onready var _shooter:Shooter = $shooter
 @onready var _visuals = $visuals
 @onready var _animation_player = $visuals/mixamo_base/AnimationPlayer
-@onready var _model: Node3D = $Skin
 @onready var _camera_mount = $camera_mount
 @onready var _raycast = $camera_mount/camera_arm/camera_rot/camera/RayCast3D
 @onready var _ui = $camera_mount/camera_arm/camera_rot/camera/ui
