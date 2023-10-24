@@ -14,7 +14,10 @@ static func getContentAsString(filePath:String, cached:bool = true) -> String:
 	return content
 
 static func getContentAsJson(filePath:String, cached:bool = true):
-	return JSON.parse_string(getContentAsString(filePath, cached))
+	var strContent = getContentAsString(filePath, cached)
+	if strContent.is_empty():
+		strContent = "{}"
+	return JSON.parse_string(strContent)
 
 static func getFilesAt(folder:String) -> PackedStringArray:
 	if !folder.ends_with("/"):

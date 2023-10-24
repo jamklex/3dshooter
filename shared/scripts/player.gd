@@ -3,7 +3,6 @@ class_name Player
 
 
 var body: PlayerBody
-var cam: Camera3D
 var bodyStartPos: Vector3
 var bodyLastPos: Vector3
 var money:int = 0

@@ -24,17 +24,17 @@ enum Actions {
 }
 
 static func new_instance(playerInv: Inventory, otherInv: Inventory,
-		onTradeAction: Callable, leftInvName: String = "", rightInvName: String = "",
-		priceList: Dictionary = {}):
+		onTradeAction: Callable, _leftInvName: String = "", _rightInvName: String = "",
+		_priceList: Dictionary = {}):
 	var trade = load("res://shared/trade/trade.tscn").instantiate() as Trade
 	trade.playerInventory = playerInv.duplicate()
 	trade.otherInventory = otherInv.duplicate()
-	trade.priceList = priceList
+	trade.priceList = _priceList
 	trade.onAction = onTradeAction
-	trade.leftInvName = leftInvName
-	trade.rightInvName = rightInvName
+	trade.leftInvName = _leftInvName
+	trade.rightInvName = _rightInvName
 	return trade
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	onAction.call(Actions.LOAD)
@@ -44,10 +44,6 @@ func _ready():
 	playerMoney = gold_amount
 	refreshUi()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func _moveItemLeftToRightInv(id):
 	playerInventory.moveItemSome(otherInventory, id, 1)
 	if priceList:
@@ -59,7 +55,7 @@ func _moveItemRightToLeftInv(id):
 	otherInventory.moveItemSome(playerInventory, id, 1)
 	if priceList:
 		var itemPrice = getPrice(id)
-		diffMoney -= getPrice(id)
+		diffMoney -= itemPrice
 	refreshUi()
 	
 func getPrice(id):
@@ -102,9 +98,9 @@ func refreshUi():
 		setMoneyLabelVisibility(true)
 		refreshMoneyLabels()
 		
-func setMoneyLabelVisibility(visible:bool):
-	playerMoneyLabel.visible = visible
-	diffMoneyLabel.visible = visible
+func setMoneyLabelVisibility(_visible:bool):
+	playerMoneyLabel.visible = _visible
+	diffMoneyLabel.visible = _visible
 	
 func refreshInventoryLabels():
 	leftInvNameLabel.text = leftInvName

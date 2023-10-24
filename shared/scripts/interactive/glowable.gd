@@ -29,7 +29,7 @@ func _ready():
 	if flicker_enabled:
 		add_flicker_timer()
 
-func _process(delta):
+func _process(_delta):
 	if not active:
 		lights_off()
 

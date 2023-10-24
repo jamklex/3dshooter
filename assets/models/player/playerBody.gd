@@ -12,8 +12,6 @@ extends CharacterBody3D
 @onready var _visuals = $visuals
 @onready var _animation_player = $visuals/mixamo_base/AnimationPlayer
 @onready var _camera_mount = $camera_mount
-@onready var _camera: Camera3D = $camera_mount/camera_offset/camera_rot/camera
-@onready var _model: Node3D = $Skin
 @onready var _raycast: RayCast3D = $camera_mount/camera_offset/camera_rot/camera/RayCast3D
 @onready var _ui = $camera_mount/camera_offset/camera_rot/camera/ui
 @onready var inventory_output = _ui.get_node("RunInventory") as RichTextLabel
@@ -33,7 +31,6 @@ func _ready():
 		position = WorldUtil.player.bodyStartPos
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # locks mouse to screen
 	WorldUtil.player.body = self
-	WorldUtil.player.cam = get_node("Camera")
 	refresh_inventory_output()
 	fade_interaction_feedback(1)
 	QuestLoader.attach_quests(quests_ui)
@@ -46,7 +43,6 @@ func _ready():
 func _exit_tree():
 	WorldUtil.player.bodyLastPos = position
 	WorldUtil.player.body = null
-	WorldUtil.player.cam = null
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -135,16 +131,16 @@ func handle_show_inventory():
 	inventory_output.visible = !inventory_output.visible
 
 func handle_reward_queue():
-	var str = ""
+	var reward_message = ""
 	while not _reward_queue.is_empty():
 		var reward = _reward_queue.pop_front() as DropItem
-		str += reward.pretty_name()
+		reward_message += reward.pretty_name()
 		var amount = reward.get_amount()
 		if amount > 1:
-			str += " x" + str(amount)
-		str += "\n"
-	if not str.is_empty():
-		interactionFeedback.text = str
+			reward_message += " x" + str(amount)
+		reward_message += "\n"
+	if not reward_message.is_empty():
+		interactionFeedback.text = reward_message
 		fade_interaction_feedback(0, true)
 	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.inventory)
 

@@ -41,7 +41,7 @@ func moveAllItems(toInv:Inventory):
 		onRemoveItem.emit([key,count(key)])
 
 func remove(id:String, amount:int) -> bool:
-	if !check(id, amount):
+	if not check(id, amount):
 		return false
 	items.get(id).remove(amount)
 	onRemoveItem.emit([id,count(id)])
@@ -68,7 +68,7 @@ func check(id:String, minAmount:int):
 func count(id:String) -> int:
 	if items.has(id):
 		return items.get(id).amount
-	return 0
+	return -1
 
 func is_empty():
 	return items.keys().is_empty()
