@@ -146,6 +146,7 @@ func handle_reward_queue():
 	if not str.is_empty():
 		interactionFeedback.text = str
 		fade_interaction_feedback(0, true)
+	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.inventory)
 
 func refresh_inventory_output():
 	var inventory_text = ""

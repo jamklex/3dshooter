@@ -3,6 +3,13 @@
 	"options":
 	{
 		"Let me see your weapons!": {
+			"condition": {
+				"result": true,
+				"method": "hasUnlocked",
+				"payload": [
+					"WEAPON_SHOP"
+				]
+			},
 			"method": "openWeaponShop",
 			"payload": [
 				"1"

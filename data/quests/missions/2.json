@@ -18,7 +18,7 @@
 			{
 				"method": "hasQuestKills",
 				"payload": [
-					"missions", 15
+					"missions", 3
 				]
 			}
 		],
