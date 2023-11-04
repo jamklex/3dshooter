@@ -4,13 +4,13 @@
 	"short": "Ask Henry on how to use a gun",
 	"dialog": {
 		"npc": "WEAPON_SHOP",
-		"answer": "Y-you have to s-select a weapon with <ACTION_nextWeapon> f-first.",
+		"answer": "Y-you have to s-switch to a weapon of Y-your liking with <ACTION_nextWeapon> first.",
 		"options": {
 			"Aaand then I can shoot?": {
 				"answer": "N-no! Y-you have to aim f-first with <ACTION_aim> or else Y-you don't know where to s-shoot.\nThan Y-you can shoot with <ACTION_shoot>.",
 				"options": {
 					"And how do I reload?": {
-						"answer": "When Y-your ammo runs out in the bottom left corner, Y-you can press <ACTION_reload> ro reload Y-your gun.\nTry hitting some of the d-dummies accross.",
+						"answer": "When Y-your ammo runs out in the bottom left corner, Y-you can press <ACTION_reload> ro reload Y-your gun.\nT-try killing some of the d-dummies accross the room.",
 						"actions": [
 							{
 								"method": "succeedTask",
