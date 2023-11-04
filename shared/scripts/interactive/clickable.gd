@@ -90,11 +90,13 @@ func exit_airvent(_action: Trade.Actions, params: Array = []):
 		Trade.Actions.SAVE_TRADE:
 			player.run_inventory = params[0]
 			var airlock_inv = params[1] as Inventory
+			if airlock_inv.is_empty():
+				set_interactable(true)
 			airlock_inv.moveAllItems(player.store_inventory)
 			player.body.setInDialog(false)
 			player.body.refresh_inventory_output()
 		Trade.Actions.CANCEL_PRESSED:
-			if (disable_on_interact):
+			if disable_on_interact:
 				set_interactable(true)
 			player.body.setInDialog(false)
 		_:
