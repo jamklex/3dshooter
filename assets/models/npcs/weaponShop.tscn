@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct6xi61pryikk"]
+[gd_scene load_steps=8 format=3 uid="uid://ct6xi61pryikk"]
 
 [ext_resource type="Script" path="res://shared/scripts/npc.gd" id="1_pvg70"]
+[ext_resource type="PackedScene" uid="uid://b7dqffeclpvbf" path="res://assets/models/npcs/quest_marker.tscn" id="2_da7ue"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l6nf1"]
 height = 1.72733
@@ -34,3 +35,5 @@ mesh = SubResource("CapsuleMesh_yn8la")
 [node name="Front" type="MeshInstance3D" parent="Skin"]
 transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
 mesh = SubResource("BoxMesh_8ffvr")
+
+[node name="QuestMarker" parent="." instance=ExtResource("2_da7ue")]
