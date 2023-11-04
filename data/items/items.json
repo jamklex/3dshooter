@@ -40,5 +40,15 @@
 		"name": "Pistol ammo",
 		"desc": "Ammo for pistols",
 		"image": "res://data/items/img/1.png"
+	},
+	"8": {
+		"name": "Better pistol",
+		"desc": "Just a better version of the pistol",
+		"image": "res://data/items/img/1.png"
+	},
+	"9": {
+		"name": "Sprint module",
+		"desc": "With this module your robot can move faster",
+		"image": "res://data/items/img/1.png"
 	}
 }

@@ -10,9 +10,10 @@
 					"BODY_MANAGER"
 				]
 			},
-			"method": "openRoboUpgradeShop",
-			"paylod": [
-				"1"
+			"method": "openShop",
+			"payload": [
+				"res://data/shop_lists/roboUpgrader.json",
+				"res://data/price_lists/default.json"
 			]
 		},
 		"Bye": {}

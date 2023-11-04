@@ -1,0 +1,67 @@
+[gd_scene load_steps=12 format=3 uid="uid://3l2k8y8vrfxe"]
+
+[ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_3fm6f"]
+[ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_kc314"]
+[ext_resource type="AudioStream" uid="uid://cto8uile41c37" path="res://shared/shooting/weapons/pistol/reload.mp3" id="3_4g1nk"]
+[ext_resource type="Material" uid="uid://dox3f5n0qwghg" path="res://shared/shooting/weapons/betterPistol/material.tres" id="4_rfqmm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kul1t"]
+material = ExtResource("4_rfqmm")
+size = Vector3(0.05, 0.05, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nlqfi"]
+material = ExtResource("4_rfqmm")
+size = Vector3(0.05, 0.15, 0.05)
+
+[sub_resource type="Curve" id="Curve_hsh8o"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5rcwk"]
+curve = SubResource("Curve_hsh8o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lxdgb"]
+spread = 52.36
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 2.0
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_5rcwk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jjas"]
+albedo_color = Color(1, 1, 0, 1)
+backlight_enabled = true
+backlight = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vj2d7"]
+material = SubResource("StandardMaterial3D_6jjas")
+radius = 0.01
+height = 0.02
+
+[node name="betterPistol" type="Node3D" node_paths=PackedStringArray("muzzleFlare")]
+script = ExtResource("1_3fm6f")
+weaponName = "BetterPistol"
+description = "This is just a better version of a pistol"
+magSize = 7
+reloadTimeSecs = 5.0
+damage = 3
+shotSound = ExtResource("2_kc314")
+reloadSound = ExtResource("3_4g1nk")
+muzzleFlare = NodePath("muzzleFlare")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099, -0.111079)
+mesh = SubResource("BoxMesh_kul1t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nlqfi")
+
+[node name="muzzleFlare" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.100344, -0.317001)
+emitting = false
+amount = 100
+lifetime = 0.1
+one_shot = true
+visibility_aabb = AABB(-0.465536, -4, -4, 0.931073, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_lxdgb")
+draw_pass_1 = SubResource("SphereMesh_vj2d7")

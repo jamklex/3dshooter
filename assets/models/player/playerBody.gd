@@ -20,6 +20,7 @@ extends CharacterBody3D
 @onready var interactionFeedback = _ui.get_node("InteractionFeedback") as Label
 @onready var quests_ui = _ui.get_node("QuestHolder/quests") as VBoxContainer
 var inDialog = false
+var sprinting = false
 var _reward_queue = []
 
 func setInDialog(value:bool):
@@ -41,6 +42,7 @@ func _ready():
 	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.inventory)
 	_shooter.onShootableDie.connect(WorldUtil.player.onShootableKilled)
 	
+	
 func _exit_tree():
 	WorldUtil.player.bodyLastPos = position
 	WorldUtil.player.body = null
@@ -54,6 +56,8 @@ func _physics_process(delta):
 		return
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_strength
+	if Input.is_action_just_pressed("sprint") and is_on_floor():
+		sprinting = WorldUtil.player.inventory.check("9", 1)
 
 	handle_interaction()
 	handle_show_inventory()
@@ -65,18 +69,22 @@ func _physics_process(delta):
 
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var currentSpeed = speed
+	if sprinting:
+		currentSpeed *= 1.5
 	if _shooter.aiming:
 		_visuals.rotation = Vector3.ZERO
 	if direction:
 		_playAnimation("walking")
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		velocity.x = direction.x * currentSpeed
+		velocity.z = direction.z * currentSpeed
 		if not _shooter.aiming:
 			_visuals.look_at(position + direction)
 	else:
 		_playAnimation("idle")
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, currentSpeed)
+		velocity.z = move_toward(velocity.z, 0, currentSpeed)
+		sprinting = false
 	move_and_slide()
 
 func _playAnimation(animationName:String):

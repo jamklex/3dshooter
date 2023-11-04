@@ -17,7 +17,8 @@ var soundPlayer:AudioStreamPlayer
 signal onShootableDie
 
 const _ITEM_WEAPON_MAP = {
-	"6": "res://shared/shooting/weapons/pistol/_main.tscn"
+	"6": "res://shared/shooting/weapons/pistol/_main.tscn",
+	"8": "res://shared/shooting/weapons/betterPistol/_main.tscn",
 }
 
 const _MUNITION_MAP = {
@@ -169,8 +170,18 @@ func _startReload():
 	_reloadTimer.start(currentWeapon.reloadTimeSecs)
 	_refreshMagInfo()
 	
+func _cancelReload():
+	if not reloading:
+		return
+	soundPlayer.stop()
+	_reloadTimer.stop()
+	_endReload()
+	
 func _reload():
 	_reloadWeapon(currentWeapon)
+	_endReload()
+
+func _endReload():
 	reloading = false
 	_refreshMagInfo()
 	if aiming:
@@ -275,7 +286,7 @@ func _switchAim():
 func _handleWeaponSwitching():
 	if Input.is_action_just_pressed("putWeaponAway"):
 		putWeaponAway()
-	if weapons.size() == 0:
+	if weapons.size() <= 1:
 		return 
 	if Input.is_action_just_pressed("nextWeapon"):
 		_nextWeapon()
@@ -289,19 +300,19 @@ func putWeaponAway():
 	_refreshMagInfo()
 	
 func _nextWeapon():
-	_putCurrentWeaponAway()
 	var currentIndex = _getCurrentWeaponIndex()
+	_putCurrentWeaponAway()
 	currentIndex += 1
 	if currentIndex >= weapons.size():
 		currentIndex = 0
 	_setCurrentWeapon(weapons[currentIndex])
 	
 func _prevWeapon():
-	_putCurrentWeaponAway()
 	var currentIndex = _getCurrentWeaponIndex()
+	_putCurrentWeaponAway()
 	currentIndex -= 1
 	if currentIndex < 0:
-		currentIndex = weapons.size() -1
+		currentIndex = weapons.size() - 1
 	_setCurrentWeapon(weapons[currentIndex])
 	
 func _setCurrentWeapon(weapon:Weapon):
@@ -311,8 +322,10 @@ func _setCurrentWeapon(weapon:Weapon):
 	
 func _getCurrentWeaponIndex():
 	return weapons.find(currentWeapon)
-
+	
 func _putCurrentWeaponAway():
+	if reloading:
+		_cancelReload()
 	if not currentWeapon:
 		return
 	currentWeapon.visible = false

@@ -54,15 +54,43 @@ func onLastLootAction(action: Trade.Actions, payload: Array = []):
 	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
 		return
 	if action == Trade.Actions.SAVE_TRADE:
-		var inv = payload[0] as Inventory
-		var newPlayerGold = inv.count(Inventory.GOLD_ITEM)
-		if newPlayerGold < 0:
+		if not savePlayerTrade(payload[0]):
 			return false
-		inv.moveAllItems(player.inventory)
-		player.inventory.set_total(Inventory.GOLD_ITEM, newPlayerGold)
 		player.store_inventory = Inventory.empty()
 	player.body.setInDialog(false)
 	currentTrade = null
+	return true
+	
+func openShop(payload: Array):
+	if currentTrade:
+		return null
+	var shopDetails = FileUtil.getContentAsJson(payload[0])
+	var priceList = FileUtil.getContentAsJson(payload[1])
+	var playerInv = Inventory.from({
+		Inventory.GOLD_ITEM: player.inventory.count(Inventory.GOLD_ITEM)
+	})
+	var shopInv = Shop.create_shop_inventory(shopDetails["items"])
+	currentTrade = Trade.new_instance(playerInv, shopInv,
+		onShopAction, "Shopping cart", shopDetails["name"], priceList)
+	add_child(currentTrade)
+	player.body.setInDialog(true)
+	return currentTrade
+	
+func onShopAction(action: Trade.Actions, payload: Array = []):
+	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
+		return
+	if action == Trade.Actions.SAVE_TRADE and not savePlayerTrade(payload[0]):
+		return false
+	player.body.setInDialog(false)
+	currentTrade = null
+	return true
+	
+func savePlayerTrade(shoppingCart:Inventory):
+	var newPlayerGold = shoppingCart.count(Inventory.GOLD_ITEM)
+	if newPlayerGold < 0:
+		return false
+	shoppingCart.moveAllItems(player.inventory)
+	player.inventory.set_total(Inventory.GOLD_ITEM, newPlayerGold)
 	return true
 
 func openSellLoot(payload: Array):

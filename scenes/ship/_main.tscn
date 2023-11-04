@@ -25,7 +25,7 @@
 [node name="_main" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_nxnoa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.111711, 0, -7.43068)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.111711, 0, -4.40712)
 interact_distance = 5
 
 [node name="cockpit" type="Node3D" parent="."]

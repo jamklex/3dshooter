@@ -10,9 +10,10 @@
 					"WEAPON_SHOP"
 				]
 			},
-			"method": "openWeaponShop",
+			"method": "openShop",
 			"payload": [
-				"1"
+				"res://data/shop_lists/weaponShop.json",
+				"res://data/price_lists/default.json"
 			]
 		},
 		"Bye": {}
