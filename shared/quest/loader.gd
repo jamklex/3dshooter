@@ -1,8 +1,27 @@
 extends Node
 
 var quest_matcher: Dictionary = {}
-static var quests: Array = []
+static var quests: Array[Quest] = []
 const _savePath: String = "user://quests.json"
+
+func _process(delta):
+	highlight_quest_npcs(quests)
+
+func highlight_quest_npcs(_quests: Array[Quest]):
+	var quest_npcs:Array[String] = []
+	var all_npcs = get_tree().get_nodes_in_group("npc").filter(func(n): return n is NPC)
+	for q in _quests:
+		var active_task = q.get_active_task()
+		if active_task == null:
+			continue
+		var active_dialog = active_task.dialog
+		if active_dialog != null:
+			quest_npcs.push_back(active_dialog.npc)
+	for n in all_npcs:
+		if quest_npcs.has(n.get("npc_id")):
+			n.show_quest_marker()
+		else:
+			n.hide_quest_marker()
 
 func load_quest(path: String, state: Dictionary) -> Quest:
 	var tasks = []
@@ -13,7 +32,7 @@ func load_quest(path: String, state: Dictionary) -> Quest:
 func load_quests(path: String) -> Array:
 	if !path.ends_with("/"):
 		path = path + "/"
-	var _quests = []
+	var _quests: Array[Quest] = []
 	var _saves = save_state()
 	for dir in DirAccess.get_directories_at(path):
 		var quest_path = path + dir
@@ -46,9 +65,6 @@ func get_quests() -> Array:
 
 func reload_quests():
 	quests = load_quests("res://data/quests")
-
-#func get_active_quests() -> Array:
-#	return get_quests().filter(func(q): q.status == Quest.Status.ACTIVE)
 
 func save_progress(_quest: Quest):
 	var content = save_state()

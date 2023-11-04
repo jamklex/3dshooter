@@ -1,7 +1,7 @@
 {
 	"name": "Get me on the ship please",
-	"desc": "Trish wants You to try out the airlock-System, go to the ship via Madelyn and stuff something inside an airlock",
-	"short": "Get on the ship and put something in an airlock",
+	"desc": "Trish wants You to try out the airlock-System, go to the shipwreck Madelyn found and stuff something inside an airlock",
+	"short": "Use an Airlock inside the shipwreck",
 	"dialog": {
 		"npc": "CAPTAIN",
 		"actions": [

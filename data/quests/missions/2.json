@@ -1,7 +1,7 @@
 {
 	"name": "Let me kill those creatures!",
 	"desc": "You need to clean the whole ship of those monsters.",
-	"short": "Kill every monster on the ship",
+	"short": "Kill every monster on the shipwreck",
 	"dialog": {
 		"npc": "CAPTAIN",
 		"actions": [

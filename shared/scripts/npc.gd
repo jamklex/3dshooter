@@ -8,9 +8,14 @@ var normalTransform: Transform3D
 @export var npc_id = "<NPC_ID>"
 const POPUP_MESSAGE_FORMAT = "Talk to <NPC_NAME>"
 @export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_message: String
+@onready var questMarker: Node3D = $QuestMarker
+var show_marker = false
 
 func _ready():
 	normalTransform = transform
+
+func _process(delta):
+	questMarker.visible = show_marker
 
 func can_interact():
 	return true
@@ -34,3 +39,9 @@ func popup_message():
 	if !message:
 		message = POPUP_MESSAGE_FORMAT.replace("<NPC_NAME>", npc_name)
 	return InteractionHelper.popup_message(message)
+
+func show_quest_marker():
+		show_marker = true
+
+func hide_quest_marker():
+		show_marker = false
