@@ -2,26 +2,27 @@ extends Node3D
 
 class_name ProceduralRoomGenerator
 
-var seed
+var _rng := RandomNumberGenerator.new()
+var seed: String
 var min_rooms: int
 var max_rooms: int
 
 func _ready():
+	_rng.set_seed(hash(seed))
 	# look foor start rooms and pick one
-	generate_level(seed)
+	generate_level()
 	# event: loading is done!
 	# start ai
 
-func generate_level(seed):
+func generate_level():
 	var available_doors = get_all_doors()
 	while available_doors.size() > 0:
 		var door = pick_door(available_doors)
-		load_next_map(door, door.get_any_map(seed))
+		load_next_map(door, door.get_any_map(_rng))
 		available_doors = get_all_doors().filter(func(d): return d.visible)
 
 func pick_door(doors: Array[Node]) -> ProceduralDoor:
-	# use seed
-	return doors.pick_random()
+	return doors[_rng.randi_range(0,doors.size()-1)]
 
 func load_next_map(starting_door: ProceduralDoor, map_scene: PackedScene):
 	var old_doors = get_all_doors()
@@ -32,7 +33,7 @@ func load_next_map(starting_door: ProceduralDoor, map_scene: PackedScene):
 	move_together(starting_door, new_map, target_door)
 	starting_door.visible = false
 	target_door.visible = false
-	# new_map.prepare_room(seed) # loot and stuff
+	# new_map.prepare_room(_rng) # loot and stuff
 
 func get_all_doors() -> Array[Node]:
 	return get_tree().get_nodes_in_group("door").filter(func(d): return d is ProceduralDoor)
