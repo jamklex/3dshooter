@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://cuby5ypm6o33u"]
+
+[ext_resource type="Script" path="res://scenes/test/door.gd" id="1_w0t4f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxl8c"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ng7mk"]
+material = SubResource("StandardMaterial3D_bxl8c")
+size = Vector3(1, 2, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmoyg"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2uwpt"]
+material = SubResource("StandardMaterial3D_rmoyg")
+size = Vector3(1, 2, 0.05)
+
+[node name="door" type="Node3D" groups=["door"]]
+script = ExtResource("1_w0t4f")
+
+[node name="side_1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.025)
+mesh = SubResource("BoxMesh_ng7mk")
+
+[node name="side_2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.025)
+mesh = SubResource("BoxMesh_2uwpt")

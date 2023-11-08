@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://crjnctkum74xn"]
+
+[ext_resource type="Script" path="res://scenes/test/map_1.gd" id="1_8n5l0"]
+[ext_resource type="PackedScene" uid="uid://c0xn6kt4cmxpp" path="res://assets/models/room/floor/long-floor.tscn" id="1_63gyg"]
+[ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="2_js8bw"]
+[ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://scenes/test/door.tscn" id="4_6pjpm"]
+[ext_resource type="PackedScene" uid="uid://68b2l1cv6wgm" path="res://scenes/test/map_2.tscn" id="5_dyww1"]
+
+[node name="map_1" type="Node3D"]
+script = ExtResource("1_8n5l0")
+
+[node name="long-floor" parent="." instance=ExtResource("1_63gyg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.177711, 0, 1.17053)
+
+[node name="long-floor" parent="long-floor" instance=ExtResource("1_63gyg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00445688, 0, -2.00939)
+
+[node name="player" parent="." instance=ExtResource("2_js8bw")]
+transform = Transform3D(0.107687, 0, -0.994185, 0, 1, 0, 0.994185, 0, 0.107687, -0.35503, -3.81842e-07, 0.59937)
+
+[node name="door" parent="." instance=ExtResource("4_6pjpm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.17116, 1, -0.5)
+map_options = Array[PackedScene]([ExtResource("5_dyww1")])
+
+[node name="door" parent="door" instance=ExtResource("4_6pjpm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.66421, 0.00721312, 4.29121)
+map_options = Array[PackedScene]([ExtResource("5_dyww1")])
+
+[node name="door" parent="door/door" instance=ExtResource("4_6pjpm")]
+transform = Transform3D(-0.642841, 0, -0.766, 0, 1, 0, 0.766, 0, -0.642841, 1.17616, 0.00721312, 3.65466)
+map_options = Array[PackedScene]([ExtResource("5_dyww1")])
