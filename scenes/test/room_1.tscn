@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b613h6pasmkv3"]
+[gd_scene load_steps=5 format=3 uid="uid://b613h6pasmkv3"]
 
 [ext_resource type="Script" path="res://scenes/test/roomGenerator.gd" id="1_dfgks"]
 [ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/room/floor/floor.tscn" id="1_kx35b"]
 [ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="2_sf20f"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://scenes/test/door.tscn" id="3_0ia0k"]
-[ext_resource type="PackedScene" uid="uid://8rymx281r7ui" path="res://scenes/test/room_2.tscn" id="4_80eo1"]
 
 [node name="room_1" type="Node3D"]
 script = ExtResource("1_dfgks")
@@ -23,8 +22,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.201826, -6.1281e-07, 0.755
 
 [node name="door" parent="." instance=ExtResource("3_0ia0k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.79516, 0.999998, -0.151191)
-map_options = Array[PackedScene]([ExtResource("4_80eo1")])
+map_options = Array[String](["res://scenes/test/room_2.tscn"])
 
 [node name="door2" parent="." instance=ExtResource("3_0ia0k")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 1, 3.82444)
-map_options = Array[PackedScene]([ExtResource("4_80eo1")])
+map_options = Array[String](["res://scenes/test/room_2.tscn"])
