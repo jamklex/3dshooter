@@ -1,0 +1,3 @@
+extends ProceduralRoom
+
+class_name ProceduralStartRoom

@@ -14,7 +14,7 @@ var show_marker = false
 func _ready():
 	normalTransform = transform
 
-func _process(delta):
+func _process(_delta):
 	questMarker.visible = show_marker
 
 func can_interact():

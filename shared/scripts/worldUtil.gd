@@ -113,7 +113,8 @@ func onSellLootAction(action: Trade.Actions, payload: Array = []):
 	return true
 
 func teleportToMissionMap(payload: Array):
-	player.teleport("level_" + str(payload[0]))
+	player.save()
+	add_child(ProceduralRoomGenerator.from_seed(str(payload[0])))
 	
 func teleportToLowerShip(_payload: Array = []):
 	player.teleport("ship", Vector3(-1,-3,-12))

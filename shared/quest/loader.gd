@@ -4,7 +4,7 @@ var quest_matcher: Dictionary = {}
 static var quests: Array[Quest] = []
 const _savePath: String = "user://quests.json"
 
-func _process(delta):
+func _process(_delta):
 	highlight_quest_npcs(quests)
 
 func highlight_quest_npcs(_quests: Array[Quest]):

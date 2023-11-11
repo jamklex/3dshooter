@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://8rymx281r7ui"]
+[gd_scene load_steps=3 format=3 uid="uid://jd0on8jbrd62"]
 
 [ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/room/floor/floor.tscn" id="1_sauiw"]
-[ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://scenes/test/door.tscn" id="2_e2pxb"]
+[ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_e2pxb"]
 
 [node name="room_2" type="Node3D"]
 

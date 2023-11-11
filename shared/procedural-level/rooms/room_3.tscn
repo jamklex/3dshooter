@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ss7llujw3eue"]
+
+[ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_hc1r1"]
+[ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/room/floor/floor.tscn" id="2_qalo1"]
+[ext_resource type="PackedScene" uid="uid://b0txtjr8s3wtd" path="res://assets/models/room/stairs/stairs.tscn" id="3_w5f4d"]
+[ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="4_w1sa2"]
+
+[node name="room_1_tscn" type="Area3D"]
+script = ExtResource("1_hc1r1")
+
+[node name="floor" parent="." instance=ExtResource("2_qalo1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="stairs" parent="." instance=ExtResource("3_w5f4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -1.78548)
+
+[node name="floor2" parent="." instance=ExtResource("2_qalo1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -3.71727)
+
+[node name="door" parent="." instance=ExtResource("4_w1sa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499404, 2, -4.71562)
+map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])
+
+[node name="door2" parent="." instance=ExtResource("4_w1sa2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.503974, 1, 1.00267)
+map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])

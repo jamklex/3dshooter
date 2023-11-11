@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://c52benug0r5fc"]
+
+[ext_resource type="Script" path="res://shared/procedural-level/start-room.gd" id="1_plv57"]
+[ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/room/floor/floor.tscn" id="2_udb7k"]
+[ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="3_xi30b"]
+[ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="4_0jq2u"]
+
+[node name="start_1" type="Area3D"]
+script = ExtResource("1_plv57")
+
+[node name="floor" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="floor2" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="floor3" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
+
+[node name="floor4" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5)
+
+[node name="floor5" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 2)
+
+[node name="floor6" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="floor7" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="floor8" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="floor9" parent="." instance=ExtResource("2_udb7k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+
+[node name="player" parent="." instance=ExtResource("3_xi30b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22553, -3.81842e-07, 1.32717)
+
+[node name="door" parent="." instance=ExtResource("4_0jq2u")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 1, 3)
+map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])
+
+[node name="door2" parent="." instance=ExtResource("4_0jq2u")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 1, 6)
+map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])
+
+[node name="door3" parent="." instance=ExtResource("4_0jq2u")]
+transform = Transform3D(0.00415567, -0.00135542, -0.99999, -0.00472686, 0.999988, -0.00137506, 0.99998, 0.00473253, 0.00414922, 4, 1, 1)
+map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.505733, 0.86269, 0, -0.86269, -0.505733, 0, 15.325, 0)

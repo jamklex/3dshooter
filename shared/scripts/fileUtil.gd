@@ -19,12 +19,12 @@ static func getContentAsJson(filePath:String, cached:bool = true):
 		strContent = "{}"
 	return JSON.parse_string(strContent)
 
-static func getFilesAt(folder:String) -> PackedStringArray:
+static func getFilesAt(folder:String) -> Array[String]:
 	if !folder.ends_with("/"):
 		folder = folder + "/"
 	if cache.has(folder):
 		return cache.get(folder)
-	var files = [] as Array
+	var files = [] as Array[String]
 	for file in DirAccess.get_files_at(folder):
 		files.push_back(folder + file)
 	cache[folder] = files

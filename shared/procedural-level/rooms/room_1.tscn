@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2hkmg0b2yjt"]
+
+[ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_pd02j"]
+[ext_resource type="PackedScene" uid="uid://d2s7qbth7nb27" path="res://assets/models/room/floor/floor.tscn" id="2_gp3tg"]
+[ext_resource type="PackedScene" uid="uid://c0xn6kt4cmxpp" path="res://assets/models/room/floor/long-floor.tscn" id="3_o87gj"]
+[ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="4_3bl1v"]
+
+[node name="room_1_tscn" type="Area3D"]
+script = ExtResource("1_pd02j")
+
+[node name="floor" parent="." instance=ExtResource("2_gp3tg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+
+[node name="floor2" parent="." instance=ExtResource("2_gp3tg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1.5)
+
+[node name="floor3" parent="." instance=ExtResource("2_gp3tg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="long-floor" parent="." instance=ExtResource("3_o87gj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2.5)
+
+[node name="door" parent="." instance=ExtResource("4_3bl1v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 1, 2)
+map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])
+
+[node name="door2" parent="." instance=ExtResource("4_3bl1v")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 1, 2.5)
+map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])
+
+[node name="door3" parent="." instance=ExtResource("4_3bl1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, -2.5)
+map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])
