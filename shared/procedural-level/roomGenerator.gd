@@ -11,16 +11,16 @@ var _done: bool = false
 var _room_counter: int = 1
 const MAX_ROOM_COUNT: int = 25
 
-static func from_seed(seed: String) -> ProceduralRoomGenerator:
+static func from_seed(_seed: String) -> ProceduralRoomGenerator:
 	var prg = ProceduralRoomGenerator.new()
-	prg._rng.set_seed(hash(seed))
+	prg._rng.set_seed(hash(_seed))
 	print("seed loaded: " + str(prg._rng.get_seed()))
 	return prg
 
 func _ready():
 	get_tree().change_scene_to_packed(load(choose_start()))
 
-func _process(delta):
+func _process(_delta):
 	if _room_counter == 1:
 		generate_level()
 		print("rooms: " + str(_room_counter))
@@ -62,10 +62,9 @@ func get_viable_options(starting_door: ProceduralDoor) -> Dictionary:
 	var viable_options = {}
 	for option in starting_door.map_options:
 		var current_room = load(option).instantiate() as ProceduralRoom
-		var new_doors = current_room.get_available_doors()
 		var viable_doors = []
 		var i = 0
-		for current_door in new_doors:
+		for current_door in current_room.get_available_doors():
 			if size_check(starting_door, option, i):
 				viable_doors.push_back(current_door)
 			i += 1
