@@ -1,7 +1,10 @@
 extends CharacterBody3D
+class_name Enemy
 
 const SPEED = 3.0
 const ATTACK_RANGE = 1.7
+const VIEW_RANGE = 5
+const ROUTINE_RANGE = 2.5
 @onready var _anim_player = $visuals/mixamo_base/AnimationPlayer
 @onready var _anim_tree = $visuals/mixamo_base/AnimationTree
 @onready var _visuals = $visuals
@@ -12,8 +15,14 @@ var elapsedTimeWithCurrentMoveVector2 = 0.0
 var triggerTimeForNextMoveVector = 0.0
 @onready var nav_agent = $NavigationAgent3D
 var player:Node3D = null
+var playerSpotted = false
 var attacking = false
 var state_machine = null
+var start_pos = null
+var routine_pos_use_time = 10000
+var rng = RandomNumberGenerator.new()
+@onready var base_ray_cast = $visuals/mixamo_base/Armature/Skeleton3D/BoneAttachment3D/rayWrapper/RayCast3D
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -23,9 +32,6 @@ func _wannaJump():
 	
 func _die():
 	dieing = true
-	# TODO: play die animation faster 
-#	_anim_tree.advance(2.0)
-#	_anim_player.speed_scale = 2.0
 	_anim_tree.set("parameters/conditions/die", true)
 	
 func _getNextMoveVector2(prevMoveVector2:Vector2):
@@ -37,30 +43,80 @@ func _getNextMoveVector2(prevMoveVector2:Vector2):
 func _ready():
 	_shootable.setStartHealth(randi_range(1,10))
 	state_machine = _anim_tree.get("parameters/playback")
+	start_pos = position
+	base_ray_cast.enabled = false
+	rng.randomize()
 	
 func _get_player():
 	if WorldUtil.player and WorldUtil.player.body:
 		return WorldUtil.player.body
 	
-func _get_next_pos():
-	if not player:
-		player = _get_player()
+func _get_next_pos_to_player():
 	if not player:
 		return Vector3.ZERO
 	nav_agent.target_position = player.global_position
 	return nav_agent.get_next_path_position()
 	
-func _is_in_range():
+func _get_random_next_pos():
+	var new_random_pos = start_pos
+	new_random_pos.x = rng.randi_range(start_pos.x - ROUTINE_RANGE, start_pos.x + ROUTINE_RANGE)
+	new_random_pos.z = rng.randi_range(start_pos.z - ROUTINE_RANGE, start_pos.z + ROUTINE_RANGE)
+	return new_random_pos
+
+func _routine_pos_reached():
+	if not nav_agent.target_position:
+		return false
+	return position.distance_to(nav_agent.target_position) < 1
+
+func _get_next_routine_pos(delta):
+	routine_pos_use_time += delta
+	if routine_pos_use_time >= 1 or _routine_pos_reached():
+		nav_agent.target_position = _get_random_next_pos()
+		routine_pos_use_time = 0
+	return nav_agent.get_next_path_position()
+	
+func _is_in_attack_range():
+	if not player:
+		return false
 	return global_position.distance_to(player.global_position) < ATTACK_RANGE
+	
+func _is_in_view_range():
+	if not player:
+		return false
+	return global_position.distance_to(player.global_position) < VIEW_RANGE
+	
+func _set_player_spotted_to_all_enemies(newSpottedFlag:bool):
+	var all_enemies = get_parent().find_children("*","Enemy") as Array[Enemy]
+	for enemy in all_enemies:
+		enemy.playerSpotted = true
+		
+func _try_to_spot_player():
+	if not base_ray_cast.is_colliding():
+		return
+	var col = base_ray_cast.get_collider()
+	if col is CharacterBody3D and not playerSpotted:
+		print("player spotted")
+		_set_player_spotted_to_all_enemies(true)
 
 func _physics_process(delta):
+	if not player:
+		player = _get_player()
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	var next_pos = _get_next_pos()
-	if not next_pos:
-		return
+	var next_pos = null
+	# need more raycasts
+#	base_ray_cast.enabled = (not playerSpotted and _is_in_view_range())
+	# temporary 
+	if _is_in_view_range():
+		_set_player_spotted_to_all_enemies(true)
+	####
+	if playerSpotted:
+		next_pos = _get_next_pos_to_player()
+	else:
+		next_pos = _get_next_routine_pos(delta)
+		_try_to_spot_player()
 	_anim_tree.set("parameters/conditions/has_target", next_pos != null)
-	_anim_tree.set("parameters/conditions/in_range", next_pos && _is_in_range())
+	_anim_tree.set("parameters/conditions/in_range", (playerSpotted and _is_in_attack_range()))
 	if next_pos:
 		velocity = (next_pos - global_transform.origin).normalized()
 		_visuals.look_at(position + velocity)
@@ -68,14 +124,12 @@ func _physics_process(delta):
 		"die":
 			return
 		"attack":
-			_visuals.look_at(position + velocity)
+			var hitPos = player.global_position
+			hitPos.y = position.y
+			_visuals.look_at(hitPos)
 			return
 	move_and_slide()
 
-#func _playAnimation(animationName:String):
-#	if _anim_player.current_animation != animationName:
-#		_anim_player.play(animationName)
-		
 func _hit():
-	if _is_in_range():
+	if _is_in_attack_range():
 		print("hitting...")
