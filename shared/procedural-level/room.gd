@@ -2,5 +2,12 @@ extends Area3D
 
 class_name ProceduralRoom
 
-func get_doors():
-	return [] # get all child-elements of type door
+func collides_with(room: ProceduralRoom) -> bool:
+	return get_overlapping_areas().has(room)
+
+func get_available_doors() -> Array[ProceduralDoor]:
+	var doors: Array[ProceduralDoor] = []
+	for child in get_children():
+		if child is ProceduralDoor:
+			doors.push_back(child)
+	return doors

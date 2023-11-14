@@ -51,4 +51,4 @@ transform = Transform3D(0.00415567, -0.00135542, -0.99999, -0.00472686, 0.999988
 map_options = Array[String](["res://shared/procedural-level/rooms/room_1.tscn", "res://shared/procedural-level/rooms/room_2.tscn", "res://shared/procedural-level/rooms/room_3.tscn"])
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.505733, 0.86269, 0, -0.86269, -0.505733, 0, 15.325, 0)
+transform = Transform3D(1, 0, 0, 0, -0.505733, 0.86269, 0, -0.86269, -0.505733, 0, 11.3064, 0)
