@@ -21,7 +21,7 @@ var state_machine = null
 var start_pos = null
 var routine_pos_use_time = 10000
 var rng = RandomNumberGenerator.new()
-@onready var base_ray_cast = $visuals/mixamo_base/Armature/Skeleton3D/BoneAttachment3D/rayWrapper/RayCast3D
+@onready var base_ray_cast = $visuals/mixamo_base/Armature/Skeleton3D/viewRay/rayWrapper/RayCast3D
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -117,7 +117,7 @@ func _physics_process(delta):
 		_try_to_spot_player()
 	_anim_tree.set("parameters/conditions/has_target", next_pos != null)
 	_anim_tree.set("parameters/conditions/in_range", (playerSpotted and _is_in_attack_range()))
-	if next_pos:
+	if next_pos and not dieing:
 		velocity = (next_pos - global_transform.origin).normalized()
 		_visuals.look_at(position + velocity)
 	match state_machine.get_current_node():

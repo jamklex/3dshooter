@@ -250,7 +250,14 @@ func _shoot():
 	var shootable = _raycastForShootable()
 	if not shootable:
 		return
-	var died = shootable.takeDamage(currentWeapon.damage)
+	var criticalHit = false
+	if shootable is CharacterBody3D:
+		criticalHit = shootable.get_parent().name == "head"
+		shootable = shootable.find_parent("*Enemy*").get_node("shootable")
+	var damage = currentWeapon.damage
+	if criticalHit:
+		damage *= 2
+	var died = shootable.takeDamage(damage)
 	shootable = shootable as Shootable
 	if shootable and died:
 		onShootableDie.emit(shootable)
@@ -258,11 +265,14 @@ func _shoot():
 func _raycastForShootable() -> Node:
 	var space = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(camera.global_position,
-		camera.global_position - camera.global_transform.basis.z * raycastMeters)
+		camera.global_position - camera.global_transform.basis.z * raycastMeters,0b101)
 	var collision = space.intersect_ray(query)
 	if not collision:
 		return
 	var collider = collision.collider as Node
+	var bone = collision.collider as CharacterBody3D
+	if bone:
+		return bone
 	if collider.has_method("takeDamage"):
 		return collider
 	elif collider.has_node("shootable"):
