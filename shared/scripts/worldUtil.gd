@@ -3,6 +3,7 @@ extends Node
 var player: Player = Player.new()
 var currentDialog: Dialog
 var currentTrade: Trade
+var current_prg: ProceduralRoomGenerator
 
 func _enter_tree():
 	add_child(player)
@@ -26,6 +27,9 @@ func add_quest_dialogs(npc_id, _currentDialog):
 		if !additional_dialog or additional_dialog.npc != npc_id:
 			continue
 		_currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
+
+func get_map_rng_visibility() -> bool:
+	return current_prg.next_loot_visible()
 
 # generic methods under this line #
 ###################################
@@ -114,7 +118,9 @@ func onSellLootAction(action: Trade.Actions, payload: Array = []):
 
 func teleportToMissionMap(payload: Array):
 	player.save()
-	add_child(ProceduralRoomGenerator.from_seed(str(payload[0])))
+	remove_child(current_prg)
+	current_prg = ProceduralRoomGenerator.from_seed(str(payload[0]))
+	add_child(current_prg)
 	
 func teleportToLowerShip(_payload: Array = []):
 	player.teleport("ship", Vector3(-1,-3,-12))

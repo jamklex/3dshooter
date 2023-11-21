@@ -30,6 +30,9 @@ func _process(_delta):
 func is_generated() -> bool:
 	return _done
 
+func next_loot_visible() -> bool:
+	return _rng.randf() <= 0.65
+
 func choose_start() -> String:
 	var room_paths = FileUtil.getFilesAt(ROOMS_PATH)
 	var room_instances = room_paths.map(func(s: String): return load(s).instantiate() as ProceduralRoom)

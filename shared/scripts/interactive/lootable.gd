@@ -19,6 +19,7 @@ func _ready():
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
 	highlightTimer.one_shot = true
 	add_child(highlightTimer)
+	get_parent_node_3d().visible = WorldUtil.get_map_rng_visibility()
 
 func can_interact():
 	return interactable
