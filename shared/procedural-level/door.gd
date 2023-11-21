@@ -9,3 +9,9 @@ func get_parent_room() -> ProceduralRoom:
 	while not parent is ProceduralRoom:
 		parent = parent.get_parent()
 	return parent
+
+func get_possible_rooms() -> Array[ProceduralRoom]:
+	var maps: Array[ProceduralRoom] = []
+	for map in map_options:
+		maps.push_back(load(map).instantiate() as ProceduralRoom)
+	return maps
