@@ -38,7 +38,7 @@ detail_sample_max_error = 0.0
 [node name="goldenSphere" parent="." instance=ExtResource("11_0wgjw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31, 1.08818, -6.5)
 
-[node name="Player" parent="." instance=ExtResource("5_si87g")]
+[node name="player" parent="." instance=ExtResource("5_si87g")]
 transform = Transform3D(0.259375, 0, 0.965777, 0, 1, 0, -0.965777, 0, 0.259375, -8.35586, 0.0696163, 4.04906)
 
 [node name="Roof" type="Node3D" parent="."]
