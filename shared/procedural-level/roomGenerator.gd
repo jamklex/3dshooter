@@ -12,9 +12,10 @@ var _room_counter: int = 0
 const MAX_ROOM_COUNT: int = 25
 
 static func from_seed(_seed: String) -> ProceduralRoomGenerator:
+	print("ProceduralRoomGenerator with seed: " + _seed)
 	var prg = ProceduralRoomGenerator.new()
 	prg._rng.set_seed(hash(_seed))
-	print("seed loaded: " + str(prg._rng.get_seed()))
+	print("internal seed: " + str(prg._rng.get_seed()))
 	return prg
 
 func _ready():
