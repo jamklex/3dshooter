@@ -33,7 +33,7 @@
 									{
 										"method": "teleportToMissionMap",
 										"payload": [
-											1
+											"tutorial"
 										]
 									}
 								]

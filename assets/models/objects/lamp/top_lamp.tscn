@@ -9,6 +9,7 @@ size = Vector3(0.1, 0.05, 0.1)
 material = SubResource("StandardMaterial3D_yk6wy")
 script = ExtResource("1_4xmsj")
 color = Color(0.470588, 0.580392, 0.694118, 1)
+flicker_interval_sec = [2.0, 0.3]
 
 [node name="light" type="OmniLight3D" parent="."]
 shadow_enabled = true
