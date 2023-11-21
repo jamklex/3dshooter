@@ -128,7 +128,7 @@ func _hit():
 		
 func _find_player(nodes:Array[Node3D]):
 	for node in nodes:
-		if node.name == "player":
+		if node is PlayerBody:
 			return node
 	return null
 
@@ -138,7 +138,7 @@ func _can_see(node:Node3D):
 	if not sight_raycast.is_colliding():
 		return false
 	var collider = sight_raycast.get_collider()
-	return (collider.name == "player")
+	return (collider is PlayerBody)
 
 func check_sight():
 	var overlaps = sight_cone.get_overlapping_bodies()

@@ -133,7 +133,6 @@ flicker_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45413, 2.99964, -1.20282)
 color = Color(0.917647, 0, 0.137255, 1)
 flicker_enabled = true
-flicker_interval_sec = [2.0, 0.3]
 flicker_natural = false
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
