@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://3l2k8y8vrfxe"]
+[gd_scene load_steps=13 format=3 uid="uid://3l2k8y8vrfxe"]
 
 [ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_3fm6f"]
 [ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_kc314"]
 [ext_resource type="AudioStream" uid="uid://cto8uile41c37" path="res://shared/shooting/weapons/pistol/reload.mp3" id="3_4g1nk"]
+[ext_resource type="AudioStream" uid="uid://badxm5gt4jd51" path="res://shared/shooting/weapons/betterPistol/emptyShot.mp3" id="3_vta70"]
 [ext_resource type="Material" uid="uid://dox3f5n0qwghg" path="res://shared/shooting/weapons/betterPistol/material.tres" id="4_rfqmm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kul1t"]
@@ -22,8 +23,8 @@ curve = SubResource("Curve_hsh8o")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lxdgb"]
 spread = 52.36
-gravity = Vector3(0, 0, 0)
 initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
 scale_min = 0.25
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_5rcwk")
@@ -46,6 +47,7 @@ magSize = 7
 reloadTimeSecs = 5.0
 damage = 3
 shotSound = ExtResource("2_kc314")
+emptyShotSound = ExtResource("3_vta70")
 reloadSound = ExtResource("3_4g1nk")
 muzzleFlare = NodePath("muzzleFlare")
 
