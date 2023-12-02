@@ -42,9 +42,9 @@ func _process(_delta):
 func spawn_enemies(amount):
 	if amount <= 0 or _total_enemies >= _max_enemies:
 		return
-	var spawns = get_tree().get_nodes_in_group("spawns")
+	var spawns = get_tree().get_nodes_in_group("spawns").filter(func(s): return s is SpawnPoint)
 	for i in amount:
-		var point = spawns.filter(func(s): return s is SpawnPoint and s.can_spawn()).pick_random() as SpawnPoint
+		var point = spawns.filter(func(s): return s.can_spawn()).pick_random() as SpawnPoint
 		if point == null:
 			return
 		point.spawn_random()

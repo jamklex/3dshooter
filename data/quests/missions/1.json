@@ -33,7 +33,8 @@
 									{
 										"method": "teleportToMissionMap",
 										"payload": [
-											1
+											"missions",
+											3
 										]
 									}
 								]
@@ -64,7 +65,8 @@
 									{
 										"method": "teleportToMissionMap",
 										"payload": [
-											1
+											"missions",
+											3
 										]
 									}
 								]
