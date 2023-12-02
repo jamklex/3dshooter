@@ -1,6 +1,7 @@
 extends CharacterBody3D
 class_name Enemy
 
+const DAMAGE:int = 3
 const SPEED = 3.0
 const ATTACK_RANGE = 1.7
 const ROUTINE_RANGE = 2.5
@@ -124,7 +125,8 @@ func _physics_process(delta):
 
 func _hit():
 	if _is_in_attack_range():
-		print("hitting...")
+		var shootable = player.get_node("shootable") as Shootable
+		shootable.takeDamage(DAMAGE)
 		
 func _find_player(nodes:Array[Node3D]):
 	for node in nodes:

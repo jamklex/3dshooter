@@ -10,6 +10,7 @@ enum WeaponType {PISTOL, RIFLE, SNIPER}
 @export var reloadTimeSecs:float
 @export var damage:int
 @export var shotSound:AudioStream
+@export var emptyShotSound:AudioStream
 @export var reloadSound:AudioStream
 @export var muzzleFlare:GPUParticles3D
 var restMagShoots:int

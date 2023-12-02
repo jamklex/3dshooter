@@ -26,6 +26,7 @@ static func getFilesAt(folder:String) -> Array[String]:
 		return cache.get(folder)
 	var files = [] as Array[String]
 	for file in DirAccess.get_files_at(folder):
+		file = file.replace(".remap", "")
 		files.push_back(folder + file)
 	cache[folder] = files
 	return files

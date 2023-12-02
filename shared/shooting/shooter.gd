@@ -233,15 +233,20 @@ func _handleShooting():
 		return
 	if reloading:
 		return
-	if currentWeapon.needReload():
-		return
 	if not Input.is_action_just_pressed("shoot"):
 		return
 	if not aiming:
 		return
+	if currentWeapon.needReload():
+		_emptyShoot()
+		return
 	_shoot()
 	currentWeapon.restMagShoots -= 1
 	_refreshMagInfo()
+	
+func _emptyShoot():
+	soundPlayer.stream = currentWeapon.emptyShotSound
+	soundPlayer.play(0)
 
 func _shoot():
 	soundPlayer.stream = currentWeapon.shotSound
