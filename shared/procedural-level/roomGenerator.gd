@@ -32,7 +32,7 @@ func set_initial_enemies(amount: int):
 	_initial_enemies = amount
 
 func _process(_delta):
-	if _room_counter <= 1:
+	if !is_generated():
 		generate_level()
 		print("rooms: " + str(_room_counter))
 		if _room_counter > 1:
