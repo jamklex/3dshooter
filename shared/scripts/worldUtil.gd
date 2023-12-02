@@ -146,3 +146,7 @@ func quitGame():
 
 func save():
 	player.save()
+	
+func respawn():
+	player.run_inventory = Inventory.empty()
+	teleportToLowerShip()
