@@ -22,7 +22,7 @@ static func from_seed(_seed: String) -> ProceduralRoomGenerator:
 	return prg
 
 func _ready():
-	get_tree().change_scene_to_packed(load(choose_start()))
+	get_tree().change_scene_to_file(choose_start())
 	_room_counter += 1
 
 func set_max_enemies(amount: int):
@@ -95,7 +95,7 @@ func load_random_map(door:ProceduralDoor):
 	_room_counter += 1
 
 func add_map(parent_door: ProceduralDoor, map_to_move: ProceduralRoom, door_of_map: ProceduralDoor):
-	add_child(map_to_move)
+	get_tree().current_scene.add_child(map_to_move)
 	door_of_map.rotate(Vector3(0,1,0), PI)
 	map_to_move.global_rotation = difference(parent_door.global_rotation, door_of_map.global_rotation)
 	map_to_move.global_position = difference(parent_door.global_position, door_of_map.global_position)
