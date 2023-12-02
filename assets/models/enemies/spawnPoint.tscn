@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://csicvvutb5f21"]
+
+[ext_resource type="Script" path="res://assets/models/enemies/spawnPoint.gd" id="1_ojvk4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3hupe"]
+size = Vector3(2, 0.5, 2)
+
+[node name="SpawnPoint" type="Area3D" groups=["spawns"]]
+script = ExtResource("1_ojvk4")
+enemies = Array[String](["res://assets/models/enemies/simpleEnemy/simpleEnemy.tscn"])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3hupe")
+disabled = true

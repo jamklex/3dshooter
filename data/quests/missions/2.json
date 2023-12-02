@@ -8,7 +8,8 @@
 			{
 				"method": "teleportToMissionMap",
 				"payload": [
-					1
+					"missions",
+					3
 				]
 			}
 		]

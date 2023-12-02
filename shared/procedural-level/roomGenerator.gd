@@ -10,6 +10,9 @@ var max_rooms: int
 var _done: bool = false
 var _room_counter: int = 0
 const MAX_ROOM_COUNT: int = 25
+var _total_enemies: int = 0
+var _max_enemies: int = 0
+var _initial_enemies: int = 0
 
 static func from_seed(_seed: String) -> ProceduralRoomGenerator:
 	print("ProceduralRoomGenerator with seed: " + _seed)
@@ -22,14 +25,38 @@ func _ready():
 	get_tree().change_scene_to_packed(load(choose_start()))
 	_room_counter += 1
 
+func set_max_enemies(amount: int):
+	_max_enemies = amount
+
+func set_initial_enemies(amount: int):
+	_initial_enemies = amount
+
 func _process(_delta):
 	if _room_counter <= 1:
 		generate_level()
 		print("rooms: " + str(_room_counter))
-		_done = _room_counter > 1
+		if _room_counter > 1:
+			spawn_enemies(_initial_enemies)
+			set_generated(true)
+
+func spawn_enemies(amount):
+	if amount <= 0 or _total_enemies >= _max_enemies:
+		return
+	var spawns = get_tree().get_nodes_in_group("spawns")
+	for i in amount:
+		var point = spawns.filter(func(s): return s is SpawnPoint and s.can_spawn()).pick_random() as SpawnPoint
+		if point == null:
+			return
+		point.spawn_random()
+		_total_enemies += 1
+		if _total_enemies >= _max_enemies:
+			break
 
 func is_generated() -> bool:
 	return _done
+
+func set_generated(value: bool):
+	_done = value
 
 func next_loot_visible() -> bool:
 	return _rng.randf() <= 0.65
