@@ -11,16 +11,12 @@ const scene = preload("res://shared/quest/scenes/quest.tscn")
 static func from(_path: String, _tasks: Array, saved: Dictionary = {}) -> Quest:
 	var quest = scene.instantiate() as Quest
 	quest.path = _path
-	var auto_unlock = quest.path.contains("/tutorial")
-	if auto_unlock:
-		quest.unlock()
-		quest.set_status(Status.ACTIVE)
 	var i = 0
 	for t in _tasks:
 		var task = Task.from(quest._on_event, t, i, quest.title) as Task
-		if i == 0 and auto_unlock:
-			task.set_active()
 		task.status = saved.get(str(i), task.status)
+		if task.status >= Task.Status.ACTIVE:
+			quest.unlock()
 		quest.add_task(task)
 		if !quest.title:
 			quest.title = task.title

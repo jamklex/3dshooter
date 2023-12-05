@@ -11,9 +11,7 @@
 				"actions": [
 					{
 						"method": "giveRewards",
-						"payload": [
-							4
-						]
+						"payload": []
 					},
 					{
 						"method": "succeedTask",
