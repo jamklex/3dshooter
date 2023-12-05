@@ -71,11 +71,13 @@ func _physics_process(delta):
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var currentSpeed = speed
 	if sprinting:
+		_playAnimation("running")
 		currentSpeed *= 1.5
+	else:
+		_playAnimation("walking")
 	if _shooter.aiming:
 		_visuals.rotation = Vector3.ZERO
 	if direction:
-		_playAnimation("walking")
 		velocity.x = direction.x * currentSpeed
 		velocity.z = direction.z * currentSpeed
 		if not _shooter.aiming:
