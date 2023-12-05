@@ -11,12 +11,13 @@ func highlight_quest_npcs(_quests: Array[Quest]):
 	var quest_npcs:Array[String] = []
 	var all_npcs = get_tree().get_nodes_in_group("npc").filter(func(n): return n is NPC)
 	for q in _quests:
-		var active_task = q.get_active_task()
-		if active_task == null:
+		var active_tasks = q.get_active_tasks()
+		if active_tasks.is_empty():
 			continue
-		var active_dialog = active_task.dialog
-		if active_dialog != null:
-			quest_npcs.push_back(active_dialog.npc)
+		for _t in active_tasks:
+			var active_dialog = _t.dialog
+			if active_dialog != null:
+				quest_npcs.push_back(active_dialog.npc)
 	for n in all_npcs:
 		if quest_npcs.has(n.get("npc_id")):
 			n.show_quest_marker()

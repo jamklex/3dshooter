@@ -11,7 +11,7 @@ const scene = preload("res://shared/quest/scenes/quest.tscn")
 static func from(_path: String, _tasks: Array, saved: Dictionary = {}) -> Quest:
 	var quest = scene.instantiate() as Quest
 	quest.path = _path
-	var auto_unlock = quest.path.ends_with("tutorial/")
+	var auto_unlock = quest.path.contains("/tutorial")
 	if auto_unlock:
 		quest.unlock()
 		quest.set_status(Status.ACTIVE)
@@ -71,9 +71,8 @@ func set_status(_status: Status):
 		for _t in tasks:
 			set_succeeded(_t)
 
-func get_active_task() -> Task:
-	var active_tasks = tasks.filter(func(t): return t.status == Task.Status.ACTIVE)
-	return active_tasks[0] if active_tasks.size() > 0 else null
+func get_active_tasks() -> Array:
+	return tasks.filter(func(t): return t.status == Task.Status.ACTIVE)
 
 func get_task(index: int) -> Task:
 	return tasks[index] if tasks.size() > index else null
@@ -82,7 +81,7 @@ func unlock():
 	if status >= Status.ACTIVE:
 		return
 	set_status(Status.ACTIVE)
-	if get_active_task():
+	if !get_active_tasks().is_empty():
 		return
 	for _t in tasks:
 		if _t.status < Task.Status.ACTIVE:
@@ -90,6 +89,7 @@ func unlock():
 			break
 
 func _on_event(event_name: String, payload: Array = []):
+	var source_task = null if payload.is_empty() else get_task(payload.pop_front())
 	match event_name:
 		"setActiveTask":
 			set_active(tasks[int(payload[0])-1])
@@ -106,16 +106,16 @@ func _on_event(event_name: String, payload: Array = []):
 		"skipQuest":
 			set_status(Status.SKIPPED)
 		"succeedTask":
-			set_succeeded(get_active_task())
+			set_succeeded(source_task)
 		"failTask":
-			set_failed(get_active_task())
+			set_failed(source_task)
 		"unhideTasks":
 			for _p in payload:
 				var _t = get_task(int(_p)-1)
 				if _t:
 					_t.set_known()
 		"giveRewards":
-			for _r in get_active_task().rewards:
+			for _r in source_task.rewards:
 				InteractionHelper.add_drop_directly(WorldUtil.player, _r)
 		"removeItem":
 			var inv = WorldUtil.player.inventory as Inventory
