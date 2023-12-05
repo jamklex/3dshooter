@@ -28,9 +28,9 @@ func load_dialog_data():
 		_loadNextPart()
 
 func _executeAction(action:String, payload:Array):
-	if WorldUtil.has_method(action):
-		WorldUtil.call(action, payload)
-	elif currentSource != null:
+	#if WorldUtil.has_method(action):
+	#	WorldUtil.call(action, payload)
+	if currentSource != null:
 		var quest = QuestLoader.get_quest(currentSource.quest_name)
 		var task = quest.get_task(currentSource.task_index)
 		task.execute(action, payload)

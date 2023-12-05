@@ -4,14 +4,17 @@ class_name Condition
 
 var method: String
 var payload: Array
+var task_index: int
 
-static func from(dict: Dictionary) -> Condition:
+static func from(_task_index: int, dict: Dictionary) -> Condition:
 	var condition = Condition.new()
 	condition.method = dict.get("method")
 	condition.payload = dict.get("payload")
+	condition.task_index = _task_index
 	return condition
 
 func check() -> bool:
+	#var _task_index = payload.pop_front()
 	return Callable(self, method).bind(payload).call()
 
 func hasItemCount(_payload: Array) -> bool:

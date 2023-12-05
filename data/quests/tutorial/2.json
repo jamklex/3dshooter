@@ -1,62 +1,54 @@
 {
-	"name": "You must be Igor...",
-	"desc": "The Captain wants You to talk to Igor about the bodies You're going to use...\nThey can't mean litteral bodies right? Right?!",
-	"short": "Speak with Igor",
+	"desc": "There probably is someone around selling Weapons and ammunition, ask around and see who can help You.",
+	"short": "Find a Weapon-Seller",
+	"status": 2,
 	"dialog": {
-		"npc": "BODY_MANAGER",
-		"answer": "That's right, I'm Igor, the Body-Manager!\nNice to finally meet one of You from face to face... well You know how I ment that.",
+		"npc": "WEAPON_SHOP",
+		"answer": "H-hi my Name is H-henry, the C-captain told me to give a W-weapon and some Ammunition...",
 		"options": {
-			"Actually no, I have no idea what's going on but Madelyn told me to talk to You...": {
-				"answer": "Oh... Well let's start at the beginning then.\nYou are a Controller, a long dead person whose intellect is saved onto a chip.\nYou are in a drone and can upload part of Your consciousness into robots making You an ideal candidate for the scirmishing role on our ship!",
+			"Thank You, that Sounds great! What can You offer me?": {
+				"answer": "J-just a Pistol but Y-you can buy more if You have enough money.",
 				"options": {
-					"Wait... I'm dead?! But how can I speak to You?! That doesn't make sense!!!": {
-						"answer": "I think You're quite alive buddy! But captain told us to not get too close with each other, because Your renting fee is pretty high...\nYou see we've uploaded You into one of the robots I got for a cheap price so we can see if You're capable enough to turn a profit.",
+					"Ok... I will try to earn some then, anything else?": {
+						"answer": "R-remember to reload after 10 s-shots...\nIf Y-you want to train a bit c-come back to me when Y-you have time.",
 						"options": {
-							"So You're telling me that I need to work to stay 'alive'?": {
-								"answer": "Haha! Yeah You got it! But don't worry, we all here will try our best to help You reach that Goal!\nWell all but Trish maybe, but that's for another day, let's first focus on Your abilities as a controller.",
-								"options": {
-									"I try focus on what Your telling me but my head is all messed up...": {
-										"answer": "It's pretty easy, Your Job is to gather some meterials and precious items from the wracks we send You in.\nYou will get some weapons and tools to make Your job easier and I will see what I can do to Your bodies in hopes to make You even stronger.",
-										"options": {
-											"Those bodies are just robots I can control right?": {
-												"answer": "That's right but we only can upload You into one body a time and also some of them are...\nWell let me say it this way: there was a reason I've got them this cheap...\nSome of them may are a little rusty, but nothing I couldn't fix, if I have the tools and time",
-												"options": {
-													"And my current body has defects too?": {
-														"answer": "Actually no, that's one of the old ones captain got a few years ago, so no defects, just old technology...\nI'm not sure which of this is better actually but let's see how long You can keep this one right?",
-														"options": {
-															"Well thanks... What do I do now?": {
-																"answer": "You should speak to Henry, he can give You some Tools and Weapons so Your not naked in the first mission.\nHe right there on the left.",
-																"actions": [
-																	{
-																		"method": "succeedTask",
-																		"payload": []
-																	},
-																	{
-																		"method": "setActiveTask",
-																		"payload": [
-																			"3"
-																		]
-																	},
-																	{
-																		"method": "unlock",
-																		"payload": [
-																			"BODY_MANAGER"
-																		]
-																	}
-																]
-															}
-														}
-													}
-												}
-											}
-										}
+							"I'll do, thank You!": {
+								"answer": "S-see You...",
+								"actions": [
+									{
+										"method": "giveRewards",
+										"payload": []
+									},
+									{
+										"method": "succeedTask",
+										"payload": []
+									},
+									{
+										"method": "unlockQuest",
+										"payload": [
+											"weapon"
+										]
+									},
+									{
+										"method": "unlock",
+										"payload": [
+											"WEAPON_SHOP"
+										]
 									}
-								}
+								]
 							}
 						}
 					}
 				}
 			}
 		}
-	}
+	},
+	"rewards": [
+		{
+			"6": 1
+		},
+		{
+			"7": 15
+		}
+	]
 }

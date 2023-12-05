@@ -1,27 +1,34 @@
 {
-	"name": "Igor send me to get some tools and weapons",
-	"desc": "That was a lot of information to digest but You seem to be odly fine with that, like some part of You was already familiar with that story.\nBut there's no time for more thinking, Your life, wether it be digital or physical is on the line.\nGo and find Henry and ask him for some tools.",
-	"short": "Ask Henry for some tools",
+	"desc": "You have to be usefull for the crew of this ship.\nFind someone who can give You a mission.",
+	"short": "Find out how to help",
+	"status": 2,
 	"dialog": {
-		"npc": "WEAPON_SHOP",
-		"answer": "Y-Yes... I'm Henry, n-nice to meet You...",
+		"npc": "CAPTAIN",
+		"answer": "Finally You're here, My name is Madelyn and I'm this ships Captain.\nHave You met the other ones already?",
 		"options": {
-			"Um... The weapons?": {
-				"answer": "Right, right! J-just give me a m-moment...\nH-here is a pistol for the beginning, I-i don't have anything b-bigger until I get some m-materials...",
+			"Uhm I think I might have missed someone...": {
+				"answer": "Don't waste my time!\nGo back and talk to them."
+			},
+			"Yes, I've met them. How can I help?": {
+				"answer": "Let's see if I have something easy...\nHow about just getting a rare collectable first?",
 				"options": {
-					"Where have I heard that before... Is it just shooting": {
-						"answer": "Y-yeah but You h-have to reload after 10 s-shots...\nM-maybe You should g-go to M-m-madelyn now...",
+					"Sounds great what do I need to get": {
+						"answer": "Just look out for a golden sphere and find an escape route.\nYou ready?",
 						"options": {
-							"Sure... well, thank You.": {
-								"answer": "S-sure, see Y-you...",
+							"Let me prepare first...": {
+								"answer": "Come back when You're done..."
+							},
+							"Ok, get me on the ship": {
 								"actions": [
-									{
-										"method": "giveRewards",
-										"payload": []
-									},
 									{
 										"method": "succeedTask",
 										"payload": []
+									},
+									{
+										"method": "unhideTasks",
+										"payload": [
+											"4", "5"
+										]
 									},
 									{
 										"method": "setActiveTask",
@@ -30,15 +37,9 @@
 										]
 									},
 									{
-										"method": "unlockQuest",
+										"method": "teleportToMissionMap",
 										"payload": [
-											"weapon"
-										]
-									},
-									{
-										"method": "unlock",
-										"payload": [
-											"WEAPON_SHOP"
+											"tutorial"
 										]
 									}
 								]
@@ -48,13 +49,5 @@
 				}
 			}
 		}
-	},
-	"rewards": [
-		{
-			"6": 1
-		},
-		{
-			"7": 15
-		}
-	]
+	}
 }

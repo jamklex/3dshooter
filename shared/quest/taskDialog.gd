@@ -22,7 +22,7 @@ static func from(_source: QuestSource, dict: Dictionary, _quote: String, _npc: S
 	for key in _options.keys():
 		dialog.add_option(TaskDialog.from(_source, _options.get(key), key, _npc, dialog.color))
 	for action in dict.get("actions", []):
-		dialog.add_action(Action.from(action))
+		dialog.add_action(Action.from(_source.task_index, action))
 	return dialog
 
 func add_option(dialog: TaskDialog):

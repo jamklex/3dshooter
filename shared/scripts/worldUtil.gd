@@ -20,13 +20,14 @@ func add_quest_dialogs(npc_id, _currentDialog):
 	for _quest in QuestLoader.get_quests():
 		if _quest.status != Quest.Status.ACTIVE:
 			continue
-		var _task = _quest.get_active_task()
-		if !_task:
+		var _tasks = _quest.get_active_tasks()
+		if _tasks.is_empty():
 			continue
-		var additional_dialog = _task.dialog as TaskDialog
-		if !additional_dialog or additional_dialog.npc != npc_id:
-			continue
-		_currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
+		for _t in _tasks:
+			var additional_dialog = _t.dialog as TaskDialog
+			if !additional_dialog or additional_dialog.npc != npc_id:
+				continue
+			_currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
 
 func get_map_rng_visibility() -> bool:
 	return current_prg.next_loot_visible()
