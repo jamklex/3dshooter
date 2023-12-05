@@ -44,7 +44,7 @@ func _getNextMoveVector2(prevMoveVector2:Vector2):
 func _ready():
 	_shootable.setStartHealth(randi_range(1,10))
 	state_machine = _anim_tree.get("parameters/playback")
-	start_pos = position
+	start_pos = global_position
 	rng.randomize()
 	
 func _get_player():
@@ -80,23 +80,10 @@ func _is_in_attack_range():
 		return false
 	return global_position.distance_to(player.global_position) < ATTACK_RANGE
 	
-#func _is_in_view_range():
-#	if not player:
-#		return false
-#	return global_position.distance_to(player.global_position) < VIEW_RANGE
-	
 func _set_player_spotted_to_all_enemies(newSpottedFlag:bool):
-	var all_enemies = get_parent().find_children("*","Enemy") as Array[Enemy]
+	var all_enemies = get_tree().get_nodes_in_group("enemies") as Array[Enemy]
 	for enemy in all_enemies:
 		enemy.playerSpotted = true
-		
-#func _try_to_spot_player():
-#	if not base_ray_cast.is_colliding():
-#		return
-#	var col = base_ray_cast.get_collider()
-#	if col is CharacterBody3D and not playerSpotted:
-#		print("player spotted")
-#		_set_player_spotted_to_all_enemies(true)
 
 func _physics_process(delta):
 	if not player:
@@ -112,7 +99,7 @@ func _physics_process(delta):
 	_anim_tree.set("parameters/conditions/in_range", (playerSpotted and _is_in_attack_range()))
 	if next_pos and not dieing:
 		velocity = (next_pos - global_transform.origin).normalized()
-		_visuals.look_at(position + velocity)
+		_visuals.look_at(next_pos)
 	match state_machine.get_current_node():
 		"die":
 			return

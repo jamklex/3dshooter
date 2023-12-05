@@ -247,6 +247,14 @@ func _handleShooting():
 func _emptyShoot():
 	soundPlayer.stream = currentWeapon.emptyShotSound
 	soundPlayer.play(0)
+	
+func get_enemy_base_for_bone(enemyBone: CharacterBody3D):
+	var curElement = enemyBone
+	for i in range(10):
+		curElement = curElement.get_parent()
+		if curElement is Enemy:
+			return curElement
+	return null
 
 func _shoot():
 	soundPlayer.stream = currentWeapon.shotSound
@@ -258,7 +266,7 @@ func _shoot():
 	var criticalHit = false
 	if shootable is CharacterBody3D:
 		criticalHit = shootable.get_parent().name == "head"
-		shootable = shootable.find_parent("*Enemy*").get_node("shootable")
+		shootable = get_enemy_base_for_bone(shootable).get_node("shootable")
 	var damage = currentWeapon.damage
 	if criticalHit:
 		damage *= 2
