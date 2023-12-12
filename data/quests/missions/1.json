@@ -21,14 +21,12 @@
 									{
 										"method": "unhideTasks",
 										"payload": [
-											"2", "3"
+											1, 2
 										]
 									},
 									{
-										"method": "setActiveTask",
-										"payload": [
-											"2"
-										]
+										"method": "nextInLine",
+										"payload": []
 									},
 									{
 										"method": "teleportToMissionMap",
@@ -53,14 +51,12 @@
 									{
 										"method": "unhideTasks",
 										"payload": [
-											"2", "3"
+											1, 2
 										]
 									},
 									{
-										"method": "setActiveTask",
-										"payload": [
-											"2"
-										]
+										"method": "nextInLine",
+										"payload": []
 									},
 									{
 										"method": "teleportToMissionMap",

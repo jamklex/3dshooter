@@ -20,10 +20,8 @@
 										"payload": []
 									},
 									{
-										"method": "setActiveTask",
-										"payload": [
-											"4"
-										]
+										"method": "nextInLine",
+										"payload": []
 									}
 								],
 								"options": {

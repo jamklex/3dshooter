@@ -2,19 +2,18 @@ extends Object
 
 class_name Condition
 
+var source: QuestSource
 var method: String
 var payload: Array
-var task_index: int
 
-static func from(_task_index: int, dict: Dictionary) -> Condition:
+static func from(_source: QuestSource, dict: Dictionary) -> Condition:
 	var condition = Condition.new()
+	condition.source = _source
 	condition.method = dict.get("method")
 	condition.payload = dict.get("payload")
-	condition.task_index = _task_index
 	return condition
 
 func check() -> bool:
-	#var _task_index = payload.pop_front()
 	return Callable(self, method).bind(payload).call()
 
 func hasItemCount(_payload: Array) -> bool:
@@ -36,3 +35,9 @@ func anyInSalvager(_payload: Array = []) -> bool:
 func hasMissionKills(_payload: Array) -> bool:
 	var killAmount = _payload[0] as int
 	return WorldUtil.player.mission_kills >= killAmount
+
+func taskMissing(_payload: Array) -> bool:
+	return not taskDone(_payload)
+
+func taskDone(_payload: Array) -> bool:
+	return QuestLoader.get_quest(source.quest_name).get_task(int(_payload[0])).is_done()

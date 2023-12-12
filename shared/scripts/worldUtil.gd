@@ -34,7 +34,7 @@ func add_quest_dialogs(npc_id, _currentDialog):
 			continue
 		for _t in _tasks:
 			var additional_dialog = _t.dialog as TaskDialog
-			if !additional_dialog or additional_dialog.npc != npc_id:
+			if !additional_dialog or additional_dialog.npc != npc_id or !additional_dialog.conditions_met():
 				continue
 			_currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
 

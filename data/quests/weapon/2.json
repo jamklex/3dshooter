@@ -19,7 +19,7 @@
 			{
 				"method": "setActiveTask",
 				"payload": [
-					"3"
+					2
 				]
 			},
 		]
@@ -41,7 +41,7 @@
 			{
 				"method": "setActiveTask",
 				"payload": [
-					"4"
+					3
 				]
 			},
 		]

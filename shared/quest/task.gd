@@ -22,16 +22,16 @@ static func from(_quest_listener: Callable, dict: Dictionary, _index: int, quest
 	if dict.get("active", false):
 		task.set_active()
 	task.title = dict.get("name", quest_name)
-	var source = QuestSource.create(task.title if quest_name.is_empty() else quest_name, _index)
+	var source = QuestSource.create(task.title if quest_name.is_empty() else quest_name, task.index)
 	task.desc = dict.get("desc")
 	task.short = dict.get("short")
 	task.status = dict.get("status", Status.UNKNOWN)
 	if dict.has("dialog"):
 		task.dialog = TaskDialog.from(source, dict.get("dialog"), task.title)
 	if dict.has("success"):
-		task.success_result = TaskResult.from(_index, _quest_listener, dict.get("success"))
+		task.success_result = TaskResult.from(source, _quest_listener, dict.get("success"))
 	if dict.has("failure"):
-		task.fail_result = TaskResult.from(_index, _quest_listener, dict.get("failure"))
+		task.fail_result = TaskResult.from(source, _quest_listener, dict.get("failure"))
 	var _rewards = dict.get("rewards", [])
 	for _r in _rewards:
 		for _key in _r.keys():
@@ -65,6 +65,9 @@ func set_failed():
 
 func is_active() -> bool:
 	return status == Status.ACTIVE
+
+func is_done() -> bool:
+	return status > Status.ACTIVE
 
 func refresh_data():
 	for s in Status.values():

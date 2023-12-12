@@ -3,7 +3,7 @@ extends Node
 
 var path: String
 var title: String = ""
-var tasks: Array = []
+var tasks: Array[Task] = []
 var status: Status = Status.LOCKED
 const scene = preload("res://shared/quest/scenes/quest.tscn")
 @onready var layout = $container
@@ -87,8 +87,10 @@ func unlock():
 func _on_event(event_name: String, payload: Array = []):
 	var source_task = null if payload.is_empty() else get_task(payload.pop_front())
 	match event_name:
+		"nextInLine":
+			set_active(tasks[source_task.index + 1])
 		"setActiveTask":
-			set_active(tasks[int(payload[0])-1])
+			set_active(tasks[int(payload[0])])
 		"teleportToMissionMap":
 			WorldUtil.teleportToMissionMap(payload)
 		"succeedQuest":
@@ -107,7 +109,7 @@ func _on_event(event_name: String, payload: Array = []):
 			set_failed(source_task)
 		"unhideTasks":
 			for _p in payload:
-				var _t = get_task(int(_p)-1)
+				var _t = get_task(int(_p))
 				if _t:
 					_t.set_known()
 		"giveRewards":
