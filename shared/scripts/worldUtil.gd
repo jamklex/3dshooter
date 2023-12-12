@@ -4,9 +4,18 @@ var player: Player = Player.new()
 var currentDialog: Dialog
 var currentTrade: Trade
 var current_prg: ProceduralRoomGenerator
+var loadingScreenScene = preload("res://shared/ui/loading_screen.tscn")
+var loadingScreen = null
+var loadingDoneChecker = Timer.new()
 
 func _enter_tree():
 	add_child(player)
+	loadingScreen = loadingScreenScene.instantiate()
+	add_child(loadingScreen)
+	#loadingDoneChecker.autostart = false
+	#loadingDoneChecker.one_shot = false
+	#loadingDoneChecker.timeout.connect(_check_loading_progress)
+	#add_child(loadingDoneChecker)
 
 func createDialog(npc_id:String, dialog_data_path:String) -> Dialog:
 	if !currentDialog:
@@ -118,6 +127,7 @@ func onSellLootAction(action: Trade.Actions, payload: Array = []):
 	return true
 
 func teleportToMissionMap(payload: Array):
+	await loadingScreen.fade_in()
 	player.save()
 	player.bodyStartPos = Vector3.ZERO
 	remove_child(current_prg)
@@ -127,9 +137,12 @@ func teleportToMissionMap(payload: Array):
 	current_prg.set_initial_enemies(initial_enemies)
 	current_prg.set_max_enemies(max_enemies)
 	add_child(current_prg)
+	loadingScreen.fade_out()
 
 func teleportToLowerShip(_payload: Array = []):
+	await loadingScreen.fade_in()
 	player.teleport("ship", Vector3(-1,-3,-12))
+	loadingScreen.fade_out()
 	
 func removeFromPlayerInventory(payload: Array = []) -> bool:
 	var result = player.inventory.remove(payload[0], payload[1])
