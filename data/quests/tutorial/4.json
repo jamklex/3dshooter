@@ -1,7 +1,7 @@
 {
 	"name": "Ok, get me on the ship",
-	"desc": "You just remember to look out for a golden sphere and something about the exit...\nShould be easy right?",
-	"short": "Exit the ship with the golden sphere",
+	"desc": "You just remember to look out for a golden sphere and a bit of gold...\nShould be easy right?",
+	"short": "Get the golden sphere and 50 gold",
 	"dialog": {
 		"npc": "CAPTAIN",
 		"actions": [
@@ -16,9 +16,15 @@
 	"success": {
 		"conditions": [
 			{
-				"method": "hasItemCount",
+				"method": "hasItemCountTemp",
 				"payload": [
 					"4", 1
+				]
+			},
+			{
+				"method": "hasItemCountTemp",
+				"payload": [
+					"0", 50
 				]
 			}
 		],
