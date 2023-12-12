@@ -54,12 +54,15 @@ func add_task(_task: Task):
 
 func set_succeeded(_task: Task):
 	_task.set_succeeded()
+	QuestLoader.save_progress(self)
 
 func set_failed(_task: Task):
 	_task.set_failed()
+	QuestLoader.save_progress(self)
 
 func set_active(_task: Task):
 	_task.set_active()
+	QuestLoader.save_progress(self)
 
 func set_status(_status: Status):
 	status = _status

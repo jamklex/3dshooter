@@ -33,7 +33,7 @@
 				"answer": "Let's see if I have something easy...\nHow about just getting a rare collectable first?",
 				"options": {
 					"Sounds great what do I need to get": {
-						"answer": "Just look out for a golden sphere and find an escape route.\nYou ready?",
+						"answer": "Just look out for a [highlight]golden sphere[/highlight] and find an escape route.\nAlso try to get at least [highlight]50 Gold[/highlight] from the crates laying around.\nYou ready?",
 						"options": {
 							"Let me prepare first...": {
 								"answer": "Come back when You're done..."
