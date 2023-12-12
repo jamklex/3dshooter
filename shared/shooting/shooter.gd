@@ -100,6 +100,7 @@ func _hasWeaponWithId(weaponId:String):
 	return _getWeaponForItemId(weaponId) != null
 	
 func _addWeaponForItemId(weaponId:String):
+	print("adding weapon...")
 	var scenePathForWeaponId = _ITEM_WEAPON_MAP.get(weaponId)
 	if not scenePathForWeaponId:
 		return
@@ -309,7 +310,7 @@ func _switchAim():
 func _handleWeaponSwitching():
 	if Input.is_action_just_pressed("putWeaponAway"):
 		putWeaponAway()
-	if weapons.size() <= 1:
+	if weapons.size() < 1:
 		return 
 	if Input.is_action_just_pressed("nextWeapon"):
 		_nextWeapon()
