@@ -17,10 +17,8 @@
 								"payload": []
 							},
 							{
-								"method": "setActiveTask",
-								"payload": [
-									"2"
-								]
+								"method": "nextInLine",
+								"payload": []
 							}
 						]
 					}

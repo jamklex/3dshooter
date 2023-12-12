@@ -29,11 +29,9 @@
 				"payload": []
 			},
 			{
-				"method": "setActiveTask",
-				"payload": [
-					"3"
-				]
-			},
+				"method": "nextInLine",
+				"payload": []
+			}
 		]
 	}
 }
