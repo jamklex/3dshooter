@@ -2,13 +2,14 @@ extends Object
 
 class_name TaskDialog
 
+var source: QuestSource
 var npc: String
 var color: Color
 var quote: String # what the player says
 var answer: String # what the npc says
-var options: Array
-var actions: Array
-var source: QuestSource
+var options: Array[TaskDialog]
+var actions: Array[Action]
+var conditions: Array[Condition]
 const DEFAULT_CLOSE_DIALOG = "End Conversation"
 
 static func from(_source: QuestSource, dict: Dictionary, _quote: String, _npc: String = "", _color: Color = Color.AQUAMARINE) -> TaskDialog:
@@ -22,7 +23,9 @@ static func from(_source: QuestSource, dict: Dictionary, _quote: String, _npc: S
 	for key in _options.keys():
 		dialog.add_option(TaskDialog.from(_source, _options.get(key), key, _npc, dialog.color))
 	for action in dict.get("actions", []):
-		dialog.add_action(Action.from(_source.task_index, action))
+		dialog.add_action(Action.from(_source, action))
+	for condition in dict.get("conditions", []):
+		dialog.add_condition(Condition.from(_source, condition))
 	return dialog
 
 func add_option(dialog: TaskDialog):
@@ -32,6 +35,9 @@ func add_option(dialog: TaskDialog):
 func add_action(action: Action):
 	actions.push_back(action)
 
+func add_condition(condition: Condition):
+	conditions.push_back(condition)
+
 func as_dialog_options() -> Dictionary:
 	var _actions = []
 	for _act in actions:
@@ -39,7 +45,8 @@ func as_dialog_options() -> Dictionary:
 	var _options = {}
 	if !options.is_empty():
 		for _opt in options:
-			_options[_opt.get_dialog_key()] = _opt.as_dialog_options()
+			if _opt.conditions_met():
+				_options[_opt.get_dialog_key()] = _opt.as_dialog_options()
 	if _options.is_empty():
 		_options[DEFAULT_CLOSE_DIALOG] = {}
 	var result = {
@@ -55,3 +62,6 @@ func as_dialog_options() -> Dictionary:
 
 func get_dialog_key() -> String:
 	return quote
+
+func conditions_met() -> bool:
+	return conditions.filter(func (c): return not c.check()).is_empty()

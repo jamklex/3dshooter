@@ -7,9 +7,29 @@
 		"answer": "Finally You're here, My name is Madelyn and I'm this ships Captain.\nHave You met the other ones already?",
 		"options": {
 			"Uhm I think I might have missed someone...": {
+				"conditions": [
+					{
+						"method": "taskMissing",
+						"payload": [0]
+					},
+					{
+						"method": "taskMissing",
+						"payload": [1]
+					}
+				],
 				"answer": "Don't waste my time!\nGo back and talk to them."
 			},
 			"Yes, I've met them. How can I help?": {
+				"conditions": [
+					{
+						"method": "taskDone",
+						"payload": [0]
+					},
+					{
+						"method": "taskDone",
+						"payload": [1]
+					}
+				],
 				"answer": "Let's see if I have something easy...\nHow about just getting a rare collectable first?",
 				"options": {
 					"Sounds great what do I need to get": {

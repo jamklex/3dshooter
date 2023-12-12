@@ -3,7 +3,7 @@ extends Node
 
 var path: String
 var title: String = ""
-var tasks: Array = []
+var tasks: Array[Task] = []
 var status: Status = Status.LOCKED
 const scene = preload("res://shared/quest/scenes/quest.tscn")
 @onready var layout = $container
