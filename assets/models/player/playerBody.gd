@@ -20,6 +20,8 @@ extends CharacterBody3D
 @onready var interactionFeedback = _ui.get_node("InteractionFeedback") as Label
 @onready var quests_ui = _ui.get_node("QuestHolder/quests") as VBoxContainer
 @onready var death_screen = _ui.get_node("deathScreen") as Panel
+@onready var menu = _ui.get_node("menu") as Panel
+@onready var menuTab = menu.get_node("tabs") as TabContainer
 var inDialog = false
 var sprinting = false
 var _reward_queue = []
@@ -102,7 +104,14 @@ func fade_interaction_feedback(rate = 0.5 as float, reset = false as bool):
 func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
 		return
-	WorldUtil.quitGame()
+	if menu.visible and menuTab.current_tab == 2:
+		menu.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		menuTab.current_tab = 2
+		menu.visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
 
 func handle_show_quests():
 	if !Input.is_action_just_pressed("questlog"):
@@ -138,8 +147,15 @@ func handle_interaction():
 func handle_show_inventory():
 	if !Input.is_action_just_pressed("inventory"):
 		return
-	refresh_inventory_output()
-	inventory_output.visible = !inventory_output.visible
+	#refresh_inventory_output()
+	#inventory_output.visible = !inventory_output.visible
+	if menu.visible and menuTab.current_tab == 0:
+		menu.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		menuTab.current_tab = 0
+		menu.visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func handle_reward_queue():
 	var reward_message = ""

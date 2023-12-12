@@ -100,7 +100,6 @@ func _hasWeaponWithId(weaponId:String):
 	return _getWeaponForItemId(weaponId) != null
 	
 func _addWeaponForItemId(weaponId:String):
-	print("adding weapon...")
 	var scenePathForWeaponId = _ITEM_WEAPON_MAP.get(weaponId)
 	if not scenePathForWeaponId:
 		return
