@@ -184,24 +184,29 @@ tab_alignment = 1
 
 [node name="Inventory" type="Panel" parent="menu/tabs"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_lenj8")
 
 [node name="Inventory" parent="menu/tabs/Inventory" instance=ExtResource("4_gatnx")]
 layout_mode = 1
 offset_right = -0.00012207
+mouse_filter = 1
 
 [node name="Quests" type="Panel" parent="menu/tabs"]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_lenj8")
 
 [node name="Quests" parent="menu/tabs/Quests" instance=ExtResource("5_e5t3j")]
 layout_mode = 1
 offset_right = -0.00012207
+mouse_filter = 1
 
 [node name="Settings" type="Panel" parent="menu/tabs"]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("2_lenj8")
 
 [node name="Settings" parent="menu/tabs/Settings" instance=ExtResource("4_vgoqt")]

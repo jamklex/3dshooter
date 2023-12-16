@@ -46,14 +46,16 @@ func save():
 		"taxes": taxes,
 		"unlocks": unlocks
 	}
-	var file = FileAccess.open(_savePath, FileAccess.WRITE)
-	file.store_line(JSON.stringify(saveDict, "\t"))
+	FileUtil.saveJsonContent(_savePath, saveDict)
 
 func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
-	save()
 	bodyStartPos = pos
 	get_tree().change_scene_to_file("res://scenes/" + sceneName + "/_main.tscn")
-	inMissionMap = sceneName != "ship"
+	setInMission(sceneName != "ship")
+
+func setInMission(newInMissionMap:bool):
+	inMissionMap = newInMissionMap
+	body._shooter.setUseRealMunition(inMissionMap)
 	if inMissionMap:
 		mission_kills = 0
 	else:

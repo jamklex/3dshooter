@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var speed = 7.0
 @export var jump_strength = 20.0
 @export var gravity = 50.0
-@export var mouse_sensitivity = 0.05
+@onready var mouse_sensitivity = UserSettings.get_setting(UserSettings.KEY_MOUSE_SENS) 
 @export var interact_distance = 3
 
 @onready var _shooter:Shooter = $shooter
@@ -104,26 +104,13 @@ func fade_interaction_feedback(rate = 0.5 as float, reset = false as bool):
 func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
 		return
-	if menu.visible:
-		menu.visible = false
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	else:
-		menuTab.current_tab = 2
-		menu.visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		
+	_switchUiMenu(2)
 
 func handle_show_quests():
 	if !Input.is_action_just_pressed("questlog"):
 		return
-	if menu.visible and menuTab.current_tab == 1:
-		menu.visible = false
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		QuestLoader.attach_quests(quests_ui)
-	else:
-		menuTab.current_tab = 1
-		menu.visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	QuestLoader.attach_quests(quests_ui)
+	_switchUiMenu(1)
 
 func handle_interaction():
 	interactionPopup.text = ""
@@ -153,13 +140,7 @@ func handle_show_inventory():
 		return
 	#refresh_inventory_output()
 	#inventory_output.visible = !inventory_output.visible
-	if menu.visible and menuTab.current_tab == 0:
-		menu.visible = false
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	else:
-		menuTab.current_tab = 0
-		menu.visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_switchUiMenu(0)
 
 func handle_reward_queue():
 	var reward_message = ""
@@ -205,3 +186,13 @@ func _on_player_died():
 	quitBtn.pressed.connect(WorldUtil.quitGame)
 	death_screen.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+func _switchUiMenu(selectedTabIndex):
+	if menu.visible and (menuTab.current_tab == selectedTabIndex or selectedTabIndex == 2):
+		menu.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		menuTab.current_tab = selectedTabIndex
+		menu.visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		_shooter.disableAim()

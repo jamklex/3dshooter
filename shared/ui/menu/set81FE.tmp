@@ -9,23 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 script = ExtResource("1_7toyl")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -121.0
-offset_top = -189.0
-offset_right = -25.0
-offset_bottom = -166.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Mouse sens:"
 
 [node name="mouseSens" type="HSlider" parent="."]
 layout_mode = 1
@@ -34,9 +18,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -9.0
+offset_left = -98.0
 offset_top = -184.0
-offset_right = 191.0
+offset_right = 102.0
 offset_bottom = -168.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -51,28 +35,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 202.0
-offset_top = -189.0
-offset_right = 242.0
-offset_bottom = -166.0
+offset_left = 113.0
+offset_top = -190.0
+offset_right = 153.0
+offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "0.05"
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -129.0
-offset_top = -143.0
-offset_right = -28.0
-offset_bottom = -120.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Window size:"
 
 [node name="windowSize" type="OptionButton" parent="."]
 layout_mode = 1
@@ -81,9 +50,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 64.0
+offset_left = -24.36
 offset_top = -140.0
-offset_right = 109.0
+offset_right = 20.64
 offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -95,13 +64,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -71.0
-offset_top = -86.0
-offset_right = 73.0
-offset_bottom = -50.0
+offset_left = -63.5
+offset_top = -86.47
+offset_right = 63.5
+offset_bottom = -43.4697
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 text = "Apply settings"
 
 [node name="exitBtn" type="Button" parent="."]
@@ -111,16 +80,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -51.0
-offset_top = 61.0
-offset_right = 52.0
-offset_bottom = 97.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 text = "Exit game"
 
-[connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="value_changed" from="mouseSens" to="." method="_on_mouse_sens_value_changed"]
 [connection signal="pressed" from="applyBtn" to="." method="_apply_btn"]
 [connection signal="pressed" from="exitBtn" to="." method="_exit_btn"]

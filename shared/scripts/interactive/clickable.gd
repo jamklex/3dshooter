@@ -81,7 +81,7 @@ func execute_action(_action: Clickable.Actions):
 
 func initiate_airvent():
 	var player = get_player()
-	player.add_child(Trade.new_instance(player.run_inventory, Inventory.empty(), exit_airvent))
+	WorldUtil.add_child(Trade.new_instance(player.run_inventory, Inventory.empty(), exit_airvent))
 	player.body.setInDialog(true)
 
 func exit_airvent(_action: Trade.Actions, params: Array = []):

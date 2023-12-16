@@ -130,6 +130,7 @@ func teleportToMissionMap(payload: Array):
 	await loadingScreen.fade_in()
 	player.save()
 	player.bodyStartPos = Vector3.ZERO
+	player.setInMission(true)
 	remove_child(current_prg)
 	current_prg = ProceduralRoomGenerator.from_seed(str(payload[0]))
 	var initial_enemies = payload[1] if payload.size() > 1 else 0

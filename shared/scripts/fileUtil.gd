@@ -18,6 +18,10 @@ static func getContentAsJson(filePath:String, cached:bool = true):
 	if strContent.is_empty():
 		strContent = "{}"
 	return JSON.parse_string(strContent)
+	
+static func saveJsonContent(filePath:String, json:Variant):
+	var file = FileAccess.open(filePath, FileAccess.WRITE)
+	file.store_line(JSON.stringify(json, "\t"))
 
 static func getFilesAt(folder:String) -> Array[String]:
 	if !folder.ends_with("/"):

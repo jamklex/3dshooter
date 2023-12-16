@@ -87,6 +87,9 @@ func _checkForWeaponAction(payload:Array):
 
 func setUseRealMunition(newUseRealMunition:bool):
 	useRealMunition = newUseRealMunition
+	for weapon in weapons:
+		weapon.restMagShoots = 0
+		_reloadWeapon(weapon)
 	if currentWeapon and not reloading:
 		_refreshMagInfo()
 		
@@ -291,6 +294,10 @@ func _raycastForShootable() -> Node:
 	elif collider.has_node("shootable"):
 		return collider.get_node("shootable")
 	return null
+	
+func disableAim():
+	if aiming:
+		_switchAim()
 
 func _handleAimSwitching():
 	if not currentWeapon:
