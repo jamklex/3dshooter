@@ -4,7 +4,7 @@
 [ext_resource type="StyleBox" uid="uid://c5yofff7dw4jk" path="res://shared/ui/menu_bg_style.tres" id="2_lenj8"]
 [ext_resource type="PackedScene" uid="uid://bpw6fgm2mn687" path="res://shared/ui/menu/inventory.tscn" id="4_gatnx"]
 [ext_resource type="PackedScene" uid="uid://ce48caxhixn3" path="res://shared/ui/menu/settings.tscn" id="4_vgoqt"]
-[ext_resource type="PackedScene" uid="uid://bfbeekicg6c1h" path="res://shared/ui/menu/quests.tscn" id="5_e5t3j"]
+[ext_resource type="PackedScene" uid="uid://bfbeekicg6c1h" path="res://shared/ui/menu/quests/quests.tscn" id="5_e5t3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13omo"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)

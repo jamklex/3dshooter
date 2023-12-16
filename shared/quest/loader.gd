@@ -2,9 +2,7 @@ extends Node
 
 var quest_matcher: Dictionary = {}
 static var quests: Array[Quest] = []
-static var menu_quests: Array[Quest] = []
 const _savePath: String = "user://quests.json"
-const scene_root: String = "res://shared/quest/scenes/"
 
 func _process(_delta):
 	highlight_quest_npcs(quests)
@@ -26,13 +24,13 @@ func highlight_quest_npcs(_quests: Array[Quest]):
 		else:
 			n.hide_quest_marker()
 
-func load_quest(path: String, state: Dictionary, _scene_root = scene_root) -> Quest:
+func load_quest(path: String, state: Dictionary) -> Quest:
 	var tasks = []
 	for file_name in FileUtil.getFilesAt(path):
 		tasks.push_back(FileUtil.getContentAsJson(file_name))
-	return await Quest.from(path, tasks, state)
+	return Quest.from(path, tasks, state)
 
-func load_quests(path: String, _scene_root = scene_root) -> Array:
+func load_quests(path: String) -> Array:
 	if !path.ends_with("/"):
 		path = path + "/"
 	var _quests: Array[Quest] = []
@@ -41,7 +39,7 @@ func load_quests(path: String, _scene_root = scene_root) -> Array:
 		var quest_path = path + dir
 		if !quest_path.ends_with("/"):
 			quest_path = quest_path + "/"
-		var quest = await load_quest(quest_path, _saves.get(quest_path, {}), _scene_root)
+		var quest = load_quest(quest_path, _saves.get(quest_path, {}))
 		_quests.push_back(quest)
 		quest_matcher[dir] = quest.title
 	return _quests
@@ -53,8 +51,8 @@ func attach_quests(questlog: VBoxContainer):
 		questlog.add_child(quest)
 		quest.refresh_data()
 
-func attach_tasks(tasklog: VBoxContainer, quest: Quest):
-	for task in quest.get_active_tasks():
+func attach_tasks(tasklog: VBoxContainer, tasks: Array[Task]):
+	for task in tasks:
 		if !task:
 			continue
 		tasklog.add_child(task)
@@ -74,8 +72,7 @@ func get_quests() -> Array:
 	return quests
 
 func reload_quests():
-	quests = await load_quests("res://data/quests")
-	menu_quests = await load_quests("res://data/quests", "res://shared/ui/menu/quests/")
+	quests = load_quests("res://data/quests")
 
 func save_progress(_quest: Quest):
 	var content = save_state()
