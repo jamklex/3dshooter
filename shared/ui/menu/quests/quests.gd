@@ -20,7 +20,7 @@ func _ready():
 			continue
 		_highlight(quest_list, quest_index-1)
 		var task_index = 0
-		for task in quest.get_active_tasks():
+		for task in quest.tasks:
 			_add_task(task)
 			task_index += 1
 			if not task_desc.text.is_empty():
