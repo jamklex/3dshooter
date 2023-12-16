@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://nmsmltr0w7dn"]
+[gd_scene load_steps=9 format=3 uid="uid://nmsmltr0w7dn"]
 
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="1_hf0q4"]
 [ext_resource type="StyleBox" uid="uid://c5yofff7dw4jk" path="res://shared/ui/menu_bg_style.tres" id="2_lenj8"]
-[ext_resource type="Script" path="res://shared/ui/menu.gd" id="2_r46yh"]
+[ext_resource type="PackedScene" uid="uid://bpw6fgm2mn687" path="res://shared/ui/menu/inventory.tscn" id="4_gatnx"]
+[ext_resource type="PackedScene" uid="uid://ce48caxhixn3" path="res://shared/ui/menu/settings.tscn" id="4_vgoqt"]
+[ext_resource type="PackedScene" uid="uid://bfbeekicg6c1h" path="res://shared/ui/menu/quests.tscn" id="5_e5t3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13omo"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
@@ -168,7 +170,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_r46yh")
 
 [node name="tabs" type="TabContainer" parent="menu"]
 layout_mode = 1
@@ -185,60 +186,23 @@ tab_alignment = 1
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_lenj8")
 
-[node name="Label" type="Label" parent="menu/tabs/Inventory"]
+[node name="Inventory" parent="menu/tabs/Inventory" instance=ExtResource("4_gatnx")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -95.5
-offset_top = -11.5
-offset_right = 95.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Inventory coming soon..."
+offset_right = -0.00012207
 
 [node name="Quests" type="Panel" parent="menu/tabs"]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_lenj8")
 
-[node name="Label2" type="Label" parent="menu/tabs/Quests"]
+[node name="Quests" parent="menu/tabs/Quests" instance=ExtResource("5_e5t3j")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -95.5
-offset_top = -11.5
-offset_right = 95.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Quests coming soon..."
+offset_right = -0.00012207
 
 [node name="Settings" type="Panel" parent="menu/tabs"]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_lenj8")
 
-[node name="exitBtn" type="Button" parent="menu/tabs/Settings"]
+[node name="Settings" parent="menu/tabs/Settings" instance=ExtResource("4_vgoqt")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "Exit game"
-
-[connection signal="pressed" from="menu/tabs/Settings/exitBtn" to="menu" method="_exit_btn"]
