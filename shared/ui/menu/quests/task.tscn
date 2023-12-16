@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbumrwhgq6lnj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h2b1"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+
+[node name="Task" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7h2b1")
+
+[node name="Label" type="MenuButton" parent="."]
+layout_mode = 2
+text = "Task #1"
+alignment = 0

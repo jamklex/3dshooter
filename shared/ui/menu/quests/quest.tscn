@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc4e0krxxeve3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h2b1"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+
+[node name="Quest" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7h2b1")
+
+[node name="Label" type="MenuButton" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.713726, 0.886275, 1)
+toggle_mode = false
+action_mode = 1
+text = "Quest #1"
+alignment = 0

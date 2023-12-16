@@ -51,6 +51,13 @@ func attach_quests(questlog: VBoxContainer):
 		questlog.add_child(quest)
 		quest.refresh_data()
 
+func attach_tasks(tasklog: VBoxContainer, tasks: Array[Task]):
+	for task in tasks:
+		if !task:
+			continue
+		tasklog.add_child(task)
+		task.refresh_data()
+
 func get_quest(_name: String) -> Quest:
 	var _quests = get_quests()
 	for _q in _quests:

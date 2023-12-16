@@ -28,6 +28,9 @@ enum Status {
 	LOCKED, ACTIVE, SUCCEEDED, FAILED, SKIPPED
 }
 
+func has_status(_status: Status) -> bool:
+	return status == _status
+
 func save_dict() -> Dictionary:
 	var save = {}
 	for _t in tasks:
