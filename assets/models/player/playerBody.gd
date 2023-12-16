@@ -116,10 +116,14 @@ func handle_show_menu():
 func handle_show_quests():
 	if !Input.is_action_just_pressed("questlog"):
 		return
-	quests_ui.visible = !quests_ui.visible
-	if !quests_ui.visible:
-		return
-	QuestLoader.attach_quests(quests_ui)
+	if menu.visible and menuTab.current_tab == 1:
+		menu.visible = false
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		QuestLoader.attach_quests(quests_ui)
+	else:
+		menuTab.current_tab = 1
+		menu.visible = true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func handle_interaction():
 	interactionPopup.text = ""
