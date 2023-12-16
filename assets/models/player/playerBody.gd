@@ -104,7 +104,7 @@ func fade_interaction_feedback(rate = 0.5 as float, reset = false as bool):
 func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
 		return
-	if menu.visible and menuTab.current_tab == 2:
+	if menu.visible:
 		menu.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	else:
