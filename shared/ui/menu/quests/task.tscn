@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbumrwhgq6lnj"]
+[gd_scene load_steps=3 format=3 uid="uid://cbumrwhgq6lnj"]
+
+[ext_resource type="Script" path="res://shared/ui/menu/quests/task.gd" id="1_biuh8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h2b1"]
 content_margin_left = 5.0
@@ -14,8 +16,11 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_7h2b1")
+script = ExtResource("1_biuh8")
 
 [node name="Label" type="MenuButton" parent="."]
 layout_mode = 2
 text = "Task #1"
 alignment = 0
+
+[connection signal="pressed" from="Label" to="." method="_on_click"]
