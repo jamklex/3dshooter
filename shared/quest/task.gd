@@ -39,7 +39,7 @@ static func from(_quest_listener: Callable, dict: Dictionary, _index: int, quest
 	return task
 
 enum Status {
-	UNKNOWN, KNOWN, ACTIVE, SUCCEEDED, FAILED
+	UNKNOWN, KNOWN, ACTIVE, SUCCEEDED, FAILED, SKIPPED
 }
 
 func _process(_delta):
@@ -60,6 +60,9 @@ func set_active():
 func set_succeeded():
 	status = Status.SUCCEEDED
 
+func set_skipped():
+	status = Status.SKIPPED
+
 func set_failed():
 	status = Status.FAILED
 
@@ -71,7 +74,10 @@ func is_done() -> bool:
 
 func refresh_data():
 	for s in Status.values():
-		var node = short_ui.get_node(Status.keys()[s].to_lower()) as RichTextLabel
+		var node_name = Status.keys()[s].to_lower()
+		if not short_ui.has_node(node_name):
+			continue
+		var node = short_ui.get_node(node_name) as RichTextLabel
 		if !node:
 			continue
 		node.visible = s == status

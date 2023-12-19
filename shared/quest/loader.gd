@@ -46,7 +46,7 @@ func load_quests(path: String) -> Array:
 
 func attach_quests(questlog: VBoxContainer):
 	for quest in get_quests():
-		if !quest:
+		if !quest or quest.get_parent():
 			continue
 		questlog.add_child(quest)
 		quest.refresh_data()

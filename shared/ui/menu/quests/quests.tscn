@@ -68,7 +68,27 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7q321")
 
 [node name="list" type="VBoxContainer" parent="wrapper/quests"]
 layout_mode = 2
-size_flags_horizontal = 3
+
+[node name="tab-switch" type="TabBar" parent="wrapper/quests/list"]
+layout_mode = 2
 size_flags_vertical = 0
+tab_count = 2
+tab_alignment = 1
+tab_0/title = "active"
+tab_1/title = "complete"
+
+[node name="active" type="VBoxContainer" parent="wrapper/quests/list"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme_override_constants/separation = 5
+
+[node name="complete" type="VBoxContainer" parent="wrapper/quests/list"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
 size_flags_stretch_ratio = 0.3
 theme_override_constants/separation = 5
+
+[connection signal="tab_changed" from="wrapper/quests/list/tab-switch" to="." method="_on_tab_pressed"]

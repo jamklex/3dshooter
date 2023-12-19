@@ -1,6 +1,6 @@
 {
 	"name": "How do I use a gun?",
-	"desc": "Try using the pistol to destroy some dummies across from Henry.\nHe told You to use <MOUSE_WHEEL> to select a weapon to to aim before shooting with <RIGHT_CLICK>.\nIf You need to reload use <R>.",
+	"desc": "Try using the pistol to destroy some dummies across from Henry.\nHe told You to use <ACTION_nextWeapon> to select a weapon to to aim before shooting with <ACTION_aim>.\nIf You need to reload use <ACTION_reload>.",
 	"short": "Kill at least 2 dummies accross the room",
 	"success": {
 		"conditions": [

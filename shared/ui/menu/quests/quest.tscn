@@ -18,12 +18,17 @@ size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_7h2b1")
 script = ExtResource("1_dbirf")
 
-[node name="Label" type="MenuButton" parent="."]
+[node name="Label" type="Button" parent="."]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.713726, 0.886275, 1)
-toggle_mode = false
-action_mode = 1
+theme_override_colors/font_pressed_color = Color(0.603922, 0.505882, 0.266667, 1)
+theme_override_colors/font_hover_color = Color(0.603922, 0.505882, 0.266667, 1)
+theme_override_colors/font_focus_color = Color(0.603922, 0.505882, 0.266667, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.603922, 0.505882, 0.266667, 1)
+theme_override_colors/font_disabled_color = Color(0.32549, 0.32549, 0.32549, 1)
+theme_override_colors/font_outline_color = Color(0.603922, 0.505882, 0.266667, 1)
 text = "Quest #1"
+flat = true
 alignment = 0
 
 [connection signal="pressed" from="Label" to="." method="_on_click"]

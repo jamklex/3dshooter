@@ -31,6 +31,9 @@ enum Status {
 func has_status(_status: Status) -> bool:
 	return status == _status
 
+func is_complete() -> bool:
+	return has_status(Status.SUCCEEDED) or has_status(Status.FAILED)
+
 func save_dict() -> Dictionary:
 	var save = {}
 	for _t in tasks:
@@ -67,11 +70,18 @@ func set_active(_task: Task):
 	_task.set_active()
 	QuestLoader.save_progress(self)
 
+func set_skipped(_task: Task):
+	_task.set_skipped()
+	QuestLoader.save_progress(self)
+
 func set_status(_status: Status):
 	status = _status
 	if status == Status.SUCCEEDED:
 		for _t in tasks:
-			set_succeeded(_t)
+			if _t.status == Task.Status.KNOWN:
+				set_skipped(_t)
+			if _t.status == Task.Status.ACTIVE:
+				set_succeeded(_t)
 
 func get_active_tasks() -> Array:
 	return tasks.filter(func(t): return t.status == Task.Status.ACTIVE)
