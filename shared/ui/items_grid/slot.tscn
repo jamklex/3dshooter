@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://brpciuojqvdyu"]
+
+[ext_resource type="StyleBox" uid="uid://co2lskcsho12m" path="res://shared/ui/items_grid/slot.tres" id="1_80f8l"]
+
+[node name="Slot" type="Panel"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 100.0
+offset_bottom = 100.0
+theme_override_styles/panel = ExtResource("1_80f8l")
