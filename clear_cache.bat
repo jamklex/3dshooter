@@ -1,0 +1,1 @@
+rmdir /S /Q "%appdata%\Godot\app_userdata\3 Dshooter\"

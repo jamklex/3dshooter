@@ -4,8 +4,8 @@ var current_tasks: Array[Task] = []
 const quest_scene = preload("res://shared/ui/menu/quests/quest.tscn")
 const task_scene = preload("res://shared/ui/menu/quests/task.tscn")
 
-@onready var quest_list_active = $wrapper/quests/list/active
-@onready var quest_list_complete = $wrapper/quests/list/complete
+@onready var quest_list_active = $wrapper/quests/tab/active
+@onready var quest_list_complete = $wrapper/quests/tab/complete
 @onready var task_list = $wrapper/current_quest/tasks/list
 @onready var task_desc = $wrapper/current_quest/current_task/desc
 @onready var quest_lists = [quest_list_active, quest_list_complete]
@@ -52,9 +52,3 @@ func _add_task_desc(task: Task):
 func _delete_nodes(list: Array[Node]):
 	for n in list:
 		n.free()
-
-func _on_tab_pressed(index: int):
-	var _index = 0
-	for _ql in quest_lists:
-		_ql.visible = _index == index
-		_index += 1
