@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpw6fgm2mn687"]
+
+[ext_resource type="PackedScene" uid="uid://xr66w7kj4beu" path="res://shared/ui/items_grid/items_grid.tscn" id="1_2vvbi"]
+[ext_resource type="Script" path="res://shared/ui/menu/inventory/inventory.gd" id="1_84fpx"]
+[ext_resource type="PackedScene" uid="uid://bc8uwwpv5yo3m" path="res://shared/ui/menu/inventory/item_info.tscn" id="2_kkqjn"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_84fpx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemsGrid" parent="HBoxContainer" instance=ExtResource("1_2vvbi")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.95
+columns = 12
+rows = 10
+
+[node name="ItemInfo" parent="HBoxContainer" instance=ExtResource("2_kkqjn")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="draw" from="." to="." method="_visible"]

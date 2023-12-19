@@ -33,7 +33,7 @@ func _executeAction(action:String, payload:Array):
 		var task = quest.get_task(currentSource.task_index)
 		task.execute(action, payload)
 	else:
-		print("unknown method with name: '" + action + "' please create in WorldUtil")
+		WorldUtil.call(action, payload)
 
 func add_options(source: QuestSource, quote:String, dialog_tree:Dictionary):
 	dialog_data["options"][quote] = dialog_tree

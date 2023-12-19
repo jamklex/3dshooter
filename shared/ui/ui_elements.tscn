@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="1_hf0q4"]
 [ext_resource type="StyleBox" uid="uid://c5yofff7dw4jk" path="res://shared/ui/menu_bg_style.tres" id="2_lenj8"]
-[ext_resource type="PackedScene" uid="uid://bpw6fgm2mn687" path="res://shared/ui/menu/inventory.tscn" id="4_gatnx"]
+[ext_resource type="PackedScene" uid="uid://bpw6fgm2mn687" path="res://shared/ui/menu/inventory/inventory.tscn" id="4_gatnx"]
 [ext_resource type="PackedScene" uid="uid://ce48caxhixn3" path="res://shared/ui/menu/settings.tscn" id="4_vgoqt"]
 [ext_resource type="PackedScene" uid="uid://bfbeekicg6c1h" path="res://shared/ui/menu/quests/quests.tscn" id="5_e5t3j"]
 

@@ -55,7 +55,8 @@ func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
 
 func setInMission(newInMissionMap:bool):
 	inMissionMap = newInMissionMap
-	body._shooter.setUseRealMunition(inMissionMap)
+	if body:
+		body._shooter.setUseRealMunition(inMissionMap)
 	if inMissionMap:
 		mission_kills = 0
 	else:
