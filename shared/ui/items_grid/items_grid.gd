@@ -4,6 +4,7 @@ class_name ItemsGrid
 
 signal on_item_clicked(inventory_item:InventoryItem)
 var _inventory:Inventory = null
+var _show_non_tradeable = false
 @onready var _container:GridContainer = $ScrollContainer/MarginContainer/slots
 
 @export_range(1,20) var columns = 1:
@@ -46,9 +47,10 @@ func _get_empty_slot():
 			return slot
 	return null
 		
-func show_inventory(inventory:Inventory):
+func show_inventory(inventory:Inventory, show_non_tradeable=false):
 	print("show_inventory")
 	_inventory = inventory
+	_show_non_tradeable = show_non_tradeable
 	refresh()
 
 func refresh():
@@ -61,6 +63,8 @@ func refresh():
 	print("slots cleard")
 	for item in _inventory.items.values():
 		var inventory_item = item as InventoryItem
+		if not inventory_item.item.tradeable and not _show_non_tradeable:
+			continue
 		var empty_slot = _get_empty_slot()
 		if not empty_slot:
 			print("no empty slot")
