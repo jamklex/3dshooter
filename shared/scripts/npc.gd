@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 class_name NPC
 
@@ -9,9 +10,17 @@ var normalTransform: Transform3D
 const POPUP_MESSAGE_FORMAT = "Talk to <NPC_NAME>"
 @export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_message: String
 @onready var questMarker: Node3D = $QuestMarker
+@onready var skin: MeshInstance3D = $Skin
+@onready var eyes: MeshInstance3D = $Skin/Front
+@export var skin_material: Material
+@export var eyes_material: Material
 var show_marker = false
 
 func _ready():
+	if skin_material:
+		skin.material_override = skin_material
+	if eyes_material:
+		eyes.material_override = eyes_material
 	normalTransform = transform
 
 func _process(_delta):

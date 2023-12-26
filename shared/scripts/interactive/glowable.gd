@@ -1,3 +1,4 @@
+@tool
 class_name Glowable
 
 extends CSGBox3D

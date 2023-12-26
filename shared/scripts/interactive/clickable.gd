@@ -1,3 +1,4 @@
+@tool
 class_name Clickable
 
 extends CSGBox3D
