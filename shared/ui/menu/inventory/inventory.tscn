@@ -26,10 +26,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.95
 columns = 12
-rows = 10
+rows = 9
 
 [node name="ItemInfo" parent="HBoxContainer" instance=ExtResource("2_kkqjn")]
 layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="draw" from="." to="." method="_visible"]
+[connection signal="on_item_clicked" from="HBoxContainer/ItemsGrid" to="." method="_on_item_clicked"]
