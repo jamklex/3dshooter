@@ -9,13 +9,11 @@ var _show_non_tradeable = false
 
 @export_range(1,20) var columns = 1:
 	set(new_columns):
-		print("set columns")
 		columns = new_columns
 		_init_slots()
 		
 @export_range(1,20) var rows = 1:
 	set(new_rows):
-		print("set rows")
 		rows = new_rows
 		_init_slots()
 		
@@ -48,26 +46,20 @@ func _get_empty_slot():
 	return null
 		
 func show_inventory(inventory:Inventory, show_non_tradeable=false):
-	print("show_inventory")
 	_inventory = inventory
 	_show_non_tradeable = show_non_tradeable
 	refresh()
 
 func refresh():
-	print("refresh")
 	if not _inventory:
-		print("no inventory")
 		return
 	for slot in _get_slots():
 		slot.clear()
-	print("slots cleard")
 	for item in _inventory.items.values():
 		var inventory_item = item as InventoryItem
 		if not inventory_item.item.tradeable and not _show_non_tradeable:
 			continue
 		var empty_slot = _get_empty_slot()
 		if not empty_slot:
-			print("no empty slot")
 			return
 		empty_slot.show_item(inventory_item)
-		print("item added")
