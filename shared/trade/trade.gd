@@ -64,8 +64,8 @@ func getPrice(id):
 	return 0
 
 func refreshPlayerInventory():
-	var itemContainer = $bg/leftInv/scroll/items as VBoxContainer
-	clearItems(itemContainer)
+	var itemGrid = $bg/leftInv/items as ItemsGrid
+	clearItems(itemGrid)
 	for id in playerInventory.item_ids():
 		var game_item = ItemHelper.get_item(id)
 		if not game_item.tradeable:
@@ -73,23 +73,22 @@ func refreshPlayerInventory():
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
 		tradeItem.setItem(game_item, playerInventory.count(id))
 		tradeItem.onPressed.connect(_moveItemLeftToRightInv)
-		itemContainer.add_child(tradeItem)
-		
-	
+		itemGrid.add_child(tradeItem)
+
 func refreshOtherInventory():
-	var itemContainer = $bg/rightInv/scroll/items as VBoxContainer
-	clearItems(itemContainer)
+	var itemGrid = $bg/rightInv/items as ItemsGrid
+	clearItems(itemGrid)
 	for id in otherInventory.item_ids():
 		var game_item = ItemHelper.get_item(id)
 		var tradeItem = tradeItemScene.instantiate() as TradeItem
 		tradeItem.setItem(game_item, otherInventory.count(id))
 		tradeItem.onPressed.connect(_moveItemRightToLeftInv)
-		itemContainer.add_child(tradeItem)
-	
-func clearItems(itemContainer: VBoxContainer):
-	for child in itemContainer.get_children():
-		itemContainer.remove_child(child)
-	
+		itemGrid.add_child(tradeItem)
+
+func clearItems(itemGrid: VBoxContainer):
+	for child in itemGrid.get_children():
+		itemGrid.remove_child(child)
+
 func refreshUi():
 	refreshInventoryLabels()
 	refreshPlayerInventory()
