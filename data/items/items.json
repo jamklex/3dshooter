@@ -2,53 +2,53 @@
 	"0": {
 		"name": "Gold",
 		"desc": "It is goot to have plenty of it",
-		"image": "res://data/items/img/1.png",
+		"image": "res://data/items/img/gold.png",
 		"trade": false
 	},
 	"1": {
 		"name": "Schrott #1",
 		"desc": "just sell it...",
-		"image": "res://data/items/img/1.png"
+		"image": "res://data/items/img/schrott-1.png"
 	},
 	"2": {
 		"name": "Schrott #2",
 		"desc": "just sell it...",
-		"image": "res://data/items/img/1.png"
+		"image": "res://data/items/img/schrott-2.png"
 	},
 	"3": {
 		"name": "Schrott #3",
 		"desc": "just sell it...",
-		"image": "res://data/items/img/1.png"
+		"image": "res://data/items/img/schrott-3.png"
 	},
 	"4": {
 		"name": "Golden Sphere",
 		"desc": "Shiny little sphere, be careful not to brake it!",
-		"image": "res://data/items/img/1.png",
+		"image": "res://data/items/img/golden-sphere.png",
 		"trade": false
 	},
 	"5": {
 		"name": "Schrott #4",
 		"desc": "just sell it...",
-		"image": "res://data/items/img/1.png"
+		"image": "res://data/items/img/schrott-4.png"
 	},
 	"6": {
 		"name": "Small pistol",
 		"desc": "A small pistol, dealing medium damange",
-		"image": "res://data/items/img/1.png"
+		"image": "res://data/items/img/small-pistol.png"
 	},
 	"7": {
 		"name": "Pistol ammo",
 		"desc": "Ammo for pistols",
-		"image": "res://data/items/img/1.png"
+		"image": "res://data/items/img/pistol-ammo.png"
 	},
 	"8": {
 		"name": "Better pistol",
 		"desc": "Just a better version of the pistol",
-		"image": "res://data/items/img/1.png"
+		"image": "res://data/items/img/better-pistol.png"
 	},
 	"9": {
 		"name": "Sprint module",
 		"desc": "With this module your robot can move faster",
-		"image": "res://data/items/img/1.png"
+		"image": "res://data/items/img/sprint-module.png"
 	}
 }
