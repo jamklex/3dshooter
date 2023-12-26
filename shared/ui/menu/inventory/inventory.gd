@@ -16,7 +16,7 @@ func _get_inventory() -> Inventory:
 	return inventory
 
 func _load_inventory():
-	_items_grid.show_inventory(_get_inventory())
+	_items_grid.show_inventory(_get_inventory(), true)
 
 
 func _on_item_clicked(inventory_item:InventoryItem):

@@ -53,7 +53,7 @@ func _moveItemLeftToRightInv(inventory_item:InventoryItem):
 	refreshUi()
 	
 func _moveItemRightToLeftInv(inventory_item:InventoryItem):
-	var id = inventory_item.item.id
+	var id = inventory_item.item.id 
 	otherInventory.moveItemSome(playerInventory, id, 1)
 	if priceList:
 		var itemPrice = getPrice(id)
