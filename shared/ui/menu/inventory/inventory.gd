@@ -1,19 +1,10 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	print("_ready")
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+@onready var _items_grid:ItemsGrid = $HBoxContainer/ItemsGrid
+@onready var _item_info:ItemInfo = $HBoxContainer/ItemInfo
 
 func _visible():
-	pass
-	#_load_inventory()
+	_load_inventory()
 
 func _get_inventory() -> Inventory:
 	var player = WorldUtil.player as Player
@@ -24,7 +15,9 @@ func _get_inventory() -> Inventory:
 		inventory = player.inventory
 	return inventory
 
-#func _load_inventory():
-	#var inventory = _get_inventory()
-	#for item in inventory.items:
-		#
+func _load_inventory():
+	_items_grid.show_inventory(_get_inventory())
+
+
+func _on_item_clicked(inventory_item:InventoryItem):
+	_item_info.show_item_info(inventory_item)

@@ -1,9 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://brpciuojqvdyu"]
+[gd_scene load_steps=3 format=3 uid="uid://brpciuojqvdyu"]
 
 [ext_resource type="StyleBox" uid="uid://co2lskcsho12m" path="res://shared/ui/items_grid/slot.tres" id="1_80f8l"]
+[ext_resource type="Script" path="res://shared/ui/items_grid/slot.gd" id="2_jgwy6"]
 
-[node name="Slot" type="Panel"]
+[node name="Slot" type="Button"]
 custom_minimum_size = Vector2(100, 100)
 offset_right = 100.0
 offset_bottom = 100.0
-theme_override_styles/panel = ExtResource("1_80f8l")
+theme_override_styles/normal = ExtResource("1_80f8l")
+theme_override_styles/hover = ExtResource("1_80f8l")
+theme_override_styles/pressed = ExtResource("1_80f8l")
+theme_override_styles/disabled = ExtResource("1_80f8l")
+theme_override_styles/focus = ExtResource("1_80f8l")
+script = ExtResource("2_jgwy6")
+
+[node name="image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="amount" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -23.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

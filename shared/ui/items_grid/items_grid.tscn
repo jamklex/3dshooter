@@ -30,3 +30,5 @@ theme_override_constants/margin_bottom = 5
 
 [node name="slots" type="GridContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
+
+[connection signal="pressed" from="ScrollContainer/MarginContainer/slots/Slot" to="ScrollContainer/MarginContainer/slots/Slot" method="_on_pressed"]
