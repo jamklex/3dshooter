@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6xx3gbl0sid"]
+
+[ext_resource type="Script" path="res://shared/trade/itemSlider.gd" id="1_awhc7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3h78"]
+bg_color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[node name="ItemSlider" type="Panel"]
+offset_right = 548.0
+offset_bottom = 102.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3h78")
+script = ExtResource("1_awhc7")
+
+[node name="slider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -32.0
+offset_right = -18.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="amount" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -11.0
+offset_right = 159.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Item: 10"
+horizontal_alignment = 1
+
+[node name="min" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="max" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = -6.0
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="apply" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -37.0
+offset_right = 55.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Apply"
+
+[node name="cancel" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -37.0
+offset_right = -4.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Cancel"
+
+[connection signal="value_changed" from="slider" to="." method="_on_slider_value_changed"]
+[connection signal="pressed" from="apply" to="." method="_on_apply_pressed"]
+[connection signal="pressed" from="cancel" to="." method="_on_cancel_pressed"]

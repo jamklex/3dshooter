@@ -15,6 +15,7 @@ var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
 @onready var diffMoneyLabel = $bg/diffMoney
 @onready var leftInvNameLabel = $bg/leftInvName
 @onready var rightInvNameLabel = $bg/rightInvName
+@onready var itemSlider = $bg/ItemSlider
 
 enum Actions {
 	SAVE_TRADE, # has to return boolean true to close trade
@@ -35,29 +36,45 @@ static func new_instance(playerInv: Inventory, otherInv: Inventory,
 	trade.rightInvName = _rightInvName
 	return trade
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	onAction.call(Actions.LOAD)
 	var gold_amount = playerInventory.count(Inventory.GOLD_ITEM)
 	if gold_amount == 0:
 		playerInventory.add(Inventory.GOLD_ITEM, 0)
 	playerMoney = gold_amount
+	itemSlider.on_apply.connect(itemSlider_apply)
 	refreshUi()
+	
+func itemSlider_apply(inventory_item:InventoryItem, amount:int, rightToLeft:bool):
+	if rightToLeft:
+		_moveItemRightToLeftInv_(inventory_item.item.id, amount)
+	else:
+		_moveItemLeftToRightInv_(inventory_item.item.id, amount)
 
 func _moveItemLeftToRightInv(inventory_item:InventoryItem):
-	var id = inventory_item.item.id
-	playerInventory.moveItemSome(otherInventory, id, 1)
+	if inventory_item.amount > 1:
+		itemSlider.show_slider(inventory_item, false)
+	else:
+		_moveItemLeftToRightInv_(inventory_item.item.id, 1)
+	
+func _moveItemLeftToRightInv_(id:String, amount:int):
+	playerInventory.moveItemSome(otherInventory, id, amount)
 	if priceList:
 		var itemPrice = getPrice(id)
-		diffMoney += itemPrice
+		diffMoney += itemPrice * amount
 	refreshUi()
 	
 func _moveItemRightToLeftInv(inventory_item:InventoryItem):
-	var id = inventory_item.item.id 
-	otherInventory.moveItemSome(playerInventory, id, 1)
+	if inventory_item.amount > 1:
+		itemSlider.show_slider(inventory_item, true)
+	else:
+		_moveItemRightToLeftInv_(inventory_item.item.id, 1)
+	
+func _moveItemRightToLeftInv_(id:String, amount:int):
+	otherInventory.moveItemSome(playerInventory, id, amount)
 	if priceList:
 		var itemPrice = getPrice(id)
-		diffMoney -= itemPrice
+		diffMoney -= itemPrice * amount
 	refreshUi()
 	
 func getPrice(id):
@@ -69,27 +86,11 @@ func refreshPlayerInventory():
 	var itemsGrid = $bg/leftInv/items as ItemsGrid
 	itemsGrid.show_inventory(playerInventory)
 	itemsGrid.on_item_clicked.connect(_moveItemLeftToRightInv)
-	#clearItems(itemGrid)
-	#for id in playerInventory.item_ids():
-		#var game_item = ItemHelper.get_item(id)
-		#if not game_item.tradeable:
-			#continue
-		#var tradeItem = tradeItemScene.instantiate() as TradeItem
-		#tradeItem.setItem(game_item, playerInventory.count(id))
-		#tradeItem.onPressed.connect(_moveItemLeftToRightInv)
-		#itemGrid.add_child(tradeItem)
 
 func refreshOtherInventory():
 	var itemsGrid = $bg/rightInv/items
 	itemsGrid.show_inventory(otherInventory)
 	itemsGrid.on_item_clicked.connect(_moveItemRightToLeftInv)
-	#clearItems(itemGrid)
-	#for id in otherInventory.item_ids():
-		#var game_item = ItemHelper.get_item(id)
-		#var tradeItem = tradeItemScene.instantiate() as TradeItem
-		#tradeItem.setItem(game_item, otherInventory.count(id))
-		#tradeItem.onPressed.connect(_moveItemRightToLeftInv)
-		#itemGrid.add_child(tradeItem)
 
 func clearItems(itemGrid: VBoxContainer):
 	for child in itemGrid.get_children():

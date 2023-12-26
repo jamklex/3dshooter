@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1dgspiie0v1o"]
+[gd_scene load_steps=6 format=3 uid="uid://d1dgspiie0v1o"]
 
 [ext_resource type="Script" path="res://shared/trade/trade.gd" id="1_pov6p"]
 [ext_resource type="StyleBox" uid="uid://cufqtj4raux37" path="res://shared/trade/inventoryBg.tres" id="2_cku0r"]
 [ext_resource type="PackedScene" uid="uid://xr66w7kj4beu" path="res://shared/ui/items_grid/items_grid.tscn" id="3_2vd3b"]
+[ext_resource type="PackedScene" uid="uid://b6xx3gbl0sid" path="res://shared/trade/itemSlider.tscn" id="4_om6pe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jplul"]
 bg_color = Color(0, 0, 0, 0.301961)
@@ -150,6 +151,20 @@ offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Cancel"
+
+[node name="ItemSlider" parent="bg" instance=ExtResource("4_om6pe")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -16.0
+offset_right = 274.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="bg/done" to="." method="_on_done_pressed"]
 [connection signal="pressed" from="bg/cancel" to="." method="_on_cancel_pressed"]
