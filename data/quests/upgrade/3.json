@@ -1,0 +1,58 @@
+{
+	"name": "I've got the Gold",
+	"desc": "Buy Your Speed-Module from Igor with the 100 Gold You've collected.",
+	"short": "Buy the Module",
+	"dialog": {
+		"npc": "BODY_MANAGER",
+		"answer": "Perfect! You can have the Module for it!",
+		"options": {
+			"Here You go!": {
+				"conditions": [
+					{
+						"method": "hasItemCount",
+						"payload": [
+							"0", 100
+						]
+					}
+				],
+				"answer": "Great, here take it.\nYou can use <ACTION_sprint> to move faster once it's installed.",
+				"actions": [
+					{
+						"method": "removeItem",
+						"payload": [
+							"0", 100
+						]
+					},
+					{
+						"method": "giveRewards",
+						"payload": []
+					},
+					{
+						"method": "succeedTask",
+						"payload": []
+					},
+					{
+						"method": "succeedQuest",
+						"payload": []
+					}
+				]
+			},
+			"Well I had it at least...": {
+				"conditions": [
+					{
+						"method": "hasNotItemCount",
+						"payload": [
+							"0", 100
+						]
+					}
+				],
+				"answer": "No money, no module..."
+			}
+		}
+	},
+	"rewards": [
+		{
+			"9": 1
+		}
+	]
+}

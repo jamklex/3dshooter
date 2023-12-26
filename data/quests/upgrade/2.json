@@ -1,0 +1,25 @@
+{
+	"name": "A new Module",
+	"desc": "Igor told You that he has a spare module laying around that can make You faster.\nAll he want is 100 Gold.",
+	"short": "Collect 100 Gold for Igor",
+	"success": {
+		"conditions": [
+			{
+				"method": "hasItemCountTotal",
+				"payload": [
+					"0", 100
+				]
+			}
+		],
+		"actions": [
+			{
+				"method": "succeedTask",
+				"payload": []
+			},
+			{
+				"method": "nextInLine",
+				"payload": []
+			}
+		]
+	}
+}

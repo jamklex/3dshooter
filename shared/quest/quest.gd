@@ -114,9 +114,10 @@ func _on_event(event_name: String, payload: Array = []):
 		"failQuest":
 			set_status(Status.FAILED)
 		"unlockQuest":
-			var target = QuestLoader.get_quest(payload[0]) as Quest
-			target.unlock()
-			QuestLoader.save_progress(target)
+			for _p in payload:
+				var target = QuestLoader.get_quest(_p) as Quest
+				target.unlock()
+				QuestLoader.save_progress(target)
 		"skipQuest":
 			set_status(Status.SKIPPED)
 		"succeedTask":

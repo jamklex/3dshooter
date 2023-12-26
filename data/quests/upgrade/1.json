@@ -1,0 +1,30 @@
+{
+	"name": "I hate beeing slow",
+	"desc": "If You need to move around a lot, You should better get some upgrades that make You faster.\nAsk of Igor can help You with that.",
+	"short": "Ask Igor for an Upgrade",
+	"dialog": {
+		"npc": "BODY_MANAGER",
+		"answer": "Hmm.. Yeah that's definitely the old model.\nI think I have some spare parts laying around that cna help with that.",
+		"options": {
+			"Great can I get them?": {
+				"answer": "Well not so fast...\nI have bills to pay.\n[highlight]100[/highlight] Gold and You got Yourself a deal.",
+				"actions": [
+					{
+						"method": "succeedTask",
+						"payload": []
+					},
+					{
+						"method": "unhideTasks",
+						"payload": [
+							1, 2
+						]
+					},
+					{
+						"method": "nextInLine",
+						"payload": []
+					}
+				]
+			}
+		}
+	}
+}
