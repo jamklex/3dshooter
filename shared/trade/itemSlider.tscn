@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6xx3gbl0sid"]
+[gd_scene load_steps=5 format=3 uid="uid://b6xx3gbl0sid"]
 
 [ext_resource type="Script" path="res://shared/trade/itemSlider.gd" id="1_awhc7"]
+[ext_resource type="StyleBox" uid="uid://vdqifgistcp3" path="res://shared/trade/hover_btn.tres" id="2_2mw01"]
+[ext_resource type="StyleBox" uid="uid://k2v8wwfiofoo" path="res://shared/trade/cancel_btn.tres" id="2_165yl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3h78"]
 bg_color = Color(0.443137, 0.443137, 0.443137, 1)
@@ -76,12 +78,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 3.0
+offset_left = -67.0
 offset_top = -37.0
-offset_right = 55.0
+offset_right = -15.0
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/hover = ExtResource("2_2mw01")
 text = "Apply"
 
 [node name="cancel" type="Button" parent="."]
@@ -91,12 +94,17 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -56.0
+offset_left = 8.0
 offset_top = -37.0
-offset_right = -4.0
+offset_right = 68.0
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/normal = ExtResource("2_165yl")
+theme_override_styles/hover = ExtResource("2_2mw01")
+theme_override_styles/pressed = ExtResource("2_165yl")
+theme_override_styles/disabled = ExtResource("2_165yl")
+theme_override_styles/focus = ExtResource("2_165yl")
 text = "Cancel"
 
 [connection signal="value_changed" from="slider" to="." method="_on_slider_value_changed"]
