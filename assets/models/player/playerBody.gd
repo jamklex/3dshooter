@@ -72,23 +72,25 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "forward", "back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	var currentSpeed = speed
-	if sprinting:
-		_playAnimation("running")
-		currentSpeed *= 1.5
-	else:
-		_playAnimation("walking")
-	if _shooter.aiming:
-		_visuals.rotation = Vector3.ZERO
-	if direction:
-		velocity.x = direction.x * currentSpeed
-		velocity.z = direction.z * currentSpeed
-		if not _shooter.aiming:
-			_visuals.look_at(position + direction)
+	if direction.length() > 0: # is moving
+		if sprinting:
+			_playAnimation("running")
+			currentSpeed *= 1.5
+		else:
+			_playAnimation("walking")
+		if _shooter.aiming:
+			_visuals.rotation = Vector3.ZERO
+		if direction:
+			velocity.x = direction.x * currentSpeed
+			velocity.z = direction.z * currentSpeed
+			if not _shooter.aiming:
+				_visuals.look_at(position + direction)
+		else:
+			velocity.x = move_toward(velocity.x, 0, currentSpeed)
+			velocity.z = move_toward(velocity.z, 0, currentSpeed)
+			sprinting = false
 	else:
 		_playAnimation("idle")
-		velocity.x = move_toward(velocity.x, 0, currentSpeed)
-		velocity.z = move_toward(velocity.z, 0, currentSpeed)
-		sprinting = false
 	move_and_slide()
 
 func _playAnimation(animationName:String):
