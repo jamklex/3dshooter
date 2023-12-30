@@ -160,7 +160,7 @@ func _handleReloading():
 		return
 	if currentWeapon.isMagFull():
 		return
-	if _getAmmoInInventory(currentWeapon.weaponType) <= 0:
+	if _getAmmoInInventory(currentWeapon.weaponType) <= 0 and useRealMunition:
 		return
 	if aiming:
 		aimOverride.stop()

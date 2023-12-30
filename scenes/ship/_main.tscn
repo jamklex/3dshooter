@@ -22,12 +22,12 @@
 [ext_resource type="PackedScene" uid="uid://xx4ok047mg7w" path="res://assets/models/npcs/itemSeller.tscn" id="15_63p7s"]
 [ext_resource type="Environment" uid="uid://bdsi47qs3trw3" path="res://assets/bg/shipEnvironment.tres" id="15_p7ie7"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pq56i"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vppet"]
 albedo_color = Color(0.898039, 0.643137, 0.0784314, 1)
 emission_enabled = true
 emission = Color(0.898039, 0.643137, 0.0784314, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gq51"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjjpt"]
 albedo_color = Color(0.898039, 0.643137, 0.0784314, 1)
 emission_enabled = true
 emission = Color(0.898039, 0.643137, 0.0784314, 1)
@@ -38,92 +38,92 @@ albedo_color = Color(0, 0.592157, 0.176471, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kve76"]
 albedo_color = Color(0.615686, 0.419608, 0.294118, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1vll"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hlm68"]
 albedo_color = Color(0.701961, 0.145098, 0.219608, 1)
 emission_enabled = true
 emission = Color(0.701961, 0.145098, 0.219608, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvgbt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_123lk"]
 albedo_color = Color(0.701961, 0.145098, 0.219608, 1)
 emission_enabled = true
 emission = Color(0.701961, 0.145098, 0.219608, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3omi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xe6sn"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_guv4n"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1btw"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3rct"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrxri"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnpvi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffhx3"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi36h"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xcia5"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixg3w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_td02g"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eex8b"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hppss"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxqff"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtd01"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_av3ub"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftjxj"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cam6w"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwgdb"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nxjx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ycpw"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7whm1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2wel2"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dknas"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ctilr"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vass7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4xute"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_83p7g"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nkwhc"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spppe"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mygjt"]
 albedo_color = Color(0.309804, 0.513726, 0.235294, 1)
 emission_enabled = true
 emission = Color(0.309804, 0.513726, 0.235294, 1)
@@ -131,32 +131,32 @@ emission = Color(0.309804, 0.513726, 0.235294, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rbs45"]
 albedo_color = Color(0.505882, 0.301961, 0.858824, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sq3pn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dc8vj"]
 albedo_color = Color(0.294118, 0.345098, 0.67451, 1)
 emission_enabled = true
 emission = Color(0.294118, 0.345098, 0.67451, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ws2bl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4uex"]
 albedo_color = Color(0.294118, 0.345098, 0.67451, 1)
 emission_enabled = true
 emission = Color(0.294118, 0.345098, 0.67451, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eo3cy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iis2b"]
 albedo_color = Color(0.294118, 0.345098, 0.67451, 1)
 emission_enabled = true
 emission = Color(0.294118, 0.345098, 0.67451, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmsy8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vtq0"]
 albedo_color = Color(0.294118, 0.345098, 0.67451, 1)
 emission_enabled = true
 emission = Color(0.294118, 0.345098, 0.67451, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nlp55"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfknn"]
 albedo_color = Color(0.294118, 0.345098, 0.67451, 1)
 emission_enabled = true
 emission = Color(0.294118, 0.345098, 0.67451, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_miynd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhjyh"]
 albedo_color = Color(0.294118, 0.345098, 0.67451, 1)
 emission_enabled = true
 emission = Color(0.294118, 0.345098, 0.67451, 1)
@@ -395,12 +395,12 @@ npc_id = "CAPTAIN"
 
 [node name="wall_lamp" parent="cockpit/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -4.93163, 2, 1.07482)
-material = SubResource("StandardMaterial3D_pq56i")
+material = SubResource("StandardMaterial3D_vppet")
 color = Color(0.898039, 0.643137, 0.0784314, 1)
 
 [node name="wall_lamp2" parent="cockpit/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.92386, 2, 1.07482)
-material = SubResource("StandardMaterial3D_7gq51")
+material = SubResource("StandardMaterial3D_xjjpt")
 color = Color(0.898039, 0.643137, 0.0784314, 1)
 
 [node name="upperShip" type="Node3D" parent="."]
@@ -1230,92 +1230,92 @@ skin_material = SubResource("StandardMaterial3D_kve76")
 
 [node name="top_lamp" parent="upperShip/lamps" instance=ExtResource("13_2x4r5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02175, 3, -21.7231)
-material = SubResource("StandardMaterial3D_m1vll")
+material = SubResource("StandardMaterial3D_hlm68")
 color = Color(0.701961, 0.145098, 0.219608, 1)
 
 [node name="top_lamp2" parent="upperShip/lamps" instance=ExtResource("13_2x4r5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.978251, 3, -21.7231)
-material = SubResource("StandardMaterial3D_kvgbt")
+material = SubResource("StandardMaterial3D_123lk")
 color = Color(0.701961, 0.145098, 0.219608, 1)
 
 [node name="wall_lamp" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -3.00255)
-material = SubResource("StandardMaterial3D_b3omi")
+material = SubResource("StandardMaterial3D_xe6sn")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp2" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -7.00255)
-material = SubResource("StandardMaterial3D_guv4n")
+material = SubResource("StandardMaterial3D_g1btw")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp3" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -11.0025)
-material = SubResource("StandardMaterial3D_l3rct")
+material = SubResource("StandardMaterial3D_jrxri")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp4" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -15.0025)
-material = SubResource("StandardMaterial3D_xnpvi")
+material = SubResource("StandardMaterial3D_ffhx3")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp5" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.93627, 3.71281, -19.0025)
-material = SubResource("StandardMaterial3D_qi36h")
+material = SubResource("StandardMaterial3D_xcia5")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp6" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -19.0025)
-material = SubResource("StandardMaterial3D_ixg3w")
+material = SubResource("StandardMaterial3D_td02g")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp7" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -15.0025)
-material = SubResource("StandardMaterial3D_eex8b")
+material = SubResource("StandardMaterial3D_hppss")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp8" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -11.0025)
-material = SubResource("StandardMaterial3D_hxqff")
+material = SubResource("StandardMaterial3D_gtd01")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp9" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -7.00255)
-material = SubResource("StandardMaterial3D_av3ub")
+material = SubResource("StandardMaterial3D_ftjxj")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp10" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.93407, 3.71281, -3.00255)
-material = SubResource("StandardMaterial3D_cam6w")
+material = SubResource("StandardMaterial3D_xwgdb")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp11" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.007, 3.713, -20.93)
-material = SubResource("StandardMaterial3D_4nxjx")
+material = SubResource("StandardMaterial3D_6ycpw")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp12" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.993, 3.713, -20.93)
-material = SubResource("StandardMaterial3D_7whm1")
+material = SubResource("StandardMaterial3D_2wel2")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp13" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.00699997, 3.713, -20.93)
-material = SubResource("StandardMaterial3D_dknas")
+material = SubResource("StandardMaterial3D_ctilr")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp14" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.993, 3.713, -1.06997)
-material = SubResource("StandardMaterial3D_vass7")
+material = SubResource("StandardMaterial3D_4xute")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp15" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.007, 3.713, -1.06997)
-material = SubResource("StandardMaterial3D_83p7g")
+material = SubResource("StandardMaterial3D_nkwhc")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="wall_lamp16" parent="upperShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00699997, 3.713, -1.06997)
-material = SubResource("StandardMaterial3D_spppe")
+material = SubResource("StandardMaterial3D_mygjt")
 color = Color(0.309804, 0.513726, 0.235294, 1)
 
 [node name="lowerShip" type="Node3D" parent="."]
@@ -1547,32 +1547,32 @@ skin_material = SubResource("StandardMaterial3D_rbs45")
 
 [node name="wall_lamp" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.94589, -1.3892, -16.994)
-material = SubResource("StandardMaterial3D_sq3pn")
+material = SubResource("StandardMaterial3D_dc8vj")
 color = Color(0.294118, 0.345098, 0.67451, 1)
 
 [node name="wall_lamp2" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.94589, -1.3892, -12.994)
-material = SubResource("StandardMaterial3D_ws2bl")
+material = SubResource("StandardMaterial3D_v4uex")
 color = Color(0.294118, 0.345098, 0.67451, 1)
 
 [node name="wall_lamp3" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.94589, -1.3892, -8.99401)
-material = SubResource("StandardMaterial3D_eo3cy")
+material = SubResource("StandardMaterial3D_iis2b")
 color = Color(0.294118, 0.345098, 0.67451, 1)
 
 [node name="wall_lamp4" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.94589, -1.3892, -4.99401)
-material = SubResource("StandardMaterial3D_qmsy8")
+material = SubResource("StandardMaterial3D_2vtq0")
 color = Color(0.294118, 0.345098, 0.67451, 1)
 
 [node name="wall_lamp5" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0541062, -1.3892, -3.08329)
-material = SubResource("StandardMaterial3D_nlp55")
+material = SubResource("StandardMaterial3D_dfknn")
 color = Color(0.294118, 0.345098, 0.67451, 1)
 
 [node name="wall_lamp6" parent="lowerShip/lamps" instance=ExtResource("13_vojef")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.0541062, -1.3892, -18.9242)
-material = SubResource("StandardMaterial3D_miynd")
+material = SubResource("StandardMaterial3D_vhjyh")
 color = Color(0.294118, 0.345098, 0.67451, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
