@@ -10,7 +10,6 @@ var answer: String # what the npc says
 var options: Array[TaskDialog]
 var actions: Array[Action]
 var conditions: Array[Condition]
-const DEFAULT_CLOSE_DIALOG = "End Conversation"
 
 static func from(_source: QuestSource, dict: Dictionary, _quote: String, _npc: String = "", _color: Color = Color.AQUAMARINE) -> TaskDialog:
 	var dialog = TaskDialog.new()
@@ -47,8 +46,6 @@ func as_dialog_options() -> Dictionary:
 		for _opt in options:
 			if _opt.conditions_met():
 				_options[_opt.get_dialog_key()] = _opt.as_dialog_options()
-	if _options.is_empty():
-		_options[DEFAULT_CLOSE_DIALOG] = {}
 	var result = {
 		"color": color.to_html(),
 		"answer": answer,

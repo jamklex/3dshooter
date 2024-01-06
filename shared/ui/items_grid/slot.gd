@@ -19,7 +19,7 @@ func refresh():
 	if not _inventory_item:
 		return
 	_image.texture = _inventory_item.item.image
-	_amount.text = str(_inventory_item.amount)
+	_amount.text = str(_inventory_item.amount) + "x"
 
 func is_empty():
 	return _inventory_item == null

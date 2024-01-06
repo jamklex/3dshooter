@@ -12,10 +12,6 @@ func _enter_tree():
 	add_child(player)
 	loadingScreen = loadingScreenScene.instantiate()
 	add_child(loadingScreen)
-	#loadingDoneChecker.autostart = false
-	#loadingDoneChecker.one_shot = false
-	#loadingDoneChecker.timeout.connect(_check_loading_progress)
-	#add_child(loadingDoneChecker)
 
 func createDialog(npc_id:String, dialog_data_path:String) -> Dialog:
 	if !currentDialog:

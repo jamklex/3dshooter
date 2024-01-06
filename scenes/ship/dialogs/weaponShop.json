@@ -15,7 +15,6 @@
 				"res://data/shop_lists/weaponShop.json",
 				"res://data/price_lists/default.json"
 			]
-		},
-		"Bye": {}
+		}
 	}
 }

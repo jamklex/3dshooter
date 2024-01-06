@@ -11,6 +11,7 @@ var fail_result: TaskResult
 var rewards: Array
 var quest_listener: Callable
 var index: int
+var condition: Condition
 
 @onready var short_ui = $short as Control
 const scene = preload("res://shared/quest/scenes/task.tscn")

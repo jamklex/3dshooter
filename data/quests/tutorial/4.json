@@ -1,7 +1,7 @@
 {
-	"name": "Ok, get me on the ship",
-	"desc": "You just remember to look out for a golden sphere and a bit of gold...\nShould be easy right?",
-	"short": "Get the golden sphere and 50 gold",
+	"name": "Please get me onto the shipwreck",
+	"desc": "The Captain told You to bring back [highlight]50 gold[/highlight] from the Lootboxes on the shipwreck.",
+	"short": "Find 50 gold in the shipwreck",
 	"dialog": {
 		"npc": "CAPTAIN",
 		"actions": [
@@ -16,13 +16,7 @@
 	"success": {
 		"conditions": [
 			{
-				"method": "hasItemCountTemp",
-				"payload": [
-					"4", 1
-				]
-			},
-			{
-				"method": "hasItemCountTemp",
+				"method": "hasItemCountTotal",
 				"payload": [
 					"0", 50
 				]
@@ -32,11 +26,7 @@
 			{
 				"method": "succeedTask",
 				"payload": []
-			},
-			{
-				"method": "nextInLine",
-				"payload": []
-			},
+			}
 		]
 	}
 }
