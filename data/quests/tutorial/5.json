@@ -1,6 +1,6 @@
 {
 	"name": "Please get me onto the shipwreck",
-	"desc": "You just remember to look out for a golden sphere.\nShould be easy right?",
+	"desc": "You just remember to look out for a [highlight]golden sphere[/highlight].\nShould be easy right?",
 	"short": "Get the golden sphere",
 	"dialog": {
 		"npc": "CAPTAIN",

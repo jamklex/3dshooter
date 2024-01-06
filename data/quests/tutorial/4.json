@@ -1,6 +1,6 @@
 {
 	"name": "Please get me onto the shipwreck",
-	"desc": "The Captain told You to bring back 50 gold from the Lootboxes on the shipwreck.",
+	"desc": "The Captain told You to bring back [highlight]50 gold[/highlight] from the Lootboxes on the shipwreck.",
 	"short": "Find 50 gold in the shipwreck",
 	"dialog": {
 		"npc": "CAPTAIN",
