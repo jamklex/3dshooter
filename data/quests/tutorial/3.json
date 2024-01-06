@@ -37,14 +37,10 @@
 										"payload": []
 									},
 									{
-										"method": "unhideTasks",
+										"method": "startTasks",
 										"payload": [
-											3, 4
+											3, 4, 5
 										]
-									},
-									{
-										"method": "nextInLine",
-										"payload": []
 									},
 									{
 										"method": "teleportToMissionMap",

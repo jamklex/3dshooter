@@ -1,46 +1,32 @@
 {
-	"name": "I've got the golden thing...",
-	"desc": "Your first mission is a success, go to the captain and present it",
-	"short": "Speak with Madelyn",
+	"name": "Please get me onto the shipwreck",
+	"desc": "You just remember to look out for a golden sphere.\nShould be easy right?",
+	"short": "Get the golden sphere",
 	"dialog": {
 		"npc": "CAPTAIN",
-		"answer": "Well it was easy...\nBut good job on that, looking forward to work with You again.",
-		"options": {
-			"I mean I had to learn to walk again...": {
-				"answer": "I'm not one for pitty, so just do Your job okay?\nAnd by the way, You should came across Trish didn't You?",
-				"options": {
-					"You mean the one in the bottom of the ship?": {
-						"answer": "Yeah this Bi- beautiful woman...\nYou should get familiar with her too, because she will offer some help in completing missions.\nBut be aware that she want's money and that's on You! I'm paying enough for You even without her involvement.",
-						"options": {
-							"I will speak with her...": {
-								"answer": "Good, make sure send regards from me...",
-								"actions": [
-									{
-										"method": "removeItem",
-										"payload": [
-											"4", 1
-										]
-									},
-									{
-										"method": "succeedTask",
-										"payload": []
-									},
-									{
-										"method": "succeedQuest",
-										"payload": []
-									},
-									{
-										"method": "unlockQuest",
-										"payload": [
-											"airlock", "upgrade"
-										]
-									}
-								]
-							}
-						}
-					}
-				}
+		"actions": [
+			{
+				"method": "teleportToMissionMap",
+				"payload": [
+					"tutorial"
+				]
 			}
-		}
+		]
+	},
+	"success": {
+		"conditions": [
+			{
+				"method": "hasItemCountTemp",
+				"payload": [
+					"4", 1
+				]
+			}
+		],
+		"actions": [
+			{
+				"method": "succeedTask",
+				"payload": []
+			}
+		]
 	}
 }

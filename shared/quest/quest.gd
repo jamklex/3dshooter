@@ -129,6 +129,11 @@ func _on_event(event_name: String, payload: Array = []):
 				var _t = get_task(int(_p))
 				if _t:
 					_t.set_known()
+		"startTasks":
+			for _p in payload:
+				var _t = get_task(int(_p))
+				if _t:
+					_t.set_active()
 		"giveRewards":
 			for _r in source_task.rewards:
 				InteractionHelper.add_drop_directly(WorldUtil.player, _r)
