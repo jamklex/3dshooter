@@ -3,8 +3,7 @@
 	"desc": "Do Your thing",
 	"short": "...",
 	"seed": "238910823202312",
-	"min_level": 15,
-	"max_level": 25,
+	"difficulty": 1,
 	"kills": [
 		{
 			"1": 200
@@ -22,6 +21,5 @@
 		{
 			"12": 3000
 		},
-	],
-	"exp": 50000
+	]
 }
