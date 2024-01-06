@@ -15,6 +15,7 @@ var useRealMunition:bool = true
 @onready var _magInfo:Label = $magInfo
 var soundPlayer:AudioStreamPlayer
 signal onShootableDie
+signal onHitShootable
 
 const _ITEM_WEAPON_MAP = {
 	"6": "res://shared/shooting/weapons/pistol/_main.tscn",
@@ -32,6 +33,7 @@ func _ready():
 	add_child(soundPlayer)
 	
 func addWeapon(scenePath:String):
+	print("addWeapon: " + scenePath)
 	var packedScene = load(scenePath) as PackedScene
 	if not packedScene:
 		return
@@ -46,19 +48,22 @@ func addWeapon(scenePath:String):
 	weaponHolder.add_child(weapon)
 	
 func unlockPlayerInventoryWeapons(playerInventory:Inventory):
+	print("unlockPlayerInventoryWeapons")
 	for itemId in playerInventory.item_ids():
 		if _isWeaponId(itemId):
 			_addWeaponForItemId(itemId)
 	
 func putBulletsToInventory():
-	if not currentWeapon:
+	if len(weapons) <= 0:
 		return
 	if not useRealMunition:
 		return
-	var restMun = currentWeapon.restMagShoots
-	if restMun <= 0:
-		return
-	_addRestAmmo(currentWeapon.weaponType, restMun)
+	print("putBulletsToInventory")
+	for weapon in weapons:
+		var restMun = weapon.restMagShoots
+		if restMun <= 0:
+			return
+		_addRestAmmo(weapon.weaponType, restMun)
 	
 func handlePlayerInventoryChanged(payload:Array):
 	_checkForMunitionAction(payload)
@@ -87,11 +92,11 @@ func _checkForWeaponAction(payload:Array):
 
 func setUseRealMunition(newUseRealMunition:bool):
 	useRealMunition = newUseRealMunition
-	for weapon in weapons:
-		weapon.restMagShoots = 0
-		_reloadWeapon(weapon)
-	if currentWeapon and not reloading:
-		_refreshMagInfo()
+	#for weapon in weapons:
+		#weapon.restMagShoots = 0
+		#_reloadWeapon(weapon)
+	#if currentWeapon and not reloading:
+		#_refreshMagInfo()
 		
 func handle():
 	_handleWeaponSwitching()
@@ -191,6 +196,9 @@ func _endReload():
 		aimOverride.start()
 		
 func _reloadWeapon(weapon:Weapon):
+	print("_reloadWeapon")
+	print("total guns: " + str(len(weapons)))
+	print("reload gun: " + str(weapon))
 	if useRealMunition:
 		var restAmmo = _getAmmoInInventory(weapon.weaponType)
 		if restAmmo <= 0:
@@ -275,6 +283,8 @@ func _shoot():
 		damage *= 2
 	var died = shootable.takeDamage(damage)
 	shootable = shootable as Shootable
+	if shootable:
+		onHitShootable.emit(died)
 	if shootable and died:
 		onShootableDie.emit(shootable)
 	

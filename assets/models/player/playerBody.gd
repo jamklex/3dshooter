@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var interact_distance = 3
 
 @onready var _shooter:Shooter = $shooter
+@onready var _shootable:Shootable = $shootable
 @onready var _visuals = $visuals
 @onready var _animation_player = $visuals/mixamo_base/AnimationPlayer
 @onready var _camera_mount = $camera_mount
@@ -22,6 +23,8 @@ extends CharacterBody3D
 @onready var death_screen = _ui.get_node("deathScreen") as Panel
 @onready var menu = _ui.get_node("menu") as Panel
 @onready var menuTab = menu.get_node("tabs") as TabContainer
+@onready var hitmarker = _ui.get_node("Hitmarker") as TextureRect
+@onready var health_bar = _ui.get_node("health_bar") as HealthBar
 var inDialog = false
 var sprinting = false
 var _reward_queue = []
@@ -44,8 +47,11 @@ func _ready():
 	_shooter.setUseRealMunition(WorldUtil.player.inMissionMap)
 	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.inventory)
 	_shooter.onShootableDie.connect(WorldUtil.player.onShootableKilled)
-	
+	_shooter.onHitShootable.connect(_showHitMarker)
+	health_bar.init(_shootable.health, _shootable.health)
+
 func _exit_tree():
+	_shooter.putBulletsToInventory()
 	WorldUtil.player.bodyLastPos = position
 	WorldUtil.player.body = null
 
@@ -187,6 +193,12 @@ func _on_player_died():
 	death_screen.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+func _showHitMarker(lastHit):
+	hitmarker.visible = true
+	hitmarker.modulate = Color(255,0,0) if lastHit else Color(255,255,255)
+	await get_tree().create_timer(0.1).timeout
+	hitmarker.visible = false
+	
 func _switchUiMenu(selectedTabIndex):
 	if menu.visible and (menuTab.current_tab == selectedTabIndex or selectedTabIndex == 2):
 		menu.visible = false
@@ -196,3 +208,6 @@ func _switchUiMenu(selectedTabIndex):
 		menu.visible = true
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		_shooter.disableAim()
+
+func _on_health_changed(health):
+	health_bar.setHealth(health)

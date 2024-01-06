@@ -130,7 +130,6 @@ func teleportToMissionMap(payload: Array):
 	await loadingScreen.fade_in()
 	player.save()
 	player.bodyStartPos = Vector3.ZERO
-	player.setInMission(true)
 	remove_child(current_prg)
 	current_prg = ProceduralRoomGenerator.from_seed(str(payload[0]))
 	var initial_enemies = payload[1] if payload.size() > 1 else 0
@@ -138,10 +137,12 @@ func teleportToMissionMap(payload: Array):
 	current_prg.set_initial_enemies(initial_enemies)
 	current_prg.set_max_enemies(max_enemies)
 	add_child(current_prg)
+	player.setInMission(true)
 	loadingScreen.fade_out()
 
 func teleportToLowerShip(_payload: Array = []):
 	await loadingScreen.fade_in()
+	player.setInMission(false)
 	player.teleport("ship", Vector3(-1,-3,-12))
 	loadingScreen.fade_out()
 	
