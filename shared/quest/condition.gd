@@ -51,8 +51,11 @@ func hasMissionKills(_payload: Array) -> bool:
 	var killAmount = _payload[0] as int
 	return WorldUtil.player.mission_kills >= killAmount
 
-func taskMissing(_payload: Array) -> bool:
-	return not taskDone(_payload)
+func someTaskMissing(_payload: Array) -> bool:
+	return _payload.any(func(t): return not taskDone(t))
 
-func taskDone(_payload: Array) -> bool:
-	return QuestLoader.get_quest(source.quest_name).get_task(int(_payload[0])).is_done()
+func allTasksDone(_payload: Array) -> bool:
+	return _payload.all(func(t): return taskDone(t))
+
+func taskDone(taskId: int) -> bool:
+	return QuestLoader.get_quest(source.quest_name).get_task(taskId).is_done()
