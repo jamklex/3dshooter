@@ -1,6 +1,8 @@
 extends Control
 class_name Dialog
 
+const DEFAULT_CLOSE_DIALOG = "End Conversation"
+
 var questionLabel: RichTextLabel
 var answersContainer: VBoxContainer
 var answerScene = preload("res://shared/dialog/answer.tscn")
@@ -54,6 +56,7 @@ func _loadNextPart():
 		if "options" in dialog_data:
 			answers = _removeUnavailableAnswers(dialog_data["options"])
 			_showOptions(answers)
+	
 
 func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 	var availableAnswers = {}
@@ -68,6 +71,7 @@ func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 		var payload = condition["payload"]
 		if _isConditionFulfilled(action, result, payload):
 			availableAnswers[answerKey] = answerData
+	availableAnswers[DEFAULT_CLOSE_DIALOG] = {}
 	return availableAnswers
 
 func _isConditionFulfilled(action:String, result:bool, payload:Array):

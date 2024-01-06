@@ -7,3 +7,4 @@ static func create_shop_inventory(item_ids: Array) -> Inventory:
 	for item_id in item_ids:
 		inv.set_total(item_id, 999)
 	return inv
+	
