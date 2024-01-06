@@ -33,7 +33,6 @@ func _ready():
 	add_child(soundPlayer)
 	
 func addWeapon(scenePath:String):
-	print("addWeapon: " + scenePath)
 	var packedScene = load(scenePath) as PackedScene
 	if not packedScene:
 		return
@@ -48,7 +47,6 @@ func addWeapon(scenePath:String):
 	weaponHolder.add_child(weapon)
 	
 func unlockPlayerInventoryWeapons(playerInventory:Inventory):
-	print("unlockPlayerInventoryWeapons")
 	for itemId in playerInventory.item_ids():
 		if _isWeaponId(itemId):
 			_addWeaponForItemId(itemId)
@@ -58,7 +56,6 @@ func putBulletsToInventory():
 		return
 	if not useRealMunition:
 		return
-	print("putBulletsToInventory")
 	for weapon in weapons:
 		var restMun = weapon.restMagShoots
 		if restMun <= 0:
@@ -196,9 +193,6 @@ func _endReload():
 		aimOverride.start()
 		
 func _reloadWeapon(weapon:Weapon):
-	print("_reloadWeapon")
-	print("total guns: " + str(len(weapons)))
-	print("reload gun: " + str(weapon))
 	if useRealMunition:
 		var restAmmo = _getAmmoInInventory(weapon.weaponType)
 		if restAmmo <= 0:
