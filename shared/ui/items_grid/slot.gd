@@ -2,6 +2,8 @@ extends Button
 class_name Slot
 
 signal clicked(inventory_item:InventoryItem)
+signal mouseHovered(inventory_item:InventoryItem)
+signal mouseExited(inventory_item:InventoryItem)
 @onready var _image:TextureRect = $image
 @onready var _amount:Label = $amount
 var _inventory_item: InventoryItem = null
@@ -27,3 +29,9 @@ func is_empty():
 
 func _on_pressed():
 	clicked.emit(_inventory_item)
+
+func _on_mouse_entered():
+	mouseHovered.emit(_inventory_item)
+
+func _on_mouse_exited():
+	mouseExited.emit(_inventory_item)

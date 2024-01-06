@@ -6,6 +6,7 @@ signal on_item_clicked(inventory_item:InventoryItem)
 var _inventory:Inventory = null
 var _show_non_tradeable = false
 @onready var _container:GridContainer = $ScrollContainer/MarginContainer/slots
+@onready var _itemInfos:ItemInfos = $ItemInfos
 
 @export_range(1,20) var columns = 1:
 	set(new_columns):
@@ -29,9 +30,19 @@ func _init_slots():
 		_container.add_child(slot)
 	for slot in _get_slots():
 		slot.clicked.connect(_on_slot_clicked)
+		slot.mouseHovered.connect(_on_slot_hovered)
+		slot.mouseExited.connect(_on_slot_leaved)
 		
 func _on_slot_clicked(inventory_item:InventoryItem):
 	on_item_clicked.emit(inventory_item)
+	
+func _on_slot_hovered(inventory_item:InventoryItem):
+	if not inventory_item:
+		return
+	_itemInfos.show_item_infos(inventory_item)
+	
+func _on_slot_leaved(inventory_item:InventoryItem):
+	_itemInfos.hide_item_infos()
 		
 func _get_slots():
 	var slots = []
