@@ -6,6 +6,7 @@ var currentHealth:int
 var died:bool = false
 signal healthReachedZero
 signal onDamageTaken
+signal onHealthChanged(health:int)
 
 func resetHealth():
 	currentHealth = health
@@ -14,6 +15,7 @@ func resetHealth():
 func takeDamage(damage:int):
 	onDamageTaken.emit(damage)
 	currentHealth -= damage
+	onHealthChanged.emit(currentHealth)
 	if currentHealth <= 0 and not died:
 		_die()
 		died = true

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://nmsmltr0w7dn"]
+[gd_scene load_steps=11 format=3 uid="uid://nmsmltr0w7dn"]
 
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="1_hf0q4"]
+[ext_resource type="Texture2D" uid="uid://cmxy0f6ug5uie" path="res://assets/models/player/hitmarker.png" id="1_ofn52"]
 [ext_resource type="StyleBox" uid="uid://c5yofff7dw4jk" path="res://shared/ui/menu_bg_style.tres" id="2_lenj8"]
 [ext_resource type="PackedScene" uid="uid://bpw6fgm2mn687" path="res://shared/ui/menu/inventory/inventory.tscn" id="4_gatnx"]
 [ext_resource type="PackedScene" uid="uid://ce48caxhixn3" path="res://shared/ui/menu/settings.tscn" id="4_vgoqt"]
 [ext_resource type="PackedScene" uid="uid://bfbeekicg6c1h" path="res://shared/ui/menu/quests/quests.tscn" id="5_e5t3j"]
+[ext_resource type="PackedScene" uid="uid://1wrxq464mod0" path="res://shared/ui/health_bar/health_bar.tscn" id="7_7rtai"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13omo"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
@@ -24,6 +26,23 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Hitmarker" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ofn52")
+expand_mode = 1
+
 [node name="Crosshair" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -31,16 +50,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -11.0
-offset_right = 214.0
-offset_bottom = 214.0
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.1, 0.1)
 size_flags_horizontal = 6
 size_flags_vertical = 6
 texture = ExtResource("1_hf0q4")
+expand_mode = 1
 
 [node name="RunInventory" type="RichTextLabel" parent="."]
 visible = false
@@ -211,3 +230,15 @@ theme_override_styles/panel = ExtResource("2_lenj8")
 
 [node name="Settings" parent="menu/tabs/Settings" instance=ExtResource("4_vgoqt")]
 layout_mode = 1
+
+[node name="health_bar" parent="." instance=ExtResource("7_7rtai")]
+z_index = -1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -66.0
+offset_right = 259.0
+offset_bottom = -17.0
+grow_vertical = 0

@@ -51,12 +51,11 @@ func save():
 func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
 	bodyStartPos = pos
 	get_tree().change_scene_to_file("res://scenes/" + sceneName + "/_main.tscn")
-	setInMission(sceneName != "ship")
 
 func setInMission(newInMissionMap:bool):
 	inMissionMap = newInMissionMap
-	if body:
-		body._shooter.setUseRealMunition(inMissionMap)
+	#if body:
+		#body._shooter.setUseRealMunition(inMissionMap)
 	if inMissionMap:
 		mission_kills = 0
 	else:

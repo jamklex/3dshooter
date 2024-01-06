@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7r4nqq3l5dlv"]
+
+[ext_resource type="Script" path="res://shared/ui/items_grid/item_infos.gd" id="1_3hxin"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70vmc"]
+bg_color = Color(0.105882, 0.105882, 0.105882, 0.733333)
+
+[node name="ItemInfos" type="Panel"]
+custom_minimum_size = Vector2(194, 274)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1726.0
+offset_bottom = -806.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_70vmc")
+script = ExtResource("1_3hxin")
+
+[node name="name" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "item name"
+horizontal_alignment = 1
