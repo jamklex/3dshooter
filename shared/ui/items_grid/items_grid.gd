@@ -5,7 +5,7 @@ class_name ItemsGrid
 signal on_item_clicked(inventory_item:InventoryItem)
 var _inventory:Inventory = null
 var _show_non_tradeable = false
-@onready var _container:GridContainer = $ScrollContainer/MarginContainer/slots
+@onready var _container:GridContainer = $ScrollContainer/CenterContainer/slots
 @onready var _itemInfos:ItemInfos = $ItemInfos
 
 @export_range(1,20) var columns = 1:
@@ -19,7 +19,7 @@ var _show_non_tradeable = false
 		_init_slots()
 		
 func _init_slots():
-	_container = get_node("ScrollContainer/MarginContainer/slots") as GridContainer
+	_container = get_node("ScrollContainer/CenterContainer/slots") as GridContainer
 	for slot in _get_slots():
 		_container.remove_child(slot)
 	_container.columns = columns

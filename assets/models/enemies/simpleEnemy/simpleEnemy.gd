@@ -66,7 +66,7 @@ func _get_random_next_pos():
 func _routine_pos_reached():
 	if not nav_agent.target_position:
 		return false
-	return position.distance_to(nav_agent.target_position) < 1
+	return global_position.distance_to(nav_agent.target_position) < 1
 
 func _get_next_routine_pos(delta):
 	routine_pos_use_time += delta
@@ -80,7 +80,7 @@ func _is_in_attack_range():
 		return false
 	return global_position.distance_to(player.global_position) < ATTACK_RANGE
 	
-func _set_player_spotted_to_all_enemies(newSpottedFlag:bool):
+func _set_player_spotted_to_all_enemies():
 	var all_enemies = get_tree().get_nodes_in_group("enemies") as Array[Enemy]
 	for enemy in all_enemies:
 		enemy.playerSpotted = true
@@ -137,4 +137,7 @@ func check_sight():
 	if not player:
 		return
 	if _can_see(player):
-		_set_player_spotted_to_all_enemies(true)
+		_set_player_spotted_to_all_enemies()
+
+func _on_damage_taken(damage):
+	_set_player_spotted_to_all_enemies()

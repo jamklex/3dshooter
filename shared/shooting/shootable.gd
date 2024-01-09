@@ -5,7 +5,7 @@ class_name Shootable
 var currentHealth:int
 var died:bool = false
 signal healthReachedZero
-signal onDamageTaken
+signal onDamageTaken(damage:int)
 signal onHealthChanged(health:int)
 
 func resetHealth():

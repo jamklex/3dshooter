@@ -22,17 +22,18 @@ grow_horizontal = 2
 grow_vertical = 2
 vertical_scroll_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="slots" type="GridContainer" parent="ScrollContainer/MarginContainer"]
+[node name="slots" type="GridContainer" parent="ScrollContainer/CenterContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="ItemInfos" parent="." instance=ExtResource("3_ka2nf")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -41,3 +42,7 @@ offset_right = 194.0
 offset_bottom = 274.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[connection signal="mouse_entered" from="ScrollContainer/CenterContainer/slots/Slot" to="ScrollContainer/CenterContainer/slots/Slot" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ScrollContainer/CenterContainer/slots/Slot" to="ScrollContainer/CenterContainer/slots/Slot" method="_on_mouse_exited"]
+[connection signal="pressed" from="ScrollContainer/CenterContainer/slots/Slot" to="ScrollContainer/CenterContainer/slots/Slot" method="_on_pressed"]
