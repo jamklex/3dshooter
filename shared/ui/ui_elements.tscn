@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://nmsmltr0w7dn"]
+[gd_scene load_steps=12 format=3 uid="uid://nmsmltr0w7dn"]
 
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="1_hf0q4"]
 [ext_resource type="Texture2D" uid="uid://cmxy0f6ug5uie" path="res://assets/models/player/hitmarker.png" id="1_ofn52"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bpw6fgm2mn687" path="res://shared/ui/menu/inventory/inventory.tscn" id="4_gatnx"]
 [ext_resource type="PackedScene" uid="uid://ce48caxhixn3" path="res://shared/ui/menu/settings.tscn" id="4_vgoqt"]
 [ext_resource type="PackedScene" uid="uid://bfbeekicg6c1h" path="res://shared/ui/menu/quests/quests.tscn" id="5_e5t3j"]
+[ext_resource type="PackedScene" uid="uid://depl84a3hkmkb" path="res://shared/ui/menu/missions/missions.tscn" id="6_tlt5i"]
 [ext_resource type="PackedScene" uid="uid://1wrxq464mod0" path="res://shared/ui/health_bar/health_bar.tscn" id="7_7rtai"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13omo"]
@@ -221,6 +222,14 @@ theme_override_styles/panel = ExtResource("2_lenj8")
 layout_mode = 1
 offset_right = -0.00012207
 mouse_filter = 1
+
+[node name="Missions" type="Panel" parent="menu/tabs"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Missions" parent="menu/tabs/Missions" instance=ExtResource("6_tlt5i")]
+layout_mode = 1
 
 [node name="Settings" type="Panel" parent="menu/tabs"]
 visible = false

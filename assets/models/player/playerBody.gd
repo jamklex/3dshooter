@@ -71,6 +71,7 @@ func _physics_process(delta):
 	handle_show_inventory()
 	handle_show_menu()
 	handle_show_quests()
+	handle_show_missions()
 	handle_reward_queue()
 	if _shooter:
 		_shooter.handle()
@@ -107,16 +108,28 @@ func fade_interaction_feedback(rate = 0.5 as float, reset = false as bool):
 	new_modulate.a = max(target_value, new_modulate.a - rate)
 	interactionFeedback.set_modulate(new_modulate)
 
-func handle_show_menu():
-	if !Input.is_action_just_pressed("menu"):
+func handle_show_inventory():
+	if !Input.is_action_just_pressed("inventory"):
 		return
-	_switchUiMenu(2)
+	#refresh_inventory_output()
+	#inventory_output.visible = !inventory_output.visible
+	_switchUiMenu(0)
 
 func handle_show_quests():
 	if !Input.is_action_just_pressed("questlog"):
 		return
 	QuestLoader.attach_quests(quests_ui)
 	_switchUiMenu(1)
+
+func handle_show_missions():
+	if !Input.is_action_just_pressed("missions"):
+		return
+	_switchUiMenu(2)
+
+func handle_show_menu():
+	if !Input.is_action_just_pressed("menu"):
+		return
+	_switchUiMenu(3)
 
 func handle_interaction():
 	interactionPopup.text = ""
@@ -141,12 +154,6 @@ func handle_interaction():
 			fade_interaction_feedback(0, true)
 	interactionPopup.text = ""
 
-func handle_show_inventory():
-	if !Input.is_action_just_pressed("inventory"):
-		return
-	#refresh_inventory_output()
-	#inventory_output.visible = !inventory_output.visible
-	_switchUiMenu(0)
 
 func handle_reward_queue():
 	var reward_message = ""

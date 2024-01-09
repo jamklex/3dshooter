@@ -23,6 +23,9 @@ static func generate() -> Mission:
 	mission.addGoldReward(totalKills, totalResources)
 	return mission
 
+func allDone() -> bool:
+	return getStepsStatus().all(func (s: MissionStep): s.isDone())
+
 func addRng():
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -43,7 +46,10 @@ func addKillCounter() -> int:
 func addRandomKillCount(monsterId: String, minKills: int, maxKills: int, modulo: int) -> int:
 	var killCount = rng.randi_range(minKills, maxKills)
 	killCount = max(killCount - (killCount % modulo), modulo)
-	kills[monsterId] = killCount
+	kills[monsterId] = {
+		"t": killCount,
+		"c": 0
+	}
 	return killCount
 
 func addResourceCounter() -> int:
@@ -55,6 +61,20 @@ func addGoldReward(killCount: int, resourceCount: int):
 	var maxGold = (killCount + resourceCount) * 5.5
 	var bonusPercent = difficulty / (difficulty + 2)
 	rewards["0"] = rng.randi_range(minGold, maxGold) * (1 + bonusPercent)
+
+func getStepsStatus() -> Array:
+	var status = []
+	for monsterId in kills.keys():
+		var type = "Kill Monster " + str(monsterId)
+		var total = kills[monsterId]["t"]
+		var current = kills[monsterId]["c"]
+		status.push_back(MissionStep.from(type, total, current))
+	for resourceId in resources.keys():
+		var type = "Get Resource " + str(resourceId)
+		var total = resources[resourceId]["t"]
+		var current = resources[resourceId]["c"]
+		status.push_back(MissionStep.from(type, total, current))
+	return status
 
 func toDict() -> Dictionary:
 	return {

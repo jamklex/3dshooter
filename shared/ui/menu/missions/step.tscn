@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn8gugpjdbemn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cncb2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Step" type="PanelContainer"]
+offset_right = 69.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cncb2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="type" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Lv2 Enemies:"
+
+[node name="current" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="total" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "/10"
