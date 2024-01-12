@@ -6,75 +6,76 @@ var _name: String = "name"
 var desc: String = "desc"
 var rng: RandomNumberGenerator
 var difficulty: Difficulty
-var kills: Dictionary = {}
-var resources: Dictionary = {}
-var rewards: Dictionary = {}
+var kills: Array[MissionStep] = []
+var resources: Array[MissionStep] = []
+var rewards: Array[InventoryItem] = []
 
 enum Difficulty {
 	EASY, MEDIUM, HARD
 }
 
-static func generate() -> Mission:
+static func from(json_save: Dictionary) -> Mission:
 	var mission = Mission.new()
+	mission.name = json_save.get("name")
+	mission.desc = json_save.get("desc")
+	mission.difficulty = json_save.get("difficulty", Difficulty.EASY)
 	mission.addRng()
-	mission.difficulty = Difficulty.values().pick_random()
-	var totalKills = mission.addKillCounter()
-	var totalResources = mission.addResourceCounter()
-	mission.addGoldReward(totalKills, totalResources)
+	mission.rng.set_seed(int(json_save.get("seed", mission.rng.seed)))
+	mission.rewards.append_array(toRewards(json_save.get("rewards", [])))
+	mission.kills.append_array(toSteps(json_save.get("kills", [])))
+	mission.resources.append_array(toSteps(json_save.get("resources", [])))
+	return mission
+
+static func toSteps(array: Array) -> Array:
+	return array.map(func (e): return MissionStep.from_json(e))
+
+static func toRewards(array: Array) -> Array:
+	return array.map(func (e): return InventoryItem.from(e.keys()[0], e.values()[0]))
+
+static func generate(rng: RandomNumberGenerator) -> Mission:
+	var mission = Mission.new()
+	mission.rng = rng
+	mission.difficulty = rng.randi_range(0, Difficulty.values().max())
+	mission.addKillCounter()
+	mission.addResourceCounter()
+	mission.addGoldReward(100, 100)
 	return mission
 
 func allDone() -> bool:
-	return getStepsStatus().all(func (s: MissionStep): s.isDone())
+	var status: Array[MissionStep] = []
+	status.push_back(kills)
+	status.push_back(resources)
+	return status.all(func (s: MissionStep): return s.isDone())
 
 func addRng():
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 
-func addKillCounter() -> int:
-	var totalKills = 0
+func addKillCounter():
 	var modulo = 5
 	var minKills = (difficulty + 1) * modulo
 	var maxKills = minKills * 3
 	if(difficulty >= Difficulty.EASY):
-		totalKills += addRandomKillCount("0", minKills*2, maxKills*2, modulo)
+		addRandomKillCount("0", minKills*2, maxKills*2, modulo)
 	if(difficulty >= Difficulty.MEDIUM):
-		totalKills += addRandomKillCount("1", minKills, maxKills, modulo)
+		addRandomKillCount("1", minKills, maxKills, modulo)
 	if(difficulty >= Difficulty.HARD):
-		totalKills += addRandomKillCount("2", minKills/2, maxKills/2, modulo)
-	return totalKills
+		addRandomKillCount("2", minKills/2, maxKills/2, modulo)
 
-func addRandomKillCount(monsterId: String, minKills: int, maxKills: int, modulo: int) -> int:
+func addRandomKillCount(monsterId: String, minKills: int, maxKills: int, modulo: int):
 	var killCount = rng.randi_range(minKills, maxKills)
 	killCount = max(killCount - (killCount % modulo), modulo)
-	kills[monsterId] = {
-		"t": killCount,
-		"c": 0
-	}
-	return killCount
+	kills.push_back(MissionStep.from(monsterId, killCount))
 
-func addResourceCounter() -> int:
+func addResourceCounter():
 	print("TODO: generate resource missions")
-	return 0
 
 func addGoldReward(killCount: int, resourceCount: int):
 	var minGold = killCount * 3.5
 	var maxGold = (killCount + resourceCount) * 5.5
-	var bonusPercent = difficulty / (difficulty + 2)
-	rewards["0"] = rng.randi_range(minGold, maxGold) * (1 + bonusPercent)
-
-func getStepsStatus() -> Array:
-	var status = []
-	for monsterId in kills.keys():
-		var type = "Kill Monster " + str(monsterId)
-		var total = kills[monsterId]["t"]
-		var current = kills[monsterId]["c"]
-		status.push_back(MissionStep.from(type, total, current))
-	for resourceId in resources.keys():
-		var type = "Get Resource " + str(resourceId)
-		var total = resources[resourceId]["t"]
-		var current = resources[resourceId]["c"]
-		status.push_back(MissionStep.from(type, total, current))
-	return status
+	var bonusPercent = difficulty / (difficulty + 2.0)
+	var amount = rng.randi_range(minGold, maxGold) * (1 + bonusPercent)
+	rewards.push_back(InventoryItem.from("0", amount))
 
 func toDict() -> Dictionary:
 	return {
@@ -82,7 +83,7 @@ func toDict() -> Dictionary:
 		"desc": desc,
 		"seed": str(rng.seed),
 		"difficulty": difficulty,
-		"kills": kills,
-		"resources": resources,
-		"rewards": rewards
+		"kills": kills.map(func (m: MissionStep): return m.toDict()),
+		"resources": resources.map(func (m: MissionStep): return m.toDict()),
+		"rewards": rewards.map(func (i: InventoryItem): return i.toDict())
 	}

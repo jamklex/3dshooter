@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd625egoywrtl"]
+[gd_scene load_steps=4 format=3 uid="uid://dd625egoywrtl"]
 
-[ext_resource type="PackedScene" uid="uid://cn8gugpjdbemn" path="res://shared/ui/menu/missions/step.tscn" id="1_vjfee"]
-[ext_resource type="PackedScene" uid="uid://cddhte11a1aff" path="res://shared/ui/menu/missions/reward.tscn" id="2_k38ng"]
+[ext_resource type="Script" path="res://shared/ui/menu/missions/new_mission.gd" id="1_6p85c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm2u0"]
 content_margin_left = 15.0
@@ -22,56 +21,42 @@ offset_right = 345.0
 offset_bottom = 85.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_bm2u0")
+script = ExtResource("1_6p85c")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="wrapper" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="header" type="HBoxContainer" parent="VBoxContainer"]
+[node name="header" type="HBoxContainer" parent="wrapper"]
 layout_mode = 2
 
-[node name="label" type="Label" parent="VBoxContainer/header"]
+[node name="label" type="Label" parent="wrapper/header"]
 layout_mode = 2
 text = "Mission #1"
 
-[node name="expire" type="Label" parent="VBoxContainer/header"]
+[node name="expire" type="Label" parent="wrapper/header"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.890196, 0.227451, 0.219608, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Expires in: 14:59:59"
 
-[node name="collect_button" type="Button" parent="VBoxContainer/header"]
+[node name="collect_button" type="Button" parent="wrapper/header"]
 layout_mode = 2
 text = "Accept Mission"
 
-[node name="body" type="HBoxContainer" parent="VBoxContainer"]
+[node name="body" type="HBoxContainer" parent="wrapper"]
 layout_mode = 2
 
-[node name="spacing" type="PanelContainer" parent="VBoxContainer/body"]
+[node name="spacing" type="PanelContainer" parent="wrapper/body"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 theme_override_styles/panel = SubResource("StyleBoxFlat_4os8f")
 
-[node name="steps" type="VBoxContainer" parent="VBoxContainer/body"]
+[node name="steps" type="VBoxContainer" parent="wrapper/body"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
 
-[node name="Step2" parent="VBoxContainer/body/steps" instance=ExtResource("1_vjfee")]
-layout_mode = 2
-
-[node name="Step" parent="VBoxContainer/body/steps" instance=ExtResource("1_vjfee")]
-layout_mode = 2
-
-[node name="Step3" parent="VBoxContainer/body/steps" instance=ExtResource("1_vjfee")]
-layout_mode = 2
-
-[node name="rewards" type="VBoxContainer" parent="VBoxContainer/body"]
-layout_mode = 2
-
-[node name="Reward" parent="VBoxContainer/body/rewards" instance=ExtResource("2_k38ng")]
-layout_mode = 2
-
-[node name="Reward2" parent="VBoxContainer/body/rewards" instance=ExtResource("2_k38ng")]
+[node name="rewards" type="VBoxContainer" parent="wrapper/body"]
 layout_mode = 2

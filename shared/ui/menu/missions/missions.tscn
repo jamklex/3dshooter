@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://depl84a3hkmkb"]
 
 [ext_resource type="PackedScene" uid="uid://d1s2cax58nb4o" path="res://shared/ui/menu/missions/active_mission.tscn" id="1_hwiih"]
-[ext_resource type="PackedScene" uid="uid://dd625egoywrtl" path="res://shared/ui/menu/missions/new_mission.tscn" id="1_oa76v"]
+[ext_resource type="Script" path="res://shared/ui/menu/missions/missions.gd" id="1_mocrq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb2o8"]
 content_margin_left = 15.0
@@ -20,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mocrq")
 
 [node name="wrapper" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -36,36 +37,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 2
 theme_override_constants/separation = 30
 
-[node name="NewMission" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission3" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission2" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission4" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission5" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission6" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission7" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission8" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission9" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
-[node name="NewMission10" parent="wrapper/new/list" instance=ExtResource("1_oa76v")]
-layout_mode = 2
-
 [node name="active" type="PanelContainer" parent="wrapper"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -73,35 +44,35 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_styles/panel = SubResource("StyleBoxFlat_eb2o8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="wrapper/active"]
+[node name="wrapper" type="VBoxContainer" parent="wrapper/active"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="wrapper/active/VBoxContainer"]
+[node name="scroll" type="ScrollContainer" parent="wrapper/active/wrapper"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="list" type="VBoxContainer" parent="wrapper/active/VBoxContainer/ScrollContainer"]
+[node name="list" type="VBoxContainer" parent="wrapper/active/wrapper/scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 
-[node name="ActiveMission" parent="wrapper/active/VBoxContainer/ScrollContainer/list" instance=ExtResource("1_hwiih")]
+[node name="ActiveMission" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
 layout_mode = 2
 
-[node name="ActiveMission2" parent="wrapper/active/VBoxContainer/ScrollContainer/list" instance=ExtResource("1_hwiih")]
+[node name="ActiveMission2" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
 layout_mode = 2
 
-[node name="ActiveMission3" parent="wrapper/active/VBoxContainer/ScrollContainer/list" instance=ExtResource("1_hwiih")]
+[node name="ActiveMission3" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
 layout_mode = 2
 
-[node name="ActiveMission4" parent="wrapper/active/VBoxContainer/ScrollContainer/list" instance=ExtResource("1_hwiih")]
+[node name="ActiveMission4" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
 layout_mode = 2
 
-[node name="ActiveMission5" parent="wrapper/active/VBoxContainer/ScrollContainer/list" instance=ExtResource("1_hwiih")]
+[node name="ActiveMission5" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="wrapper/active/VBoxContainer"]
+[node name="Label" type="Label" parent="wrapper/active/wrapper"]
 layout_mode = 2
 text = "5 / 5"
 horizontal_alignment = 1

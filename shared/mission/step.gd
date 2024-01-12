@@ -1,15 +1,25 @@
 class_name MissionStep
 
-var type: String
+var id: String
 var total: int
-var current: int
+var count: int
 
-static func from(type: String, total: int, current: int) -> MissionStep:
+static func from_json(json: Dictionary) -> MissionStep:
+	return from(json.get("id"), json.get("total"), json.get("count"))
+
+static func from(_id: String, _total: int, _count: int = 0) -> MissionStep:
 	var step = MissionStep.new()
-	step.type = type
-	step.total = total
-	step.current = current
+	step.id = _id
+	step.total = _total
+	step.count = _count
 	return step
 
 func isDone() -> bool:
-	return current >= total
+	return count >= total
+
+func toDict() -> Dictionary:
+	return {
+		"id": id,
+		"total": total,
+		"count": count
+	}

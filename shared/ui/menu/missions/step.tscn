@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn8gugpjdbemn"]
+[gd_scene load_steps=3 format=3 uid="uid://cn8gugpjdbemn"]
+
+[ext_resource type="Script" path="res://shared/ui/menu/missions/step.gd" id="1_tu1fa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cncb2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -8,18 +10,19 @@ offset_right = 69.0
 offset_bottom = 23.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cncb2")
+script = ExtResource("1_tu1fa")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="wrapper" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="type" type="Label" parent="HBoxContainer"]
+[node name="type" type="Label" parent="wrapper"]
 layout_mode = 2
 text = "Lv2 Enemies:"
 
-[node name="current" type="Label" parent="HBoxContainer"]
+[node name="current" type="Label" parent="wrapper"]
 layout_mode = 2
 text = "5"
 
-[node name="total" type="Label" parent="HBoxContainer"]
+[node name="total" type="Label" parent="wrapper"]
 layout_mode = 2
 text = "/10"

@@ -16,3 +16,8 @@ func add(value: int):
 
 func remove(value: int):
 	amount -= value
+
+func toDict() -> Dictionary:
+	return {
+		item.id: amount
+	}
