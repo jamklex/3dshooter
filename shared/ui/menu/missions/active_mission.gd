@@ -14,7 +14,7 @@ func _ready():
 	add_theme_stylebox_override("panel", get_theme_stylebox("panel").duplicate(true))
 	set_bg_color(colors.pick_random())
 
-func _process(delta):
+func _process(_delta):
 	if linked_mission and linked_mission.allDone():
 		set_bg_color(done_color)
 		if _on_ship():
