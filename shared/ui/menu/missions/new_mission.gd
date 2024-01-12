@@ -21,4 +21,5 @@ func add_step(prefix: String, s: MissionStep):
 
 func _process(_delta):
 	for s in _steps:
-		steps.add_child(s)
+		if(!s.get_parent()):
+			steps.add_child(s)
