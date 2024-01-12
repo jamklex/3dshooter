@@ -34,6 +34,8 @@ func _init_slots():
 		slot.mouseExited.connect(_on_slot_leaved)
 		
 func _on_slot_clicked(inventory_item:InventoryItem):
+	if not inventory_item:
+		return
 	on_item_clicked.emit(inventory_item)
 	
 func _on_slot_hovered(inventory_item:InventoryItem):
@@ -62,10 +64,10 @@ func show_inventory(inventory:Inventory, show_non_tradeable=false):
 	refresh()
 
 func refresh():
-	if not _inventory:
-		return
 	for slot in _get_slots():
 		slot.clear()
+	if not _inventory:
+		return
 	for item in _inventory.items.values():
 		var inventory_item = item as InventoryItem
 		if not inventory_item.item.tradeable and not _show_non_tradeable:

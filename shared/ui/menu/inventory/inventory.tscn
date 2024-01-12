@@ -1,14 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpw6fgm2mn687"]
+[gd_scene load_steps=5 format=3 uid="uid://bpw6fgm2mn687"]
 
 [ext_resource type="PackedScene" uid="uid://xr66w7kj4beu" path="res://shared/ui/items_grid/items_grid.tscn" id="1_2vvbi"]
 [ext_resource type="Script" path="res://shared/ui/menu/inventory/inventory.gd" id="1_84fpx"]
-[ext_resource type="PackedScene" uid="uid://brpciuojqvdyu" path="res://shared/ui/items_grid/slot.tscn" id="3_427t3"]
+[ext_resource type="PackedScene" uid="uid://blmnqjklgauuc" path="res://shared/ui/menu/inventory/player_items_grid.tscn" id="3_0hw7n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yca81"]
 bg_color = Color(0.376471, 0.376471, 0.376471, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5q8fp"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -47,55 +44,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="player_items" type="Panel" parent="HBoxContainer/player_inv/VBoxCon"]
+[node name="player_items_grid" parent="HBoxContainer/player_inv/VBoxCon" instance=ExtResource("3_0hw7n")]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_5q8fp")
-
-[node name="modul_label" type="Label" parent="HBoxContainer/player_inv/VBoxCon/player_items"]
-layout_mode = 0
-offset_left = 28.0
-offset_top = 154.0
-offset_right = 105.0
-offset_bottom = 177.0
-text = "Modules"
-
-[node name="modul_1" parent="HBoxContainer/player_inv/VBoxCon/player_items" instance=ExtResource("3_427t3")]
-layout_mode = 0
-offset_left = 117.0
-offset_top = 118.0
-offset_right = 217.0
-offset_bottom = 218.0
-
-[node name="modul_2" parent="HBoxContainer/player_inv/VBoxCon/player_items" instance=ExtResource("3_427t3")]
-layout_mode = 0
-offset_left = 234.0
-offset_top = 118.0
-offset_right = 334.0
-offset_bottom = 218.0
-
-[node name="weapon_label" type="Label" parent="HBoxContainer/player_inv/VBoxCon/player_items"]
-layout_mode = 0
-offset_left = 28.0
-offset_top = 290.0
-offset_right = 105.0
-offset_bottom = 313.0
-text = "Weapons
-"
-
-[node name="weapon_1" parent="HBoxContainer/player_inv/VBoxCon/player_items" instance=ExtResource("3_427t3")]
-layout_mode = 0
-offset_left = 117.0
-offset_top = 251.0
-offset_right = 217.0
-offset_bottom = 351.0
-
-[node name="weapon_2" parent="HBoxContainer/player_inv/VBoxCon/player_items" instance=ExtResource("3_427t3")]
-layout_mode = 0
-offset_left = 234.0
-offset_top = 251.0
-offset_right = 334.0
-offset_bottom = 351.0
 
 [node name="ItemsGrid" parent="HBoxContainer/player_inv/VBoxCon" instance=ExtResource("1_2vvbi")]
 layout_mode = 2
@@ -108,9 +58,6 @@ rows = 4
 
 [connection signal="draw" from="." to="." method="_visible"]
 [connection signal="on_item_clicked" from="HBoxContainer/ItemsGrid" to="." method="_on_inventory_item_clicked"]
-[connection signal="clicked" from="HBoxContainer/player_inv/VBoxCon/player_items/modul_1" to="." method="_on_equipment_inventory_item_clicked"]
-[connection signal="clicked" from="HBoxContainer/player_inv/VBoxCon/player_items/modul_2" to="." method="_on_equipment_inventory_item_clicked"]
-[connection signal="clicked" from="HBoxContainer/player_inv/VBoxCon/player_items/weapon_1" to="." method="_on_equipment_inventory_item_clicked"]
-[connection signal="clicked" from="HBoxContainer/player_inv/VBoxCon/player_items/weapon_2" to="." method="_on_equipment_inventory_item_clicked"]
+[connection signal="on_item_clicked" from="HBoxContainer/player_inv/VBoxCon/player_items_grid" to="." method="_on_equipment_inventory_item_clicked"]
 [connection signal="on_item_clicked" from="HBoxContainer/player_inv/VBoxCon/ItemsGrid" to="." method="_on_run_inventory_item_clicked"]
 [connection signal="id_pressed" from="menu" to="." method="_on_menu_id_pressed"]

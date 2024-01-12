@@ -11,6 +11,7 @@ var unlocks:Array
 var run_inventory: Inventory
 var inventory: Inventory
 var store_inventory: Inventory
+var equip_inventory: EquipmentInventory
 var _savePath = "user://player.json" #"user://settings.json"
 var inMissionMap = false
 var kills = 0
@@ -28,6 +29,7 @@ func _init():
 	run_inventory = Inventory.from(loadDict.get("runInv", {}))
 	inventory = Inventory.from(loadDict.get("inv", {}))
 	store_inventory = Inventory.from(loadDict.get("storeInv", {}))
+	equip_inventory = EquipmentInventory.from(loadDict.get("equipInv", {}))
 	kills = loadDict.get("kills", 0)
 	dummy_kills = loadDict.get("dummy_kills", 0)
 	taxes = loadDict.get("taxes", 100)
@@ -41,6 +43,7 @@ func save():
 		"runInv": run_inventory.to_dict(),
 		"inv": inventory.to_dict(),
 		"storeInv": store_inventory.to_dict(),
+		"equipInv": equip_inventory.to_dict(),
 		"kills": kills,
 		"dummy_kills": dummy_kills,
 		"taxes": taxes,

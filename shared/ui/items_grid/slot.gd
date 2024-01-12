@@ -6,6 +6,7 @@ signal mouseHovered(inventory_item:InventoryItem)
 signal mouseExited(inventory_item:InventoryItem)
 @onready var _image:TextureRect = $image
 @onready var _amount:Label = $amount
+@export var show_amount: bool = true
 var _inventory_item: InventoryItem = null
 
 func clear():
@@ -21,7 +22,10 @@ func refresh():
 	if not _inventory_item:
 		return
 	_image.texture = _inventory_item.item.image
-	_amount.text = str(_inventory_item.amount) + "x"
+	if show_amount:
+		_amount.text = str(_inventory_item.amount) + "x"
+	else:
+		_amount.text = ""
 
 func is_empty():
 	return _inventory_item == null

@@ -6,6 +6,7 @@
 bg_color = Color(0.105882, 0.105882, 0.105882, 0.733333)
 
 [node name="ItemInfos" type="Panel"]
+z_index = 1
 custom_minimum_size = Vector2(194, 274)
 anchors_preset = 15
 anchor_right = 1.0

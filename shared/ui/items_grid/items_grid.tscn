@@ -42,7 +42,3 @@ offset_right = 194.0
 offset_bottom = 274.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[connection signal="mouse_entered" from="ScrollContainer/CenterContainer/slots/Slot" to="ScrollContainer/CenterContainer/slots/Slot" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="ScrollContainer/CenterContainer/slots/Slot" to="ScrollContainer/CenterContainer/slots/Slot" method="_on_mouse_exited"]
-[connection signal="pressed" from="ScrollContainer/CenterContainer/slots/Slot" to="ScrollContainer/CenterContainer/slots/Slot" method="_on_pressed"]

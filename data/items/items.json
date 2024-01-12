@@ -3,7 +3,7 @@
 		"name": "Gold",
 		"desc": "It is goot to have plenty of it",
 		"image": "res://data/items/img/gold.png",
-		"trade": false
+		"trade": false,
 	},
 	"1": {
 		"name": "Schrott #1",
@@ -34,7 +34,8 @@
 	"6": {
 		"name": "Small pistol",
 		"desc": "A small pistol, dealing medium damange",
-		"image": "res://data/items/img/small-pistol.png"
+		"image": "res://data/items/img/small-pistol.png",
+		"type": "WEAPON"
 	},
 	"7": {
 		"name": "Pistol ammo",
@@ -44,11 +45,13 @@
 	"8": {
 		"name": "Better pistol",
 		"desc": "Just a better version of the pistol",
-		"image": "res://data/items/img/better-pistol.png"
+		"image": "res://data/items/img/better-pistol.png",
+		"type": "WEAPON"
 	},
 	"9": {
 		"name": "Sprint module",
 		"desc": "With this module your robot can move faster",
-		"image": "res://data/items/img/sprint-module.png"
+		"image": "res://data/items/img/sprint-module.png",
+		"type": "MODULE"
 	}
 }

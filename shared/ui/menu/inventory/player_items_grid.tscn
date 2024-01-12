@@ -1,0 +1,130 @@
+[gd_scene load_steps=5 format=3 uid="uid://blmnqjklgauuc"]
+
+[ext_resource type="PackedScene" uid="uid://brpciuojqvdyu" path="res://shared/ui/items_grid/slot.tscn" id="1_hx68r"]
+[ext_resource type="Script" path="res://shared/ui/menu/inventory/player_items_grid.gd" id="1_plelw"]
+[ext_resource type="PackedScene" uid="uid://c7r4nqq3l5dlv" path="res://shared/ui/items_grid/item_infos.tscn" id="3_3mhfg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dimj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="player_items" type="Panel"]
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_4dimj")
+script = ExtResource("1_plelw")
+
+[node name="modul_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -71.0
+offset_right = -122.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Modules"
+horizontal_alignment = 2
+
+[node name="module_1" parent="." instance=ExtResource("1_hx68r")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -110.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+show_amount = false
+
+[node name="module_2" parent="." instance=ExtResource("1_hx68r")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -110.0
+offset_right = 110.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+show_amount = false
+
+[node name="weapon_label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = 49.0
+offset_right = -122.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Weapons
+"
+horizontal_alignment = 2
+
+[node name="weapon_1" parent="." instance=ExtResource("1_hx68r")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+show_amount = false
+
+[node name="weapon_2" parent="." instance=ExtResource("1_hx68r")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 110.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+show_amount = false
+
+[node name="ItemInfos" parent="." instance=ExtResource("3_3mhfg")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 194.0
+offset_bottom = 274.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="clicked" from="module_1" to="." method="_on_slot_clicked"]
+[connection signal="mouseExited" from="module_1" to="." method="_on_slot_leaved"]
+[connection signal="mouseHovered" from="module_1" to="." method="_on_slot_hovered"]
+[connection signal="clicked" from="module_2" to="." method="_on_slot_clicked"]
+[connection signal="mouseExited" from="module_2" to="." method="_on_slot_leaved"]
+[connection signal="mouseHovered" from="module_2" to="." method="_on_slot_hovered"]
+[connection signal="clicked" from="weapon_1" to="." method="_on_slot_clicked"]
+[connection signal="mouseExited" from="weapon_1" to="." method="_on_slot_leaved"]
+[connection signal="mouseHovered" from="weapon_1" to="." method="_on_slot_hovered"]
+[connection signal="clicked" from="weapon_2" to="." method="_on_slot_clicked"]
+[connection signal="mouseExited" from="weapon_2" to="." method="_on_slot_leaved"]
+[connection signal="mouseHovered" from="weapon_2" to="." method="_on_slot_hovered"]
