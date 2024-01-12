@@ -35,8 +35,8 @@ func _on_inventory_item_clicked(inventory_item):
 		return
 	_selected_inventory_item = inventory_item
 	_clear_menu()
-	_menu.add_item("Move to run inventory", 1)
-	_menu.add_item("Equip", 2) # Check if equipable
+	_menu.add_item("Move to run inventory", 1) # TODO: use enum
+	_menu.add_item("Equip", 2) # Check if equipable # TODO: use enum...
 	_show_menu()
 	
 func _on_run_inventory_item_clicked(inventory_item):

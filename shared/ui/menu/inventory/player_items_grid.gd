@@ -4,10 +4,6 @@ class_name PlayerItemsGrid
 signal on_item_clicked(inventory_item:InventoryItem)
 var _equip_inv:EquipmentInventory = null
 @onready var _itemInfos:ItemInfos = $ItemInfos
-@onready var modul_slot_1:Slot = $modul_1
-@onready var modul_slot_2:Slot = $modul_2
-@onready var weapon_slot_1:Slot = $weapon_1
-@onready var weapon_slot_2:Slot = $weapon_2
 
 func show_equip_inventory(equip_inv: EquipmentInventory):
 	_equip_inv = equip_inv
