@@ -18,7 +18,6 @@ static func get_item(id: String) -> GameItem:
 			item.image = load(item_data.get("image"))
 		item.tradeable = item_data.get("trade", true)
 		if item_data.has("type"):
-			var val = item_data.get("type", null)
-			item.type = GameItem.GameItemType.get(val)
+			item.type = GameItem.GameItemType.get(item_data.get("type", null))
 	cache[id] = item
 	return item
