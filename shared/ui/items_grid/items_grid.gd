@@ -31,7 +31,7 @@ func _init_slots():
 	for slot in _get_slots():
 		slot.clicked.connect(_on_slot_clicked)
 		slot.mouseHovered.connect(_on_slot_hovered)
-		slot.mouseExited.connect(_on_slot_leaved)
+		slot.mouseExited.connect(_on_slot_left)
 		
 func _on_slot_clicked(inventory_item:InventoryItem):
 	if not inventory_item:
@@ -43,7 +43,7 @@ func _on_slot_hovered(inventory_item:InventoryItem):
 		return
 	_itemInfos.show_item_infos(inventory_item)
 	
-func _on_slot_leaved(inventory_item:InventoryItem):
+func _on_slot_left(inventory_item:InventoryItem):
 	_itemInfos.hide_item_infos()
 		
 func _get_slots():

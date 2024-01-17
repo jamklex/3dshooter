@@ -42,10 +42,12 @@ func _ready():
 	refresh_inventory_output()
 	fade_interaction_feedback(1)
 	QuestLoader.attach_quests(quests_ui)
-	WorldUtil.player.inventory.onAddItem.connect(_shooter.handlePlayerInventoryChanged)
-	WorldUtil.player.inventory.onRemoveItem.connect(_shooter.handlePlayerInventoryChanged)
+	WorldUtil.player.equip_inventory.onAddItem.connect(_shooter.checkForWeaponChanged)
+	WorldUtil.player.equip_inventory.onRemoveItem.connect(_shooter.checkForWeaponChanged)
+	WorldUtil.player.run_inventory.onAddItem.connect(_shooter.checkForMunitionChanged)
+	WorldUtil.player.run_inventory.onRemoveItem.connect(_shooter.checkForMunitionChanged)
 	_shooter.setUseRealMunition(WorldUtil.player.inMissionMap)
-	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.inventory)
+	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.equip_inventory)
 	_shooter.onShootableDie.connect(WorldUtil.player.onShootableKilled)
 	_shooter.onHitShootable.connect(_showHitMarker)
 	health_bar.init(_shootable.health, _shootable.health)
@@ -56,20 +58,20 @@ func _exit_tree():
 	WorldUtil.player.body = null
 
 func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-	fade_interaction_feedback(0.5*delta)
+	handle_show_menu()
 	if inDialog:
 		_playAnimation("idle")
 		return
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	fade_interaction_feedback(0.5*delta)
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_strength
 	if Input.is_action_just_pressed("sprint") and is_on_floor():
-		sprinting = WorldUtil.player.inventory.check("9", 1)
+		sprinting = WorldUtil.player.equip_inventory.check("9", 1)
 
 	handle_interaction()
 	handle_show_inventory()
-	handle_show_menu()
 	handle_show_quests()
 	handle_show_missions()
 	handle_reward_queue()
@@ -207,14 +209,15 @@ func _showHitMarker(lastHit):
 	hitmarker.visible = false
 	
 func _switchUiMenu(selectedTabIndex):
-	if menu.visible and (menuTab.current_tab == selectedTabIndex or selectedTabIndex == 2):
+	if menu.visible and (menuTab.current_tab == selectedTabIndex or selectedTabIndex == menuTab.get_child_count()-1):
 		menu.visible = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		inDialog = false
 	else:
 		menuTab.current_tab = selectedTabIndex
 		menu.visible = true
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		_shooter.disableAim()
+		inDialog = true
 
 func _on_health_changed(health):
 	health_bar.setHealth(health)

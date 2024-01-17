@@ -1,4 +1,5 @@
 extends Panel
+class_name AmountSlider
 
 @onready var slider:HSlider = $slider
 @onready var amount:Label = $amount

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b6xx3gbl0sid"]
 
-[ext_resource type="Script" path="res://shared/trade/itemSlider.gd" id="1_awhc7"]
+[ext_resource type="Script" path="res://shared/ui/items_grid/amount_slider.gd" id="1_awhc7"]
 [ext_resource type="StyleBox" uid="uid://vdqifgistcp3" path="res://shared/trade/hover_btn.tres" id="2_2mw01"]
 [ext_resource type="StyleBox" uid="uid://k2v8wwfiofoo" path="res://shared/trade/cancel_btn.tres" id="2_165yl"]
 

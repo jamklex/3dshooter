@@ -62,8 +62,10 @@ func putBulletsToInventory():
 			return
 		_addRestAmmo(weapon.weaponType, restMun)
 	
-func handlePlayerInventoryChanged(payload:Array):
+func checkForMunitionChanged(payload:Array):
 	_checkForMunitionAction(payload)
+	
+func checkForWeaponChanged(payload:Array):
 	_checkForWeaponAction(payload)
 			
 func _checkForMunitionAction(payload:Array):
@@ -89,11 +91,6 @@ func _checkForWeaponAction(payload:Array):
 
 func setUseRealMunition(newUseRealMunition:bool):
 	useRealMunition = newUseRealMunition
-	#for weapon in weapons:
-		#weapon.restMagShoots = 0
-		#_reloadWeapon(weapon)
-	#if currentWeapon and not reloading:
-		#_refreshMagInfo()
 		
 func handle():
 	_handleWeaponSwitching()
@@ -205,14 +202,14 @@ func _removeRestAmmo(weaponType:Weapon.WeaponType, removeShoots:int):
 	var munitionId = _MUNITION_MAP.get(weaponType)
 	if not munitionId:
 		return
-	var playerInv = WorldUtil.player.inventory as Inventory
+	var playerInv = WorldUtil.player.run_inventory as Inventory
 	playerInv.remove(munitionId, removeShoots)
 	
 func _addRestAmmo(weaponType:Weapon.WeaponType, addShoots:int):
 	var munitionId = _MUNITION_MAP.get(weaponType)
 	if not munitionId:
 		return
-	var playerInv = WorldUtil.player.inventory as Inventory
+	var playerInv = WorldUtil.player.run_inventory as Inventory
 	playerInv.add(munitionId, addShoots)
 
 func _refreshMagInfo():
@@ -230,7 +227,7 @@ func _getAmmoInInventory(weaponType:Weapon.WeaponType):
 	var munitionId = _MUNITION_MAP.get(weaponType)
 	if not munitionId:
 		return currentWeapon.magSize
-	var playerInv = WorldUtil.player.inventory as Inventory
+	var playerInv = WorldUtil.player.run_inventory as Inventory
 	return playerInv.count(munitionId)
 	
 func _handleShooting():
