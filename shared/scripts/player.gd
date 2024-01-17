@@ -57,15 +57,13 @@ func teleport(sceneName:String, pos:Vector3=Vector3.ZERO):
 
 func setInMission(newInMissionMap:bool):
 	inMissionMap = newInMissionMap
-	#if body:
-		#body._shooter.setUseRealMunition(inMissionMap)
 	if inMissionMap:
 		mission_kills = 0
 	else:
 		print("killed ", mission_kills, " in a mission")
 
 func saveRunInventory():
-	run_inventory.moveAllItems(inventory)
+	run_inventory.moveAllItems(inventory, ["7"])
 	
 func onShootableKilled(shootable:Shootable):
 	var killedDummy = (shootable.get_parent() as Dummy) != null

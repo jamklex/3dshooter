@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpw6fgm2mn687"]
+[gd_scene load_steps=6 format=3 uid="uid://bpw6fgm2mn687"]
 
 [ext_resource type="PackedScene" uid="uid://xr66w7kj4beu" path="res://shared/ui/items_grid/items_grid.tscn" id="1_2vvbi"]
 [ext_resource type="Script" path="res://shared/ui/menu/inventory/inventory.gd" id="1_84fpx"]
 [ext_resource type="PackedScene" uid="uid://blmnqjklgauuc" path="res://shared/ui/menu/inventory/player_items_grid.tscn" id="3_0hw7n"]
+[ext_resource type="PackedScene" uid="uid://b6xx3gbl0sid" path="res://shared/ui/items_grid/amount_slider.tscn" id="4_qnmcp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yca81"]
 bg_color = Color(0.376471, 0.376471, 0.376471, 1)
@@ -56,8 +57,22 @@ rows = 4
 
 [node name="menu" type="PopupMenu" parent="."]
 
+[node name="AmountSlider" parent="." instance=ExtResource("4_qnmcp")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -51.0
+offset_right = 274.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="draw" from="." to="." method="_visible"]
-[connection signal="on_item_clicked" from="HBoxContainer/ItemsGrid" to="." method="_on_inventory_item_clicked"]
+[connection signal="on_item_clicked" from="HBoxContainer/ItemsGrid" to="." method="_on_main_inventory_clicked"]
 [connection signal="on_item_clicked" from="HBoxContainer/player_inv/VBoxCon/player_items_grid" to="." method="_on_equipment_inventory_item_clicked"]
 [connection signal="on_item_clicked" from="HBoxContainer/player_inv/VBoxCon/ItemsGrid" to="." method="_on_run_inventory_item_clicked"]
 [connection signal="id_pressed" from="menu" to="." method="_on_menu_id_pressed"]

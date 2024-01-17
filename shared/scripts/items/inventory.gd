@@ -23,7 +23,7 @@ func item_ids() -> Array:
 	return items.keys()
 
 func moveItemSome(toInv:Inventory, id:String, amount:int) -> bool:
-	if not toInv._can_store(id, amount):
+	if not toInv.can_store(id, amount):
 		return false
 	if remove(id, amount):
 		toInv.add(id, amount)
@@ -32,16 +32,18 @@ func moveItemSome(toInv:Inventory, id:String, amount:int) -> bool:
 
 func moveItem(toInv:Inventory, id:String):
 	var amount = count(id)
-	if not toInv._can_store(id, amount):
+	if not toInv.can_store(id, amount):
 		return
 	toInv.add(id, amount)
 	items.erase(id)
 	onRemoveItem.emit([id,amount])
 
-func moveAllItems(toInv:Inventory):
+func moveAllItems(toInv:Inventory, exceptIds:Array=[]):
 	for id in items.keys():
+		if exceptIds.find(id) > -1:
+			continue
 		var amount = count(id)
-		if not toInv._can_store(id, amount):
+		if not toInv.can_store(id, amount):
 			continue
 		toInv.add(id, amount)
 		items.erase(id)
@@ -57,7 +59,7 @@ func remove(id:String, amount:int) -> bool:
 	return true
 
 func add(id:String, amount:int):
-	if not _can_store(id, amount):
+	if not can_store(id, amount):
 		return
 	if !items.has(id):
 		items[id] = InventoryItem.from(id, amount)
@@ -79,7 +81,7 @@ func count(id:String) -> int:
 		return items.get(id).amount
 	return 0
 	
-func _can_store(id:String, amount:int) -> bool:
+func can_store(id:String, amount:int) -> bool:
 	return true
 
 func is_empty():

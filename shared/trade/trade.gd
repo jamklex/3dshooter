@@ -15,7 +15,7 @@ var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
 @onready var diffMoneyLabel = $bg/diffMoney
 @onready var leftInvNameLabel = $bg/leftInvName
 @onready var rightInvNameLabel = $bg/rightInvName
-@onready var itemSlider = $bg/ItemSlider
+@onready var amountSlider:AmountSlider = $bg/AmountSlider
 
 enum Actions {
 	SAVE_TRADE, # has to return boolean true to close trade
@@ -42,10 +42,10 @@ func _ready():
 	if gold_amount == 0:
 		playerInventory.add(Inventory.GOLD_ITEM, 0)
 	playerMoney = gold_amount
-	itemSlider.on_apply.connect(itemSlider_apply)
+	amountSlider.on_apply.connect(amountSlider_apply)
 	refreshUi()
 	
-func itemSlider_apply(inventory_item:InventoryItem, amount:int, rightToLeft:bool):
+func amountSlider_apply(inventory_item:InventoryItem, amount:int, rightToLeft:bool):
 	if rightToLeft:
 		_moveItemRightToLeftInv_(inventory_item.item.id, amount)
 	else:
@@ -53,7 +53,7 @@ func itemSlider_apply(inventory_item:InventoryItem, amount:int, rightToLeft:bool
 
 func _moveItemLeftToRightInv(inventory_item:InventoryItem):
 	if inventory_item.amount > 1:
-		itemSlider.show_slider(inventory_item, false)
+		amountSlider.show_slider(inventory_item, false)
 	else:
 		_moveItemLeftToRightInv_(inventory_item.item.id, 1)
 	
@@ -66,7 +66,7 @@ func _moveItemLeftToRightInv_(id:String, amount:int):
 	
 func _moveItemRightToLeftInv(inventory_item:InventoryItem):
 	if inventory_item.amount > 1:
-		itemSlider.show_slider(inventory_item, true)
+		amountSlider.show_slider(inventory_item, true)
 	else:
 		_moveItemRightToLeftInv_(inventory_item.item.id, 1)
 	
