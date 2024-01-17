@@ -1,26 +1,31 @@
 extends PanelContainer
 
-var missionCount: int = 10
-var missionRotation_mins: int = 5
+const missionCount: int = 10
+const missionRotation_mins: int = 15
 
-@onready var new_missions = $wrapper/new/list
+@onready var new_missions = $wrapper/wrapper/new/list
 @onready var active_missions = $wrapper/active/wrapper/scroll/list
+@onready var expire = $wrapper/wrapper/expire
 var newMissionUi = preload("res://shared/ui/menu/missions/new_mission.tscn")
 var activeMissionUi = preload("res://shared/ui/menu/missions/active_mission.tscn")
 
+var lastRotationEnd: int
+var _known_seeds: Array
+
 func _ready():
-	var time = getCurrentRotationEnd(missionRotation_mins)
-	for n in range(missionCount):
-		var rng = RandomNumberGenerator.new()
-		rng.set_seed(time + n)
-		var mission = Mission.generate(rng)
-		# TODO: if not already active
-		var ui_wrapper = newMissionUi.instantiate()
-		ui_wrapper.link(mission)
-		new_missions.add_child(ui_wrapper)
+	reload()
 
 func _process(_delta):
-	pass
+	var now = current_time()
+	if lastRotationEnd and lastRotationEnd <= now:
+		generate_missions()
+	var rotationEnd = getCurrentRotationEnd(missionRotation_mins)
+	var time = Time.get_datetime_dict_from_unix_time(rotationEnd - now)
+	var h = str(time.get("hour")).pad_zeros(2)
+	var m = str(time.get("minute")).pad_zeros(2)
+	var s = str(time.get("second")).pad_zeros(2)
+	expire.set_text("Refresh in %s:%s:%s" % [h,m,s])
+	lastRotationEnd = rotationEnd
 
 func getCurrentRotationEnd(rotation_mins: int) -> int:
 	var rotation_time = (rotation_mins * 60)
@@ -29,3 +34,37 @@ func getCurrentRotationEnd(rotation_mins: int) -> int:
 
 func current_time() -> int:
 	return int(Time.get_unix_time_from_system())
+
+func clear_all_children(parent):
+	for child in parent.get_children():
+		parent.remove_child(child)
+
+func generate_missions():
+	clear_all_children(new_missions)
+	var time = getCurrentRotationEnd(missionRotation_mins)
+	for n in range(missionCount):
+		var rng = RandomNumberGenerator.new()
+		rng.set_seed(time + n)
+		var mission = Mission.generate(rng)
+		var ui_wrapper = newMissionUi.instantiate()
+		ui_wrapper.link(mission)
+		ui_wrapper.on_accept.connect(reload)
+		if _known_seeds.has(mission.rng.seed):
+			ui_wrapper.setActive()
+		new_missions.add_child(ui_wrapper)
+
+func load_saved():
+	clear_all_children(active_missions)
+	_known_seeds.clear()
+	var saves = FileUtil.getContentAsJson(WorldUtil.missionsSavePath, true) as Dictionary
+	for _seed in saves.keys():
+		var mission = Mission.from(saves[_seed])
+		var ui_wrapper = activeMissionUi.instantiate()
+		ui_wrapper.link(mission)
+		active_missions.add_child(ui_wrapper)
+		_known_seeds.push_back(int(_seed))
+
+func reload():
+	print("reload")
+	load_saved()
+	generate_missions()

@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1s2cax58nb4o"]
+[gd_scene load_steps=4 format=3 uid="uid://d1s2cax58nb4o"]
 
-[ext_resource type="PackedScene" uid="uid://cn8gugpjdbemn" path="res://shared/ui/menu/missions/step.tscn" id="1_2djwm"]
 [ext_resource type="Script" path="res://shared/ui/menu/missions/active_mission.gd" id="1_imrs4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ahs4"]
@@ -36,7 +35,7 @@ text = "Mission #1"
 
 [node name="collect_button" type="Button" parent="ordering/header"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
 disabled = true
 text = "Get Rewards"
 
@@ -53,9 +52,3 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_5grkq")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.5
-
-[node name="Step2" parent="ordering/body/steps" instance=ExtResource("1_2djwm")]
-layout_mode = 2
-
-[node name="Step" parent="ordering/body/steps" instance=ExtResource("1_2djwm")]
-layout_mode = 2

@@ -2,7 +2,6 @@ extends Node
 
 var quest_matcher: Dictionary = {}
 static var quests: Array[Quest] = []
-const _savePath: String = "user://quests.json"
 
 func _process(_delta):
 	highlight_quest_npcs(quests)
@@ -77,9 +76,9 @@ func reload_quests():
 func save_progress(_quest: Quest):
 	var content = save_state()
 	content[_quest.path] = _quest.save_dict()
-	var file = FileAccess.open(_savePath, FileAccess.WRITE)
+	var file = FileAccess.open(WorldUtil.questsSavePath, FileAccess.WRITE)
 	file.store_line(JSON.stringify(content, "\t"))
 
 func save_state() -> Dictionary:
-	var json = FileUtil.getContentAsJson(_savePath, false)
+	var json = FileUtil.getContentAsJson(WorldUtil.questsSavePath, false)
 	return json if json else {}

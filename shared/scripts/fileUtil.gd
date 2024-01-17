@@ -13,15 +13,16 @@ static func getContentAsString(filePath:String, cached:bool = true) -> String:
 	cache[filePath] = content
 	return content
 
-static func getContentAsJson(filePath:String, cached:bool = true):
+static func getContentAsJson(filePath:String, cached:bool = true, defaultContent:String = "{}"):
 	var strContent = getContentAsString(filePath, cached)
 	if strContent.is_empty():
-		strContent = "{}"
+		strContent = defaultContent
 	return JSON.parse_string(strContent)
 	
 static func saveJsonContent(filePath:String, json:Variant):
 	var file = FileAccess.open(filePath, FileAccess.WRITE)
 	file.store_line(JSON.stringify(json, "\t"))
+	cache[filePath] = JSON.stringify(json)
 
 static func getFilesAt(folder:String) -> Array[String]:
 	if !folder.ends_with("/"):

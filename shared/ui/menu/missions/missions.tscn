@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://depl84a3hkmkb"]
+[gd_scene load_steps=3 format=3 uid="uid://depl84a3hkmkb"]
 
-[ext_resource type="PackedScene" uid="uid://d1s2cax58nb4o" path="res://shared/ui/menu/missions/active_mission.tscn" id="1_hwiih"]
 [ext_resource type="Script" path="res://shared/ui/menu/missions/missions.gd" id="1_mocrq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb2o8"]
@@ -25,13 +24,24 @@ script = ExtResource("1_mocrq")
 [node name="wrapper" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="new" type="ScrollContainer" parent="wrapper"]
+[node name="wrapper" type="VBoxContainer" parent="wrapper"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="expire" type="Label" parent="wrapper/wrapper"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.952941, 0.00392157, 0, 1)
+text = "Refresh in: 00:14:59"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="new" type="ScrollContainer" parent="wrapper/wrapper"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_eb2o8")
 
-[node name="list" type="VBoxContainer" parent="wrapper/new"]
+[node name="list" type="VBoxContainer" parent="wrapper/wrapper/new"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -56,21 +66,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 30
-
-[node name="ActiveMission" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
-layout_mode = 2
-
-[node name="ActiveMission2" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
-layout_mode = 2
-
-[node name="ActiveMission3" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
-layout_mode = 2
-
-[node name="ActiveMission4" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
-layout_mode = 2
-
-[node name="ActiveMission5" parent="wrapper/active/wrapper/scroll/list" instance=ExtResource("1_hwiih")]
-layout_mode = 2
 
 [node name="Label" type="Label" parent="wrapper/active/wrapper"]
 layout_mode = 2

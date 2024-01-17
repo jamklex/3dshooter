@@ -31,17 +31,12 @@ layout_mode = 2
 
 [node name="label" type="Label" parent="wrapper/header"]
 layout_mode = 2
+size_flags_horizontal = 0
 text = "Mission #1"
 
-[node name="expire" type="Label" parent="wrapper/header"]
+[node name="accept_button" type="Button" parent="wrapper/header"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.890196, 0.227451, 0.219608, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "Expires in: 14:59:59"
-
-[node name="collect_button" type="Button" parent="wrapper/header"]
-layout_mode = 2
+size_flags_horizontal = 10
 text = "Accept Mission"
 
 [node name="body" type="HBoxContainer" parent="wrapper"]
@@ -60,3 +55,5 @@ size_flags_stretch_ratio = 1.5
 
 [node name="rewards" type="VBoxContainer" parent="wrapper/body"]
 layout_mode = 2
+
+[connection signal="pressed" from="wrapper/header/accept_button" to="." method="_on_accept_button_pressed"]

@@ -8,6 +8,9 @@ var loadingScreenScene = preload("res://shared/ui/loading_screen.tscn")
 var loadingScreen = null
 var loadingDoneChecker = Timer.new()
 
+const missionsSavePath: String = "user://missions.json"
+const questsSavePath: String = "user://quests.json"
+
 func _enter_tree():
 	add_child(player)
 	loadingScreen = loadingScreenScene.instantiate()

@@ -1,11 +1,13 @@
 extends PanelContainer
 
 var linked_mission: Mission
-
 var _steps: Array
 @onready var steps = $wrapper/body/steps
-@onready var rewards = $wrapper/body/steps
-var stepUi = preload("res://shared/ui/menu/missions/step.tscn")
+@onready var rewards = $wrapper/body/rewards
+@onready var accept = $wrapper/header/accept_button
+var stepUi = preload("res://shared/ui/menu/missions/new_step.tscn")
+var active: bool = false
+signal on_accept
 
 func link(mission: Mission):
 	linked_mission = mission
@@ -23,3 +25,11 @@ func _process(_delta):
 	for s in _steps:
 		if(!s.get_parent()):
 			steps.add_child(s)
+	accept.disabled = active
+
+func setActive():
+	active = true
+
+func _on_accept_button_pressed():
+	linked_mission.startMission()
+	on_accept.emit()
