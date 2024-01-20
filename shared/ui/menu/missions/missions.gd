@@ -2,10 +2,12 @@ extends PanelContainer
 
 const missionCount: int = 10
 const missionRotation_mins: int = 15
+const max_active: int = 5
 
-@onready var new_missions = $wrapper/wrapper/new/list
+@onready var new_missions = $wrapper/new/wrapper/scroll/list
 @onready var active_missions = $wrapper/active/wrapper/scroll/list
-@onready var expire = $wrapper/wrapper/expire
+@onready var expire = $wrapper/new/wrapper/expire
+@onready var active_counter = $wrapper/active/wrapper/count
 var newMissionUi = preload("res://shared/ui/menu/missions/new_mission.tscn")
 var activeMissionUi = preload("res://shared/ui/menu/missions/active_mission.tscn")
 
@@ -26,6 +28,7 @@ func _process(_delta):
 	var s = str(time.get("second")).pad_zeros(2)
 	expire.set_text("Refresh in %s:%s:%s" % [h,m,s])
 	lastRotationEnd = rotationEnd
+	active_counter.text = str(get_active_count()) + "/" + str(max_active)
 
 func getCurrentRotationEnd(rotation_mins: int) -> int:
 	var rotation_time = (rotation_mins * 60)
@@ -47,11 +50,17 @@ func generate_missions():
 		rng.set_seed(time + n)
 		var mission = Mission.generate(rng)
 		var ui_wrapper = newMissionUi.instantiate()
-		ui_wrapper.link(mission)
+		ui_wrapper.link(mission, Callable(max_missions_reached))
 		ui_wrapper.on_accept.connect(reload)
 		if _known_seeds.has(mission.rng.seed):
 			ui_wrapper.setActive()
 		new_missions.add_child(ui_wrapper)
+
+func get_active_count() -> int:
+	return active_missions.get_child_count()
+
+func max_missions_reached() -> bool:
+	return get_active_count() >= max_active
 
 func load_saved():
 	clear_all_children(active_missions)

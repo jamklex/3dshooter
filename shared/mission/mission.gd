@@ -18,7 +18,7 @@ enum Difficulty {
 
 static func from(json_save: Dictionary) -> Mission:
 	var mission = Mission.new()
-	mission.name = json_save.get("name")
+	mission._name = json_save.get("name")
 	mission.desc = json_save.get("desc")
 	mission.difficulty = json_save.get("difficulty", Difficulty.EASY)
 	mission.addRng()
@@ -39,6 +39,7 @@ static func toRewards(array: Array) -> Array:
 static func generate(_rng: RandomNumberGenerator) -> Mission:
 	var mission = Mission.new()
 	mission.rng = _rng
+	mission._name = SentenceGenerator.generate(_rng, true)
 	mission.difficulty = _rng.randi_range(0, Difficulty.values().max())
 	mission.addKillCounter()
 	mission.addResourceCounter()
@@ -61,7 +62,13 @@ func startMission():
 	save()
 
 func overIn(mins: int):
-	over = int(Time.get_unix_time_from_system()) + mins * 60
+	over = currentTime() + mins * 60
+
+func isOver() -> bool:
+	return currentTime() >= over
+
+func currentTime() -> int:
+	return int(Time.get_unix_time_from_system())
 
 func save():
 	var missions = FileUtil.getContentAsJson(WorldUtil.missionsSavePath, false)
@@ -94,11 +101,14 @@ func addGoldReward(killCount: int, resourceCount: int):
 	var amount = rng.randi_range(minGold, maxGold) * (1 + bonusPercent)
 	rewards.push_back(InventoryItem.from("0", amount))
 
+func getSeed() -> String:
+	return str(rng.seed)
+
 func toDict() -> Dictionary:
 	return {
 		"name": _name,
 		"desc": desc,
-		"seed": str(rng.seed),
+		"seed": getSeed(),
 		"difficulty": difficulty,
 		"kills": kills.map(func (m: MissionStep): return m.toDict()),
 		"resources": resources.map(func (m: MissionStep): return m.toDict()),
