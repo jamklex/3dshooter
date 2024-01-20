@@ -12,7 +12,21 @@
 					"No worries, I get it." : {
 						"answer": "Perfect, ready to go?",
 						"options": {
+							"Just give me some seconds, i equip a weapon first.": {
+								"conditions": [
+									{
+										"method": "noWeaponEquipped",
+										"payload": []
+									}
+								]
+							},
 							"Ok, get me on the ship": {
+								"conditions": [
+									{
+										"method": "weaponEquipped",
+										"payload": []
+									}
+								],
 								"actions": [
 									{
 										"method": "succeedTask",
@@ -42,7 +56,21 @@
 					"Actually I'm not sure..." : {
 						"answer": "Well... loot what You can and don't feel bad about it!",
 						"options": {
+							"Just give me some seconds, i equip a weapon first.": {
+								"conditions": [
+									{
+										"method": "noWeaponEquipped",
+										"payload": []
+									}
+								]
+							},
 							"Ok, get me on the ship": {
+								"conditions": [
+									{
+										"method": "weaponEquipped",
+										"payload": []
+									}
+								],
 								"actions": [
 									{
 										"method": "succeedTask",

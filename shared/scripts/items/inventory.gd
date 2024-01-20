@@ -81,6 +81,14 @@ func count(id:String) -> int:
 		return items.get(id).amount
 	return 0
 	
+func count_item_type(type:GameItem.GameItemType) -> int:
+	var counter = 0
+	for i in items.values():
+		var item = i.item as GameItem
+		if item.type == type:
+			counter += 1
+	return counter
+	
 func can_store(id:String, amount:int) -> bool:
 	return true
 

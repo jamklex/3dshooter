@@ -1,0 +1,33 @@
+{
+	"name": "I already know how to use a gun",
+	"desc": "You already killed some enemies with a gun, maybe it's time You tell Henry about it and see if he's proud of You.",
+	"short": "Talk to Henry",
+	"dialog": {
+		"npc": "WEAPON_SHOP",
+		"answer": "O-oh I'm sorry I bothered Y-you with my talk then...",
+		"options": {
+			"W-well I did learn a bit of new things from You Henry, don't be sad...": {
+				"answer": "A-anyways, here is a bit of a-ammo for Y-you.",
+				"actions": [
+					{
+						"method": "giveRewards",
+						"payload": []
+					},
+					{
+						"method": "succeedTask",
+						"payload": []
+					},
+					{
+						"method": "succeedQuest",
+						"payload": []
+					}
+				]
+			}
+		}
+	},
+	"rewards": [
+		{
+			"7": 50
+		}
+	]
+}
