@@ -24,6 +24,8 @@ func _process(_delta):
 	collect_button.visible = !is_over
 	if not is_over:
 		refresh_timer()
+	else:
+		expire.set_text("00:00:00")
 	label.text = linked_mission._name
 	for s in _steps:
 		if(!s.get_parent()):

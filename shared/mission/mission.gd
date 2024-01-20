@@ -10,7 +10,7 @@ var kills: Array[MissionStep] = []
 var resources: Array[MissionStep] = []
 var rewards: Array[InventoryItem] = []
 var over: int
-const missionTime_min: int = 15
+const missionTime_min: int = 45
 
 enum Difficulty {
 	EASY, MEDIUM, HARD
