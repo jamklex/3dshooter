@@ -1,49 +1,29 @@
 {
 	"name": "How do I use a gun?",
-	"desc": "Try using the pistol to destroy some dummies across from Henry.\nHe told You to use <ACTION_nextWeapon> to select a weapon to to aim before shooting with <ACTION_aim>.\nIf You need to reload use <ACTION_reload>.",
-	"short": "Kill at least 2 dummies accross the room",
-	"success": {
-		"conditions": [
-			{
-				"method": "hasDummieCountMin",
-				"payload": [
-					2
-				]
+	"desc": "You got a small Pistol from Henry but he didn't mention on how to properly use it.\nAsk him about that so You can confidently go in Your first mission.",
+	"short": "Ask Henry on how to use a gun",
+	"dialog": {
+		"npc": "WEAPON_SHOP",
+		"answer": "Y-you have to s-switch to a weapon of Y-your liking with <ACTION_nextWeapon> first.",
+		"options": {
+			"Aaand then I can shoot?": {
+				"answer": "N-no! Y-you have to aim f-first with <ACTION_aim> or else Y-you don't know where to s-shoot.\nThan Y-you can shoot with <ACTION_shoot>.",
+				"options": {
+					"And how do I reload?": {
+						"answer": "When Y-your ammo runs out in the bottom left corner, Y-you can press <ACTION_reload> ro reload Y-your gun.\nT-try killing some of the d-dummies accross the room.",
+						"actions": [
+							{
+								"method": "succeedTask",
+								"payload": []
+							},
+							{
+								"method": "nextInLine",
+								"payload": []
+							}
+						]
+					}
+				}
 			}
-		],
-		"actions": [
-			{
-				"method": "succeedTask",
-				"payload": []
-			},
-			{
-				"method": "setActiveTask",
-				"payload": [
-					2
-				]
-			},
-		]
-	},
-	"failure": {
-		"conditions": [
-			{
-				"method": "hasKillCountMin",
-				"payload": [
-					1
-				]
-			}
-		],
-		"actions": [
-			{
-				"method": "failTask",
-				"payload": []
-			},
-			{
-				"method": "setActiveTask",
-				"payload": [
-					3
-				]
-			},
-		]
+		}
 	}
 }

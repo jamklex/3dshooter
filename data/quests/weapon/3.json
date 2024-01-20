@@ -1,33 +1,49 @@
 {
-	"name": "Those dummies are tougher than I thought...",
-	"desc": "You managed to destory at least 2 dummies, go tell Henry about it.",
-	"short": "Talk to Henry",
-	"dialog": {
-		"npc": "WEAPON_SHOP",
-		"answer": "Y-yeah I saw Y-you struggled with aiming a b-bit...\nB-but that will come natural to Y-you I belive...",
-		"options": {
-			"Thanks for the 'compliment' Henry...": {
-				"answer": "O-oh I'm s-sorry...\nH-here, have some ammo for Y-your missions.",
-				"actions": [
-					{
-						"method": "giveRewards",
-						"payload": []
-					},
-					{
-						"method": "succeedTask",
-						"payload": []
-					},
-					{
-						"method": "succeedQuest",
-						"payload": []
-					}
+	"name": "How do I use a gun?",
+	"desc": "Try using the pistol to destroy some dummies across from Henry.\nHe told You to use <ACTION_nextWeapon> to select a weapon to to aim before shooting with <ACTION_aim>.\nIf You need to reload use <ACTION_reload>.",
+	"short": "Kill at least 2 dummies accross the room",
+	"success": {
+		"conditions": [
+			{
+				"method": "hasDummieCountMin",
+				"payload": [
+					2
 				]
 			}
-		}
+		],
+		"actions": [
+			{
+				"method": "succeedTask",
+				"payload": []
+			},
+			{
+				"method": "setActiveTask",
+				"payload": [
+					2
+				]
+			},
+		]
 	},
-	"rewards": [
-		{
-			"7": 100
-		}
-	]
+	"failure": {
+		"conditions": [
+			{
+				"method": "hasKillCountMin",
+				"payload": [
+					1
+				]
+			}
+		],
+		"actions": [
+			{
+				"method": "failTask",
+				"payload": []
+			},
+			{
+				"method": "setActiveTask",
+				"payload": [
+					3
+				]
+			},
+		]
+	}
 }

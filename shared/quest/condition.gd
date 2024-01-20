@@ -56,6 +56,10 @@ func someTaskMissing(_payload: Array) -> bool:
 
 func allTasksDone(_payload: Array) -> bool:
 	return _payload.all(func(t): return taskDone(t))
+	
+func weaponEquipped(_payload: Array) -> bool:
+	var equip_inv = WorldUtil.player.equip_inventory as EquipmentInventory
+	return equip_inv.count_item_type(GameItem.GameItemType.WEAPON) > 0
 
 func taskDone(taskId: int) -> bool:
 	return QuestLoader.get_quest(source.quest_name).get_task(taskId).is_done()
