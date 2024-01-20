@@ -4,7 +4,7 @@
 	"short": "Ask Henry on how to equip a gun",
 	"dialog": {
 		"npc": "WEAPON_SHOP",
-		"answer": "Y-you first have t-to equip a weapon. Y-you can do so by opening your i-inventory with <ACTION_inventory>, c-click on your weapon of choice and select 'Equip'. T-try it!"
+		"answer": "Y-you first have t-to equip a weapon. Y-you can do so by opening your i-inventory with <ACTION_inventory>, c-click on your weapon of choice and select 'Equip'. In missions you also have to put munition for your guns in your run inventory. Here on the ship we have enough, thats pretty nice to just try out new guns. Lets start with the pistol i gave you."
 	},
 	"success": {
 		"conditions": [

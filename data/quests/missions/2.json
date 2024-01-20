@@ -4,6 +4,12 @@
 	"short": "Kill every monster on the shipwreck",
 	"dialog": {
 		"npc": "CAPTAIN",
+		"conditions": [
+			{
+				"method": "weaponEquipped",
+				"payload": []
+			}
+		],
 		"actions": [
 			{
 				"method": "teleportToMissionMap",
