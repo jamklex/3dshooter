@@ -53,5 +53,38 @@
 		"desc": "With this module your robot can move faster",
 		"image": "res://data/items/img/sprint-module.png",
 		"type": "MODULE"
-	}
+	},
+	"10": {
+		"name": "Rifle",
+		"desc": "A fast shooting weapon",
+		"image": "res://data/items/img/rifle.png",
+		"type": "WEAPON"
+	},
+	"11": {
+		"name": "Rifle munition",
+		"desc": "Munition for rifle",
+		"image": "res://data/items/img/rifle-ammo.png",
+	},
+	"12": {
+		"name": "Sniper",
+		"desc": "A weapon that deals highly damage",
+		"image": "res://data/items/img/sniper.png",
+		"type": "WEAPON"
+	},
+	"13": {
+		"name": "Sniper munition",
+		"desc": "Munition for sniper",
+		"image": "res://data/items/img/sniper-ammo.png",
+	},
+	"14": {
+		"name": "Shotgun",
+		"desc": "A highly damage dealing weapon at low distance",
+		"image": "res://data/items/img/shotgun.png",
+		"type": "WEAPON"
+	},
+	"15": {
+		"name": "Shotgun munition",
+		"desc": "Munition for shotgun",
+		"image": "res://data/items/img/shotgun-ammo.png",
+	},
 }

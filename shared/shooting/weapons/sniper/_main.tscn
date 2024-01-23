@@ -1,0 +1,114 @@
+[gd_scene load_steps=19 format=3 uid="uid://o3wpor4tupil"]
+
+[ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_xhfvk"]
+[ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_6nw1r"]
+[ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_k6dqr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u7d3q"]
+size = Vector3(0.05, 0.05, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tymuy"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3g4ay"]
+material = SubResource("StandardMaterial3D_tymuy")
+size = Vector3(0.025, 0.025, 0.42)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1r2yx"]
+albedo_color = Color(0.741176, 0.254902, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tmklq"]
+material = SubResource("StandardMaterial3D_1r2yx")
+size = Vector3(0.055, 0.03, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qkdmt"]
+size = Vector3(0.055, 0.06, 0.33)
+
+[sub_resource type="PrismMesh" id="PrismMesh_lv5gq"]
+left_to_right = 0.0
+size = Vector3(0.04, 0.33, 0.04)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gh335"]
+size = Vector3(0.05, 0.1, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_11nws"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s4mf1"]
+material = SubResource("StandardMaterial3D_11nws")
+size = Vector3(0.04, 0.07, 0.05)
+
+[sub_resource type="Curve" id="Curve_hsh8o"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5rcwk"]
+curve = SubResource("Curve_hsh8o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lxdgb"]
+spread = 52.36
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_5rcwk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jjas"]
+albedo_color = Color(1, 1, 0, 1)
+backlight_enabled = true
+backlight = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vj2d7"]
+material = SubResource("StandardMaterial3D_6jjas")
+radius = 0.01
+height = 0.02
+
+[node name="sniper" type="Node3D" node_paths=PackedStringArray("muzzleFlare")]
+script = ExtResource("1_xhfvk")
+weaponName = "Sniper"
+description = "Sniper descc"
+magSize = 5
+weaponType = 2
+damage = 1
+shotSound = ExtResource("2_6nw1r")
+emptyShotSound = ExtResource("3_k6dqr")
+muzzleFlare = NodePath("muzzleFlare")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0616679, -0.190345)
+mesh = SubResource("BoxMesh_u7d3q")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0616679, -0.5277)
+mesh = SubResource("BoxMesh_3g4ay")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0433237, -0.244852)
+mesh = SubResource("BoxMesh_tmklq")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.007606, 0.163635)
+mesh = SubResource("BoxMesh_qkdmt")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, -1, 0, -4.37114e-08, 0, -1, -8.88178e-16, 0, -0.042263, 0.155087)
+mesh = SubResource("PrismMesh_lv5gq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.00829569, -0.00220509)
+mesh = SubResource("BoxMesh_gh335")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0442935, -0.111907)
+mesh = SubResource("BoxMesh_s4mf1")
+
+[node name="muzzleFlare" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0641582, -0.727703)
+visible = false
+emitting = false
+amount = 100
+lifetime = 0.1
+one_shot = true
+visibility_aabb = AABB(-0.465536, -4, -4, 0.931073, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_lxdgb")
+draw_pass_1 = SubResource("SphereMesh_vj2d7")
