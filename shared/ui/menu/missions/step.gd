@@ -6,12 +6,23 @@ var prefix: String
 @onready var total = $wrapper/total
 @onready var current = $wrapper/current
 
-func add_link(prefix_text: String, link: MissionStep):
+func add_link(link: MissionStep):
 	linked_step = link
-	prefix = prefix_text
 
 func _process(_delta):
 	if (linked_step):
-		type.set_text(prefix + linked_step.id + ":")
+		if (isKillType()):
+			type.set_text("Kill:")
+		elif (isResourceType()):
+			type.set_text(getIdName() + ":")
 		current.set_text(str(linked_step.count))
 		total.set_text("/" + str(linked_step.total))
+
+func isKillType() -> bool:
+	return linked_step.type == MissionStep.MissionStepType.MONSTER
+
+func isResourceType() -> bool:
+	return linked_step.type == MissionStep.MissionStepType.RESOURCE
+
+func getIdName() -> String:
+	return ItemHelper.get_item(linked_step.id).name

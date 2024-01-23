@@ -53,9 +53,24 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 theme_override_styles/panel = SubResource("StyleBoxFlat_5grkq")
 
-[node name="steps" type="VBoxContainer" parent="ordering/body"]
+[node name="kills" type="VBoxContainer" parent="ordering/body"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="resources" type="VBoxContainer" parent="ordering/body"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="rewards" type="VBoxContainer" parent="ordering/body"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 1.5
+
+[node name="punishments" type="VBoxContainer" parent="ordering/body"]
+layout_mode = 2
+size_flags_horizontal = 10
 size_flags_stretch_ratio = 1.5
 
 [node name="expire" type="Label" parent="ordering"]

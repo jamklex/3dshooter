@@ -12,6 +12,18 @@ var rewards: Array[InventoryItem] = []
 var over: int
 const missionTime_min: int = 45
 
+const resource_options: Array = [ 1,2,3,5 ]
+const enemy_options: Array = [ 0 ]
+const resource_worth_index = {
+	"1": 3.1,
+	"2": 3.5,
+	"3": 3.1,
+	"5": 5.7
+}
+const enemy_worth_index = {
+	"0": 2.3
+}
+
 enum Difficulty {
 	EASY, MEDIUM, HARD
 }
@@ -43,7 +55,7 @@ static func generate(_rng: RandomNumberGenerator) -> Mission:
 	mission.difficulty = _rng.randi_range(0, Difficulty.values().max())
 	mission.addKillCounter()
 	mission.addResourceCounter()
-	mission.addGoldReward(100, 100)
+	mission.addGoldReward()
 	return mission
 
 func allDone() -> bool:
@@ -77,29 +89,49 @@ func save():
 
 func addKillCounter():
 	var modulo = 5
-	var minKills = (difficulty + 1) * modulo
-	var maxKills = minKills * 3
-	if(difficulty >= Difficulty.EASY):
-		addRandomKillCount("0", minKills*2, maxKills*2, modulo)
-	if(difficulty >= Difficulty.MEDIUM):
-		addRandomKillCount("1", minKills, maxKills, modulo)
-	if(difficulty >= Difficulty.HARD):
-		addRandomKillCount("2", minKills/2, maxKills/2, modulo)
-
-func addRandomKillCount(monsterId: String, minKills: int, maxKills: int, modulo: int):
-	var killCount = rng.randi_range(minKills, maxKills)
-	killCount = max(killCount - (killCount % modulo), modulo)
-	kills.push_back(MissionStep.from(monsterId, killCount))
+	var minCount = (difficulty + 1) * modulo
+	var maxCount = minCount * 3
+	var tmp_options = []
+	tmp_options.append_array(enemy_options)
+	for n in difficulty + 1:
+		if tmp_options.is_empty():
+			break
+		var id = tmp_options.pop_at(rng.randi_range(0,tmp_options.size()-1))
+		var total = rng.randi_range(minCount, maxCount)
+		total = max(total - (total % modulo), modulo)
+		kills.push_back(MissionStep.from(MissionStep.MissionStepType.MONSTER, str(id), total))
 
 func addResourceCounter():
-	print("TODO: generate resource missions")
+	var modulo = 5
+	var minCount = (difficulty + 1) * modulo
+	var maxCount = minCount * 3
+	var tmp_options = []
+	tmp_options.append_array(resource_options)
+	for n in difficulty + 1:
+		if tmp_options.is_empty():
+			break
+		var id = tmp_options.pop_at(rng.randi_range(0,tmp_options.size()-1))
+		var total = rng.randi_range(minCount, maxCount)
+		total = max(total - (total % modulo), modulo)
+		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, str(id), total))
 
-func addGoldReward(killCount: int, resourceCount: int):
-	var minGold = killCount * 3.5
-	var maxGold = (killCount + resourceCount) * 5.5
-	var bonusPercent = difficulty / (difficulty + 2.0)
-	var amount = rng.randi_range(minGold, maxGold) * (1 + bonusPercent)
-	rewards.push_back(InventoryItem.from("0", amount))
+func addGoldReward():
+	var reward = 0
+	for r in resources:
+		reward += r.total * resource_worth_index[str(r.id)]
+	for k in kills:
+		reward += k.total * enemy_worth_index[str(k.id)]
+	var minBonus = (difficulty + 1) * 15
+	var maxBonus = minBonus * 3
+	var bonus = rng.randi_range(minBonus, maxBonus)
+	rewards.push_back(InventoryItem.from("0", reward + bonus))
+
+func getPunishment() -> Array[InventoryItem]:
+	var punishment_ratio = 0.75
+	var items: Array[InventoryItem] = []
+	for r in rewards:
+		items.push_back(InventoryItem.from(r.item.id, r.amount * punishment_ratio))
+	return items
 
 func getSeed() -> String:
 	return str(rng.seed)
