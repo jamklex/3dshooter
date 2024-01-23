@@ -1,26 +1,33 @@
 extends Node3D
 class_name Weapon
 
-enum WeaponType {PISTOL, RIFLE, SNIPER}
+enum WeaponType {PISTOL, RIFLE, SNIPER, SHOTGUN}
 
 @export var weaponName:String
 @export var description:String
 @export var magSize:int
 @export var weaponType:WeaponType
-@export var reloadTimeSecs:float
+@export var reloadMagTimeSecs:float
 @export var damage:int
 @export var shotSound:AudioStream
 @export var emptyShotSound:AudioStream
-@export var reloadSound:AudioStream
+@export var reloadMagSound:AudioStream
 @export var muzzleFlare:GPUParticles3D
+var manualLoading = false
+var loaded = false
 var restMagShoots:int
 
 
-func _ready():
-	if reloadSound:
-		reloadTimeSecs = reloadSound.get_length()
 
+func _ready():
+	manualLoading = [WeaponType.SNIPER, WeaponType.SHOTGUN].find(weaponType) > -1
+	if reloadMagSound:
+		reloadMagTimeSecs = reloadMagSound.get_length()
+		
 func needReload():
+	return manualLoading && !loaded
+
+func needReloadMag():
 	return restMagShoots <= 0
 	
 func isMagFull():

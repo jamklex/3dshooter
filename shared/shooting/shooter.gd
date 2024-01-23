@@ -9,9 +9,10 @@ class_name Shooter
 var weapons:Array[Weapon]
 var currentWeapon:Weapon
 var aiming:bool = false
+var reloadingMag:bool = false
 var reloading:bool = false
 var useRealMunition:bool = true
-@onready var _reloadTimer:Timer = $reloadTimer
+@onready var _reloadMagTimer:Timer = $reloadTimer
 @onready var _magInfo:Label = $magInfo
 var soundPlayer:AudioStreamPlayer
 signal onShootableDie
@@ -20,14 +21,20 @@ signal onHitShootable
 const _ITEM_WEAPON_MAP = {
 	"6": "res://shared/shooting/weapons/pistol/_main.tscn",
 	"8": "res://shared/shooting/weapons/betterPistol/_main.tscn",
+	"10": "res://shared/shooting/weapons/rifle/_main.tscn",
+	"12": "res://shared/shooting/weapons/sniper/_main.tscn",
+	"14": "res://shared/shooting/weapons/shotgun/_main.tscn",
 }
 
 const _MUNITION_MAP = {
-	Weapon.WeaponType.PISTOL: "7"
+	Weapon.WeaponType.PISTOL: "7",
+	Weapon.WeaponType.RIFLE: "11",
+	Weapon.WeaponType.SNIPER: "13",
+	Weapon.WeaponType.SHOTGUN: "15",
 }
 
 func _ready():
-	_reloadTimer.timeout.connect(_reload)
+	_reloadMagTimer.timeout.connect(_reloadMag)
 	_refreshMagInfo()
 	soundPlayer = AudioStreamPlayer.new()
 	add_child(soundPlayer)
@@ -95,7 +102,7 @@ func setUseRealMunition(newUseRealMunition:bool):
 func handle():
 	_handleWeaponSwitching()
 	_handleAimSwitching()
-	_handleReloading()
+	_handlereloadingMag()
 	_handleShooting()
 	
 func _hasWeaponWithId(weaponId:String):
@@ -150,10 +157,10 @@ func set_bone_rot(boneName:String, ang:Vector3):
 func _isWeaponId(itemId:String):
 	return _ITEM_WEAPON_MAP.has(itemId)
 	
-func _handleReloading():
+func _handlereloadingMag():
 	if not currentWeapon:
 		return
-	if reloading:
+	if reloadingMag:
 		return
 	if not Input.is_action_just_pressed("reload"):
 		return
@@ -163,28 +170,28 @@ func _handleReloading():
 		return
 	if aiming:
 		aimOverride.stop()
-	_startReload()
+	_startReloadMag()
 	
-func _startReload():
-	reloading = true
-	soundPlayer.stream = currentWeapon.reloadSound
+func _startReloadMag():
+	reloadingMag = true
+	soundPlayer.stream = currentWeapon.reloadMagSound
 	soundPlayer.play(0)
-	_reloadTimer.start(currentWeapon.reloadTimeSecs)
+	_reloadMagTimer.start(currentWeapon.reloadMagTimeSecs)
 	_refreshMagInfo()
 	
-func _cancelReload():
-	if not reloading:
+func _cancelMagReload():
+	if not reloadingMag:
 		return
 	soundPlayer.stop()
-	_reloadTimer.stop()
-	_endReload()
+	_reloadMagTimer.stop()
+	_endReloadMag()
 	
-func _reload():
+func _reloadMag():
 	_reloadWeapon(currentWeapon)
-	_endReload()
+	_endReloadMag()
 
-func _endReload():
-	reloading = false
+func _endReloadMag():
+	reloadingMag = false
 	_refreshMagInfo()
 	if aiming:
 		aimOverride.start()
@@ -214,8 +221,8 @@ func _addRestAmmo(weaponType:Weapon.WeaponType, addShoots:int):
 
 func _refreshMagInfo():
 	var magInfoText = ""
-	if reloading:
-		magInfoText = "Reloading..."
+	if reloadingMag:
+		magInfoText = "reloading..."
 	elif currentWeapon:
 		var restAmmo = "∞"
 		if useRealMunition:
@@ -233,17 +240,16 @@ func _getAmmoInInventory(weaponType:Weapon.WeaponType):
 func _handleShooting():
 	if not currentWeapon:
 		return
-	if reloading:
+	if reloadingMag:
 		return
 	if not Input.is_action_just_pressed("shoot"):
 		return
 	if not aiming:
 		return
-	if currentWeapon.needReload():
+	if currentWeapon.needReloadMag() or currentWeapon.needReload():
 		_emptyShoot()
 		return
 	_shoot()
-	currentWeapon.restMagShoots -= 1
 	_refreshMagInfo()
 	
 func _emptyShoot():
@@ -259,6 +265,8 @@ func get_enemy_base_for_bone(enemyBone: CharacterBody3D):
 	return null
 
 func _shoot():
+	currentWeapon.restMagShoots -= 1
+	currentWeapon.loaded = false
 	soundPlayer.stream = currentWeapon.shotSound
 	soundPlayer.play(0)
 	currentWeapon.muzzleFlare.restart()
@@ -355,8 +363,8 @@ func _getCurrentWeaponIndex():
 	return weapons.find(currentWeapon)
 	
 func _putCurrentWeaponAway():
-	if reloading:
-		_cancelReload()
+	if reloadingMag:
+		_cancelMagReload()
 	if not currentWeapon:
 		return
 	currentWeapon.visible = false
