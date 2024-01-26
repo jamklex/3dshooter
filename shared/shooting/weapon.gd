@@ -18,7 +18,6 @@ var loaded = false
 var restMagShoots:int
 
 
-
 func _ready():
 	manualLoading = [WeaponType.SNIPER, WeaponType.SHOTGUN].find(weaponType) > -1
 	if reloadMagSound:
