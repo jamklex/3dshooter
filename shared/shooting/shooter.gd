@@ -12,7 +12,9 @@ var aiming:bool = false
 var reloadingMag:bool = false
 var reloading:bool = false
 var useRealMunition:bool = true
-@onready var _reloadMagTimer:Timer = $reloadTimer
+@onready var _reloadMagTimer:Timer = $reloadMagTimer
+@onready var _reloadTimer:Timer = $reloadTimer
+@onready var _shotTimer:Timer = $shotTimer
 @onready var _magInfo:Label = $magInfo
 var soundPlayer:AudioStreamPlayer
 signal onShootableDie
@@ -35,6 +37,8 @@ const _MUNITION_MAP = {
 
 func _ready():
 	_reloadMagTimer.timeout.connect(_reloadMag)
+	_reloadTimer.timeout.connect(_reload)
+	_shotTimer.timeout.connect(_shotCooldownDone)
 	_refreshMagInfo()
 	soundPlayer = AudioStreamPlayer.new()
 	add_child(soundPlayer)
@@ -86,7 +90,7 @@ func _checkForWeaponAction(payload:Array):
 	if not _isWeaponId(itemId):
 		return
 	var gotWeapon = newAmount >= 1
-	var weaponAlreadyInitizalized = _hasWeaponWithId(itemId)	
+	var weaponAlreadyInitizalized = _hasWeaponWithId(itemId)
 	if gotWeapon and weaponAlreadyInitizalized:
 		return
 	if not gotWeapon and not weaponAlreadyInitizalized:
@@ -102,7 +106,7 @@ func setUseRealMunition(newUseRealMunition:bool):
 func handle():
 	_handleWeaponSwitching()
 	_handleAimSwitching()
-	_handlereloadingMag()
+	_handleReloadingMag()
 	_handleShooting()
 	
 func _hasWeaponWithId(weaponId:String):
@@ -157,7 +161,7 @@ func set_bone_rot(boneName:String, ang:Vector3):
 func _isWeaponId(itemId:String):
 	return _ITEM_WEAPON_MAP.has(itemId)
 	
-func _handlereloadingMag():
+func _handleReloadingMag():
 	if not currentWeapon:
 		return
 	if reloadingMag:
@@ -186,9 +190,32 @@ func _cancelMagReload():
 	_reloadMagTimer.stop()
 	_endReloadMag()
 	
+func _startReload():
+	if reloading or not currentWeapon.manualLoading:
+		return
+	reloading = true
+	soundPlayer.stream = currentWeapon.reloadSound
+	soundPlayer.play(0)
+	_reloadTimer.start(currentWeapon.reloadSound.get_length())
+	
+func _cancelReload():
+	if not reloading:
+		return
+	soundPlayer.stop()
+	_reloadTimer.stop()
+	_endReload()
+	
+func _endReload():
+	reloading = false
+	
 func _reloadMag():
 	_reloadWeapon(currentWeapon)
 	_endReloadMag()
+	
+func _reload():
+	if currentWeapon.restMagShoots > 0:
+		currentWeapon.loaded = true
+	_endReload()
 
 func _endReloadMag():
 	reloadingMag = false
@@ -237,17 +264,26 @@ func _getAmmoInInventory(weaponType:Weapon.WeaponType):
 	var playerInv = WorldUtil.player.run_inventory as Inventory
 	return playerInv.count(munitionId)
 	
+func _shoot_triggered():
+	return (Input.is_action_just_pressed("shoot") and currentWeapon.singleShot) \
+		or (Input.is_action_pressed("shoot") and !currentWeapon.singleShot)
+	
 func _handleShooting():
-	if not currentWeapon:
-		return
 	if reloadingMag:
 		return
-	if not Input.is_action_just_pressed("shoot"):
+	if not currentWeapon or not aiming:
 		return
-	if not aiming:
-		return
-	if currentWeapon.needReloadMag() or currentWeapon.needReload():
+	if currentWeapon.needReloadMag() and Input.is_action_just_pressed("shoot"):
 		_emptyShoot()
+		return
+	if currentWeapon.needReloadMag():
+		return
+	if currentWeapon.needReload() and not reloading and _shotTimer.is_stopped() and Input.is_action_just_pressed("shoot"):
+		_startReload()
+		return
+	if not currentWeapon.loaded:
+		return
+	if not _shoot_triggered():
 		return
 	_shoot()
 	_refreshMagInfo()
@@ -269,6 +305,7 @@ func _shoot():
 	currentWeapon.loaded = false
 	soundPlayer.stream = currentWeapon.shotSound
 	soundPlayer.play(0)
+	_shotTimer.start(currentWeapon.shotCooldown)
 	currentWeapon.muzzleFlare.restart()
 	var shootable = _raycastForShootable()
 	if not shootable:
@@ -286,6 +323,15 @@ func _shoot():
 		onHitShootable.emit(died)
 	if shootable and died:
 		onShootableDie.emit(shootable)
+		
+func _cancelShotCooldown():
+	_shotTimer.stop()
+		
+func _shotCooldownDone():
+	if currentWeapon.manualLoading:
+		_startReload()
+	else:
+		currentWeapon.loaded = true
 	
 func _raycastForShootable() -> Node:
 	var space = get_world_3d().direct_space_state
@@ -363,9 +409,10 @@ func _getCurrentWeaponIndex():
 	return weapons.find(currentWeapon)
 	
 func _putCurrentWeaponAway():
-	if reloadingMag:
-		_cancelMagReload()
 	if not currentWeapon:
 		return
+	_cancelMagReload()
+	_cancelReload()
+	_cancelShotCooldown()
 	currentWeapon.visible = false
 	currentWeapon = null

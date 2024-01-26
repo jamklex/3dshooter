@@ -12,13 +12,17 @@ enum WeaponType {PISTOL, RIFLE, SNIPER, SHOTGUN}
 @export var shotSound:AudioStream
 @export var emptyShotSound:AudioStream
 @export var reloadMagSound:AudioStream
-@export var muzzleFlare:GPUParticles3D
+@export var reloadSound:AudioStream
+@export var muzzleFlare:GPUParticles3D#
+@export var shotCooldown:float = 0
 var manualLoading = false
+var singleShot = false
 var loaded = false
 var restMagShoots:int
 
 
 func _ready():
+	singleShot = weaponType != WeaponType.RIFLE
 	manualLoading = [WeaponType.SNIPER, WeaponType.SHOTGUN].find(weaponType) > -1
 	if reloadMagSound:
 		reloadMagTimeSecs = reloadMagSound.get_length()
@@ -38,4 +42,5 @@ func reload(addShoots:int):
 		reloadedShoots = magSize
 	reloadedShoots -= restMagShoots
 	restMagShoots += reloadedShoots
+	loaded = true
 	return reloadedShoots

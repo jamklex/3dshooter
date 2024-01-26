@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_ufd74"]
 [ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_pe5ph"]
-[ext_resource type="AudioStream" uid="uid://cto8uile41c37" path="res://shared/shooting/weapons/pistol/reload.mp3" id="3_hu5q0"]
 [ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_ybh3s"]
+[ext_resource type="AudioStream" uid="uid://bo80a1xybqxkq" path="res://shared/shooting/weapons/pistol/reloadMag.mp3" id="4_qh3qq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u7d3q"]
 size = Vector3(0.05, 0.05, 0.3)
@@ -41,11 +41,10 @@ script = ExtResource("1_ufd74")
 weaponName = "Pistol"
 description = "This is just a standard pistol"
 magSize = 10
-reloadTimeSecs = 5.0
 damage = 1
 shotSound = ExtResource("2_pe5ph")
 emptyShotSound = ExtResource("3_ybh3s")
-reloadSound = ExtResource("3_hu5q0")
+reloadMagSound = ExtResource("4_qh3qq")
 muzzleFlare = NodePath("muzzleFlare")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]

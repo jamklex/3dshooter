@@ -1,18 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://rycyoqsfc2t2"]
+[gd_scene load_steps=15 format=3 uid="uid://rycyoqsfc2t2"]
 
 [ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_hdkpv"]
 [ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_tq26m"]
 [ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_ouvdn"]
+[ext_resource type="AudioStream" uid="uid://dt6euvijq44gj" path="res://shared/shooting/weapons/shotgun/reloadMag.mp3" id="4_5titq"]
+[ext_resource type="AudioStream" uid="uid://d1ykiuiks8v3c" path="res://shared/shooting/weapons/shotgun/reload.mp3" id="5_b1quy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u7d3q"]
-size = Vector3(0.05, 0.05, 0.505)
+size = Vector3(0.05, 0.075, 0.75)
 
 [sub_resource type="PrismMesh" id="PrismMesh_lv5gq"]
 left_to_right = 0.0
-size = Vector3(0.1, 0.275, 0.05)
+size = Vector3(0.2, 0.55, 0.05)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gh335"]
 size = Vector3(0.05, 0.1, 0.05)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qoj00"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.2
 
 [sub_resource type="Curve" id="Curve_hsh8o"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 0, 0]
@@ -48,19 +55,26 @@ weaponType = 3
 damage = 1
 shotSound = ExtResource("2_tq26m")
 emptyShotSound = ExtResource("3_ouvdn")
+reloadMagSound = ExtResource("4_5titq")
+reloadSound = ExtResource("5_b1quy")
 muzzleFlare = NodePath("muzzleFlare")
+shotCooldown = 1.0
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0874757, -0.150381)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0890601, -0.244512)
 mesh = SubResource("BoxMesh_u7d3q")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, 0, -4.37114e-08, 0, -1, -8.88178e-16, 0, 0.0626152, 0.0933991)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, 0, -4.37114e-08, 0, -1, -8.88178e-16, 0, 0.0265896, 0.132081)
 mesh = SubResource("PrismMesh_lv5gq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0258238, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00778299, 0.0448135)
 mesh = SubResource("BoxMesh_gh335")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0104419, -0.250074)
+mesh = SubResource("CylinderMesh_qoj00")
 
 [node name="muzzleFlare" type="GPUParticles3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.100344, -0.393198)

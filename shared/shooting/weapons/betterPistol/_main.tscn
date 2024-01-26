@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_3fm6f"]
 [ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_kc314"]
-[ext_resource type="AudioStream" uid="uid://cto8uile41c37" path="res://shared/shooting/weapons/pistol/reload.mp3" id="3_4g1nk"]
 [ext_resource type="AudioStream" uid="uid://badxm5gt4jd51" path="res://shared/shooting/weapons/betterPistol/emptyShot.mp3" id="3_vta70"]
 [ext_resource type="Material" uid="uid://dox3f5n0qwghg" path="res://shared/shooting/weapons/betterPistol/material.tres" id="4_rfqmm"]
+[ext_resource type="AudioStream" uid="uid://bg6vq0yrk5nwe" path="res://shared/shooting/weapons/betterPistol/reloadMag.mp3" id="4_uqng1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_kul1t"]
 material = ExtResource("4_rfqmm")
@@ -44,11 +44,10 @@ script = ExtResource("1_3fm6f")
 weaponName = "BetterPistol"
 description = "This is just a better version of a pistol"
 magSize = 7
-reloadTimeSecs = 5.0
 damage = 3
 shotSound = ExtResource("2_kc314")
 emptyShotSound = ExtResource("3_vta70")
-reloadSound = ExtResource("3_4g1nk")
+reloadMagSound = ExtResource("4_uqng1")
 muzzleFlare = NodePath("muzzleFlare")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]

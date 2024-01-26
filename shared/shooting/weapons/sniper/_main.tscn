@@ -1,11 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://o3wpor4tupil"]
+[gd_scene load_steps=21 format=3 uid="uid://o3wpor4tupil"]
 
 [ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_xhfvk"]
 [ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_6nw1r"]
 [ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_k6dqr"]
+[ext_resource type="AudioStream" uid="uid://x20qjcvhsgn" path="res://shared/shooting/weapons/sniper/reloadMag.mp3" id="4_owhdu"]
+[ext_resource type="AudioStream" uid="uid://bnhpbrtq7tfr2" path="res://shared/shooting/weapons/sniper/reload.mp3" id="5_6absd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_u7d3q"]
-size = Vector3(0.05, 0.05, 0.42)
+size = Vector3(0.05, 0.07, 0.835)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tymuy"]
 albedo_color = Color(0, 0, 0, 1)
@@ -19,14 +21,14 @@ albedo_color = Color(0.741176, 0.254902, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tmklq"]
 material = SubResource("StandardMaterial3D_1r2yx")
-size = Vector3(0.055, 0.03, 0.2)
+size = Vector3(0.055, 0.065, 0.45)
 
 [sub_resource type="BoxMesh" id="BoxMesh_qkdmt"]
-size = Vector3(0.055, 0.06, 0.33)
+size = Vector3(0.055, 0.06, 0.37)
 
 [sub_resource type="PrismMesh" id="PrismMesh_lv5gq"]
 left_to_right = 0.0
-size = Vector3(0.04, 0.33, 0.04)
+size = Vector3(0.055, 0.355, 0.04)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gh335"]
 size = Vector3(0.05, 0.1, 0.05)
@@ -36,7 +38,7 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_s4mf1"]
 material = SubResource("StandardMaterial3D_11nws")
-size = Vector3(0.04, 0.07, 0.05)
+size = Vector3(0.04, 0.07, 0.125)
 
 [sub_resource type="Curve" id="Curve_hsh8o"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 0, Vector2(1, 0), -1.0, 0.0, 0, 0]
@@ -72,26 +74,29 @@ weaponType = 2
 damage = 1
 shotSound = ExtResource("2_6nw1r")
 emptyShotSound = ExtResource("3_k6dqr")
+reloadMagSound = ExtResource("4_owhdu")
+reloadSound = ExtResource("5_6absd")
 muzzleFlare = NodePath("muzzleFlare")
+shotCooldown = 1.0
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0616679, -0.190345)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0741099, -0.375419)
 mesh = SubResource("BoxMesh_u7d3q")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0616679, -0.5277)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0756651, -0.984021)
 mesh = SubResource("BoxMesh_3g4ay")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0433237, -0.244852)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0433237, -0.526193)
 mesh = SubResource("BoxMesh_tmklq")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.007606, 0.163635)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018273, 0.184969)
 mesh = SubResource("BoxMesh_qkdmt")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, 0, -4.37114e-08, 0, -1, -8.88178e-16, 0, -0.042263, 0.155087)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, 0, -4.37114e-08, 0, -1, -8.88178e-16, 0, -0.0384459, 0.185954)
 mesh = SubResource("PrismMesh_lv5gq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -99,7 +104,7 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 mesh = SubResource("BoxMesh_gh335")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0442935, -0.111907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0336265, -0.20391)
 mesh = SubResource("BoxMesh_s4mf1")
 
 [node name="muzzleFlare" type="GPUParticles3D" parent="."]
