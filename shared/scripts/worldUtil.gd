@@ -178,13 +178,15 @@ func teleportToLowerShip(_payload: Array = []):
 	
 func removeFromPlayerInventory(payload: Array = []) -> bool:
 	var result = player.inventory.remove(payload[0], payload[1])
-	WorldUtil.player.body.refresh_inventory_output()
+	player.body.refresh_inventory_output()
+	player.save()
 	return result
-	
+
 func addToPlayerInventory(payload: Array):
 	player.inventory.add(payload[0], payload[1])
-	WorldUtil.player.body.refresh_inventory_output()
-	
+	player.body.refresh_inventory_output()
+	player.save()
+
 func checkPlayerInventory(payload: Array):
 	return player.inventory.check(payload[0], payload[1])
 	

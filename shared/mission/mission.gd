@@ -12,8 +12,8 @@ var rewards: Array[InventoryItem] = []
 var over: int
 const missionTime_min: int = 45
 
-const resource_options: Array = [ 1,2,3,5 ]
-const enemy_options: Array = [ 0 ]
+const resource_options: Array = [ "1","2","3","5" ]
+const enemy_options: Array = [ "1" ]
 const resource_worth_index = {
 	"1": 3.1,
 	"2": 3.5,
@@ -21,7 +21,7 @@ const resource_worth_index = {
 	"5": 5.7
 }
 const enemy_worth_index = {
-	"0": 2.3
+	"1": 2.3
 }
 
 enum Difficulty {
@@ -97,7 +97,7 @@ func generateKillCounter():
 		var id = tmp_options.pop_at(rng.randi_range(0,tmp_options.size()-1))
 		var total = rng.randi_range(minCount, maxCount)
 		total = max(total - (total % modulo), modulo)
-		kills.push_back(MissionStep.from(MissionStep.MissionStepType.MONSTER, str(id), total))
+		kills.push_back(MissionStep.from(MissionStep.MissionStepType.MONSTER, id, total))
 
 func generateResourceCounter():
 	var modulo = 5
@@ -111,7 +111,7 @@ func generateResourceCounter():
 		var id = tmp_options.pop_at(rng.randi_range(0,tmp_options.size()-1))
 		var total = rng.randi_range(minCount, maxCount)
 		total = max(total - (total % modulo), modulo)
-		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, str(id), total))
+		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, id, total))
 
 func generateGoldReward():
 	var reward = 0
@@ -143,6 +143,7 @@ func addKillCounter(enemy_id: String, amount: int):
 	for k in kills:
 		if k.isEnemy(enemy_id):
 			k.addCount(amount)
+	save()
 
 func getSeed() -> String:
 	return str(rng.seed)
