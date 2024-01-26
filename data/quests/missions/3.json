@@ -17,6 +17,12 @@
 			{
 				"method": "unlockMissions",
 				"payload": []
+			},
+			{
+				"method": "unlock",
+				"payload": [
+					"MISSIONS_BOARD"
+				]
 			}
 		]
 	},

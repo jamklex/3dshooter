@@ -1,5 +1,16 @@
 {
 	"answer": "Hello",
 	"options": {
+		"Let me do some missions": {
+			"condition": {
+				"result": true,
+				"method": "hasUnlocked",
+				"payload": [
+					"MISSIONS_BOARD"
+				]
+			},
+			"method": "openMissionBoard",
+			"payload": []
+		},
 	}
 }

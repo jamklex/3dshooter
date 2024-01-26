@@ -9,8 +9,8 @@ const max_active: int = 5
 @onready var expire = $wrapper/new/wrapper/expire
 @onready var active_counter = $wrapper/active/wrapper/count
 @onready var start_mission = $wrapper/active/wrapper/start_mission
-var newMissionUi = preload("res://shared/ui/menu/missions/new_mission.tscn")
-var activeMissionUi = preload("res://shared/ui/menu/missions/active_mission.tscn")
+var newMissionUi = preload("res://shared/mission/new_mission.tscn")
+var activeMissionUi = preload("res://shared/mission/active_mission.tscn")
 
 var lastRotationEnd: int
 var _known_seeds: Array
@@ -85,4 +85,4 @@ func _on_start_mission_pressed():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	WorldUtil.teleportToMissionMap([rng.seed,5])
-
+	queue_free()

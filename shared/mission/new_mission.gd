@@ -9,7 +9,7 @@ var rewards_holder: Array
 @onready var rewards = $wrapper/body/rewards
 @onready var accept = $wrapper/header/accept_button
 @onready var label = $wrapper/header/label as Label
-var stepUi = preload("res://shared/ui/menu/missions/new_step.tscn")
+var stepUi = preload("res://shared/mission/new_step.tscn")
 var active: bool = false
 signal on_accept
 var max_active_reached: Callable

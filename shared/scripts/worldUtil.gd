@@ -141,6 +141,12 @@ func openSellLoot(payload: Array):
 	player.body.setInDialog(true)
 	return currentTrade
 
+func openMissionBoard(payload: Array):
+	var mission_board = load("res://shared/mission/missions.tscn").instantiate()
+	add_child(mission_board)
+	player.body.setInDialog(true)
+	return mission_board
+
 func onSellLootAction(action: Trade.Actions, payload: Array = []):
 	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
 		return

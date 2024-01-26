@@ -73,7 +73,6 @@ func _physics_process(delta):
 	handle_interaction()
 	handle_show_inventory()
 	handle_show_quests()
-	handle_show_missions()
 	handle_reward_queue()
 	if _shooter:
 		_shooter.handle()
@@ -123,15 +122,10 @@ func handle_show_quests():
 	QuestLoader.attach_quests(quests_ui)
 	_switchUiMenu(1)
 
-func handle_show_missions():
-	if !Input.is_action_just_pressed("missions"):
-		return
-	_switchUiMenu(2)
-
 func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
 		return
-	_switchUiMenu(3)
+	_switchUiMenu(2)
 
 func handle_interaction():
 	interactionPopup.text = ""
@@ -155,7 +149,6 @@ func handle_interaction():
 			interactionFeedback.text = feedback
 			fade_interaction_feedback(0, true)
 	interactionPopup.text = ""
-
 
 func handle_reward_queue():
 	var reward_message = ""

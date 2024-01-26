@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://sn3156348pm"]
 
-[ext_resource type="Script" path="res://shared/ui/menu/missions/new_step.gd" id="1_qxoh4"]
+[ext_resource type="Script" path="res://shared/mission/new_step.gd" id="1_xpsca"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cncb2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -10,7 +10,7 @@ offset_right = 69.0
 offset_bottom = 23.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_cncb2")
-script = ExtResource("1_qxoh4")
+script = ExtResource("1_xpsca")
 
 [node name="wrapper" type="HBoxContainer" parent="."]
 layout_mode = 2

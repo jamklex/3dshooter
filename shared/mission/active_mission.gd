@@ -18,7 +18,7 @@ const active_color = Color("#9558224b")
 const expired_color = Color("#b5323b4b")
 const done_color = Color("#4a76424b")
 const colors = [active_color, expired_color, done_color]
-var stepUi = preload("res://shared/ui/menu/missions/step.tscn")
+var stepUi = preload("res://shared/mission/active_step.tscn")
 
 func _ready():
 	add_theme_stylebox_override("panel", get_theme_stylebox("panel").duplicate(true))
