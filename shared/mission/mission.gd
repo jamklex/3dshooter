@@ -53,9 +53,9 @@ static func generate(_rng: RandomNumberGenerator) -> Mission:
 	mission.rng = _rng
 	mission._name = SentenceGenerator.generate(_rng, true)
 	mission.difficulty = _rng.randi_range(0, Difficulty.values().max())
-	mission.addKillCounter()
-	mission.addResourceCounter()
-	mission.addGoldReward()
+	mission.generateKillCounter()
+	mission.generateResourceCounter()
+	mission.generateGoldReward()
 	return mission
 
 func allDone() -> bool:
@@ -83,11 +83,9 @@ func currentTime() -> int:
 	return int(Time.get_unix_time_from_system())
 
 func save():
-	var missions = FileUtil.getContentAsJson(WorldUtil.missionsSavePath, false)
-	missions[rng.seed] = toDict()
-	FileUtil.saveJsonContent(WorldUtil.missionsSavePath, missions)
+	WorldUtil.save_mission(self)
 
-func addKillCounter():
+func generateKillCounter():
 	var modulo = 5
 	var minCount = (difficulty + 1) * modulo
 	var maxCount = minCount * 3
@@ -101,7 +99,7 @@ func addKillCounter():
 		total = max(total - (total % modulo), modulo)
 		kills.push_back(MissionStep.from(MissionStep.MissionStepType.MONSTER, str(id), total))
 
-func addResourceCounter():
+func generateResourceCounter():
 	var modulo = 5
 	var minCount = (difficulty + 1) * modulo
 	var maxCount = minCount * 3
@@ -115,7 +113,7 @@ func addResourceCounter():
 		total = max(total - (total % modulo), modulo)
 		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, str(id), total))
 
-func addGoldReward():
+func generateGoldReward():
 	var reward = 0
 	for r in resources:
 		reward += r.total * resource_worth_index[str(r.id)]
@@ -132,6 +130,19 @@ func getPunishment() -> Array[InventoryItem]:
 	for r in rewards:
 		items.push_back(InventoryItem.from(r.item.id, r.amount * punishment_ratio))
 	return items
+
+func can_pay_punishment() -> bool:
+	for p in getPunishment():
+		var resource_id = p.item.id
+		var amount = p.amount
+		if not WorldUtil.checkPlayerInventory([resource_id, amount]):
+			return false
+	return true
+
+func addKillCounter(enemy_id: String, amount: int):
+	for k in kills:
+		if k.isEnemy(enemy_id):
+			k.addCount(amount)
 
 func getSeed() -> String:
 	return str(rng.seed)

@@ -21,7 +21,18 @@ static func from(_type: MissionStepType, _id: String, _total: int, _count: int =
 	return step
 
 func isDone() -> bool:
-	return count >= total
+	return getCurrentCount() >= total
+
+func getCurrentCount() -> int:
+	if type == MissionStepType.RESOURCE:
+		return WorldUtil.player.inventory.count(id)
+	return count
+
+func addCount(amount: int):
+	count += amount
+
+func isEnemy(enemy_id: String) -> bool:
+	return id == enemy_id
 
 func toDict() -> Dictionary:
 	return {

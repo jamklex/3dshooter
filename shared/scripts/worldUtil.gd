@@ -7,6 +7,7 @@ var current_prg: ProceduralRoomGenerator
 var loadingScreenScene = preload("res://shared/ui/loading_screen.tscn")
 var loadingScreen = null
 var loadingDoneChecker = Timer.new()
+var missions: Array[Mission] = []
 
 const missionsSavePath: String = "user://missions.json"
 const questsSavePath: String = "user://quests.json"
@@ -39,6 +40,30 @@ func add_quest_dialogs(npc_id, _currentDialog):
 
 func get_map_rng_visibility() -> bool:
 	return current_prg.next_loot_visible()
+
+func addKillCounter(enemy_id: String, amount: int):
+	for mission in missions:
+		mission.addKillCounter(enemy_id, amount)
+
+func getSavedMissions() -> Array[Mission]:
+	var _missions = []
+	var saves = FileUtil.getContentAsJson(missionsSavePath, true) as Dictionary
+	for key in saves.keys():
+		_missions.push_back(Mission.from(saves[key]))
+	missions.clear()
+	missions.append_array(_missions)
+	return missions
+
+func save_mission(mission: Mission):
+	var missions = FileUtil.getContentAsJson(missionsSavePath, false)
+	missions[mission.rng.seed] = mission.toDict()
+	FileUtil.saveJsonContent(missionsSavePath, missions)
+
+func remove_mission(mission: Mission):
+	var missions = FileUtil.getContentAsJson(missionsSavePath, false) as Dictionary
+	missions.erase(mission.getSeed())
+	FileUtil.saveJsonContent(missionsSavePath, missions)
+	mission.queue_free()
 
 # generic methods under this line #
 ###################################

@@ -8,6 +8,7 @@ const max_active: int = 5
 @onready var active_missions = $wrapper/active/wrapper/scroll/list
 @onready var expire = $wrapper/new/wrapper/expire
 @onready var active_counter = $wrapper/active/wrapper/count
+@onready var start_mission = $wrapper/active/wrapper/start_mission
 var newMissionUi = preload("res://shared/ui/menu/missions/new_mission.tscn")
 var activeMissionUi = preload("res://shared/ui/menu/missions/active_mission.tscn")
 
@@ -29,6 +30,7 @@ func _process(_delta):
 	expire.set_text("Refresh in %s:%s:%s" % [h,m,s])
 	lastRotationEnd = rotationEnd
 	active_counter.text = str(get_active_count()) + "/" + str(max_active)
+	start_mission.disabled = not isReadyForMission()
 
 func getCurrentRotationEnd(rotation_mins: int) -> int:
 	var rotation_time = (rotation_mins * 60)
@@ -52,7 +54,7 @@ func generate_missions():
 		var ui_wrapper = newMissionUi.instantiate()
 		ui_wrapper.link(mission, Callable(max_missions_reached))
 		ui_wrapper.on_accept.connect(reload)
-		if _known_seeds.has(mission.rng.seed):
+		if _known_seeds.has(mission.getSeed()):
 			ui_wrapper.setActive()
 		new_missions.add_child(ui_wrapper)
 
@@ -65,15 +67,22 @@ func max_missions_reached() -> bool:
 func load_saved():
 	clear_all_children(active_missions)
 	_known_seeds.clear()
-	var saves = FileUtil.getContentAsJson(WorldUtil.missionsSavePath, true) as Dictionary
-	for _seed in saves.keys():
-		var mission = Mission.from(saves[_seed])
+	for mission in WorldUtil.getSavedMissions():
 		var ui_wrapper = activeMissionUi.instantiate()
 		ui_wrapper.link(mission)
 		active_missions.add_child(ui_wrapper)
-		_known_seeds.push_back(int(_seed))
+		_known_seeds.push_back(mission.getSeed())
 
 func reload():
 	print("reload")
 	load_saved()
 	generate_missions()
+
+func isReadyForMission() -> bool:
+	return true
+
+func _on_start_mission_pressed():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	WorldUtil.teleportToMissionMap([rng.seed,5])
+

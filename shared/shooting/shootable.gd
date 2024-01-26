@@ -2,11 +2,16 @@ extends Node
 class_name Shootable
 
 @export var health:int
+@export var enemy_type: EnemyType = EnemyType.DUMMY
 var currentHealth:int
 var died:bool = false
 signal healthReachedZero
 signal onDamageTaken(damage:int)
 signal onHealthChanged(health:int)
+
+enum EnemyType {
+	DUMMY, NORMAL
+}
 
 func resetHealth():
 	currentHealth = health
