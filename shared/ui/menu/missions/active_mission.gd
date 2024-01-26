@@ -33,6 +33,7 @@ func _process(_delta):
 	if not is_over:
 		refresh_timer()
 	else:
+		set_bg_color(expired_color)
 		expire.set_text("00:00:00")
 	label.text = linked_mission._name
 	for k in kills_holder:
@@ -47,9 +48,11 @@ func _process(_delta):
 	for p in punishment_holder:
 		if(!p.get_parent()):
 			punishments.add_child(p)
-	if linked_mission and linked_mission.allDone():
+	if linked_mission and linked_mission.allDone() and !is_over:
 		set_bg_color(done_color)
-		collect_button.disabled = true
+		collect_button.disabled = false
+	elif is_over:
+		remove_button.disabled = not linked_mission.can_pay_punishment()
 
 func clear(_parent: Node):
 	for c in _parent.get_children():
@@ -94,7 +97,21 @@ func set_bg_color(color: Color):
 	get_theme_stylebox("panel").bg_color = color
 
 func _on_remove_button_pressed():
-	var missions = FileUtil.getContentAsJson(WorldUtil.missionsSavePath, false) as Dictionary
-	missions.erase(linked_mission.getSeed())
-	FileUtil.saveJsonContent(WorldUtil.missionsSavePath, missions)
+	for punishment in linked_mission.getPunishment():
+		var resource_id = punishment.item.id
+		var amount = punishment.amount
+		WorldUtil.removeFromPlayerInventory([resource_id, amount])
+	WorldUtil.remove_mission(linked_mission)
+	queue_free()
+
+func _on_collect_button_pressed():
+	for resource in linked_mission.resources:
+		var resource_id = resource.id
+		var amount = resource.total
+		WorldUtil.removeFromPlayerInventory([resource_id, amount])
+	for reward in linked_mission.rewards:
+		var resource_id = reward.item.id
+		var amount = reward.amount
+		WorldUtil.addToPlayerInventory([resource_id, amount])
+	WorldUtil.remove_mission(linked_mission)
 	queue_free()

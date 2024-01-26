@@ -82,3 +82,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 30
+
+[node name="start_mission" type="Button" parent="wrapper/active/wrapper"]
+layout_mode = 2
+text = "Go to Shipwreck"
+
+[connection signal="pressed" from="wrapper/active/wrapper/start_mission" to="." method="_on_start_mission_pressed"]

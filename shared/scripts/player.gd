@@ -1,7 +1,6 @@
 extends Node
 class_name Player
 
-
 var body: PlayerBody
 var bodyStartPos: Vector3
 var bodyLastPos: Vector3
@@ -14,8 +13,7 @@ var store_inventory: Inventory
 var equip_inventory: EquipmentInventory
 var _savePath = "user://player.json" #"user://settings.json"
 var inMissionMap = false
-var kills = 0
-var dummy_kills = 0
+var kills: Dictionary
 var mission_kills = 0
 
 func _init():
@@ -30,8 +28,7 @@ func _init():
 	inventory = Inventory.from(loadDict.get("inv", {}))
 	store_inventory = Inventory.from(loadDict.get("storeInv", {}))
 	equip_inventory = EquipmentInventory.from(loadDict.get("equipInv", {}))
-	kills = loadDict.get("kills", 0)
-	dummy_kills = loadDict.get("dummy_kills", 0)
+	kills = loadDict.get("kills", {})
 	taxes = loadDict.get("taxes", 100)
 	unlocks = loadDict.get("unlocks", [])
 
@@ -45,7 +42,6 @@ func save():
 		"storeInv": store_inventory.to_dict(),
 		"equipInv": equip_inventory.to_dict(),
 		"kills": kills,
-		"dummy_kills": dummy_kills,
 		"taxes": taxes,
 		"unlocks": unlocks
 	}
@@ -66,10 +62,12 @@ func saveRunInventory():
 	run_inventory.moveAllItems(inventory, ["7"])
 	
 func onShootableKilled(shootable:Shootable):
-	var killedDummy = (shootable.get_parent() as Dummy) != null
-	if killedDummy:
-		dummy_kills += 1
-	else:
-		kills += 1
+	var enemy_type = str(shootable.enemy_type)
+	var killCount = 1
+	WorldUtil.addKillCounter(enemy_type, killCount)
+	addKillCounter(enemy_type, killCount)
 	if inMissionMap:
 		mission_kills += 1
+
+func addKillCounter(enemy_id: String, amount: int):
+	kills[enemy_id] = kills.get(enemy_id, 0) + amount

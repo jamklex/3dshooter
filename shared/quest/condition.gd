@@ -36,12 +36,10 @@ func hasItemCountTotal(_payload: Array) -> bool:
 	return sum >= _payload[1]
 
 func hasKillCountMin(_payload: Array) -> bool:
-	var minKills = _payload[0]
-	return WorldUtil.player.kills >= minKills
-
-func hasDummieCountMin(_payload: Array) -> bool:
-	var minKills = _payload[0]
-	return WorldUtil.player.dummy_kills >= minKills
+	var enemy_id = _payload[0]
+	var minKills = _payload[1]
+	var killCount = WorldUtil.player.kills.get(enemy_id, 0)
+	return killCount >= minKills
 
 func anyInSalvager(_payload: Array = []) -> bool:
 	var salvager_inventory = WorldUtil.player.store_inventory as Inventory

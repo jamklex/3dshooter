@@ -15,7 +15,7 @@ func _process(_delta):
 			type.set_text("Kill:")
 		elif (isResourceType()):
 			type.set_text(getIdName() + ":")
-		current.set_text(str(linked_step.count))
+		current.set_text(str(min(linked_step.getCurrentCount(), linked_step.total)))
 		total.set_text("/" + str(linked_step.total))
 
 func isKillType() -> bool:
