@@ -44,6 +44,8 @@ func get_map_rng_visibility() -> bool:
 func addKillCounter(enemy_id: String, amount: int):
 	for mission in missions:
 		mission.addKillCounter(enemy_id, amount)
+	player.addKillCounter(enemy_id, amount)
+	save()
 
 func getSavedMissions() -> Array[Mission]:
 	var _missions = []
@@ -56,7 +58,7 @@ func getSavedMissions() -> Array[Mission]:
 
 func save_mission(mission: Mission):
 	var missions = FileUtil.getContentAsJson(missionsSavePath, false)
-	missions[mission.rng.seed] = mission.toDict()
+	missions[mission.getSeed()] = mission.toDict()
 	FileUtil.saveJsonContent(missionsSavePath, missions)
 
 func remove_mission(mission: Mission):

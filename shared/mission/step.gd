@@ -10,7 +10,7 @@ enum MissionStepType {
 }
 
 static func from_json(json: Dictionary) -> MissionStep:
-	return from(json.get("type"), json.get("id"), json.get("total"), json.get("count"))
+	return from(json.get("type"), json.get("id"), json.get("total"), json.get("count", 0))
 
 static func from(_type: MissionStepType, _id: String, _total: int, _count: int = 0) -> MissionStep:
 	var step = MissionStep.new()
@@ -26,7 +26,7 @@ func isDone() -> bool:
 func getCurrentCount() -> int:
 	if type == MissionStepType.RESOURCE:
 		return WorldUtil.player.inventory.count(id)
-	return count
+	return min(count, total)
 
 func addCount(amount: int):
 	count += amount
@@ -35,9 +35,15 @@ func isEnemy(enemy_id: String) -> bool:
 	return id == enemy_id
 
 func toDict() -> Dictionary:
+	if type == MissionStepType.MONSTER:
+		return {
+			"type": type,
+			"id": id,
+			"total": total,
+			"count": count
+		}
 	return {
 		"type": type,
 		"id": id,
-		"total": total,
-		"count": count
+		"total": total
 	}

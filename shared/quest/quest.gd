@@ -153,5 +153,3 @@ func _on_event(event_name: String, payload: Array = []):
 		"setSalvagerFee":
 			var salvager_fee = payload[0]/100 as float
 			Trader.set_tax_value(salvager_fee)
-		"unlockMissions":
-			print("TODO: unlockMissions")
