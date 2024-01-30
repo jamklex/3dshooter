@@ -56,7 +56,6 @@ func _loadNextPart():
 		if "options" in dialog_data:
 			answers = _removeUnavailableAnswers(dialog_data["options"])
 			_showOptions(answers)
-	
 
 func _removeUnavailableAnswers(dialogAnswers:Dictionary):
 	var availableAnswers = {}

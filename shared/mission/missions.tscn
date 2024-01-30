@@ -68,6 +68,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_eb2o8")
 [node name="wrapper" type="VBoxContainer" parent="wrapper/active"]
 layout_mode = 2
 
+[node name="close" type="Button" parent="wrapper/active/wrapper"]
+layout_mode = 2
+text = "Close Missions"
+
 [node name="count" type="Label" parent="wrapper/active/wrapper"]
 layout_mode = 2
 text = "5 / 5"
@@ -85,6 +89,7 @@ theme_override_constants/separation = 30
 
 [node name="start_mission" type="Button" parent="wrapper/active/wrapper"]
 layout_mode = 2
-text = "Go to Shipwreck"
+text = "Find Shipwreck"
 
+[connection signal="pressed" from="wrapper/active/wrapper/close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="wrapper/active/wrapper/start_mission" to="." method="_on_start_mission_pressed"]

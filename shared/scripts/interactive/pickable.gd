@@ -7,7 +7,7 @@ var highlightTimer = Timer.new()
 @onready var id = get_instance_id()
 @export var interactable = true
 @export var highlighted = false
-@export var item_id = "1"
+@export var item_id = "4"
 @onready var item = ItemHelper.get_item(item_id)
 @onready var mesh = $CollisionShape3D/MeshInstance3D
 @export var highlight_seconds = 1.0 as float
@@ -38,6 +38,9 @@ func interact(player: Player):
 		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", interact_feedback)
 	self.queue_free()
 	return message
+
+func setVisible(state: bool):
+	visible = state
 
 func highlight():
 	highlightTimer.wait_time = highlight_seconds

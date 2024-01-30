@@ -12,9 +12,8 @@ height = 0.2
 radial_segments = 4
 rings = 1
 
-[node name="item" type="RigidBody3D"]
+[node name="item" type="RigidBody3D" groups=["items"]]
 script = ExtResource("1_thb8e")
-item_id = "4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_vuup1")
