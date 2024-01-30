@@ -1,7 +1,7 @@
 {
 	"answer": "Hello",
 	"options": {
-		"Let me do some missions": {
+		"I'm here for some missions": {
 			"condition": {
 				"result": true,
 				"method": "hasUnlocked",

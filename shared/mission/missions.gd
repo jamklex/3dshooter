@@ -31,6 +31,8 @@ func _process(_delta):
 	lastRotationEnd = rotationEnd
 	active_counter.text = str(get_active_count()) + "/" + str(max_active)
 	start_mission.disabled = not isReadyForMission()
+	if Input.is_action_just_pressed("menu"):
+		close_window()
 
 func getCurrentRotationEnd(rotation_mins: int) -> int:
 	var rotation_time = (rotation_mins * 60)
@@ -81,8 +83,15 @@ func reload():
 func isReadyForMission() -> bool:
 	return true
 
+func close_window():
+	WorldUtil.player.body.setInDialog(false)
+	queue_free()
+
 func _on_start_mission_pressed():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	WorldUtil.teleportToMissionMap([rng.seed,5])
 	queue_free()
+
+func _on_close_pressed():
+	close_window()
