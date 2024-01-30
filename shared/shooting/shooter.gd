@@ -307,22 +307,23 @@ func _shoot():
 	soundPlayer.play(0)
 	_shotTimer.start(currentWeapon.shotCooldown)
 	currentWeapon.muzzleFlare.restart()
-	var shootable = _raycastForShootable()
-	if not shootable:
-		return
-	var criticalHit = false
-	if shootable is CharacterBody3D:
-		criticalHit = shootable.get_parent().name == "head"
-		shootable = get_enemy_base_for_bone(shootable).get_node("shootable")
-	var damage = currentWeapon.damage
-	if criticalHit:
-		damage *= 2
-	var died = shootable.takeDamage(damage)
-	shootable = shootable as Shootable
-	if shootable:
-		onHitShootable.emit(died)
-	if shootable and died:
-		onShootableDie.emit(shootable)
+	for i in range(currentWeapon.projecticles):
+		var shootable = _raycastForShootable()
+		if not shootable or shootable.died:
+			continue
+		var criticalHit = false
+		if shootable is CharacterBody3D:
+			criticalHit = shootable.get_parent().name == "head"
+			shootable = get_enemy_base_for_bone(shootable).get_node("shootable")
+		var damage = currentWeapon.damage
+		if criticalHit:
+			damage *= 2
+		var died = shootable.takeDamage(damage)
+		shootable = shootable as Shootable
+		if shootable:
+			onHitShootable.emit(died)
+		if shootable and died:
+			onShootableDie.emit(shootable)
 		
 func _cancelShotCooldown():
 	_shotTimer.stop()
@@ -332,14 +333,37 @@ func _shotCooldownDone():
 		_startReload()
 	else:
 		currentWeapon.loaded = true
+		
+func _applyInaccuracy(ray_direction: Vector3, inaccuracy: float) -> Vector3:
+	var deviation = Vector3(randf_range(-0.5,0.5), randf_range(-0.5,0.5), randf_range(-0.5,0.5)) * inaccuracy
+	return ray_direction + deviation
+	
 	
 func _raycastForShootable() -> Node:
 	var space = get_world_3d().direct_space_state
+	var ray_direction = camera.global_transform.basis.z
+	var inaccuarcy = (1 - currentWeapon.accuracy) / 2
+	ray_direction = _applyInaccuracy(ray_direction,inaccuarcy)
 	var query = PhysicsRayQueryParameters3D.create(camera.global_position,
-		camera.global_position - camera.global_transform.basis.z * raycastMeters,0b101)
+		camera.global_position - ray_direction * raycastMeters, 0b101)
 	var collision = space.intersect_ray(query)
 	if not collision:
 		return
+	########## DEBUG PROJECTILES
+	## Create a sphere at the collision position
+	#var sphere = SphereMesh.new()
+	#var sphere_instance = MeshInstance3D.new()
+	#sphere_instance.mesh = sphere
+	#sphere_instance.transform.origin = collision.position
+	#sphere_instance.scale = Vector3(0.1,0.1,0.1)
+	## Create a ShaderMaterial with a red color
+	#var red_material = StandardMaterial3D.new()
+	#red_material.albedo_color = Color.RED
+	## Assign the material to the sphere
+	#sphere_instance.material_override = red_material
+	## Add the sphere to the scene
+	#get_tree().get_root().add_child(sphere_instance)
+	#############
 	var collider = collision.collider as Node
 	var bone = collision.collider as CharacterBody3D
 	if bone:
@@ -367,16 +391,19 @@ func _switchAim():
 		aimOverride.start()
 	else: 
 		aimOverride.stop()
+	_checkFov()
 
 func _handleWeaponSwitching():
 	if Input.is_action_just_pressed("putWeaponAway"):
 		putWeaponAway()
 	if weapons.size() < 1:
-		return 
+		_checkFov()
+		return
 	if Input.is_action_just_pressed("nextWeapon"):
 		_nextWeapon()
 	elif Input.is_action_just_pressed("prevWeapon"):
 		_prevWeapon()
+	_checkFov()
 		
 func putWeaponAway():
 	_putCurrentWeaponAway()
@@ -391,6 +418,7 @@ func _nextWeapon():
 	if currentIndex >= weapons.size():
 		currentIndex = 0
 	_setCurrentWeapon(weapons[currentIndex])
+	
 	
 func _prevWeapon():
 	var currentIndex = _getCurrentWeaponIndex()
@@ -416,3 +444,9 @@ func _putCurrentWeaponAway():
 	_cancelShotCooldown()
 	currentWeapon.visible = false
 	currentWeapon = null
+	
+func _checkFov():
+	var fov = 50
+	if aiming and currentWeapon and currentWeapon.weaponType == currentWeapon.WeaponType.SNIPER:
+		fov = 30
+	WorldUtil.player_cam.fov = fov

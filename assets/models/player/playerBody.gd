@@ -39,6 +39,7 @@ func _ready():
 		position = WorldUtil.player.bodyStartPos
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # locks mouse to screen
 	WorldUtil.player.body = self
+	WorldUtil.player_cam = $camera_mount/camera_arm/camera_rot/camera
 	refresh_inventory_output()
 	fade_interaction_feedback(1)
 	QuestLoader.attach_quests(quests_ui)
@@ -56,6 +57,7 @@ func _exit_tree():
 	_shooter.putBulletsToInventory()
 	WorldUtil.player.bodyLastPos = position
 	WorldUtil.player.body = null
+	WorldUtil.player_cam = null
 
 func _physics_process(delta):
 	handle_show_menu()

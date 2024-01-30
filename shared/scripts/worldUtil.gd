@@ -1,6 +1,7 @@
 extends Node
 
 var player: Player = Player.new()
+var player_cam: Camera3D
 var currentDialog: Dialog
 var currentTrade: Trade
 var current_prg: ProceduralRoomGenerator
