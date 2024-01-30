@@ -59,6 +59,8 @@ reloadMagSound = ExtResource("4_5titq")
 reloadSound = ExtResource("5_b1quy")
 muzzleFlare = NodePath("muzzleFlare")
 shotCooldown = 1.0
+accuracy = 0.75
+projecticles = 8
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0890601, -0.244512)
