@@ -56,12 +56,12 @@ func addWeapon(scenePath:String):
 	_reloadWeapon(weapon)
 	weapons.append(weapon)
 	weaponHolder.add_child(weapon)
-	
+
 func unlockPlayerInventoryWeapons(playerInventory:Inventory):
 	for itemId in playerInventory.item_ids():
 		if _isWeaponId(itemId):
 			_addWeaponForItemId(itemId)
-	
+
 func putBulletsToInventory():
 	if len(weapons) <= 0:
 		return
@@ -72,7 +72,11 @@ func putBulletsToInventory():
 		if restMun <= 0:
 			return
 		_addRestAmmo(weapon.weaponType, restMun)
-	
+
+func removeBullets():
+	for weapon in weapons:
+		weapon.restMagShoots = 0
+
 func checkForMunitionChanged(payload:Array):
 	_checkForMunitionAction(payload)
 	

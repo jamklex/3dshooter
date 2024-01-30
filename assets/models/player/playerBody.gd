@@ -51,6 +51,7 @@ func _ready():
 	_shooter.onShootableDie.connect(WorldUtil.player.onShootableKilled)
 	_shooter.onHitShootable.connect(_showHitMarker)
 	health_bar.init(_shootable.health, _shootable.health)
+	health_bar.init(_shootable.health, _shootable.health)
 
 func _exit_tree():
 	_shooter.putBulletsToInventory()
@@ -188,6 +189,7 @@ func _unhandled_input(event):
 		_camera_mount.rotation_degrees.x = clamp(_camera_mount.rotation_degrees.x, -80.0, 60.0)
 
 func _on_player_died():
+	WorldUtil.player.clearMissionInventories()
 	var respawnBtn = death_screen.get_node("respawnBtn") as Button
 	respawnBtn.pressed.connect(WorldUtil.respawn)
 	var quitBtn = death_screen.get_node("quitBtn") as Button

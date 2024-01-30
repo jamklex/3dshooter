@@ -106,3 +106,6 @@ func to_readable_dict() -> Dictionary:
 	for invItem in items.values():
 		dict[invItem.item.name] = invItem.amount
 	return dict
+
+func clear():
+	items = {}

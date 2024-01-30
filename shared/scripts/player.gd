@@ -68,3 +68,9 @@ func onShootableKilled(shootable:Shootable):
 
 func addKillCounter(enemy_id: String, amount: int):
 	kills[enemy_id] = kills.get(enemy_id, 0) + amount
+
+func clearMissionInventories():
+	body._shooter.removeBullets()
+	run_inventory.clear()
+	equip_inventory.clear()
+	save()
