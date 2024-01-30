@@ -13,6 +13,7 @@ const MAX_ROOM_COUNT: int = 25
 var _total_enemies: int = 0
 var _max_enemies: int = 0
 var _initial_enemies: int = 0
+var _additional_items: Dictionary = {}
 
 static func from_seed(_seed: String) -> ProceduralRoomGenerator:
 	print("ProceduralRoomGenerator with seed: " + _seed)
@@ -31,12 +32,16 @@ func set_max_enemies(amount: int):
 func set_initial_enemies(amount: int):
 	_initial_enemies = amount
 
+func set_additional_items(itemDict: Dictionary):
+	_additional_items = itemDict
+
 func _process(_delta):
 	if !is_generated():
 		generate_level()
 		print("rooms: " + str(_room_counter))
 		if _room_counter > 1:
 			spawn_enemies(_initial_enemies)
+			spawn_items(_additional_items)
 			set_generated(true)
 
 func spawn_enemies(amount):
@@ -51,6 +56,22 @@ func spawn_enemies(amount):
 		_total_enemies += 1
 		if _total_enemies >= _max_enemies:
 			break
+
+func spawn_items(itemDict: Dictionary):
+	var items = get_tree().get_nodes_in_group("items").filter(func(i): return i is Pickable)
+	for item in items:
+		item.setVisible(false)
+	for item in itemDict.keys():
+		var amount = itemDict[item]
+		var foundItems = items.filter(func(i: Pickable): return i.item_id == item)
+		for n in range(amount):
+			if !foundItems or foundItems.is_empty():
+				break
+			var foundItem = foundItems.pop_at(_rng.randi_range(0, foundItems.size()-1))
+			foundItem.setVisible(true)
+	var insivible_items = items.filter(func(i): return !i.visible)
+	for item in insivible_items:
+		item.queue_free()
 
 func is_generated() -> bool:
 	return _done
