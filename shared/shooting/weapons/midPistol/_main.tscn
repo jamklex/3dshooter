@@ -1,14 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://df6y6wdcwti5a"]
+[gd_scene load_steps=14 format=3 uid="uid://yts8jxt2mmoj"]
 
-[ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_ufd74"]
-[ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_pe5ph"]
-[ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_ybh3s"]
-[ext_resource type="AudioStream" uid="uid://bo80a1xybqxkq" path="res://shared/shooting/weapons/pistol/reloadMag.mp3" id="4_qh3qq"]
+[ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_bjtue"]
+[ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_bl2f6"]
+[ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_6ty17"]
+[ext_resource type="AudioStream" uid="uid://bo80a1xybqxkq" path="res://shared/shooting/weapons/pistol/reloadMag.mp3" id="4_duvli"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_u7d3q"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbfci"]
+albedo_color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vlkfm"]
+material = SubResource("StandardMaterial3D_xbfci")
 size = Vector3(0.05, 0.05, 0.3)
 
-[sub_resource type="BoxMesh" id="BoxMesh_gh335"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8phsf"]
+albedo_color = Color(0.443137, 0.443137, 0.443137, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sv30o"]
+material = SubResource("StandardMaterial3D_8phsf")
 size = Vector3(0.05, 0.15, 0.05)
 
 [sub_resource type="Curve" id="Curve_hsh8o"]
@@ -36,24 +44,24 @@ material = SubResource("StandardMaterial3D_6jjas")
 radius = 0.01
 height = 0.02
 
-[node name="pistol" type="Node3D" node_paths=PackedStringArray("muzzleFlare")]
-script = ExtResource("1_ufd74")
-weaponName = "Pistol"
+[node name="midPistol" type="Node3D" node_paths=PackedStringArray("muzzleFlare")]
+script = ExtResource("1_bjtue")
+weaponName = "MidPistol"
 description = "This is just a standard pistol"
-magSize = 14
-damage = 1
-shotSound = ExtResource("2_pe5ph")
-emptyShotSound = ExtResource("3_ybh3s")
-reloadMagSound = ExtResource("4_qh3qq")
+magSize = 9
+damage = 2
+shotSound = ExtResource("2_bl2f6")
+emptyShotSound = ExtResource("3_6ty17")
+reloadMagSound = ExtResource("4_duvli")
 muzzleFlare = NodePath("muzzleFlare")
 accuracy = 0.95
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099, -0.0554742)
-mesh = SubResource("BoxMesh_u7d3q")
+mesh = SubResource("BoxMesh_vlkfm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_gh335")
+mesh = SubResource("BoxMesh_sv30o")
 
 [node name="muzzleFlare" type="GPUParticles3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.100344, -0.20685)
