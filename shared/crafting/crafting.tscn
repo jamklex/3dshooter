@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://3ycdntt8wg2f"]
+
+[ext_resource type="PackedScene" uid="uid://b6xx3gbl0sid" path="res://shared/ui/items_grid/amount_slider.tscn" id="1_1npw0"]
+[ext_resource type="StyleBox" uid="uid://cufqtj4raux37" path="res://shared/trade/inventoryBg.tres" id="2_kof8w"]
+[ext_resource type="PackedScene" uid="uid://brpciuojqvdyu" path="res://shared/ui/items_grid/slot.tscn" id="3_1xkrn"]
+[ext_resource type="PackedScene" uid="uid://xr66w7kj4beu" path="res://shared/ui/items_grid/items_grid.tscn" id="3_s30dl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up7mi"]
+bg_color = Color(0, 0, 0, 0.301961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nlhkq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="crafting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_up7mi")
+
+[node name="leftInv" type="Panel" parent="bg"]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 652.0
+offset_bottom = 1009.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_kof8w")
+
+[node name="items" parent="bg/leftInv" instance=ExtResource("3_s30dl")]
+layout_mode = 1
+columns = 6
+rows = 9
+
+[node name="AmountSlider" parent="bg" instance=ExtResource("1_1npw0")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -16.0
+offset_right = 274.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="bg"]
+layout_mode = 0
+offset_right = 315.0
+offset_bottom = 315.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="bg"]
+layout_mode = 0
+offset_left = 1237.0
+offset_top = 297.0
+offset_right = 1552.0
+offset_bottom = 820.0
+
+[node name="blueprint" parent="bg/VBoxContainer" instance=ExtResource("3_1xkrn")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="bg/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nlhkq")
+
+[node name="Button" type="Button" parent="bg/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Craft"
+
+[node name="craftInv" type="Panel" parent="bg/VBoxContainer"]
+custom_minimum_size = Vector2(315, 315)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_kof8w")
+
+[node name="items" parent="bg/VBoxContainer/craftInv" instance=ExtResource("3_s30dl")]
+layout_mode = 1
+columns = 3
+rows = 3
