@@ -117,6 +117,11 @@ func openShop(payload: Array):
 	player.body.setInDialog(true)
 	return currentTrade
 	
+func openCrafting():
+	var crafting = load("res://shared/crafting/crafting.tscn").instantiate() as Crafting
+	add_child(crafting)
+	player.body.setInDialog(true)
+	
 func onShopAction(action: Trade.Actions, payload: Array = []):
 	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
 		return

@@ -2,7 +2,7 @@ extends Object
 
 class_name GameItem
 
-enum GameItemType {UNDEFINIED,MODULE,WEAPON}
+enum GameItemType {UNDEFINIED,MODULE,WEAPON,BLUEPRINT}
 
 var id: String
 var name = "NOT_INITIALIZED" as String

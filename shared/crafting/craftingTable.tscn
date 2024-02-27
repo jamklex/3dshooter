@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://csn2mo4ev2mrv"]
+
+[ext_resource type="Script" path="res://shared/crafting/craftingTable.gd" id="1_5s453"]
+[ext_resource type="PackedScene" uid="uid://bj0dmkliaxidt" path="res://assets/models/objects/table/table.tscn" id="2_a44p8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fao1m"]
+size = Vector3(2.00879, 0.744141, 1.13281)
+
+[node name="CraftingTable" type="StaticBody3D"]
+script = ExtResource("1_5s453")
+hover_text = "Crafting table"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.378863, 0)
+shape = SubResource("BoxShape3D_fao1m")
+
+[node name="table" parent="." instance=ExtResource("2_a44p8")]
