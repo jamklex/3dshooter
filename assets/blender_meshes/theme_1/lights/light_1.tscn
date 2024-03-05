@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://jc0lcn4nnvxd"]
+
+[ext_resource type="PackedScene" uid="uid://cfbi178ko8c14" path="res://assets/blender_meshes/theme_1/lights/light_1.blend" id="1_apirc"]
+
+[node name="Light1" type="Node3D"]
+
+[node name="light_1" parent="." instance=ExtResource("1_apirc")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.146883, 0)
+light_energy = 3.0
+light_indirect_energy = 3.0
+light_volumetric_fog_energy = 3.0
+spot_range = 100.0
+spot_angle = 90.0
