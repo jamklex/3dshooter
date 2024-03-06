@@ -75,3 +75,7 @@ func _apply_item_move(move:MOVE, amount):
 	_refresh_item_grids()
 	_selected_inventory_item = null
 	_preselected_move = 0 
+	
+func _close_crafting():
+	WorldUtil.player.body.setInDialog(false)
+	queue_free()

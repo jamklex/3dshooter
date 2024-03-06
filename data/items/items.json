@@ -87,4 +87,9 @@
 		"desc": "Munition for shotgun",
 		"image": "res://data/items/img/shotgun-ammo.png",
 	},
+	"16": {
+		"name": "Rifle blueprint",
+		"desc": "A blueprint for creating a rifle",
+		"image": "res://data/items/img/shotgun-ammo.png",
+	},
 }
