@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djt65pti7uct6"]
+[gd_scene load_steps=11 format=3 uid="uid://djt65pti7uct6"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/start-room.gd" id="1_dyj60"]
 [ext_resource type="PackedScene" uid="uid://lndd7yavva6h" path="res://assets/blender_meshes/theme_1/floor/floor_2.blend" id="1_qel84"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://bjhd1ycb1eq8c" path="res://assets/blender_meshes/theme_1/walls/wall_11.blend" id="4_sanqn"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="5_ujvbd"]
 [ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="6_ordb0"]
-[ext_resource type="PackedScene" uid="uid://bpudeay25e2jy" path="res://assets/blender_meshes/theme_1/lights/light_3.blend" id="7_83jhb"]
+[ext_resource type="PackedScene" uid="uid://l4p1kjacpsmi" path="res://assets/blender_meshes/theme_1/lights/light_3.tscn" id="7_t2t55"]
 [ext_resource type="PackedScene" uid="uid://bps4kdrqfw145" path="res://assets/blender_meshes/theme_1/floor/floor_5.blend" id="8_3wu4x"]
+[ext_resource type="PackedScene" uid="uid://b4f58i82ovh0y" path="res://assets/blender_meshes/theme_1/lights/light_2.tscn" id="10_hwvgo"]
 
 [node name="start_2" type="Node3D"]
 script = ExtResource("1_dyj60")
@@ -169,45 +170,29 @@ transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 1.5, 0
 
 [node name="props" type="Node3D" parent="."]
 
-[node name="light_3" parent="props" instance=ExtResource("7_83jhb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.75892, 0, -6)
+[node name="Light3" parent="props" instance=ExtResource("7_t2t55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.79177, 0, 2)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="props/light_3"]
+[node name="Light5" parent="props" instance=ExtResource("7_t2t55")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.79177, 0, -6)
 
-[node name="light_4" parent="props" instance=ExtResource("7_83jhb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76934, -0.00825739, -2.00518)
+[node name="Light7" parent="props" instance=ExtResource("7_t2t55")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.44573, 0, 4)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="props/light_4"]
+[node name="Light11" parent="props" instance=ExtResource("7_t2t55")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8.9297, 0, -12)
 
-[node name="light_5" parent="props" instance=ExtResource("7_83jhb")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.44883, 0, -0.0122766)
+[node name="Light13" parent="props" instance=ExtResource("7_t2t55")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8.9297, 0, -4)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="props/light_5"]
+[node name="Light15" parent="props" instance=ExtResource("7_t2t55")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8.9297, 0, 4)
 
-[node name="light_6" parent="props" instance=ExtResource("7_83jhb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 4)
+[node name="Light2" parent="props" instance=ExtResource("10_hwvgo")]
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, 1.5, 2, 0)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="props/light_6"]
-
-[node name="light_7" parent="props" instance=ExtResource("7_83jhb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="props/light_7"]
-
-[node name="light_8" parent="props" instance=ExtResource("7_83jhb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -12)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="props/light_8"]
-
-[node name="light_9" parent="props" instance=ExtResource("7_83jhb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.76612, 0, 2)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="props/light_9"]
-
-[node name="light_10" parent="props" instance=ExtResource("7_83jhb")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.43656, 0, 4)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="props/light_10"]
+[node name="Light4" parent="props" instance=ExtResource("10_hwvgo")]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 6, 2, 0)
 
 [node name="player" parent="." instance=ExtResource("6_ordb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97455, 0.26453, -1.10821)

@@ -20,24 +20,25 @@
 [ext_resource type="PackedScene" uid="uid://de1t4ilfnctum" path="res://assets/models/objects/boxes/boxes.tscn" id="17_n2h1b"]
 [ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="18_24nlu"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfxre"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rq521"]
 albedo_color = Color(0.752941, 0.321569, 0.223529, 1)
 emission_enabled = true
 emission = Color(0.752941, 0.321569, 0.223529, 1)
 emission_energy_multiplier = 0.333333
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwokg"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1t3m1"]
+albedo_color = Color(0.752941, 0.321569, 0.223529, 1)
+emission_enabled = true
+emission = Color(0.752941, 0.321569, 0.223529, 1)
+emission_energy_multiplier = 0.111111
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mulx4"]
 albedo_color = Color(0.752941, 0.321569, 0.223529, 1)
 emission_enabled = true
 emission = Color(0.752941, 0.321569, 0.223529, 1)
 emission_energy_multiplier = 0.333333
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjxs3"]
-albedo_color = Color(0.752941, 0.321569, 0.223529, 1)
-emission_enabled = true
-emission = Color(0.752941, 0.321569, 0.223529, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wedw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4aha1"]
 albedo_color = Color(0.917647, 0, 0.137255, 1)
 emission_enabled = true
 emission = Color(0.917647, 0, 0.137255, 1)
@@ -57,7 +58,7 @@ vertices_per_polygon = 30.0
 detail_sample_distance = 1.91
 detail_sample_max_error = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2vt2"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhfcu"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [node name="Level 1" type="Node3D"]
@@ -144,22 +145,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 3, 1)
 
 [node name="wall_lamp" parent="lamps" instance=ExtResource("6_bv7da")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.93239, 1.23272, 0.020648)
-material = SubResource("StandardMaterial3D_jfxre")
+material = SubResource("StandardMaterial3D_rq521")
 flicker_enabled = true
 
 [node name="wall_lamp2" parent="lamps" instance=ExtResource("6_bv7da")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.0382, 1.3812, 2.07007)
-material = SubResource("StandardMaterial3D_nwokg")
+material = SubResource("StandardMaterial3D_1t3m1")
 flicker_enabled = true
 
 [node name="wall_lamp3" parent="lamps" instance=ExtResource("6_bv7da")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0406, 1.5996, 1.92503)
-material = SubResource("StandardMaterial3D_kjxs3")
+material = SubResource("StandardMaterial3D_mulx4")
 flicker_enabled = true
 
 [node name="top_lamp" parent="lamps" instance=ExtResource("7_5u63n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45413, 2.99964, -1.20282)
-material = SubResource("StandardMaterial3D_7wedw")
+material = SubResource("StandardMaterial3D_4aha1")
 color = Color(0.917647, 0, 0.137255, 1)
 flicker_enabled = true
 flicker_natural = false
@@ -415,7 +416,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16, 0
 
 [node name="airvent" parent="NavigationRegion3D/vents" instance=ExtResource("12_bwtuv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -21, 2, -8)
-material = SubResource("StandardMaterial3D_x2vt2")
+material = SubResource("StandardMaterial3D_lhfcu")
 
 [node name="Props" type="Node3D" parent="NavigationRegion3D"]
 
