@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgoxct3yelvnj"]
+[gd_scene load_steps=8 format=3 uid="uid://bgoxct3yelvnj"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_thtun"]
 [ext_resource type="PackedScene" uid="uid://lndd7yavva6h" path="res://assets/blender_meshes/theme_1/floor/floor_2.blend" id="2_bubp4"]
-[ext_resource type="PackedScene" uid="uid://bjhd1ycb1eq8c" path="res://assets/blender_meshes/theme_1/walls/wall_11.blend" id="3_ghld3"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="4_3bl1v"]
 [ext_resource type="PackedScene" uid="uid://b48bk58sf6rxf" path="res://assets/blender_meshes/theme_1/walls/wall_7.blend" id="5_cv3ud"]
 [ext_resource type="PackedScene" uid="uid://jc0lcn4nnvxd" path="res://assets/blender_meshes/theme_1/lights/light_1.tscn" id="6_ghprq"]
@@ -36,12 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 
 [node name="walls" type="Node3D" parent="."]
-
-[node name="wall_11" parent="walls" instance=ExtResource("3_ghld3")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 5.5)
-
-[node name="door" parent="walls/wall_11" instance=ExtResource("4_3bl1v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5, 0)
 
 [node name="wall_7" parent="walls" instance=ExtResource("5_cv3ud")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.78449, 0, 3.5)
@@ -118,3 +111,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -4.5)
 
 [node name="floor_11" parent="roof" instance=ExtResource("7_qtdhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -0.5)
+
+[node name="doors" type="Node3D" parent="."]
+
+[node name="door" parent="doors" instance=ExtResource("4_3bl1v")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 5.5)

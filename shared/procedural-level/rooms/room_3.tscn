@@ -11,27 +11,27 @@
 [ext_resource type="PackedScene" uid="uid://beuh4ja0j64er" path="res://assets/models/room/roof/long-roof.tscn" id="10_qk8op"]
 [ext_resource type="PackedScene" uid="uid://bhdudjag6gu48" path="res://assets/models/room/roof/roof.tscn" id="11_iushg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s2doq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kn4ni"]
 albedo_color = Color(0.329412, 0.647059, 0.435294, 1)
 emission_enabled = true
 emission = Color(0.329412, 0.647059, 0.435294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ownin"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hgk4v"]
 albedo_color = Color(0.329412, 0.647059, 0.435294, 1)
 emission_enabled = true
 emission = Color(0.329412, 0.647059, 0.435294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1t8om"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14q6a"]
 albedo_color = Color(0.329412, 0.647059, 0.435294, 1)
 emission_enabled = true
 emission = Color(0.329412, 0.647059, 0.435294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7clt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h76h5"]
 albedo_color = Color(0.329412, 0.647059, 0.435294, 1)
 emission_enabled = true
 emission = Color(0.329412, 0.647059, 0.435294, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbah4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qjqf7"]
 albedo_color = Color(0.329412, 0.647059, 0.435294, 1)
 emission_enabled = true
 emission = Color(0.329412, 0.647059, 0.435294, 1)
@@ -111,7 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -5)
 
 [node name="top_lamp" parent="." instance=ExtResource("8_xcoi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
-material = SubResource("StandardMaterial3D_s2doq")
+material = SubResource("StandardMaterial3D_kn4ni")
 color = Color(0.329412, 0.647059, 0.435294, 1)
 
 [node name="door2" parent="." instance=ExtResource("4_w1sa2")]
@@ -126,20 +126,20 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 
 [node name="top_lamp2" parent="." instance=ExtResource("8_xcoi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-material = SubResource("StandardMaterial3D_ownin")
+material = SubResource("StandardMaterial3D_hgk4v")
 color = Color(0.329412, 0.647059, 0.435294, 1)
 
 [node name="top_lamp3" parent="." instance=ExtResource("8_xcoi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-material = SubResource("StandardMaterial3D_1t8om")
+material = SubResource("StandardMaterial3D_14q6a")
 color = Color(0.329412, 0.647059, 0.435294, 1)
 
 [node name="top_lamp4" parent="." instance=ExtResource("8_xcoi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
-material = SubResource("StandardMaterial3D_k7clt")
+material = SubResource("StandardMaterial3D_h76h5")
 color = Color(0.329412, 0.647059, 0.435294, 1)
 
 [node name="top_lamp5" parent="." instance=ExtResource("8_xcoi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -5)
-material = SubResource("StandardMaterial3D_xbah4")
+material = SubResource("StandardMaterial3D_qjqf7")
 color = Color(0.329412, 0.647059, 0.435294, 1)
