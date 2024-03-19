@@ -41,7 +41,7 @@ func can_interact():
 func interact(_player: Player):
 	execute_action(action)
 	await click_animation()
-	if(disable_on_interact):
+	if disable_on_interact:
 		set_interactable(false)
 		remove_highlight()
 	var message = default_feedback_messages
@@ -59,6 +59,8 @@ func highlight():
 	material.emission = material.albedo_color
 
 func remove_highlight():
+	if !enable_highlight:
+		return
 	highlighted = false
 	material.emission_enabled = false
 

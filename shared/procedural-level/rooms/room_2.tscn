@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://qrlxjkhlahv1"]
+[gd_scene load_steps=10 format=3 uid="uid://qrlxjkhlahv1"]
 
 [ext_resource type="PackedScene" uid="uid://myh0hqn52jxi" path="res://assets/blender_meshes/theme_1/walls/wall_5.blend" id="1_wjhaw"]
+[ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_y02yd"]
 [ext_resource type="PackedScene" uid="uid://blkolyw7favu4" path="res://assets/blender_meshes/theme_1/walls/wall_2.blend" id="2_5pe5l"]
 [ext_resource type="PackedScene" uid="uid://bps4kdrqfw145" path="res://assets/blender_meshes/theme_1/floor/floor_5.blend" id="3_llcqj"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="3_txnpd"]
@@ -9,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://78ypm505svtm" path="res://assets/blender_meshes/theme_1/floor/floor_4.blend" id="6_g2yks"]
 [ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/interact/chest/chest.tscn" id="7_au0rs"]
 
-[node name="Room2New" type="Node3D"]
+[node name="room_2" type="Node3D"]
+script = ExtResource("1_y02yd")
 
 [node name="walls" type="Node3D" parent="."]
 
