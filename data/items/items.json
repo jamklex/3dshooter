@@ -90,6 +90,19 @@
 	"16": {
 		"name": "Rifle blueprint",
 		"desc": "A blueprint for creating a rifle",
-		"image": "res://data/items/img/shotgun-ammo.png",
+		"image": "res://data/items/img/blueprint_rifle.png",
+		"type": "BLUEPRINT"
+	},
+	"17": {
+		"name": "Shotgun blueprint",
+		"desc": "A blueprint for creating a shotgun",
+		"image": "res://data/items/img/blueprint_shotgun.png",
+		"type": "BLUEPRINT"
+	},
+	"18": {
+		"name": "Sniper blueprint",
+		"desc": "A blueprint for creating a sniper",
+		"image": "res://data/items/img/blueprint_sniper.png",
+		"type": "BLUEPRINT"
 	},
 }

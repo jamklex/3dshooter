@@ -19,11 +19,11 @@ static func get_item(id: String) -> GameItem:
 		item.tradeable = item_data.get("trade", true)
 		if item_data.has("type"):
 			item.type = GameItem.GameItemType.get(item_data.get("type", null))
-		init_subclass_item(item, item_data)
+			init_subclass_item(item, item_data)
 	cache[id] = item
 	return item
 
-static func init_subclass_item(item:GameItem, item_data:JSON):
+static func init_subclass_item(item:GameItem, item_data:Dictionary):
 	if item.type == GameItem.GameItemType.BLUEPRINT:
 		if item_data.has("recipe") and item_data.has("result_item_id") and item_data.has("amount"):
 			item = item as Blueprint

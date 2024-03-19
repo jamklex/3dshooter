@@ -118,6 +118,7 @@ columns = 3
 rows = 3
 
 [connection signal="draw" from="." to="." method="_visible"]
+[connection signal="pressed" from="bg/close" to="." method="_close_crafting"]
 [connection signal="on_item_clicked" from="bg/leftInv/items" to="." method="_on_equip_inv_item_clicked"]
 [connection signal="clicked" from="bg/VBoxContainer/blueprint" to="." method="_on_blueprint_clicked"]
 [connection signal="on_item_clicked" from="bg/VBoxContainer/craftInv/items" to="." method="_on_craft_inv_item_clicked"]
