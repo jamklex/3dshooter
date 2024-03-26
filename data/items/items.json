@@ -91,18 +91,35 @@
 		"name": "Rifle blueprint",
 		"desc": "A blueprint for creating a rifle",
 		"image": "res://data/items/img/blueprint_rifle.png",
-		"type": "BLUEPRINT"
+		"type": "BLUEPRINT",
+		"result_item_id": "10",
+		"amount": 1,
+		"recipe": {
+			"6": 2,
+			"8": 1
+		}
 	},
 	"17": {
 		"name": "Shotgun blueprint",
 		"desc": "A blueprint for creating a shotgun",
 		"image": "res://data/items/img/blueprint_shotgun.png",
-		"type": "BLUEPRINT"
+		"type": "BLUEPRINT",
+		"result_item_id": "14",
+		"amount": 1,
+		"recipe": {
+			"6": 2
+		}
 	},
 	"18": {
 		"name": "Sniper blueprint",
 		"desc": "A blueprint for creating a sniper",
 		"image": "res://data/items/img/blueprint_sniper.png",
-		"type": "BLUEPRINT"
+		"type": "BLUEPRINT",
+		"result_item_id": "12",
+		"amount": 1,
+		"recipe": {
+			"6": 2,
+			"8": 3
+		}
 	},
 }
