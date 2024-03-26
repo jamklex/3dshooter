@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn0qjson1co7g"]
+
+[ext_resource type="PackedScene" uid="uid://cr1mfh6vkq14y" path="res://assets/blender_meshes/theme_2/props/prop_6.blend" id="1_f6dlv"]
+
+[node name="LightDesk1" type="Node3D"]
+
+[node name="prop_6" parent="." instance=ExtResource("1_f6dlv")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+light_color = Color(0, 0.741176, 0.745098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0
+omni_range = 8.0

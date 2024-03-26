@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://qrlxjkhlahv1"]
 
+[ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_ir3sp"]
 [ext_resource type="PackedScene" uid="uid://myh0hqn52jxi" path="res://assets/blender_meshes/theme_1/walls/wall_5.blend" id="1_wjhaw"]
-[ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_y02yd"]
 [ext_resource type="PackedScene" uid="uid://blkolyw7favu4" path="res://assets/blender_meshes/theme_1/walls/wall_2.blend" id="2_5pe5l"]
 [ext_resource type="PackedScene" uid="uid://bps4kdrqfw145" path="res://assets/blender_meshes/theme_1/floor/floor_5.blend" id="3_llcqj"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="3_txnpd"]
@@ -15,7 +15,7 @@ vertices = PackedVector3Array(-12.4561, 0.43924, -10.9023, -13.2061, 0.43924, -1
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(7, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(17, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(21, 25, 22), PackedInt32Array(22, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 29), PackedInt32Array(30, 34, 31), PackedInt32Array(31, 34, 33), PackedInt32Array(31, 33, 32)]
 
 [node name="room_2" type="Node3D"]
-script = ExtResource("1_y02yd")
+script = ExtResource("1_ir3sp")
 
 [node name="roof" type="Node3D" parent="."]
 

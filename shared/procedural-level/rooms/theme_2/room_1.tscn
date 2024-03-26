@@ -1,0 +1,163 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctycxiko0d5r1"]
+
+[ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_rplx1"]
+[ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_6lvf6"]
+[ext_resource type="PackedScene" uid="uid://bfq412iusb22q" path="res://assets/blender_meshes/theme_2/floors/floor_5.blend" id="2_i7rf4"]
+[ext_resource type="PackedScene" uid="uid://clm63ehyc7jx8" path="res://assets/blender_meshes/theme_2/walls/wall_2.blend" id="3_i02je"]
+[ext_resource type="PackedScene" uid="uid://vr6fsgivfoq" path="res://assets/blender_meshes/theme_2/floors/floor_1.blend" id="5_aik6w"]
+[ext_resource type="PackedScene" uid="uid://cn0qjson1co7g" path="res://assets/blender_meshes/theme_2/props/light_desk_1.tscn" id="5_c1xdc"]
+[ext_resource type="PackedScene" uid="uid://0rpvefhatotu" path="res://assets/blender_meshes/theme_2/props/lootbox.tscn" id="6_a4svi"]
+
+[node name="Room1" type="Node3D"]
+script = ExtResource("1_rplx1")
+
+[node name="doors" type="Node3D" parent="."]
+
+[node name="door" parent="doors" instance=ExtResource("2_6lvf6")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -10, 1.5, 0.5)
+
+[node name="floor" type="Node3D" parent="."]
+
+[node name="floor_5" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5)
+
+[node name="floor_6" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0.5)
+
+[node name="floor_7" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 0.5)
+
+[node name="floor_8" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -5.5)
+
+[node name="floor_9" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 6.5)
+
+[node name="floor_11" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, 0.5)
+
+[node name="floor_12" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 6.5)
+
+[node name="floor_13" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -5.5)
+
+[node name="floor_14" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -5.5)
+
+[node name="floor_15" parent="floor" instance=ExtResource("2_i7rf4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 6.5)
+
+[node name="walls" type="Node3D" parent="."]
+
+[node name="wall_2" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, -0.5)
+
+[node name="wall_3" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 3)
+
+[node name="wall_4" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, 6.5)
+
+[node name="wall_6" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, -7.5)
+
+[node name="wall_7" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1, -4)
+
+[node name="wall_5" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5, 1, -8)
+
+[node name="wall_8" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, 1, -8)
+
+[node name="wall_9" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 1, -8)
+
+[node name="wall_10" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4, 1, 9)
+
+[node name="wall_11" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 1, 9)
+
+[node name="wall_12" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3, 1, 9)
+
+[node name="wall_14" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.5, 1, -2)
+
+[node name="wall_15" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.5, 1, -5.5)
+
+[node name="wall_16" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.5, 1, 8.5)
+
+[node name="wall_17" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.5, 1, 5)
+
+[node name="wall_18" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9, 1, -0.5)
+
+[node name="wall_19" parent="walls" instance=ExtResource("3_i02je")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -7, 1, 2)
+
+[node name="roof" type="Node3D" parent="."]
+
+[node name="floor_1" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -5.5)
+
+[node name="floor_2" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -5.5)
+
+[node name="floor_3" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -5.5)
+
+[node name="floor_4" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 0.5)
+
+[node name="floor_5" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0.5)
+
+[node name="floor_6" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 0.5)
+
+[node name="floor_7" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, 6.5)
+
+[node name="floor_8" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 6.5)
+
+[node name="floor_9" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, 6.5)
+
+[node name="floor_10" parent="roof" instance=ExtResource("5_aik6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, 0.5)
+
+[node name="props" type="Node3D" parent="."]
+
+[node name="LightDesk1" parent="props" instance=ExtResource("5_c1xdc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.162517, 0.5)
+
+[node name="Lootbox" parent="props" instance=ExtResource("6_a4svi")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -4.5, 0.159159, -7)
+
+[node name="Lootbox2" parent="props" instance=ExtResource("6_a4svi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.159159, -7)
+
+[node name="Lootbox3" parent="props" instance=ExtResource("6_a4svi")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -2.5, 0.159159, -6)
+
+[node name="Lootbox4" parent="props" instance=ExtResource("6_a4svi")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3, 0.159159, -7)
+
+[node name="Lootbox5" parent="props" instance=ExtResource("6_a4svi")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -4.5, 0.159159, -3)
+
+[node name="Lootbox6" parent="props" instance=ExtResource("6_a4svi")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -2, 0.159159, 4)
+
+[node name="Lootbox7" parent="props" instance=ExtResource("6_a4svi")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 2, 0.159159, 6.5)
+
+[node name="Lootbox8" parent="props" instance=ExtResource("6_a4svi")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -3.5, 0.159159, 6.5)

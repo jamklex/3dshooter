@@ -2,7 +2,7 @@ extends Node
 
 class_name ProceduralRoomGenerator
 
-const ROOMS_PATH: String = "res://shared/procedural-level/rooms/"
+const ROOMS_PATH: String = "res://shared/procedural-level/rooms/starts/"
 
 var _rng := RandomNumberGenerator.new()
 var min_rooms: int

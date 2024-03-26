@@ -26,7 +26,8 @@ enum Actions {
 }
 
 func _ready():
-	material = material.duplicate(true) # individual material
+	if material:
+		material = material.duplicate(true)
 	if enable_highlight:
 		highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
 		highlightTimer.one_shot = true
