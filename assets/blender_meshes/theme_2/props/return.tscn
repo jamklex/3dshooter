@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://273kyhp38k81"]
+
+[ext_resource type="PackedScene" uid="uid://cfqyr31dv3i4n" path="res://assets/blender_meshes/theme_2/props/prop_4.blend" id="1_02iva"]
+[ext_resource type="Script" path="res://shared/scripts/interactive/interactable.gd" id="2_qr8i2"]
+
+[node name="Return" type="Node3D"]
+
+[node name="prop_4" parent="." instance=ExtResource("1_02iva")]
+
+[node name="front" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000141025, 1.55922, 0.536975)
+layers = 0
+use_collision = true
+size = Vector3(0.207153, 0.348877, 0.180359)
+script = ExtResource("2_qr8i2")
+enable_highlight = false
+action = 2
+default_popup_message = "Back To Base"
+
+[node name="back" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000598788, 1.55922, -0.537035)
+layers = 0
+use_collision = true
+size = Vector3(0.207703, 0.348877, 0.180359)
+script = ExtResource("2_qr8i2")
+enable_highlight = false
+action = 2
+default_popup_message = "Back To Base"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+light_color = Color(0, 0.741176, 0.745098, 1)
+light_energy = 2.0
+light_indirect_energy = 2.0

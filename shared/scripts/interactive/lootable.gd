@@ -16,11 +16,13 @@ const FEEDBACK_MESSAGE_FORMAT = "Collected: <ITEM>"
 @export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
 
 func _ready():
-	material = material.duplicate(true) # individual material
+	if material:
+		material = material.duplicate(true) # individual material
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
 	highlightTimer.one_shot = true
 	add_child(highlightTimer)
-	get_parent_node_3d().visible = WorldUtil.get_map_rng_visibility()
+	if !WorldUtil.get_map_rng_visibility():
+		get_parent_node_3d().queue_free()
 
 func can_interact():
 	return interactable
@@ -42,6 +44,8 @@ func interact(player: Player):
 	return message
 
 func highlight():
+	if !material:
+		return
 	highlightTimer.wait_time = highlight_seconds
 	highlightTimer.start()
 	highlighted = true
@@ -49,6 +53,8 @@ func highlight():
 	material.emission = material.albedo_color
 
 func remove_highlight():
+	if !material:
+		return
 	highlighted = false
 	material.emission_enabled = false
 
