@@ -20,6 +20,8 @@ func show_item(inventory_item:InventoryItem):
 	
 func refresh():
 	if not _inventory_item:
+		_image.texture = null
+		_amount.text = ""
 		return
 	_image.texture = _inventory_item.item.image
 	if show_amount:
