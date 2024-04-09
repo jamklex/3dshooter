@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bps4kdrqfw145" path="res://assets/blender_meshes/theme_1/floor/floor_5.blend" id="7_qtdhh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cp138"]
-vertices = PackedVector3Array(3.93437, 0.0830965, -7.87644, 3.93437, 0.0830965, -8.87644, 2.68437, 0.0830965, -8.62644, 1.18437, 0.0830965, 1.12356, 3.43437, 0.0830965, 0.873561, 3.43437, 0.0830965, -0.126439, 2.68437, 0.0830965, -8.62644, 2.43437, 0.0830965, -9.87644, 0.434371, 0.0830965, -9.87644, -0.315629, 0.0830965, -8.87644, 5.18437, 0.0830965, -7.62644, 3.93437, 0.0830965, -7.87644, -1.31563, 0.0830965, -8.87644, -1.31563, 0.0830965, 5.12356, 1.18437, 0.0830965, 1.12356, 1.18437, 0.0830965, 1.12356, 3.43437, 0.0830965, -0.126439, 4.18437, 0.0830965, -0.876439, 5.18437, 0.0830965, -7.62644, 2.68437, 0.0830965, -8.62644, -0.315629, 0.0830965, -8.87644, -1.31563, 0.0830965, -8.87644, 3.93437, 0.0830965, -7.87644, -1.31563, 0.0830965, 5.12356, 1.18437, 0.0830965, 5.12356, 1.18437, 0.0830965, 1.12356, 4.18437, 0.0830965, -0.876439, 5.18437, 0.0830965, -0.876439, 5.18437, 0.0830965, -7.62644)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 14), PackedInt32Array(12, 14, 13), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(25, 24, 23), PackedInt32Array(28, 27, 26)]
+vertices = PackedVector3Array(-1.31563, 0.0830964, 5.12356, 1.18437, 0.0830964, 5.12356, 1.43437, 0.0830964, 0.873561, -1.31563, 0.0830964, -9.87644, 1.43437, 0.0830964, 0.873561, 5.18437, 0.0830964, 0.873561, 5.18437, 0.0830964, -9.87644, -1.31563, 0.0830964, -9.87644)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7)]
 
 [node name="room_1" type="Node3D"]
 script = ExtResource("1_thtun")
@@ -113,17 +113,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.281302, 0)
 [node name="Light1" parent="NavigationRegion3D/props" instance=ExtResource("6_ghprq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4.5)
 
-[node name="chest" parent="NavigationRegion3D/props" instance=ExtResource("7_jr427")]
+[node name="lootboxes" type="Node3D" parent="."]
+
+[node name="chest" parent="lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 5, 0, -9.7015)
 
-[node name="chest2" parent="NavigationRegion3D/props" instance=ExtResource("7_jr427")]
+[node name="chest2" parent="lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 5, 0, -8.7015)
 
-[node name="chest3" parent="NavigationRegion3D/props" instance=ExtResource("7_jr427")]
+[node name="chest3" parent="lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 3.5, 0, -9.7015)
 
-[node name="chest4" parent="NavigationRegion3D/props" instance=ExtResource("7_jr427")]
+[node name="chest4" parent="lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.837923, 0, -9.89477)
 
-[node name="chest5" parent="NavigationRegion3D/props" instance=ExtResource("7_jr427")]
+[node name="chest5" parent="lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 4.5, 0, 0.298498)
