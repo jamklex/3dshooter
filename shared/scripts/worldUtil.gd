@@ -2,11 +2,13 @@ extends Node
 
 var player: Player = Player.new()
 var player_cam: Camera3D
+var currentWindow
 var currentDialog: Dialog
 var currentTrade: Trade
 var current_prg: ProceduralRoomGenerator
 var loadingScreenScene = preload("res://shared/ui/loading_screen.tscn")
 var loadingScreen = null
+var menuScene = preload("res://shared/menu/menu.tscn")
 var loadingDoneChecker = Timer.new()
 var missions: Array[Mission] = []
 
@@ -24,6 +26,7 @@ func createDialog(npc_id:String, dialog_data_path:String) -> Dialog:
 		add_quest_dialogs(npc_id, currentDialog)
 		currentDialog.load_dialog_data()
 		add_child(currentDialog)
+		currentWindow = currentDialog
 	return currentDialog
 
 func add_quest_dialogs(npc_id, _currentDialog):
@@ -88,7 +91,7 @@ func openLastLoot(payload: Array):
 	currentTrade = Trade.new_instance(tradeInv, player.store_inventory,
 		onLastLootAction, "Inventory", "Your saved loot", taxList)
 	add_child(currentTrade)
-	player.body.setInDialog(true)
+	currentWindow = currentTrade
 	return currentTrade
 
 func onLastLootAction(action: Trade.Actions, payload: Array = []):
@@ -98,8 +101,6 @@ func onLastLootAction(action: Trade.Actions, payload: Array = []):
 		if not savePlayerTrade(payload[0]):
 			return false
 		player.store_inventory = Inventory.empty()
-	player.body.setInDialog(false)
-	currentTrade = null
 	return true
 	
 func openShop(payload: Array):
@@ -114,21 +115,19 @@ func openShop(payload: Array):
 	currentTrade = Trade.new_instance(playerInv, shopInv,
 		onShopAction, "Shopping cart", shopDetails["name"], priceList)
 	add_child(currentTrade)
-	player.body.setInDialog(true)
+	currentWindow = currentTrade
 	return currentTrade
 	
 func openCrafting():
 	var crafting = load("res://shared/crafting/crafting.tscn").instantiate() as Crafting
 	add_child(crafting)
-	player.body.setInDialog(true)
+	currentWindow = crafting
 	
 func onShopAction(action: Trade.Actions, payload: Array = []):
 	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
 		return
 	if action == Trade.Actions.SAVE_TRADE and not savePlayerTrade(payload[0]):
 		return false
-	player.body.setInDialog(false)
-	currentTrade = null
 	return true
 	
 func savePlayerTrade(shoppingCart:Inventory):
@@ -146,13 +145,13 @@ func openSellLoot(payload: Array):
 		 onSellLootAction, "Inventory", "Your sell items",
 		FileUtil.getContentAsJson(payload[0]))
 	add_child(currentTrade)
-	player.body.setInDialog(true)
+	currentWindow = currentTrade
 	return currentTrade
 
 func openMissionBoard(payload: Array):
 	var mission_board = load("res://shared/mission/missions.tscn").instantiate()
 	add_child(mission_board)
-	player.body.setInDialog(true)
+	currentWindow = mission_board
 	return mission_board
 
 func onSellLootAction(action: Trade.Actions, payload: Array = []):
@@ -160,8 +159,6 @@ func onSellLootAction(action: Trade.Actions, payload: Array = []):
 		return
 	if action == Trade.Actions.SAVE_TRADE:
 		player.inventory = payload[0]
-	player.body.setInDialog(false)
-	currentTrade = null
 	return true
 
 func teleportToMissionMap(payload: Array):
@@ -210,6 +207,22 @@ func quitGame():
 func save():
 	player.save()
 	
+func showMenu():
+	var menu = menuScene.instantiate()
+	add_child(menu)
+	currentWindow = menu
+	return menu
+	
 func respawn():
 	player.run_inventory = Inventory.empty()
 	teleportToLowerShip()
+
+func closeCurrentWindow():
+	if not currentWindow:
+		return
+	if currentWindow.has_method("on_close"):
+		currentWindow.on_close()
+	currentWindow.queue_free()
+	currentWindow = null
+	currentTrade = null
+	currentDialog = null

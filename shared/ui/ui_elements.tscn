@@ -1,11 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://nmsmltr0w7dn"]
+[gd_scene load_steps=6 format=3 uid="uid://nmsmltr0w7dn"]
 
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="1_hf0q4"]
 [ext_resource type="Texture2D" uid="uid://cmxy0f6ug5uie" path="res://assets/models/player/hitmarker.png" id="1_ofn52"]
-[ext_resource type="StyleBox" uid="uid://c5yofff7dw4jk" path="res://shared/ui/menu_bg_style.tres" id="2_lenj8"]
-[ext_resource type="PackedScene" uid="uid://bpw6fgm2mn687" path="res://shared/ui/menu/inventory/inventory.tscn" id="4_gatnx"]
-[ext_resource type="PackedScene" uid="uid://ce48caxhixn3" path="res://shared/ui/menu/settings.tscn" id="4_vgoqt"]
-[ext_resource type="PackedScene" uid="uid://bfbeekicg6c1h" path="res://shared/ui/menu/quests/quests.tscn" id="5_e5t3j"]
 [ext_resource type="PackedScene" uid="uid://1wrxq464mod0" path="res://shared/ui/health_bar/health_bar.tscn" id="7_7rtai"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13omo"]
@@ -13,9 +9,6 @@ bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_omqcl"]
 bg_color = Color(0.152941, 0.152941, 0.152941, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrwrn"]
-bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
 [node name="ui_elements" type="Control"]
 layout_mode = 3
@@ -180,56 +173,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_omqcl")
 text = "Quit"
-
-[node name="menu" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="tabs" type="TabContainer" parent="menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_nrwrn")
-tab_alignment = 1
-
-[node name="Inventory" type="Panel" parent="menu/tabs"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("2_lenj8")
-
-[node name="Inventory" parent="menu/tabs/Inventory" instance=ExtResource("4_gatnx")]
-layout_mode = 1
-offset_right = -0.00012207
-mouse_filter = 1
-
-[node name="Quests" type="Panel" parent="menu/tabs"]
-visible = false
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("2_lenj8")
-
-[node name="Quests" parent="menu/tabs/Quests" instance=ExtResource("5_e5t3j")]
-layout_mode = 1
-offset_right = -0.00012207
-mouse_filter = 1
-
-[node name="Settings" type="Panel" parent="menu/tabs"]
-visible = false
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/panel = ExtResource("2_lenj8")
-
-[node name="Settings" parent="menu/tabs/Settings" instance=ExtResource("4_vgoqt")]
-layout_mode = 1
 
 [node name="health_bar" parent="." instance=ExtResource("7_7rtai")]
 z_index = -1

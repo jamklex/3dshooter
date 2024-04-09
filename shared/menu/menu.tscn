@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://4w471e0wai2e"]
+
+[ext_resource type="StyleBox" uid="uid://c5yofff7dw4jk" path="res://shared/ui/menu_bg_style.tres" id="1_3t0jw"]
+[ext_resource type="Script" path="res://shared/menu/menu.gd" id="1_m1415"]
+[ext_resource type="PackedScene" uid="uid://bpw6fgm2mn687" path="res://shared/ui/menu/inventory/inventory.tscn" id="2_4ketg"]
+[ext_resource type="PackedScene" uid="uid://bfbeekicg6c1h" path="res://shared/ui/menu/quests/quests.tscn" id="3_4f6it"]
+[ext_resource type="PackedScene" uid="uid://ce48caxhixn3" path="res://shared/ui/menu/settings.tscn" id="4_5apgd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctkae"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m1415")
+
+[node name="menu" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="tabs" type="TabContainer" parent="menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_ctkae")
+tab_alignment = 1
+
+[node name="Inventory" type="Panel" parent="menu/tabs"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("1_3t0jw")
+
+[node name="Inventory" parent="menu/tabs/Inventory" instance=ExtResource("2_4ketg")]
+layout_mode = 1
+offset_right = -0.00012207
+mouse_filter = 1
+
+[node name="Quests" type="Panel" parent="menu/tabs"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("1_3t0jw")
+
+[node name="Quests" parent="menu/tabs/Quests" instance=ExtResource("3_4f6it")]
+layout_mode = 1
+offset_right = -0.00012207
+mouse_filter = 1
+
+[node name="Settings" type="Panel" parent="menu/tabs"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("1_3t0jw")
+
+[node name="Settings" parent="menu/tabs/Settings" instance=ExtResource("4_5apgd")]
+layout_mode = 1

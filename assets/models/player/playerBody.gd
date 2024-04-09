@@ -21,18 +21,10 @@ extends CharacterBody3D
 @onready var interactionFeedback = _ui.get_node("InteractionFeedback") as Label
 @onready var quests_ui = _ui.get_node("QuestHolder/quests") as VBoxContainer
 @onready var death_screen = _ui.get_node("deathScreen") as Panel
-@onready var menu = _ui.get_node("menu") as Panel
-@onready var menuTab = menu.get_node("tabs") as TabContainer
 @onready var hitmarker = _ui.get_node("Hitmarker") as TextureRect
 @onready var health_bar = _ui.get_node("health_bar") as HealthBar
-var inDialog = false
 var sprinting = false
 var _reward_queue = []
-
-func setInDialog(value:bool):
-	inDialog = value
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if inDialog else Input.MOUSE_MODE_CAPTURED
-	_ui.visible = !inDialog
 
 func _ready():
 	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
@@ -62,9 +54,13 @@ func _exit_tree():
 
 func _physics_process(delta):
 	handle_show_menu()
-	if inDialog:
+	if WorldUtil.currentWindow:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		_ui.visible = false
 		_playAnimation("idle")
 		return
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_ui.visible = true
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	fade_interaction_feedback(0.5*delta)
@@ -115,6 +111,8 @@ func fade_interaction_feedback(rate = 0.5 as float, reset = false as bool):
 func handle_show_inventory():
 	if !Input.is_action_just_pressed("inventory"):
 		return
+	if WorldUtil.currentWindow:
+		return
 	#refresh_inventory_output()
 	#inventory_output.visible = !inventory_output.visible
 	_switchUiMenu(0)
@@ -122,11 +120,18 @@ func handle_show_inventory():
 func handle_show_quests():
 	if !Input.is_action_just_pressed("questlog"):
 		return
+	if WorldUtil.currentWindow:
+		return
 	QuestLoader.attach_quests(quests_ui)
 	_switchUiMenu(1)
 
 func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
+		return
+	if WorldUtil.currentWindow and not WorldUtil.currentDialog:
+		WorldUtil.closeCurrentWindow()
+		return
+	if WorldUtil.currentDialog:
 		return
 	_switchUiMenu(2)
 
@@ -142,7 +147,7 @@ func handle_interaction():
 	var distance = self.global_position.distance_to(collider.global_position)
 	if distance > InteractionHelper.interact_distance(collider, interact_distance):
 		return
-	if !inDialog and collider.has_method("popup_message"):
+	if !WorldUtil.currentWindow and collider.has_method("popup_message"):
 		interactionPopup.text = collider.popup_message()
 	if !Input.is_action_just_pressed("interact"):
 		return
@@ -206,15 +211,14 @@ func _showHitMarker(lastHit):
 	hitmarker.visible = false
 	
 func _switchUiMenu(selectedTabIndex):
-	if menu.visible and (menuTab.current_tab == selectedTabIndex or selectedTabIndex == menuTab.get_child_count()-1):
-		menu.visible = false
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		inDialog = false
-	else:
-		menuTab.current_tab = selectedTabIndex
-		menu.visible = true
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		inDialog = true
+	var menu = WorldUtil.currentWindow
+	if menu and (menu.menuTab.current_tab == selectedTabIndex or selectedTabIndex == menu.menuTab.get_child_count()-1):
+		WorldUtil.closeCurrentWindow()
+	elif not menu:
+		WorldUtil.showMenu()
+		#if not menu:
+			#menu = WorldUtil.showMenu()
+		#menu.menuTab.current_tab = selectedTabIndex
 
 func _on_health_changed(health):
 	health_bar.setHealth(health)

@@ -17,7 +17,7 @@ var currentSource: QuestSource
 
 static func new_instance(dialog_data_path: String, tracker: Callable):
 	var dialog = load("res://shared/dialog/dialog.tscn").instantiate()
-	dialog.dialogTracker = tracker
+	#dialog.dialogTracker = tracker
 	dialog.set_dialog_data(dialog_data_path)
 	return dialog
 
@@ -25,7 +25,7 @@ func set_dialog_data(data_path:String):
 	dialog_data = FileUtil.getContentAsJson(data_path)
 
 func load_dialog_data():
-	dialogTracker.call(true)
+	#dialogTracker.call(true)
 	if questionLabel and not dialogStarted:
 		_loadNextPart()
 
@@ -82,8 +82,9 @@ func _isConditionFulfilled(action:String, result:bool, payload:Array):
 
 func _closeDialog():
 	onExit.emit()
-	dialogTracker.call(false)
-	queue_free()
+	WorldUtil.closeCurrentWindow()
+	#dialogTracker.call(false)
+	#queue_free()
 
 func _clearAnswersContainer():
 	for child in answersContainer.get_children():
