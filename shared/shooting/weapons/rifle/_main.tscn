@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://daadmeuxa2sbk"]
 
 [ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_4k2qy"]
-[ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_xdhsm"]
-[ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_d5v5r"]
+[ext_resource type="AudioStream" uid="uid://cm043ysbunjsk" path="res://shared/shooting/weapons/rifle/shot.mp3" id="2_il73m"]
+[ext_resource type="AudioStream" uid="uid://cuyfed6rcfv4h" path="res://shared/shooting/weapons/rifle/emptyShot.mp3" id="3_hriod"]
 [ext_resource type="AudioStream" uid="uid://ckprvjlbk6px2" path="res://shared/shooting/weapons/rifle/reloadMag.mp3" id="4_56m1e"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ri5k0"]
@@ -77,8 +77,8 @@ description = "Riiiifle"
 magSize = 30
 weaponType = 1
 damage = 1
-shotSound = ExtResource("2_xdhsm")
-emptyShotSound = ExtResource("3_d5v5r")
+shotSound = ExtResource("2_il73m")
+emptyShotSound = ExtResource("3_hriod")
 reloadMagSound = ExtResource("4_56m1e")
 muzzleFlare = NodePath("muzzleFlare")
 shotCooldown = 0.1

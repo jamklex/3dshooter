@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://rycyoqsfc2t2"]
 
 [ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_hdkpv"]
-[ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_tq26m"]
-[ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_ouvdn"]
+[ext_resource type="AudioStream" uid="uid://b1skfmq4b6ey8" path="res://shared/shooting/weapons/shotgun/shot.mp3" id="2_qxrot"]
+[ext_resource type="AudioStream" uid="uid://l54v0npjyx8f" path="res://shared/shooting/weapons/shotgun/emptyShot.mp3" id="3_8d312"]
 [ext_resource type="AudioStream" uid="uid://dt6euvijq44gj" path="res://shared/shooting/weapons/shotgun/reloadMag.mp3" id="4_5titq"]
 [ext_resource type="AudioStream" uid="uid://d1ykiuiks8v3c" path="res://shared/shooting/weapons/shotgun/reload.mp3" id="5_b1quy"]
 
@@ -53,8 +53,8 @@ description = "Shotgun desc here"
 magSize = 7
 weaponType = 3
 damage = 1
-shotSound = ExtResource("2_tq26m")
-emptyShotSound = ExtResource("3_ouvdn")
+shotSound = ExtResource("2_qxrot")
+emptyShotSound = ExtResource("3_8d312")
 reloadMagSound = ExtResource("4_5titq")
 reloadSound = ExtResource("5_b1quy")
 muzzleFlare = NodePath("muzzleFlare")

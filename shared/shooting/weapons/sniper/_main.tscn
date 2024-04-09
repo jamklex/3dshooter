@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://o3wpor4tupil"]
 
 [ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_xhfvk"]
-[ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_6nw1r"]
-[ext_resource type="AudioStream" uid="uid://dluwf4twxah8b" path="res://shared/shooting/weapons/pistol/emptyShot.mp3" id="3_k6dqr"]
+[ext_resource type="AudioStream" uid="uid://cnqjrpaegra2a" path="res://shared/shooting/weapons/sniper/shot.mp3" id="2_uivmb"]
+[ext_resource type="AudioStream" uid="uid://xmnsu2q501fe" path="res://shared/shooting/weapons/sniper/emptyShot.mp3" id="3_nml67"]
 [ext_resource type="AudioStream" uid="uid://x20qjcvhsgn" path="res://shared/shooting/weapons/sniper/reloadMag.mp3" id="4_owhdu"]
 [ext_resource type="AudioStream" uid="uid://bnhpbrtq7tfr2" path="res://shared/shooting/weapons/sniper/reload.mp3" id="5_6absd"]
 
@@ -72,8 +72,8 @@ description = "Sniper descc"
 magSize = 5
 weaponType = 2
 damage = 1
-shotSound = ExtResource("2_6nw1r")
-emptyShotSound = ExtResource("3_k6dqr")
+shotSound = ExtResource("2_uivmb")
+emptyShotSound = ExtResource("3_nml67")
 reloadMagSound = ExtResource("4_owhdu")
 reloadSound = ExtResource("5_6absd")
 muzzleFlare = NodePath("muzzleFlare")
