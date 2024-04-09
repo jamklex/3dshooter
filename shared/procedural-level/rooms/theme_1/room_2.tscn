@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/interact/chest/chest.tscn" id="7_au0rs"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ixokd"]
-vertices = PackedVector3Array(-12.4561, 0.43924, -10.9023, -13.2061, 0.43924, -11.6523, -14.2061, 0.43924, -10.9023, -13.9561, 0.43924, -7.65234, -11.7061, 0.43924, -8.65234, -11.7061, 0.43924, -8.65234, -11.7061, 0.43924, -10.9023, -12.4561, 0.43924, -10.9023, 0.29391, 0.43924, 0.597656, 0.29391, 0.43924, -6.15234, -0.20609, 0.43924, -6.40234, -2.20609, 0.43924, 0.597656, 0.29391, 0.43924, 0.597656, -0.20609, 0.43924, -6.40234, -2.45609, 0.43924, -7.65234, -11.2061, 0.43924, -8.15234, -11.7061, 0.43924, -8.65234, -13.9561, 0.43924, -7.65234, 0.29391, 0.43924, -9.65234, 0.29391, 0.43924, -16.1523, -0.70609, 0.43924, -14.9023, -0.20609, 0.43924, -9.40234, 0.29391, 0.43924, -9.65234, -0.70609, 0.43924, -14.9023, -2.20609, 0.43924, -15.1523, -2.20609, 0.43924, -8.65234, -2.45609, 0.43924, -7.65234, -2.70609, 0.43924, -8.15234, -11.2061, 0.43924, -8.15234, -13.9561, 0.43924, -7.65234, -2.70609, 0.43924, -8.15234, -2.45609, 0.43924, -7.65234, -0.20609, 0.43924, -6.40234, -0.20609, 0.43924, -9.40234, -2.20609, 0.43924, -8.65234)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 4), PackedInt32Array(2, 4, 3), PackedInt32Array(7, 6, 5), PackedInt32Array(10, 9, 8), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(17, 16, 15), PackedInt32Array(20, 19, 18), PackedInt32Array(21, 25, 22), PackedInt32Array(22, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 29), PackedInt32Array(30, 34, 31), PackedInt32Array(31, 34, 33), PackedInt32Array(31, 33, 32)]
+vertices = PackedVector3Array(-11.7061, 0.43924, -8.65234, -11.7061, 0.43924, -12.1523, -14.2061, 0.43924, -12.1523, -13.9561, 0.43924, -7.65234, -2.20609, 0.43924, 0.597656, 0.29391, 0.43924, 0.597656, -0.20609, 0.43924, -6.40234, -2.45609, 0.43924, -7.65234, -11.2061, 0.43924, -8.15234, -11.7061, 0.43924, -8.65234, -13.9561, 0.43924, -7.65234, -0.20609, 0.43924, -9.40234, 0.29391, 0.43924, -9.65234, 0.29391, 0.43924, -16.1523, -2.20609, 0.43924, -16.1523, -2.20609, 0.43924, -8.65234, 0.29391, 0.43924, 0.597656, 0.29391, 0.43924, -6.15234, -0.20609, 0.43924, -6.40234, -2.45609, 0.43924, -7.65234, -2.70609, 0.43924, -8.15234, -11.2061, 0.43924, -8.15234, -13.9561, 0.43924, -7.65234, -2.70609, 0.43924, -8.15234, -2.45609, 0.43924, -7.65234, -0.20609, 0.43924, -6.40234, -0.20609, 0.43924, -9.40234, -2.20609, 0.43924, -8.65234)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(10, 9, 8), PackedInt32Array(11, 15, 12), PackedInt32Array(12, 15, 13), PackedInt32Array(13, 15, 14), PackedInt32Array(18, 17, 16), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(23, 27, 24), PackedInt32Array(24, 27, 26), PackedInt32Array(24, 26, 25)]
 
 [node name="room_2" type="Node3D"]
 script = ExtResource("1_ir3sp")
@@ -144,11 +144,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -15)
 
 [node name="props" type="Node3D" parent="NavigationRegion3D"]
 
-[node name="chest" parent="NavigationRegion3D/props" instance=ExtResource("7_au0rs")]
+[node name="lootboxes" type="Node3D" parent="."]
+
+[node name="chest" parent="lootboxes" instance=ExtResource("7_au0rs")]
 transform = Transform3D(0.716619, 0, -0.697465, 0, 1, 0, 0.697465, 0, 0.716619, -14.0381, 0.104957, -11.9601)
 
-[node name="chest2" parent="NavigationRegion3D/props" instance=ExtResource("7_au0rs")]
+[node name="chest2" parent="lootboxes" instance=ExtResource("7_au0rs")]
 transform = Transform3D(-0.697465, 0, -0.716618, 0, 1, 0, 0.716618, 0, -0.697465, -12.0381, 0.104957, -11.9601)
 
-[node name="chest3" parent="NavigationRegion3D/props" instance=ExtResource("7_au0rs")]
+[node name="chest3" parent="lootboxes" instance=ExtResource("7_au0rs")]
 transform = Transform3D(0.21257, 0, -0.977146, 0, 1, 0, 0.977146, 0, 0.21257, -1.1298, 0.104957, -15.9279)

@@ -8,7 +8,7 @@
 [node name="prop_2" parent="." instance=ExtResource("1_dlf8h")]
 
 [node name="Lootable" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00469971, 0.714782, -0.00488281)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684246, 0)
 layers = 0
 use_collision = true
 size = Vector3(1.21155, 1.35446, 1.2207)
