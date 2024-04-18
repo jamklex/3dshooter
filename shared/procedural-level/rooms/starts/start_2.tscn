@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dekmh6nb8bm48"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/start-room.gd" id="1_ysyqo"]
-[ext_resource type="PackedScene" uid="uid://vr6fsgivfoq" path="res://assets/blender_meshes/theme_2/floors/floor_1.blend" id="2_yjy8w"]
-[ext_resource type="PackedScene" uid="uid://cbnn6u8j5hra6" path="res://assets/blender_meshes/theme_2/floors/floor_2.blend" id="3_v1i1w"]
-[ext_resource type="PackedScene" uid="uid://clm63ehyc7jx8" path="res://assets/blender_meshes/theme_2/walls/wall_2.blend" id="4_enxl1"]
+[ext_resource type="PackedScene" uid="uid://kcwaq8lf07dc" path="res://assets/blender_meshes/theme_2/floors/floor_1.tscn" id="2_yjy8w"]
+[ext_resource type="PackedScene" uid="uid://eaowx07af5l6" path="res://assets/blender_meshes/theme_2/floors/floor_2.tscn" id="3_v1i1w"]
+[ext_resource type="PackedScene" uid="uid://c3cet1o418p41" path="res://assets/blender_meshes/theme_2/walls/wall_2.tscn" id="4_enxl1"]
 [ext_resource type="PackedScene" uid="uid://273kyhp38k81" path="res://assets/blender_meshes/theme_2/props/return.tscn" id="5_bte13"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="6_5oe54"]
 [ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="7_esb3n"]

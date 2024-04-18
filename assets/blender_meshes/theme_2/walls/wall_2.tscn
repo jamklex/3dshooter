@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3cet1o418p41"]
+
+[ext_resource type="PackedScene" uid="uid://clm63ehyc7jx8" path="res://assets/blender_meshes/theme_2/walls/wall_2.blend" id="1_aj2kq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r81d4"]
+size = Vector3(1.98633, 1.98633, 0.513916)
+
+[node name="wall_2" instance=ExtResource("1_aj2kq")]
+
+[node name="CollisionShape3D" parent="wall02/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998833, -0.202759)
+shape = SubResource("BoxShape3D_r81d4")

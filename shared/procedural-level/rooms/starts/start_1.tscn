@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://djt65pti7uct6"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/start-room.gd" id="1_146wm"]
-[ext_resource type="PackedScene" uid="uid://bps4kdrqfw145" path="res://assets/blender_meshes/theme_1/floor/floor_5.blend" id="2_b81ij"]
+[ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="2_b81ij"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="3_bk1h5"]
 [ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="4_2x5sh"]
-[ext_resource type="PackedScene" uid="uid://b48bk58sf6rxf" path="res://assets/blender_meshes/theme_1/walls/wall_7.blend" id="5_8q0c7"]
+[ext_resource type="PackedScene" uid="uid://d1odjsuew4od0" path="res://assets/blender_meshes/theme_1/walls/wall_7.tscn" id="5_8q0c7"]
 [ext_resource type="PackedScene" uid="uid://l4p1kjacpsmi" path="res://assets/blender_meshes/theme_1/lights/light_3.tscn" id="6_fngku"]
 [ext_resource type="PackedScene" uid="uid://b4f58i82ovh0y" path="res://assets/blender_meshes/theme_1/lights/light_2.tscn" id="7_4l1st"]
 [ext_resource type="PackedScene" uid="uid://mlsm0t4oqsrl" path="res://assets/blender_meshes/theme_1/props/return.tscn" id="8_3dmim"]
-[ext_resource type="PackedScene" uid="uid://lndd7yavva6h" path="res://assets/blender_meshes/theme_1/floor/floor_2.blend" id="9_h36bl"]
-[ext_resource type="PackedScene" uid="uid://hoe84hbp5m72" path="res://assets/blender_meshes/theme_1/floor/floor_3.blend" id="10_ic3o0"]
+[ext_resource type="PackedScene" uid="uid://2a67nbwv3l23" path="res://assets/blender_meshes/theme_1/floor/floor_3.tscn" id="10_ic3o0"]
+[ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="11_5giik"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_uudde"]
 vertices = PackedVector3Array(3.8564, 0.456849, -7.25, 3.8564, 0.456849, -4.75, 6.1064, 0.456849, -4.75, 6.6064, 0.456849, -7.5, 6.6064, 0.456849, -4.25, 6.6064, 0.456849, 7.5, 8.3564, 0.456849, 7.5, 8.3564, 0.456849, -15.5, 6.6064, 0.456849, -7.5, 6.1064, 0.456849, -4.75, 6.6064, 0.456849, -4.25, 8.3564, 0.456849, -15.5, 8.3564, 0.456849, -15.5, 6.6064, 0.456849, -15.5, 6.6064, 0.456849, -7.5, 1.3564, 0.456849, -4.75, 3.8564, 0.456849, -4.75, 3.8564, 0.456849, -7.25, -5.3936, 0.456849, -7.25, -5.3936, 0.456849, -3.25, -4.6436, 0.456849, -3, 1.3564, 0.456849, -4.75, 3.8564, 0.456849, -7.25, -4.6436, 0.456849, -3, -4.6436, 0.456849, -2, 0.8564, 0.456849, -2, 0.8564, 0.456849, -4.25, -4.6436, 0.456849, -3, 0.8564, 0.456849, -4.25, 1.3564, 0.456849, -4.75, 0.8564, 0.456849, -2, -4.6436, 0.456849, -2, -4.6436, 0.456849, -1, 0.8564, 0.456849, -2, -4.6436, 0.456849, -1, -5.3936, 0.456849, -0.75, -5.3936, 0.456849, 5.5, 0.8564, 0.456849, 5.25)
@@ -188,54 +188,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0, -2)
 
 [node name="floors" type="Node3D" parent="NavigationRegion3D"]
 
-[node name="floor_2" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_2" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 
-[node name="floor_4" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_4" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
-[node name="floor_3" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_3" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
-[node name="floor_5" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_5" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
-[node name="floor_6" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_6" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -6)
 
-[node name="floor_7" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_7" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -2)
 
-[node name="floor_19" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_19" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 2)
 
 [node name="floor_11" parent="NavigationRegion3D/floors" instance=ExtResource("10_ic3o0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -15)
 
-[node name="floor_8" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_8" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 4)
 
-[node name="floor_20" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_20" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -12)
 
-[node name="floor_9" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_9" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -10)
 
-[node name="floor_12" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_12" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -6)
 
-[node name="floor_13" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_13" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -4)
 
-[node name="floor_14" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_14" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
 
-[node name="floor_15" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_15" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
 
 [node name="floor_16" parent="NavigationRegion3D/floors" instance=ExtResource("10_ic3o0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 
-[node name="floor_10" parent="NavigationRegion3D/floors" instance=ExtResource("9_h36bl")]
+[node name="floor_10" parent="NavigationRegion3D/floors" instance=ExtResource("11_5giik")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -6)
 
 [node name="floor_17" parent="NavigationRegion3D/floors" instance=ExtResource("10_ic3o0")]

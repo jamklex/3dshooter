@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_rplx1"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_6lvf6"]
-[ext_resource type="PackedScene" uid="uid://bfq412iusb22q" path="res://assets/blender_meshes/theme_2/floors/floor_5.blend" id="2_i7rf5"]
-[ext_resource type="PackedScene" uid="uid://clm63ehyc7jx8" path="res://assets/blender_meshes/theme_2/walls/wall_2.blend" id="3_i02je"]
-[ext_resource type="PackedScene" uid="uid://vr6fsgivfoq" path="res://assets/blender_meshes/theme_2/floors/floor_1.blend" id="5_aik6w"]
+[ext_resource type="PackedScene" path="res://assets/blender_meshes/theme_2/floors/floor_5.tscn" id="2_i7rf5"]
+[ext_resource type="PackedScene" path="res://assets/blender_meshes/theme_2/walls/wall_2.tscn" id="3_i02je"]
+[ext_resource type="PackedScene" path="res://assets/blender_meshes/theme_2/floors/floor_1.tscn" id="5_aik6w"]
 [ext_resource type="PackedScene" uid="uid://cn0qjson1co7g" path="res://assets/blender_meshes/theme_2/props/light_desk_1.tscn" id="5_c1xdc"]
 [ext_resource type="PackedScene" uid="uid://0rpvefhatotu" path="res://assets/blender_meshes/theme_2/props/lootbox.tscn" id="6_a4svi"]
 

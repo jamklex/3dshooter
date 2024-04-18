@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://qrlxjkhlahv1"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_ir3sp"]
-[ext_resource type="PackedScene" uid="uid://myh0hqn52jxi" path="res://assets/blender_meshes/theme_1/walls/wall_5.blend" id="1_wjhaw"]
-[ext_resource type="PackedScene" uid="uid://blkolyw7favu4" path="res://assets/blender_meshes/theme_1/walls/wall_2.blend" id="2_5pe5l"]
-[ext_resource type="PackedScene" uid="uid://bps4kdrqfw145" path="res://assets/blender_meshes/theme_1/floor/floor_5.blend" id="3_llcqj"]
+[ext_resource type="PackedScene" uid="uid://dfy1xb3n0tnm5" path="res://assets/blender_meshes/theme_1/walls/wall_5.tscn" id="1_wjhaw"]
+[ext_resource type="PackedScene" uid="uid://8111dv30rx4u" path="res://assets/blender_meshes/theme_1/walls/wall_2.tscn" id="2_5pe5l"]
+[ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="3_llcqj"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="3_txnpd"]
-[ext_resource type="PackedScene" uid="uid://lndd7yavva6h" path="res://assets/blender_meshes/theme_1/floor/floor_2.blend" id="4_uvypl"]
-[ext_resource type="PackedScene" uid="uid://hoe84hbp5m72" path="res://assets/blender_meshes/theme_1/floor/floor_3.blend" id="5_0uke1"]
-[ext_resource type="PackedScene" uid="uid://78ypm505svtm" path="res://assets/blender_meshes/theme_1/floor/floor_4.blend" id="6_g2yks"]
+[ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="4_uvypl"]
+[ext_resource type="PackedScene" uid="uid://2a67nbwv3l23" path="res://assets/blender_meshes/theme_1/floor/floor_3.tscn" id="5_0uke1"]
+[ext_resource type="PackedScene" uid="uid://c3ac7miygue6l" path="res://assets/blender_meshes/theme_1/floor/floor_4.tscn" id="6_g2yks"]
 [ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/interact/chest/chest.tscn" id="7_au0rs"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ixokd"]
@@ -153,4 +153,4 @@ transform = Transform3D(0.716619, 0, -0.697465, 0, 1, 0, 0.697465, 0, 0.716619, 
 transform = Transform3D(-0.697465, 0, -0.716618, 0, 1, 0, 0.716618, 0, -0.697465, -12.0381, 0.104957, -11.9601)
 
 [node name="chest3" parent="lootboxes" instance=ExtResource("7_au0rs")]
-transform = Transform3D(0.21257, 0, -0.977146, 0, 1, 0, 0.977146, 0, 0.21257, -1.1298, 0.104957, -15.9279)
+transform = Transform3D(0.21257, 0, -0.977146, 0, 1, 0, 0.977146, 0, 0.21257, -0.935343, 0.104957, -15.9279)

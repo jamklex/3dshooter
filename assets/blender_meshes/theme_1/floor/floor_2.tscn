@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://3p4hi7bqtauy"]
+
+[ext_resource type="PackedScene" uid="uid://lndd7yavva6h" path="res://assets/blender_meshes/theme_1/floor/floor_2.blend" id="1_etgf5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_su6xy"]
+size = Vector3(1.99902, 0.0119629, 1.99976)
+
+[node name="floor_2" instance=ExtResource("1_etgf5")]
+
+[node name="CollisionShape3D" parent="16/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_su6xy")

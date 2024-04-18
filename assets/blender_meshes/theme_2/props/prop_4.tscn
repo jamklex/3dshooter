@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://vxc2i27o0hey"]
+
+[ext_resource type="PackedScene" uid="uid://cfqyr31dv3i4n" path="res://assets/blender_meshes/theme_2/props/prop_4.blend" id="1_663lb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fcamh"]
+height = 1.23763
+radius = 0.30467
+
+[node name="prop_4" instance=ExtResource("1_663lb")]
+
+[node name="CollisionShape3D" parent="prop04/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.613923, 0)
+shape = SubResource("CylinderShape3D_fcamh")

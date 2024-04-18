@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://0rpvefhatotu"]
 
-[ext_resource type="PackedScene" uid="uid://dkglb2luk1knp" path="res://assets/blender_meshes/theme_2/props/prop_2.blend" id="1_dlf8h"]
+[ext_resource type="PackedScene" uid="uid://cx2hrckardtlp" path="res://assets/blender_meshes/theme_2/props/prop_2.tscn" id="1_y2hdn"]
 [ext_resource type="Script" path="res://shared/scripts/interactive/lootable.gd" id="2_5y3h8"]
 
 [node name="Lootbox" type="Node3D"]
 
-[node name="prop_2" parent="." instance=ExtResource("1_dlf8h")]
+[node name="prop_2" parent="." instance=ExtResource("1_y2hdn")]
 
 [node name="Lootable" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684246, 0)
