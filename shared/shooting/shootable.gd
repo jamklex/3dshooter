@@ -1,9 +1,9 @@
 extends Node
 class_name Shootable
 
-@export var health:int
+@export var max_health:int
 @export var enemy_type: EnemyType = EnemyType.DUMMY
-var currentHealth:int
+var health:int
 var died:bool = false
 signal healthReachedZero
 signal onDamageTaken(damage:int)
@@ -14,22 +14,22 @@ enum EnemyType {
 }
 
 func resetHealth():
-	currentHealth = health
+	health = max_health
 	died = false
 
 func takeDamage(damage:int):
 	onDamageTaken.emit(damage)
-	currentHealth -= damage
-	onHealthChanged.emit(currentHealth)
-	if currentHealth <= 0 and not died:
+	health -= damage
+	onHealthChanged.emit(health)
+	if health <= 0 and not died:
 		_die()
 		died = true
 		return true
 	return false
 
-func setStartHealth(newHealth:int):
-	health = newHealth
-	currentHealth = newHealth
+func setStartHealth(new_health:int):
+	max_health = new_health
+	health = max_health
 			
 func _die():
 	if healthReachedZero.get_connections().size() > 0:
@@ -38,4 +38,4 @@ func _die():
 		get_parent().queue_free()
 
 func _ready():
-	currentHealth = health
+	health = max_health

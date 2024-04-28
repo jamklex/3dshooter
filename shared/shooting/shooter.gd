@@ -59,7 +59,7 @@ func addWeapon(scenePath:String):
 
 func unlockPlayerInventoryWeapons(playerInventory:Inventory):
 	for itemId in playerInventory.item_ids():
-		if _isWeaponId(itemId):
+		if _is_weapon_id(itemId):
 			_addWeaponForItemId(itemId)
 
 func putBulletsToInventory():
@@ -77,32 +77,29 @@ func removeBullets():
 	for weapon in weapons:
 		weapon.restMagShoots = 0
 
-func checkForMunitionChanged(payload:Array):
-	_checkForMunitionAction(payload)
+func checkForMunitionChanged(item_id:String, new_amount:int):
+	_checkForMunitionAction(item_id, new_amount)
 	
-func checkForWeaponChanged(payload:Array):
-	_checkForWeaponAction(payload)
+func checkForWeaponChanged(item_id:String, new_amount:int):
+	_checkForWeaponAction(item_id, new_amount)
 			
-func _checkForMunitionAction(payload:Array):
-	var itemId = payload[0]
-	if _MUNITION_MAP.has(itemId):
+func _checkForMunitionAction(item_id:String, new_amount:int):
+	if _MUNITION_MAP.has(item_id):
 		_refreshMagInfo()
 
-func _checkForWeaponAction(payload:Array):
-	var itemId = payload[0]
-	var newAmount = int(payload[1])
-	if not _isWeaponId(itemId):
+func _checkForWeaponAction(item_id:String, new_amount:int):
+	if not _is_weapon_id(item_id):
 		return
-	var gotWeapon = newAmount >= 1
-	var weaponAlreadyInitizalized = _hasWeaponWithId(itemId)
-	if gotWeapon and weaponAlreadyInitizalized:
+	var got_weapon = new_amount >= 1
+	var weapon_already_initizalized = _has_weapon_with_id(item_id)
+	if got_weapon and weapon_already_initizalized:
 		return
-	if not gotWeapon and not weaponAlreadyInitizalized:
+	if not got_weapon and not weapon_already_initizalized:
 		return
-	if gotWeapon:
-		_addWeaponForItemId(itemId)
+	if got_weapon:
+		_addWeaponForItemId(item_id)
 	else:
-		_removeWeaponForItemId(itemId)
+		_removeWeaponForItemId(item_id)
 
 func setUseRealMunition(newUseRealMunition:bool):
 	useRealMunition = newUseRealMunition
@@ -113,7 +110,7 @@ func handle():
 	_handleReloadingMag()
 	_handleShooting()
 	
-func _hasWeaponWithId(weaponId:String):
+func _has_weapon_with_id(weaponId:String):
 	return _getWeaponForItemId(weaponId) != null
 	
 func _addWeaponForItemId(weaponId:String):
@@ -162,7 +159,7 @@ func set_bone_rot(boneName:String, ang:Vector3):
 	newpose = newpose.rotated(Vector3(0.0, 0.0, 1.0), ang.z)
 	playerSkeleton.set_bone_global_pose_override(boneId, newpose, 1, true)
 	
-func _isWeaponId(itemId:String):
+func _is_weapon_id(itemId:String):
 	return _ITEM_WEAPON_MAP.has(itemId)
 	
 func _handleReloadingMag():

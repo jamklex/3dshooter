@@ -37,6 +37,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
 mesh = SubResource("BoxMesh_2ldhc")
 
 [node name="shootable" parent="." instance=ExtResource("2_gc1yh")]
-health = 5
+max_health = 20
 
 [connection signal="healthReachedZero" from="shootable" to="." method="hideAndStartRespawnTimer"]
