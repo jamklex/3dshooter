@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" path="res://shared/ui/items_grid/item_infos.gd" id="1_3hxin"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70vmc"]
-bg_color = Color(0.105882, 0.105882, 0.105882, 0.733333)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xeh8e"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+expand_margin_right = 5.0
 
 [node name="ItemInfos" type="Panel"]
 z_index = 1
@@ -16,14 +21,26 @@ offset_bottom = -806.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_70vmc")
 script = ExtResource("1_3hxin")
 
-[node name="name" type="Label" parent="."]
+[node name="container" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 23.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="name" type="Label" parent="container"]
+layout_mode = 2
 text = "item name"
 horizontal_alignment = 1
+
+[node name="desc" type="RichTextLabel" parent="container"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_xeh8e")
+bbcode_enabled = true
+text = "Hier eine Beschreibung"
+fit_content = true
