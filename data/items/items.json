@@ -122,4 +122,10 @@
 			"8": 3
 		}
 	},
+	"19": {
+		"name": "Health module",
+		"desc": "With this module your robot have more health",
+		"image": "res://data/items/img/health-module.png",
+		"type": "MODULE"
+	},
 }

@@ -25,6 +25,7 @@ extends CharacterBody3D
 @onready var health_bar = _ui.get_node("health_bar") as HealthBar
 var sprinting = false
 var _reward_queue = []
+var base_health = 0
 
 func _ready():
 	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
@@ -35,16 +36,16 @@ func _ready():
 	refresh_inventory_output()
 	fade_interaction_feedback(1)
 	QuestLoader.attach_quests(quests_ui)
-	WorldUtil.player.equip_inventory.onAddItem.connect(_shooter.checkForWeaponChanged)
-	WorldUtil.player.equip_inventory.onRemoveItem.connect(_shooter.checkForWeaponChanged)
-	WorldUtil.player.run_inventory.onAddItem.connect(_shooter.checkForMunitionChanged)
-	WorldUtil.player.run_inventory.onRemoveItem.connect(_shooter.checkForMunitionChanged)
+	WorldUtil.player.equip_inventory.onAddItem.connect(_on_equip_inv_changed)
+	WorldUtil.player.equip_inventory.onRemoveItem.connect(_on_equip_inv_changed)
+	WorldUtil.player.run_inventory.onAddItem.connect(_on_run_inv_changed)
+	WorldUtil.player.run_inventory.onRemoveItem.connect(_on_run_inv_changed)
 	_shooter.setUseRealMunition(WorldUtil.player.inMissionMap)
 	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.equip_inventory)
 	_shooter.onShootableDie.connect(WorldUtil.player.onShootableKilled)
 	_shooter.onHitShootable.connect(_showHitMarker)
-	health_bar.init(_shootable.health, _shootable.health)
-	health_bar.init(_shootable.health, _shootable.health)
+	base_health = _shootable.max_health
+	_check_for_health_module(true)
 
 func _exit_tree():
 	_shooter.putBulletsToInventory()
@@ -222,3 +223,22 @@ func _switchUiMenu(selectedTabIndex):
 
 func _on_health_changed(health):
 	health_bar.setHealth(health)
+
+func _on_equip_inv_changed(payload:Array):
+	var item_id = payload[0]
+	var new_amount = int(payload[1])
+	_shooter.checkForWeaponChanged(item_id,new_amount)
+	_check_for_health_module()
+	
+func _on_run_inv_changed(payload:Array):
+	var item_id = payload[0]
+	var new_amount = int(payload[1])
+	_shooter.checkForMunitionChanged(item_id, new_amount)
+	
+func _check_for_health_module(first_check:bool=false):
+	var new_max_health = base_health
+	new_max_health += WorldUtil.player.equip_inventory.count("19") * 10
+	_shootable.max_health = new_max_health
+	if not WorldUtil.player.inMissionMap or first_check:
+		_shootable.resetHealth()
+	health_bar.init(_shootable.health, _shootable.max_health)
