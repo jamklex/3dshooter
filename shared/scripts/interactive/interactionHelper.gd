@@ -24,4 +24,5 @@ static func control_key_for_event(control_event: String) -> String:
 		return ""
 	var event = action_events[0] as InputEvent
 	var relevant_key = event.as_text().split(" (")[0]
+	relevant_key = relevant_key.replace("Escape", "Esc")
 	return "[" + relevant_key + "]"

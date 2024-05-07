@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cugfwk4lt1bdd"]
+
+[ext_resource type="Script" path="res://shared/ui/control-segment.gd" id="1_os4rw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bb52c"]
+draw_center = false
+
+[node name="Control-segment" type="Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 110)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1820.0
+offset_bottom = -980.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bb52c")
+script = ExtResource("1_os4rw")
+
+[node name="img" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 75.0
+offset_bottom = 75.0
+expand_mode = 1
+stretch_mode = 4
+
+[node name="key" type="Label" parent="."]
+layout_mode = 2
+offset_top = 75.0
+offset_right = 75.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.719162, 0.500693, 0.278816, 1)
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1

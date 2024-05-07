@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://nmsmltr0w7dn"]
+[gd_scene load_steps=11 format=3 uid="uid://nmsmltr0w7dn"]
 
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="1_hf0q4"]
 [ext_resource type="Texture2D" uid="uid://cmxy0f6ug5uie" path="res://assets/models/player/hitmarker.png" id="1_ofn52"]
+[ext_resource type="PackedScene" uid="uid://cugfwk4lt1bdd" path="res://shared/ui/control-segment.tscn" id="4_u8lla"]
+[ext_resource type="Texture2D" uid="uid://bpeijl7v72wod" path="res://shared/ui/img/backpack.png" id="5_3igrs"]
+[ext_resource type="Texture2D" uid="uid://cejarwx6x3djb" path="res://shared/ui/img/cog.png" id="6_33220"]
 [ext_resource type="PackedScene" uid="uid://1wrxq464mod0" path="res://shared/ui/health_bar/health_bar.tscn" id="7_7rtai"]
+[ext_resource type="Texture2D" uid="uid://cbtyvry7ty7m2" path="res://shared/ui/img/pay-money.png" id="7_cwwe2"]
+[ext_resource type="Texture2D" uid="uid://bkvoes8iaqhk6" path="res://shared/ui/img/scroll-unfurled.png" id="7_hx532"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_13omo"]
 bg_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
@@ -185,3 +190,41 @@ offset_top = -66.0
 offset_right = 259.0
 offset_bottom = -17.0
 grow_vertical = 0
+
+[node name="controls" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 268.0
+offset_top = -100.0
+offset_right = -403.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="inventory" parent="controls" instance=ExtResource("4_u8lla")]
+clip_contents = false
+layout_mode = 2
+key = "inventory"
+img = ExtResource("5_3igrs")
+
+[node name="questlog" parent="controls" instance=ExtResource("4_u8lla")]
+clip_contents = false
+layout_mode = 2
+key = "questlog"
+img = ExtResource("7_hx532")
+
+[node name="missions" parent="controls" instance=ExtResource("4_u8lla")]
+clip_contents = false
+layout_mode = 2
+key = "missions"
+img = ExtResource("7_cwwe2")
+
+[node name="menu" parent="controls" instance=ExtResource("4_u8lla")]
+clip_contents = false
+layout_mode = 2
+key = "menu"
+img = ExtResource("6_33220")
