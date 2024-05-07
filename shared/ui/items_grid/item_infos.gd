@@ -30,4 +30,4 @@ func _process(delta):
 	global_position.y = get_new_pos(mouse_y, size.y * height_skew, window_size.y)
 
 func get_new_pos(current, buffer, total) -> int:
-	return current + padding - max(0, current + buffer - total)
+	return current + padding - max(0, current + buffer + padding - total)
