@@ -11,8 +11,3 @@ extends Panel
 func _ready():
 	key_space.text = InteractionHelper.control_key_for_event(key)
 	img_space.texture = img
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
