@@ -23,6 +23,7 @@ sky_material = SubResource("PanoramaSkyMaterial_wceub")
 [sub_resource type="Environment" id="Environment_tbx6h"]
 background_mode = 2
 sky = SubResource("Sky_1l0ip")
+sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.277528, 0.277528, 0.277528, 1)
 
