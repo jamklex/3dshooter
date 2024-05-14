@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Enemy
 
-const DAMAGE:int = 3
+var damage:int = 3
 const SPEED = 3.0
 const ATTACK_RANGE = 1.7
 const ROUTINE_RANGE = 2.5
@@ -23,10 +23,12 @@ var routine_pos_use_time = 10000
 var rng = RandomNumberGenerator.new()
 @onready var sight_cone = $visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/sightCone
 @onready var sight_raycast = $visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/raycast
-
+@onready var skin: MeshInstance3D = $visuals/mixamo_base/Armature/Skeleton3D/Beta_Surface
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+enum ENEMY_TYPE {WEAK_SQUISHY, STRONG_SQUISHY, WEAK_TANK, STRONG_TANK}
 
 func _wannaJump():
 	return false
@@ -46,6 +48,7 @@ func _ready():
 	state_machine = _anim_tree.get("parameters/playback")
 	start_pos = global_position
 	rng.randomize()
+	process_enemy_type_attributes(rng.randi_range(0, ENEMY_TYPE.size()-1))
 	
 func _get_player():
 	if WorldUtil.player and WorldUtil.player.body:
@@ -113,7 +116,7 @@ func _physics_process(delta):
 func _hit():
 	if _is_in_attack_range():
 		var shootable = player.get_node("shootable") as Shootable
-		shootable.takeDamage(DAMAGE)
+		shootable.takeDamage(damage)
 		
 func _find_player(nodes:Array[Node3D]):
 	for node in nodes:
@@ -141,3 +144,27 @@ func check_sight():
 
 func _on_damage_taken(damage):
 	_set_player_spotted_to_all_enemies()
+
+func process_enemy_type_attributes(enemyType: ENEMY_TYPE):
+	match enemyType:
+		ENEMY_TYPE.WEAK_SQUISHY:
+			damage = 3
+			_shootable.health = 10
+			_set_color(Color.SKY_BLUE)
+		ENEMY_TYPE.STRONG_SQUISHY:
+			damage = 6
+			_shootable.health = 12
+			_set_color(Color.LEMON_CHIFFON)
+		ENEMY_TYPE.WEAK_TANK:
+			damage = 4
+			_shootable.health = 20
+			_set_color(Color.INDIAN_RED)
+		ENEMY_TYPE.STRONG_TANK:
+			damage = 8
+			_shootable.health = 30
+			_set_color(Color.PURPLE)
+
+func _set_color(color: Color):
+	var new_material = StandardMaterial3D.new() as StandardMaterial3D
+	new_material.albedo_color = color
+	skin.set_surface_override_material(0, new_material)
