@@ -83,8 +83,6 @@ func _isConditionFulfilled(action:String, result:bool, payload:Array):
 func _closeDialog():
 	onExit.emit()
 	WorldUtil.closeCurrentWindow()
-	#dialogTracker.call(false)
-	#queue_free()
 
 func _clearAnswersContainer():
 	for child in answersContainer.get_children():
