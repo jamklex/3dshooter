@@ -112,27 +112,15 @@ func fade_interaction_feedback(rate = 0.5 as float, reset = false as bool):
 func handle_show_inventory():
 	if !Input.is_action_just_pressed("inventory"):
 		return
-	if WorldUtil.currentWindow:
-		return
-	#refresh_inventory_output()
-	#inventory_output.visible = !inventory_output.visible
 	_switchUiMenu(0)
 
 func handle_show_quests():
 	if !Input.is_action_just_pressed("questlog"):
 		return
-	if WorldUtil.currentWindow:
-		return
-	QuestLoader.attach_quests(quests_ui)
 	_switchUiMenu(1)
 
 func handle_show_menu():
 	if !Input.is_action_just_pressed("menu"):
-		return
-	if WorldUtil.currentWindow and not WorldUtil.currentDialog:
-		WorldUtil.closeCurrentWindow()
-		return
-	if WorldUtil.currentDialog:
 		return
 	_switchUiMenu(2)
 
@@ -204,22 +192,20 @@ func _on_player_died():
 	quitBtn.pressed.connect(WorldUtil.quitGame)
 	death_screen.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
+
 func _showHitMarker(lastHit):
 	hitmarker.visible = true
 	hitmarker.modulate = Color(255,0,0) if lastHit else Color(255,255,255)
 	await get_tree().create_timer(0.1).timeout
 	hitmarker.visible = false
-	
+
 func _switchUiMenu(selectedTabIndex):
 	var menu = WorldUtil.currentWindow
-	if menu and (menu.menuTab.current_tab == selectedTabIndex or selectedTabIndex == menu.menuTab.get_child_count()-1):
+	if not menu:
+		menu = WorldUtil.showMenu()
+		menu.menuTab.current_tab = selectedTabIndex
+	elif menu.menuTab and (menu.menuTab.current_tab == selectedTabIndex or selectedTabIndex == menu.menuTab.get_child_count()-1):
 		WorldUtil.closeCurrentWindow()
-	elif not menu:
-		WorldUtil.showMenu()
-		#if not menu:
-			#menu = WorldUtil.showMenu()
-		#menu.menuTab.current_tab = selectedTabIndex
 
 func _on_health_changed(health):
 	health_bar.setHealth(health)
@@ -229,12 +215,12 @@ func _on_equip_inv_changed(payload:Array):
 	var new_amount = int(payload[1])
 	_shooter.checkForWeaponChanged(item_id,new_amount)
 	_check_for_health_module()
-	
+
 func _on_run_inv_changed(payload:Array):
 	var item_id = payload[0]
 	var new_amount = int(payload[1])
 	_shooter.checkForMunitionChanged(item_id, new_amount)
-	
+
 func _check_for_health_module(first_check:bool=false):
 	var new_max_health = base_health
 	new_max_health += WorldUtil.player.equip_inventory.count("19") * 10

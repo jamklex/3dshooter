@@ -1,6 +1,6 @@
 extends Control
 
-@onready var menuTab = get_node("tabs") as TabContainer
+@onready var menuTab = get_node("menu/tabs") as TabContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
