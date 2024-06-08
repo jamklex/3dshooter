@@ -55,6 +55,8 @@ func _exit_tree():
 
 func _physics_process(delta):
 	handle_show_menu()
+	handle_show_inventory()
+	handle_show_quests()
 	if WorldUtil.currentWindow:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		_ui.visible = false
@@ -71,8 +73,6 @@ func _physics_process(delta):
 		sprinting = WorldUtil.player.equip_inventory.check("9", 1)
 
 	handle_interaction()
-	handle_show_inventory()
-	handle_show_quests()
 	handle_reward_queue()
 	if _shooter:
 		_shooter.handle()
@@ -176,8 +176,8 @@ func add_reward_to_queue(reward: DropItem):
 	_reward_queue.push_back(reward)
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion: # or controller right stick
-		var yRot = deg_to_rad(event.relative.x*mouse_sensitivity)
+	if event is InputEventMouseMotion:
+		var yRot = deg_to_rad(event.relative.x * mouse_sensitivity)
 		rotate_y(-yRot)
 		if not _shooter.aiming:
 			_visuals.rotate_y(yRot)
@@ -204,8 +204,11 @@ func _switchUiMenu(selectedTabIndex):
 	if not menu:
 		menu = WorldUtil.showMenu()
 		menu.menuTab.current_tab = selectedTabIndex
-	elif menu.menuTab and (menu.menuTab.current_tab == selectedTabIndex or selectedTabIndex == menu.menuTab.get_child_count()-1):
-		WorldUtil.closeCurrentWindow()
+	else:
+		if menu.menuTab.current_tab == selectedTabIndex or selectedTabIndex == menu.menuTab.get_child_count()-1:
+			WorldUtil.closeCurrentWindow()
+		else:
+			menu.menuTab.current_tab = selectedTabIndex
 
 func _on_health_changed(health):
 	health_bar.setHealth(health)
@@ -213,7 +216,7 @@ func _on_health_changed(health):
 func _on_equip_inv_changed(payload:Array):
 	var item_id = payload[0]
 	var new_amount = int(payload[1])
-	_shooter.checkForWeaponChanged(item_id,new_amount)
+	_shooter.checkForWeaponChanged(item_id, new_amount)
 	_check_for_health_module()
 
 func _on_run_inv_changed(payload:Array):
