@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://bgoxct3yelvnj"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_thtun"]
-[ext_resource type="PackedScene" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="2_bubp4"]
+[ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="2_bubp4"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="4_3bl1v"]
-[ext_resource type="PackedScene" path="res://assets/blender_meshes/theme_1/walls/wall_7.tscn" id="5_cv3ud"]
+[ext_resource type="PackedScene" uid="uid://d1odjsuew4od0" path="res://assets/blender_meshes/theme_1/walls/wall_7.tscn" id="5_cv3ud"]
 [ext_resource type="PackedScene" uid="uid://jc0lcn4nnvxd" path="res://assets/blender_meshes/theme_1/lights/light_1.tscn" id="6_ghprq"]
 [ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/interact/chest/chest.tscn" id="7_jr427"]
-[ext_resource type="PackedScene" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="7_qtdhh"]
+[ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="7_qtdhh"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cp138"]
 vertices = PackedVector3Array(-1.31563, 0.0830964, 5.12356, 1.18437, 0.0830964, 5.12356, 1.43437, 0.0830964, 0.873561, -1.31563, 0.0830964, -9.87644, 1.43437, 0.0830964, 0.873561, 5.18437, 0.0830964, 0.873561, 5.18437, 0.0830964, -9.87644, -1.31563, 0.0830964, -9.87644)

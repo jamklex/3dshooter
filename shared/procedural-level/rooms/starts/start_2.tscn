@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dekmh6nb8bm48"]
+[gd_scene load_steps=16 format=3 uid="uid://dekmh6nb8bm48"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/start-room.gd" id="1_ysyqo"]
 [ext_resource type="PackedScene" uid="uid://kcwaq8lf07dc" path="res://assets/blender_meshes/theme_2/floors/floor_1.tscn" id="2_yjy8w"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="7_esb3n"]
 [ext_resource type="PackedScene" uid="uid://bqqvnp6txun7l" path="res://assets/blender_meshes/theme_2/pillars/light_pilar.tscn" id="8_xqhfq"]
 [ext_resource type="Texture2D" uid="uid://cblq3lu214qwu" path="res://assets/bg/start2.png" id="9_k1gxg"]
+[ext_resource type="PackedScene" uid="uid://dq7k23rt2b1yq" path="res://assets/models/interact/airvent/airvent.tscn" id="10_g5fqf"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_40lrr"]
 vertices = PackedVector3Array(6.57924, 0.590819, 2.75, 6.82924, 0.590819, 3.25, 7.82924, 0.590819, 3.25, 10.0792, 0.590819, -0.75, 11.5792, 0.590819, 9.75, 11.5792, 0.590819, 9, 10.8292, 0.590819, 8.5, 9.32924, 0.590819, 9.75, 1.32924, 0.590819, 8.25, 0.329243, 0.590819, 9.25, 0.329243, 0.590819, 9.75, 2.82924, 0.590819, 9.75, 5.32924, 0.590819, -6.25, 4.07924, 0.590819, -4.75, 1.82924, 0.590819, -0.5, 6.57924, 0.590819, 2.75, 10.0792, 0.590819, -0.75, 6.82924, 0.590819, -6, 1.32924, 0.590819, -0.25, 3.07924, 0.590819, 4.25, 4.07924, 0.590819, 3.25, 1.82924, 0.590819, -0.5, 1.32924, 0.590819, -4.75, 1.32924, 0.590819, -1.75, 1.82924, 0.590819, -1.5, 4.07924, 0.590819, -4.75, 10.0792, 0.590819, -1.5, 10.8292, 0.590819, -1.75, 10.8292, 0.590819, -4.75, 8.32924, 0.590819, -4.75, 6.82924, 0.590819, -14.25, 5.32924, 0.590819, -14.25, 5.32924, 0.590819, -6.25, 6.82924, 0.590819, -6, 7.82924, 0.590819, 3.25, 9.32924, 0.590819, 4.75, 10.8292, 0.590819, -0.25, 10.0792, 0.590819, -0.75, 9.32924, 0.590819, 4.75, 9.32924, 0.590819, 9.75, 10.8292, 0.590819, 8.5, 10.8292, 0.590819, -0.25, 10.0792, 0.590819, -0.75, 10.0792, 0.590819, -1.5, 8.32924, 0.590819, -4.75, 6.82924, 0.590819, -6, 1.32924, 0.590819, 8.25, 2.82924, 0.590819, 9.75, 3.07924, 0.590819, 4.25, 1.32924, 0.590819, -0.25, 4.07924, 0.590819, -4.75, 1.82924, 0.590819, -1.5, 1.82924, 0.590819, -0.5, 1.82924, 0.590819, -0.5, 4.07924, 0.590819, 3.25, 6.57924, 0.590819, 2.75, 7.32924, 0.590819, 5.5, 7.07924, 0.590819, 4.75, 5.07924, 0.590819, 4.75, 4.57924, 0.590819, 5.25)
@@ -26,6 +27,9 @@ sky = SubResource("Sky_1l0ip")
 sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.277528, 0.277528, 0.277528, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cksq"]
+albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [node name="Start2" type="Node3D"]
 script = ExtResource("1_ysyqo")
@@ -200,3 +204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -15)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tbx6h")
+
+[node name="airvent" parent="." instance=ExtResource("10_g5fqf")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.4435, 2.13752, -3.75274)
+material = SubResource("StandardMaterial3D_2cksq")
