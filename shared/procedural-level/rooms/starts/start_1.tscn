@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://djt65pti7uct6"]
+[gd_scene load_steps=19 format=3 uid="uid://djt65pti7uct6"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/start-room.gd" id="1_146wm"]
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="2_b81ij"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="11_5giik"]
 [ext_resource type="Texture2D" uid="uid://dcbcbfvfixlmb" path="res://assets/bg/start1.png" id="11_q3kp3"]
 [ext_resource type="PackedScene" uid="uid://dq7k23rt2b1yq" path="res://assets/models/interact/airvent/airvent.tscn" id="12_go86j"]
+[ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="13_64elu"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_uudde"]
 vertices = PackedVector3Array(3.8564, 0.456849, -7.25, 3.8564, 0.456849, -4.75, 6.1064, 0.456849, -4.75, 6.6064, 0.456849, -7.5, 6.6064, 0.456849, -4.25, 6.6064, 0.456849, 7.5, 8.3564, 0.456849, 7.5, 8.3564, 0.456849, -15.5, 6.6064, 0.456849, -7.5, 6.1064, 0.456849, -4.75, 6.6064, 0.456849, -4.25, 8.3564, 0.456849, -15.5, 8.3564, 0.456849, -15.5, 6.6064, 0.456849, -15.5, 6.6064, 0.456849, -7.5, 1.3564, 0.456849, -4.75, 3.8564, 0.456849, -4.75, 3.8564, 0.456849, -7.25, -5.3936, 0.456849, -7.25, -5.3936, 0.456849, -3.25, -4.6436, 0.456849, -3, 1.3564, 0.456849, -4.75, 3.8564, 0.456849, -7.25, -4.6436, 0.456849, -3, -4.6436, 0.456849, -2, 0.8564, 0.456849, -2, 0.8564, 0.456849, -4.25, -4.6436, 0.456849, -3, 0.8564, 0.456849, -4.25, 1.3564, 0.456849, -4.75, 0.8564, 0.456849, -2, -4.6436, 0.456849, -2, -4.6436, 0.456849, -1, 0.8564, 0.456849, -2, -4.6436, 0.456849, -1, -5.3936, 0.456849, -0.75, -5.3936, 0.456849, 5.5, 0.8564, 0.456849, 5.25)
@@ -30,7 +31,7 @@ sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.270222, 0.270222, 0.270222, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jf6xm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr8wu"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [node name="start_2" type="Node3D"]
@@ -267,4 +268,7 @@ environment = SubResource("Environment_1qxyl")
 
 [node name="airvent" parent="." instance=ExtResource("12_go86j")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.60932, 2.018, -2.03972)
-material = SubResource("StandardMaterial3D_jf6xm")
+material = SubResource("StandardMaterial3D_cr8wu")
+
+[node name="SpawnPoint" parent="." instance=ExtResource("13_64elu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.210145, 0.0244629, 3.5629)

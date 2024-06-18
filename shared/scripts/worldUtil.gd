@@ -216,6 +216,12 @@ func showMenu():
 func respawn():
 	player.run_inventory = Inventory.empty()
 	teleportToLowerShip()
+	
+func setCurrentWindow(new_current_window):
+	if currentWindow:
+		return
+	currentWindow = new_current_window
+	add_child(currentWindow)
 
 func closeCurrentWindow():
 	if not currentWindow:

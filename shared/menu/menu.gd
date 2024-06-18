@@ -1,4 +1,5 @@
 extends Control
+class_name Menu
 
 @onready var menuTab = get_node("menu/tabs") as TabContainer
 

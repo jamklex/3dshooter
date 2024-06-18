@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://mlsm0t4oqsrl"]
 
-[ext_resource type="PackedScene" path="res://assets/blender_meshes/theme_1/walls/wall_3.tscn" id="1_apbcg"]
+[ext_resource type="PackedScene" uid="uid://jsavlahl4xoq" path="res://assets/blender_meshes/theme_1/walls/wall_3.tscn" id="1_apbcg"]
 [ext_resource type="Script" path="res://shared/scripts/interactive/interactable.gd" id="1_r2f1j"]
 
 [node name="Return" type="Node3D"]
@@ -8,10 +8,10 @@
 [node name="wall_3" parent="." instance=ExtResource("1_apbcg")]
 
 [node name="Interactable" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.105587, 1.80139, -0.000816494)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0458792, 1.80139, -0.000816494)
 layers = 0
 use_collision = true
-size = Vector3(0.517181, 0.661987, 0.610962)
+size = Vector3(0.636597, 0.661987, 0.610962)
 script = ExtResource("1_r2f1j")
 enable_highlight = false
 action = 2

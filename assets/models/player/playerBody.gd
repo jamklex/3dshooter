@@ -200,7 +200,9 @@ func _showHitMarker(lastHit):
 	hitmarker.visible = false
 
 func _switchUiMenu(selectedTabIndex):
-	var menu = WorldUtil.currentWindow
+	var menu = WorldUtil.currentWindow as Menu
+	if WorldUtil.currentWindow and not menu:
+		return
 	if not menu:
 		menu = WorldUtil.showMenu()
 		menu.menuTab.current_tab = selectedTabIndex

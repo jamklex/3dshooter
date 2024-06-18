@@ -88,8 +88,7 @@ func execute_action(_action: Interactable.Actions):
 
 func initiate_airvent():
 	var player = get_player()
-	WorldUtil.add_child(Trade.new_instance(player.run_inventory, Inventory.empty(), exit_airvent))
-	player.body.setInDialog(true)
+	WorldUtil.setCurrentWindow(Trade.new_instance(player.run_inventory, Inventory.empty(), exit_airvent))
 
 func exit_airvent(_action: Trade.Actions, params: Array = []):
 	var player = get_player()
@@ -100,12 +99,12 @@ func exit_airvent(_action: Trade.Actions, params: Array = []):
 			if airlock_inv.is_empty():
 				set_interactable(true)
 			airlock_inv.moveAllItems(player.store_inventory)
-			player.body.setInDialog(false)
+			WorldUtil.closeCurrentWindow()
 			player.body.refresh_inventory_output()
 		Trade.Actions.CANCEL_PRESSED:
 			if disable_on_interact:
 				set_interactable(true)
-			player.body.setInDialog(false)
+			WorldUtil.closeCurrentWindow()
 		_:
 			return false
 	return true
