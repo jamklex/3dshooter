@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://qrlxjkhlahv1"]
+[gd_scene load_steps=12 format=3 uid="uid://qrlxjkhlahv1"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_ir3sp"]
 [ext_resource type="PackedScene" uid="uid://dfy1xb3n0tnm5" path="res://assets/blender_meshes/theme_1/walls/wall_5.tscn" id="1_wjhaw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://2a67nbwv3l23" path="res://assets/blender_meshes/theme_1/floor/floor_3.tscn" id="5_0uke1"]
 [ext_resource type="PackedScene" uid="uid://c3ac7miygue6l" path="res://assets/blender_meshes/theme_1/floor/floor_4.tscn" id="6_g2yks"]
 [ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/interact/chest/chest.tscn" id="7_au0rs"]
+[ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="10_q231y"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ixokd"]
 vertices = PackedVector3Array(-11.7061, 0.43924, -8.65234, -11.7061, 0.43924, -12.1523, -14.2061, 0.43924, -12.1523, -13.9561, 0.43924, -7.65234, -2.20609, 0.43924, 0.597656, 0.29391, 0.43924, 0.597656, -0.20609, 0.43924, -6.40234, -2.45609, 0.43924, -7.65234, -11.2061, 0.43924, -8.15234, -11.7061, 0.43924, -8.65234, -13.9561, 0.43924, -7.65234, -0.20609, 0.43924, -9.40234, 0.29391, 0.43924, -9.65234, 0.29391, 0.43924, -16.1523, -2.20609, 0.43924, -16.1523, -2.20609, 0.43924, -8.65234, 0.29391, 0.43924, 0.597656, 0.29391, 0.43924, -6.15234, -0.20609, 0.43924, -6.40234, -2.45609, 0.43924, -7.65234, -2.70609, 0.43924, -8.15234, -11.2061, 0.43924, -8.15234, -13.9561, 0.43924, -7.65234, -2.70609, 0.43924, -8.15234, -2.45609, 0.43924, -7.65234, -0.20609, 0.43924, -6.40234, -0.20609, 0.43924, -9.40234, -2.20609, 0.43924, -8.65234)
@@ -154,3 +155,9 @@ transform = Transform3D(-0.697465, 0, -0.716618, 0, 1, 0, 0.716618, 0, -0.697465
 
 [node name="chest3" parent="lootboxes" instance=ExtResource("7_au0rs")]
 transform = Transform3D(0.21257, 0, -0.977146, 0, 1, 0, 0.977146, 0, 0.21257, -0.935343, 0.104957, -15.9279)
+
+[node name="item" parent="." instance=ExtResource("10_q231y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.223625, -10.0898)
+
+[node name="item2" parent="." instance=ExtResource("10_q231y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.223625, -10.0898)

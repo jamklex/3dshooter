@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgoxct3yelvnj"]
+[gd_scene load_steps=10 format=3 uid="uid://bgoxct3yelvnj"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_thtun"]
 [ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="2_bubp4"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://jc0lcn4nnvxd" path="res://assets/blender_meshes/theme_1/lights/light_1.tscn" id="6_ghprq"]
 [ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/interact/chest/chest.tscn" id="7_jr427"]
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="7_qtdhh"]
+[ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="8_ap3ue"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cp138"]
 vertices = PackedVector3Array(-1.31563, 0.0830964, 5.12356, 1.18437, 0.0830964, 5.12356, 1.43437, 0.0830964, 0.873561, -1.31563, 0.0830964, -9.87644, 1.43437, 0.0830964, 0.873561, 5.18437, 0.0830964, 0.873561, 5.18437, 0.0830964, -9.87644, -1.31563, 0.0830964, -9.87644)
@@ -129,3 +130,12 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.837923,
 
 [node name="chest5" parent="lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 4.5, 0, 0.298498)
+
+[node name="item" parent="." instance=ExtResource("8_ap3ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.148915, -7.5)
+
+[node name="item2" parent="." instance=ExtResource("8_ap3ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0.148915, -5.5)
+
+[node name="item3" parent="." instance=ExtResource("8_ap3ue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0.148915, 0)
