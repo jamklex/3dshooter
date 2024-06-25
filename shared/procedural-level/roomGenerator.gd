@@ -14,6 +14,7 @@ var _total_enemies: int = 0
 var _max_enemies: int = 0
 var _initial_enemies: int = 0
 var _additional_items: Dictionary = {}
+var _next_spawn_time:float
 
 static func from_seed(_seed: String) -> ProceduralRoomGenerator:
 	print("ProceduralRoomGenerator with seed: " + _seed)
@@ -41,8 +42,19 @@ func _process(_delta):
 		print("rooms: " + str(_room_counter))
 		if _room_counter > 1:
 			spawn_enemies(_initial_enemies)
-			spawn_items(_additional_items)
+			spawn_pickable_items(_additional_items)
+			set_container_items(_additional_items)
 			set_generated(true)
+			_next_spawn_time = _next_random_spawn_time()
+	else:
+		if _total_enemies >= _max_enemies:
+			return
+		if _next_spawn_time and Time.get_unix_time_from_system() >= _next_spawn_time:
+			spawn_enemies(_rng.randi_range(1, _max_enemies - _total_enemies))
+			_next_spawn_time = _next_random_spawn_time()
+
+func _next_random_spawn_time():
+	return Time.get_unix_time_from_system() + _rng.randi_range(3,10)
 
 func spawn_enemies(amount):
 	if amount <= 0 or _total_enemies >= _max_enemies:
@@ -57,7 +69,7 @@ func spawn_enemies(amount):
 		if _total_enemies >= _max_enemies:
 			break
 
-func spawn_items(itemDict: Dictionary):
+func spawn_pickable_items(itemDict: Dictionary):
 	var items = get_tree().get_nodes_in_group("items").filter(func(i): return i is Pickable)
 	for item in items:
 		item.setVisible(false)
@@ -69,9 +81,16 @@ func spawn_items(itemDict: Dictionary):
 				break
 			var foundItem = foundItems.pop_at(_rng.randi_range(0, foundItems.size()-1))
 			foundItem.setVisible(true)
-	var insivible_items = items.filter(func(i): return !i.visible)
-	for item in insivible_items:
+			itemDict[item] -= 1
+	var invisible_items = items.filter(func(i): return !i.visible)
+	for item in invisible_items:
 		item.queue_free()
+		
+func set_container_items(itemDict: Dictionary):
+	pass
+	#var lootables = get_tree().get_nodes_in_group("lootable")
+	#for id in itemDict:
+		#var amount = itemDict[itemKey]
 
 func is_generated() -> bool:
 	return _done

@@ -72,6 +72,9 @@ func load_saved():
 		ui_wrapper.link(mission)
 		active_missions.add_child(ui_wrapper)
 		_known_seeds.push_back(mission.getSeed())
+		
+func get_random_todo_mission() -> Mission:
+	return WorldUtil.getSavedMissions().filter(func (m: Mission): return !m.allDone()).pick_random()
 
 func reload():
 	print("reload")
@@ -82,9 +85,13 @@ func isReadyForMission() -> bool:
 	return true
 
 func _on_start_mission_pressed():
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	WorldUtil.teleportToMissionMap([rng.seed,5])
+	var random_mission = get_random_todo_mission()
+	if not random_mission:
+		return
+	var max_enemies = random_mission.getTodoEnemies()
+	var initial_enemies = 5 if max_enemies >= 5 else max_enemies
+	var additionalItems = random_mission.getTodoItems()
+	WorldUtil.teleportToMissionMap([random_mission.getSeed(),initial_enemies, max_enemies, additionalItems])
 	WorldUtil.closeCurrentWindow()
 
 func _on_close_pressed():
