@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://cnr47t22qg4mr" path="res://assets/blender_meshes/theme_3/props/light_1.tscn" id="9_4624y"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0xjbm"]
-vertices = PackedVector3Array(-5.58794, 0.415871, 0.243929, -5.33794, 0.415871, 4.99393, -4.83794, 0.415871, 4.49393, -5.58794, 0.415871, 0.243929, -4.83794, 0.415871, 4.49393, -2.83794, 0.415871, 4.49393, -5.58794, 0.415871, 0.243929, -2.83794, 0.415871, 4.49393, -2.33794, 0.415871, 4.99393, -2.33794, 0.415871, 4.99393, -2.83794, 0.415871, 7.24393, 5.41206, 0.415871, 7.24393, -2.33794, 0.415871, 4.99393, 5.41206, 0.415871, 7.24393, 5.66206, 0.415871, 3.49393, 5.41206, 0.415871, -3.50607, -5.33794, 0.415871, -3.50607, -5.58794, 0.415871, 0.243929, -4.58794, 2.16587, 5.74393, -4.33794, 2.16587, 6.49393, -3.58794, 2.16587, 6.49393, -3.58794, 2.16587, 5.49393)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9), PackedInt32Array(17, 16, 12), PackedInt32Array(12, 16, 15), PackedInt32Array(12, 15, 14), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21)]
+vertices = PackedVector3Array(-5.58794, 0.415871, 0.24393, -5.33794, 0.415871, 4.74393, -3.08794, 0.415871, 4.49393, -5.08794, 0.415871, -1.25607, -2.33794, 0.415871, 5.99393, 5.41206, 0.415871, 7.24393, 5.66206, 0.415871, 3.49393, 5.41206, 0.415871, -3.50607, -5.33794, 0.415871, -3.50607, -5.08794, 0.415871, -1.25607, -5.08794, 0.415871, -1.25607, -3.08794, 0.415871, 4.49393, -2.33794, 0.415871, 5.99393, -2.33794, 0.415871, 5.99393, -2.58794, 0.415871, 7.24393, 5.41206, 0.415871, 7.24393, -4.58794, 3.41587, 5.74393, -4.33794, 3.41587, 6.49393, -3.58794, 3.41587, 6.49393, -3.58794, 3.41587, 5.49393)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(9, 8, 4), PackedInt32Array(4, 8, 7), PackedInt32Array(4, 7, 6), PackedInt32Array(4, 6, 5), PackedInt32Array(10, 12, 11), PackedInt32Array(15, 14, 13), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19)]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2d4x"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mijxi"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qpld3"]
@@ -137,10 +137,10 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 4, 0, 7.
 
 [node name="airvent" parent="NavigationRegion3D/props" instance=ExtResource("5_kqqsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.89988, 2, -2.17468)
-material = SubResource("StandardMaterial3D_g2d4x")
+material = SubResource("StandardMaterial3D_mijxi")
 
 [node name="Return" parent="NavigationRegion3D/props" instance=ExtResource("7_pfvxh")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -4, 0, 6)
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -4, 0, 6)
 
 [node name="Light1" parent="NavigationRegion3D/props" instance=ExtResource("9_4624y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.85473, 2, -4.01912)
