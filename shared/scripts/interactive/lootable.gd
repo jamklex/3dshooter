@@ -14,6 +14,7 @@ const POPUP_MESSAGE_FORMAT = "Open Container"
 @export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_message: String
 const FEEDBACK_MESSAGE_FORMAT = "Collected: <ITEM>"
 @export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
+var loot: DropItem
 
 func _ready():
 	if material:
@@ -27,8 +28,12 @@ func _ready():
 func can_interact():
 	return interactable
 
+func setDropItem(dropItem: DropItem):
+	loot = dropItem
+
 func interact(player: Player):
-	var loot = get_random_item() as DropItem
+	if not loot:
+		loot = get_random_item()
 	InteractionHelper.add_drop(player, loot)
 	if await open_animation():
 		interactable = false

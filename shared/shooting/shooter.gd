@@ -310,7 +310,9 @@ func _shoot():
 	currentWeapon.muzzleFlare.restart()
 	for i in range(currentWeapon.projecticles):
 		var shootable = _raycastForShootable()
-		if not shootable or shootable.died:
+		if not shootable:
+			continue
+		if shootable is Enemy and shootable.died:
 			continue
 		var criticalHit = false
 		if shootable is CharacterBody3D:

@@ -7,7 +7,7 @@
 
 [node name="prop_2" parent="." instance=ExtResource("1_y2hdn")]
 
-[node name="Lootable" type="CSGBox3D" parent="."]
+[node name="Lootable" type="CSGBox3D" parent="." groups=["lootable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.684246, 0)
 layers = 0
 use_collision = true

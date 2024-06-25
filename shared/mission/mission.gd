@@ -159,3 +159,17 @@ func toDict() -> Dictionary:
 		"rewards": rewards.map(func (i: InventoryItem): return i.toDict()),
 		"over": over
 	}
+
+func getTodoItems():
+	var todo_item_steps = resources.filter(func (s: MissionStep): return !s.isDone())
+	var todo_items_dict = {}
+	for todo_item_step in todo_item_steps:
+		todo_items_dict[todo_item_step.id] = todo_item_step.getRest()
+	return todo_items_dict
+	
+func getTodoEnemies() -> int:
+	var todo_enemy_steps = kills.filter(func (s: MissionStep): return !s.isDone())
+	var todo_enemies_count = 0
+	for todo_enemy_step in todo_enemy_steps:
+		todo_enemies_count = todo_enemy_step.getRest()
+	return todo_enemies_count

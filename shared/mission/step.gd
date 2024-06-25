@@ -22,6 +22,9 @@ static func from(_type: MissionStepType, _id: String, _total: int, _count: int =
 
 func isDone() -> bool:
 	return getCurrentCount() >= total
+	
+func getRest() -> int:
+	return total - getCurrentCount()
 
 func getCurrentCount() -> int:
 	if type == MissionStepType.RESOURCE:
