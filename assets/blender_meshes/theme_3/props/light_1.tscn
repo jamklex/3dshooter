@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnr47t22qg4mr"]
+
+[ext_resource type="PackedScene" uid="uid://brcmbtedsho33" path="res://assets/blender_meshes/theme_3/props/prop_4.tscn" id="1_vg5wp"]
+
+[node name="Light1" type="Node3D"]
+
+[node name="prop_4" parent="." instance=ExtResource("1_vg5wp")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="prop_4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16048, -0.681975)
+light_color = Color(0.823529, 0.313726, 0.552941, 1)
+light_energy = 5.0
+light_indirect_energy = 5.0
+shadow_enabled = true
+spot_range = 10.0
+spot_angle = 70.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="prop_4"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.16048, 0.695598)
+light_color = Color(0.823529, 0.313726, 0.552941, 1)
+light_energy = 5.0
+light_indirect_energy = 5.0
+shadow_enabled = true
+spot_range = 10.0
+spot_angle = 70.0
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="prop_4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.657932, 1.16048, -0.0399341)
+light_color = Color(0.823529, 0.313726, 0.552941, 1)
+light_energy = 5.0
+light_indirect_energy = 5.0
+shadow_enabled = true
+spot_range = 10.0
+spot_angle = 70.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="prop_4"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -0.723845, 1.16048, 0.00688331)
+light_color = Color(0.823529, 0.313726, 0.552941, 1)
+light_energy = 5.0
+light_indirect_energy = 5.0
+shadow_enabled = true
+spot_range = 10.0
+spot_angle = 70.0
