@@ -13,15 +13,18 @@ var over: int
 const missionTime_min: int = 45
 
 const resource_options: Array = [ "1","2","3","5" ]
-const enemy_options: Array = [ "1" ]
 const resource_worth_index = {
-	"1": 3.1,
-	"2": 3.5,
-	"3": 3.1,
+	"0": 3.1,
+	"1": 3.5,
+	"2": 3.1,
+	"3": 4.0,
 	"5": 5.7
 }
 const enemy_worth_index = {
-	"1": 2.3
+	"0": 2.3,
+	"1": 2.7,
+	"2": 3.1,
+	"3": 3.7,
 }
 
 enum Difficulty {
@@ -90,14 +93,14 @@ func generateKillCounter():
 	var minCount = (difficulty + 1) * modulo
 	var maxCount = minCount * 3
 	var tmp_options = []
-	tmp_options.append_array(enemy_options)
+	tmp_options.append_array(Enemy.ENEMY_TYPE.values())
 	for n in difficulty + 1:
 		if tmp_options.is_empty():
 			break
-		var id = tmp_options.pop_at(rng.randi_range(0,tmp_options.size()-1))
+		var id = tmp_options.pop_at(0)
 		var total = rng.randi_range(minCount, maxCount)
 		total = max(total - (total % modulo), modulo)
-		kills.push_back(MissionStep.from(MissionStep.MissionStepType.MONSTER, id, total))
+		kills.push_back(MissionStep.from(MissionStep.MissionStepType.MONSTER, str(id), total))
 
 func generateResourceCounter():
 	var modulo = 5
@@ -111,7 +114,7 @@ func generateResourceCounter():
 		var id = tmp_options.pop_at(rng.randi_range(0,tmp_options.size()-1))
 		var total = rng.randi_range(minCount, maxCount)
 		total = max(total - (total % modulo), modulo)
-		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, id, total))
+		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, str(id), total))
 
 func generateGoldReward():
 	var reward = 0
@@ -167,9 +170,9 @@ func getTodoItems():
 		todo_items_dict[todo_item_step.id] = todo_item_step.getRest()
 	return todo_items_dict
 	
-func getTodoEnemies() -> int:
+func getTodoEnemies():
 	var todo_enemy_steps = kills.filter(func (s: MissionStep): return !s.isDone())
-	var todo_enemies_count = 0
+	var todo_enemies_dict = {}
 	for todo_enemy_step in todo_enemy_steps:
-		todo_enemies_count = todo_enemy_step.getRest()
-	return todo_enemies_count
+		todo_enemies_dict[todo_enemy_step.id] = todo_enemy_step.getRest()
+	return todo_enemies_dict

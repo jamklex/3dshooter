@@ -10,8 +10,9 @@ var spawns_left: int = max_spawns
 func can_spawn() -> bool:
 	return !limit_spawns or spawns_left > 0
 
-func spawn_random():
+func spawn_random() -> Enemy:
 	var enemy = enemies.pick_random().instantiate()
 	add_child(enemy)
 	if limit_spawns:
 		spawns_left -= 1
+	return enemy

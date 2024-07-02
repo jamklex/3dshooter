@@ -11,6 +11,7 @@ var loadingScreen = null
 var menuScene = preload("res://shared/menu/menu.tscn")
 var loadingDoneChecker = Timer.new()
 var missions: Array[Mission] = []
+var deathScreen = preload("res://shared/ui/death_screen/death_screen.tscn")
 
 const missionsSavePath: String = "user://missions.json"
 const questsSavePath: String = "user://quests.json"
@@ -167,21 +168,23 @@ func teleportToMissionMap(payload: Array):
 	player.bodyStartPos = Vector3.ZERO
 	remove_child(current_prg)
 	current_prg = ProceduralRoomGenerator.from_seed(str(payload[0]))
-	var initial_enemies = payload[1] if payload.size() > 1 else 0
-	current_prg.set_initial_enemies(initial_enemies)
-	var max_enemies = payload[2] if payload.size() > 2 else initial_enemies
-	current_prg.set_max_enemies(max_enemies)
-	var additionalItems = payload[3] if payload.size() > 3 else {}
+	var enemies = payload[1] if payload.size() > 1 else {}
+	current_prg.set_enemies(enemies)
+	var additionalItems = payload[2] if payload.size() > 2 else {}
 	current_prg.set_additional_items(additionalItems)
 	add_child(current_prg)
 	player.setInMission(true)
 	loadingScreen.fade_out()
+	closeCurrentWindow()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func teleportToLowerShip(_payload: Array = []):
 	await loadingScreen.fade_in()
 	player.setInMission(false)
 	player.teleport("ship", Vector3(-1,-3,-12))
 	loadingScreen.fade_out()
+	closeCurrentWindow()
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 func removeFromPlayerInventory(payload: Array = []) -> bool:
 	var result = player.inventory.remove(payload[0], payload[1])
@@ -232,3 +235,8 @@ func closeCurrentWindow():
 	currentWindow = null
 	currentTrade = null
 	currentDialog = null
+	
+func player_died():
+	WorldUtil.player.clearMissionInventories()
+	WorldUtil.setCurrentWindow(deathScreen.instantiate())
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

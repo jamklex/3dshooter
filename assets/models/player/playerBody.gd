@@ -20,7 +20,6 @@ extends CharacterBody3D
 @onready var interactionPopup = _ui.get_node("InteractionPopup") as Label
 @onready var interactionFeedback = _ui.get_node("InteractionFeedback") as Label
 @onready var quests_ui = _ui.get_node("QuestHolder/quests") as VBoxContainer
-@onready var death_screen = _ui.get_node("deathScreen") as Panel
 @onready var hitmarker = _ui.get_node("Hitmarker") as TextureRect
 @onready var health_bar = _ui.get_node("health_bar") as HealthBar
 var sprinting = false
@@ -185,13 +184,7 @@ func _unhandled_input(event):
 		_camera_mount.rotation_degrees.x = clamp(_camera_mount.rotation_degrees.x, -80.0, 60.0)
 
 func _on_player_died():
-	WorldUtil.player.clearMissionInventories()
-	var respawnBtn = death_screen.get_node("respawnBtn") as Button
-	respawnBtn.pressed.connect(WorldUtil.respawn)
-	var quitBtn = death_screen.get_node("quitBtn") as Button
-	quitBtn.pressed.connect(WorldUtil.quitGame)
-	death_screen.visible = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	WorldUtil.player_died()
 
 func _showHitMarker(lastHit):
 	hitmarker.visible = true

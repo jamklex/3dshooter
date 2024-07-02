@@ -10,7 +10,7 @@ func add_link(link: MissionStep):
 func _process(_delta):
 	if (linked_step):
 		if (isKillType()):
-			type.set_text("Kill:")
+			type.set_text(getEnemyName() + ":")
 		if (isResourceType()):
 			type.set_text(getIdName() + ":")
 		total.set_text(str(linked_step.total))
@@ -23,3 +23,6 @@ func isResourceType() -> bool:
 
 func getIdName() -> String:
 	return ItemHelper.get_item(linked_step.id).name
+
+func getEnemyName() -> String:
+	return Enemy.ENEMY_NAME_MAP.get(int(linked_step.id), "Unknown")

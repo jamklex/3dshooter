@@ -45,7 +45,7 @@
 									{
 										"method": "teleportToMissionMap",
 										"payload": [
-											"tutorial",0,0,{"4": 1}
+											"tutorial",{},{"4": 1}
 										]
 									}
 								]

@@ -29,6 +29,12 @@ var rng = RandomNumberGenerator.new()
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 enum ENEMY_TYPE {WEAK_SQUISHY, STRONG_SQUISHY, WEAK_TANK, STRONG_TANK}
+const ENEMY_NAME_MAP = {
+	ENEMY_TYPE.WEAK_SQUISHY: "W4KSY",
+	ENEMY_TYPE.STRONG_SQUISHY: "5TR0S",
+	ENEMY_TYPE.WEAK_TANK: "W34KT",
+	ENEMY_TYPE.STRONG_TANK: "ST4NK",
+}
 
 func _wannaJump():
 	return false

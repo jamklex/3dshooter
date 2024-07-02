@@ -88,10 +88,9 @@ func _on_start_mission_pressed():
 	var random_mission = get_random_todo_mission()
 	if not random_mission:
 		return
-	var max_enemies = random_mission.getTodoEnemies()
-	var initial_enemies = 5 if max_enemies >= 5 else max_enemies
+	var enemies = random_mission.getTodoEnemies()
 	var additionalItems = random_mission.getTodoItems()
-	WorldUtil.teleportToMissionMap([random_mission.getSeed(),initial_enemies, max_enemies, additionalItems])
+	WorldUtil.teleportToMissionMap([random_mission.getSeed(), enemies, additionalItems])
 	WorldUtil.closeCurrentWindow()
 
 func _on_close_pressed():
