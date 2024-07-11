@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqsfi32tcn6sw"]
+
+[ext_resource type="PackedScene" uid="uid://b3o13s5risgcl" path="res://assets/blender_meshes/theme_3/props/prop_1.tscn" id="1_flbe5"]
+[ext_resource type="Script" path="res://shared/scripts/interactive/lootable.gd" id="2_8s5k4"]
+
+[node name="Lootbox" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="prop_1" parent="." instance=ExtResource("1_flbe5")]
+
+[node name="Lootable" type="CSGBox3D" parent="." groups=["lootable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0108032, 0.547546, 0.00994873)
+layers = 0
+use_collision = true
+size = Vector3(1.56555, 1.10559, 1.35339)
+script = ExtResource("2_8s5k4")
