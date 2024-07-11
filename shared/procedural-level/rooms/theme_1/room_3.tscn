@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://crepbn08mug3v"]
+[gd_scene load_steps=9 format=3 uid="uid://crepbn08mug3v"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_wwr5b"]
 [ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="2_pq5oa"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="4_2t52y"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="4_w1sa2"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="6_8pjdw"]
+[ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="7_87v0k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tw0dl"]
 vertices = PackedVector3Array(2.24941, 4.49668, -8.03827, -6.00059, 4.49668, -8.03827, 1.74941, 4.49668, -7.78827, 2.24941, 4.49668, -4.28827, 2.24941, 4.49668, -8.03827, 1.74941, 4.49668, -7.78827, 1.74941, 4.49668, -3.78827, 5.99941, 4.49668, -3.78827, 5.99941, 4.49668, -4.28827, 2.24941, 4.49668, -4.28827, 1.74941, 4.49668, -3.78827, -6.00059, 0.496679, -7.78827, -6.00059, 0.496679, -4.28827, -1.75059, 0.496679, -4.28827, 1.74941, 0.496679, -7.78827, 1.74941, 0.496679, -3.78827, -1.75059, 0.496679, -0.28827, 5.99941, 0.496679, -0.28827, 5.99941, 0.496679, -3.78827, 1.74941, 0.496679, -3.78827, 1.74941, 0.496679, -7.78827, -1.75059, 0.496679, -4.28827, -1.75059, 0.496679, -0.28827, -2.25059, 4.49668, -0.03827, 5.99941, 4.49668, -0.03827, -1.75059, 4.49668, -0.28827, -2.25059, 4.49668, -3.78827, -2.25059, 4.49668, -0.03827, -1.75059, 4.49668, -0.28827, -1.75059, 4.49668, -4.28827, -6.00059, 4.49668, -4.28827, -6.00059, 4.49668, -3.78827, -2.25059, 4.49668, -3.78827, -1.75059, 4.49668, -4.28827)
@@ -86,3 +87,6 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4.01885,
 
 [node name="item" parent="." instance=ExtResource("6_8pjdw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275609, -6)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("7_87v0k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0614674, 0.0244629, -1.90701)
