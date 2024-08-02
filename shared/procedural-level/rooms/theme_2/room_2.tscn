@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd3ya1gwiy4uk"]
+[gd_scene load_steps=11 format=3 uid="uid://dd3ya1gwiy4uk"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_xag3m"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_m8qdq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c3cet1o418p41" path="res://assets/blender_meshes/theme_2/walls/wall_2.tscn" id="4_wa66o"]
 [ext_resource type="PackedScene" uid="uid://kcwaq8lf07dc" path="res://assets/blender_meshes/theme_2/floors/floor_1.tscn" id="5_1alwd"]
 [ext_resource type="PackedScene" uid="uid://0rpvefhatotu" path="res://assets/blender_meshes/theme_2/props/lootbox.tscn" id="7_hkj3y"]
+[ext_resource type="PackedScene" uid="uid://bqqvnp6txun7l" path="res://assets/blender_meshes/theme_2/pillars/light_pilar.tscn" id="7_n6bet"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="8_gyuwq"]
 [ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="9_cxspn"]
 
@@ -295,6 +296,18 @@ transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107
 
 [node name="Lootbox8" parent="NavigationRegion3D/props" instance=ExtResource("7_hkj3y")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 5.40648, 0.12456, 5.7325)
+
+[node name="LightPilar3" parent="NavigationRegion3D/props" instance=ExtResource("7_n6bet")]
+transform = Transform3D(-1, 0, 1.33118e-07, 0, 1, 0, -1.33118e-07, 0, -1, 2.1277, -0.262367, -0.667835)
+
+[node name="LightPilar4" parent="NavigationRegion3D/props" instance=ExtResource("7_n6bet")]
+transform = Transform3D(1, 0, -4.56956e-08, 0, 1, 0, 4.56956e-08, 0, 1, 2.1277, -0.262367, 0.743654)
+
+[node name="LightPilar5" parent="NavigationRegion3D/props" instance=ExtResource("7_n6bet")]
+transform = Transform3D(-1, 0, 1.33118e-07, 0, 1, 0, -1.33118e-07, 0, -1, 6.82835, -0.262367, -0.825304)
+
+[node name="LightPilar6" parent="NavigationRegion3D/props" instance=ExtResource("7_n6bet")]
+transform = Transform3D(1, 0, -4.56956e-08, 0, 1, 0, 4.56956e-08, 0, 1, 6.82835, -0.262367, 0.724731)
 
 [node name="roof" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.37359, 0)
