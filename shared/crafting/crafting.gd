@@ -113,8 +113,7 @@ func _apply_item_move(move:MOVE, amount):
 	_refresh_craft_output()
 	
 func _close_crafting():
-	WorldUtil.player.body.setInDialog(false)
-	queue_free()
+	WorldUtil.closeCurrentWindow()
 
 func _craft_():
 	if not _can_craft():

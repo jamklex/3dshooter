@@ -23,7 +23,7 @@ func _enter_tree():
 
 func createDialog(npc_id:String, dialog_data_path:String) -> Dialog:
 	if !currentDialog:
-		currentDialog = Dialog.new_instance(dialog_data_path, Callable(player.body, "setInDialog"))
+		currentDialog = Dialog.new_instance(dialog_data_path, Callable(WorldUtil, "closeCurrentWindow"))
 		add_quest_dialogs(npc_id, currentDialog)
 		currentDialog.load_dialog_data()
 		add_child(currentDialog)

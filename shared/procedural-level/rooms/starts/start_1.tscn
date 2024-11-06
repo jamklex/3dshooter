@@ -32,7 +32,7 @@ sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.270222, 0.270222, 0.270222, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wah3r"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tv0pc"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [node name="start_2" type="Node3D"]
@@ -83,11 +83,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.57837, 4, -14)
 
 [node name="door2" parent="doors" instance=ExtResource("3_bk1h5")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 1.5, 6)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_3.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_3.tscn", "res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
 
 [node name="door3" parent="doors" instance=ExtResource("3_bk1h5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.50359, 1.5, -16)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_3.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_3.tscn", "res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
 
 [node name="player" parent="." instance=ExtResource("4_2x5sh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97455, 0.26453, -1.10821)
@@ -237,7 +237,7 @@ environment = SubResource("Environment_1qxyl")
 
 [node name="airvent" parent="." instance=ExtResource("12_go86j")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.60932, 2.018, -2.03972)
-material = SubResource("StandardMaterial3D_wah3r")
+material = SubResource("StandardMaterial3D_tv0pc")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("13_64elu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.210145, 0.0244629, 3.5629)

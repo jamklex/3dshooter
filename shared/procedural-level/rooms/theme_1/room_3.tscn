@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://crepbn08mug3v"]
+[gd_scene load_steps=10 format=3 uid="uid://crepbn08mug3v"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_wwr5b"]
 [ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="2_pq5oa"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="4_2t52y"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="4_w1sa2"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="6_8pjdw"]
+[ext_resource type="PackedScene" uid="uid://jc0lcn4nnvxd" path="res://assets/blender_meshes/theme_1/lights/light_1.tscn" id="6_cw0b6"]
 [ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="7_87v0k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tw0dl"]
@@ -34,11 +35,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -6)
 
 [node name="door" parent="doors" instance=ExtResource("4_w1sa2")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.5, 1.5, -2)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_1.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
 
 [node name="door2" parent="doors" instance=ExtResource("4_w1sa2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 1.5, -6)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_tw0dl")
@@ -84,6 +85,9 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.7447
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4.01885, 0, -3.84447)
 
 [node name="props" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="Light1" parent="NavigationRegion3D/props" instance=ExtResource("6_cw0b6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00550997, 0, -4.00951)
 
 [node name="item" parent="." instance=ExtResource("6_8pjdw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275609, -6)
