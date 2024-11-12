@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7fcx40c8ltrs"]
+[gd_scene load_steps=9 format=3 uid="uid://b7fcx40c8ltrs"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_ggirp"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_ywdqj"]
 [ext_resource type="PackedScene" uid="uid://kcwaq8lf07dc" path="res://assets/blender_meshes/theme_2/floors/floor_1.tscn" id="3_atco6"]
 [ext_resource type="PackedScene" uid="uid://bqqvnp6txun7l" path="res://assets/blender_meshes/theme_2/pillars/light_pilar.tscn" id="5_i5ycf"]
 [ext_resource type="PackedScene" uid="uid://c3cet1o418p41" path="res://assets/blender_meshes/theme_2/walls/wall_2.tscn" id="5_kfcot"]
+[ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="6_61qr3"]
 [ext_resource type="PackedScene" uid="uid://0rpvefhatotu" path="res://assets/blender_meshes/theme_2/props/lootbox.tscn" id="6_jarpx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_q0pom"]
@@ -117,6 +118,24 @@ transform = Transform3D(0.753621, 0, 0.657309, 0, 1, 0, -0.657309, 0, 0.753621, 
 
 [node name="LightPilar7" parent="props" instance=ExtResource("5_i5ycf")]
 transform = Transform3D(-0.829963, 0, 0.557818, 0, 1, 0, -0.557818, 0, -0.829963, 16.4978, 0.100787, 3.27626)
+
+[node name="item" parent="props" instance=ExtResource("6_61qr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.00073, 0.200129, 10.5828)
+
+[node name="item2" parent="props" instance=ExtResource("6_61qr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.354, 0.200129, 13.1162)
+
+[node name="item3" parent="props" instance=ExtResource("6_61qr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0241, 0.200129, 6.29813)
+
+[node name="item4" parent="props" instance=ExtResource("6_61qr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9844, 0.200129, -6.13777)
+
+[node name="item5" parent="props" instance=ExtResource("6_61qr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3474, 0.200129, -10.5463)
+
+[node name="item6" parent="props" instance=ExtResource("6_61qr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.726097, 0.200129, -13.2207)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_q0pom")

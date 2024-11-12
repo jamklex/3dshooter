@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnojom03ne754"]
+[gd_scene load_steps=9 format=3 uid="uid://bnojom03ne754"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_1ws3n"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_m574k"]
 [ext_resource type="PackedScene" uid="uid://kcwaq8lf07dc" path="res://assets/blender_meshes/theme_2/floors/floor_1.tscn" id="3_xsrww"]
 [ext_resource type="PackedScene" uid="uid://0rpvefhatotu" path="res://assets/blender_meshes/theme_2/props/lootbox.tscn" id="4_vtnai"]
+[ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="5_if7rq"]
 [ext_resource type="PackedScene" uid="uid://c3cet1o418p41" path="res://assets/blender_meshes/theme_2/walls/wall_2.tscn" id="5_jbswi"]
 [ext_resource type="PackedScene" uid="uid://bqqvnp6txun7l" path="res://assets/blender_meshes/theme_2/pillars/light_pilar.tscn" id="6_ejv0s"]
 
@@ -121,6 +122,24 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.933
 
 [node name="LightPilar12" parent="props" instance=ExtResource("6_ejv0s")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.61717, 0.100787, 3.5803)
+
+[node name="item" parent="props" instance=ExtResource("5_if7rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66294, 0.200129, -1.95798)
+
+[node name="item2" parent="props" instance=ExtResource("5_if7rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.44791, 0.200129, -2.04734)
+
+[node name="item3" parent="props" instance=ExtResource("5_if7rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0131934, 0.200129, -5.29451)
+
+[node name="item4" parent="props" instance=ExtResource("5_if7rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.8262, 0.200129, -3.16449)
+
+[node name="item5" parent="props" instance=ExtResource("5_if7rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5978, 0.200128, 2.01218)
+
+[node name="item6" parent="props" instance=ExtResource("5_if7rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.83902, 0.200128, 2.16445)
 
 [node name="roof" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
