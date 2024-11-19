@@ -16,7 +16,7 @@ vertices = PackedVector3Array(-6.33794, 4.41587, -0.00607014, -5.83794, 4.41587,
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(21, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(26, 25, 24), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(30, 27, 31), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(37, 36, 38), PackedInt32Array(38, 36, 39), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 43), PackedInt32Array(45, 44, 46), PackedInt32Array(46, 44, 47), PackedInt32Array(49, 48, 50), PackedInt32Array(50, 48, 51), PackedInt32Array(51, 48, 52), PackedInt32Array(57, 56, 53), PackedInt32Array(53, 56, 54), PackedInt32Array(54, 56, 55)]
 agent_radius = 0.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2j4tq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xk3ut"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qpld3"]
@@ -39,19 +39,19 @@ script = ExtResource("1_ja847")
 
 [node name="door" parent="doors" instance=ExtResource("1_8qfpc")]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -5.95639, 1.5, 1.81609)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_1.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_2.tscn", "res://shared/procedural-level/rooms/theme_3/room_3.tscn"])
 
 [node name="door2" parent="doors" instance=ExtResource("1_8qfpc")]
 transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 6.04361, 1.5, 1.81609)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_1.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_3.tscn"])
 
 [node name="door3" parent="doors" instance=ExtResource("1_8qfpc")]
 transform = Transform3D(-1, 0, 8.74226e-08, 0, 1, 0, -8.74226e-08, 0, -1, 0.0436096, 1.5, 7.81609)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_1.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_1.tscn", "res://shared/procedural-level/rooms/theme_3/room_3.tscn"])
 
 [node name="door4" parent="doors" instance=ExtResource("1_8qfpc")]
 transform = Transform3D(1, 0, -1.74845e-07, 0, 1, 0, 1.74845e-07, 0, 1, 0.0436096, 1.5, -4.18391)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_1.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_1.tscn", "res://shared/procedural-level/rooms/theme_3/room_2.tscn"])
 
 [node name="roof" type="Node3D" parent="."]
 
@@ -144,7 +144,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 4, 0, 7.
 
 [node name="airvent" parent="NavigationRegion3D/props" instance=ExtResource("5_kqqsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.89988, 2, -2.17468)
-material = SubResource("StandardMaterial3D_2j4tq")
+material = SubResource("StandardMaterial3D_xk3ut")
 
 [node name="Return" parent="NavigationRegion3D/props" instance=ExtResource("7_pfvxh")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -4, 0, 6)
