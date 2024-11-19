@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="8_ap3ue"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cp138"]
-vertices = PackedVector3Array(-2.06563, 4.0831, -10.6264, -2.06563, 4.0831, 5.62356, -1.81563, 4.0831, -10.3764, 1.68437, 4.0831, 5.62356, 2.18437, 4.0831, 5.62356, 2.18437, 4.0831, 1.87356, 1.68437, 4.0831, 1.37356, 5.68437, 4.0831, 1.37356, 5.93437, 4.0831, 1.87356, 5.93437, 4.0831, -10.6264, 5.68437, 4.0831, -10.3764, 5.68437, 4.0831, 1.37356, 1.68437, 4.0831, 1.37356, 2.18437, 4.0831, 1.87356, 5.93437, 4.0831, 1.87356, -2.06563, 4.0831, -10.6264, -1.81563, 4.0831, -10.3764, 5.68437, 4.0831, -10.3764, 5.93437, 4.0831, -10.6264, -1.81563, 0.0830964, 5.62356, 1.68437, 0.0830964, 5.62356, 1.68437, 0.0830964, 1.37356, -1.81563, 0.0830964, -10.3764, 1.68437, 0.0830964, 1.37356, 5.68437, 0.0830964, 1.37356, 5.68437, 0.0830964, -10.3764, -1.81563, 0.0830964, -10.3764)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(10, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(14, 13, 11), PackedInt32Array(11, 13, 12), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 26)]
-agent_radius = 0.0
+vertices = PackedVector3Array(4.18437, 0.0830964, -8.12644, 4.43437, 0.0830964, -9.37644, 2.93437, 0.0830964, -8.87644, 1.43437, 0.0830964, 1.37356, 3.93437, 0.0830964, 1.12356, 3.68437, 0.0830964, 0.123561, 2.93437, 0.0830964, -10.1264, 0.184371, 0.0830964, -10.1264, -0.565629, 0.0830964, -9.12644, 4.43437, 0.0830964, -0.626439, -1.56563, 0.0830964, -9.37644, 5.43437, 0.0830964, -0.126439, 5.43437, 0.0830964, -8.12644, -1.56563, 0.0830964, 5.37356, 1.43437, 0.0830964, 5.37356, 5.43437, 0.583096, -9.37644, 5.43437, 0.583096, -9.87644, 4.68437, 0.583096, -10.1264, 4.68437, 0.583096, -8.37644, 5.18437, 0.583096, -8.37644, 3.18437, 0.583096, -9.87644, 3.18437, 0.583096, -9.37644, 3.93437, 0.583096, -9.62644, 4.18437, 0.583096, 0.123561, 4.18437, 0.583096, 0.623561, 4.93437, 0.583096, 0.123561, 4.68437, 0.0830964, 0.873561, 5.43437, 0.0830964, 1.12356, 5.43437, 0.0830964, 0.123561)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 2), PackedInt32Array(7, 2, 8), PackedInt32Array(8, 2, 0), PackedInt32Array(8, 0, 9), PackedInt32Array(5, 3, 9), PackedInt32Array(9, 3, 8), PackedInt32Array(8, 3, 10), PackedInt32Array(0, 12, 9), PackedInt32Array(9, 12, 11), PackedInt32Array(14, 13, 3), PackedInt32Array(3, 13, 10), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 19), PackedInt32Array(17, 19, 18), PackedInt32Array(22, 21, 20), PackedInt32Array(25, 24, 23), PackedInt32Array(28, 27, 26)]
+agent_radius = 0.2
 
 [node name="room_1" type="Node3D"]
 script = ExtResource("1_thtun")
@@ -115,21 +115,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.281302, 0)
 [node name="Light1" parent="NavigationRegion3D/props" instance=ExtResource("6_ghprq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4.5)
 
-[node name="lootboxes" type="Node3D" parent="."]
+[node name="lootboxes" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.281302, 0)
 
-[node name="chest" parent="lootboxes" instance=ExtResource("7_jr427")]
+[node name="chest" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 5, 0, -9.7015)
 
-[node name="chest2" parent="lootboxes" instance=ExtResource("7_jr427")]
+[node name="chest2" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 5, 0, -8.7015)
 
-[node name="chest3" parent="lootboxes" instance=ExtResource("7_jr427")]
+[node name="chest3" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 3.5, 0, -9.7015)
 
-[node name="chest4" parent="lootboxes" instance=ExtResource("7_jr427")]
+[node name="chest4" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.837923, 0, -9.89477)
 
-[node name="chest5" parent="lootboxes" instance=ExtResource("7_jr427")]
+[node name="chest5" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 4.5, 0, 0.298498)
 
 [node name="item" parent="." instance=ExtResource("8_ap3ue")]

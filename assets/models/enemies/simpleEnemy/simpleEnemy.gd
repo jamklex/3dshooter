@@ -64,7 +64,11 @@ func _get_next_pos_to_player():
 	if not player:
 		return Vector3.ZERO
 	nav_agent.target_position = player.global_position
-	return nav_agent.get_next_path_position()
+	var next_path_pos = nav_agent.get_next_path_position()
+	var next_path_to_player_pos_distance = next_path_pos.distance_to(global_position)
+	if next_path_to_player_pos_distance <= 0.5:
+		return player.global_position
+	return next_path_pos
 	
 func _get_random_next_pos():
 	var new_random_pos = start_pos
