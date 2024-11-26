@@ -44,7 +44,7 @@ func add_quest_dialogs(npc_id, _currentDialog):
 			_currentDialog.add_options(additional_dialog.source, additional_dialog.get_dialog_key(), additional_dialog.as_dialog_options())
 
 func get_map_rng_visibility() -> bool:
-	return current_prg.next_loot_visible()
+	return current_prg == null || current_prg.next_loot_visible()
 
 func addKillCounter(enemy_id: String, amount: int):
 	for mission in missions:

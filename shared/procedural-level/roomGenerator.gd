@@ -8,6 +8,7 @@ var _rng := RandomNumberGenerator.new()
 var min_rooms: int
 var max_rooms: int
 var _done: bool = false
+var _generated: bool = false
 var _room_counter: int = 0
 const MAX_ROOM_COUNT: int = 25
 var _enemies: Dictionary = {}
@@ -38,14 +39,14 @@ func set_additional_items(itemDict: Dictionary):
 	_additional_items = itemDict
 
 func _process(_delta):
-	if !is_generated():
-		generate_level()
-		print("rooms: " + str(_room_counter))
+	if !_generated:
+		await generate_level()
+	if _generated && !_done:
 		if _room_counter > 1:
 			spawn_enemies(_initial_enemies_wave)
 			spawn_pickable_items(_additional_items)
 			set_container_items(_additional_items)
-			set_generated(true)
+			_done = true
 			_next_spawn_time = _next_random_spawn_time()
 	else:
 		if len(_enemies.keys()) == 0:
@@ -115,12 +116,6 @@ func set_container_items(itemDict: Dictionary):
 		var amount = itemDict[item_id]
 		lootable.setDropItem(DropItem.create_fix(item_id, amount))
 
-func is_generated() -> bool:
-	return _done
-
-func set_generated(value: bool):
-	_done = value
-
 func next_loot_visible() -> bool:
 	return _rng.randf() <= 0.65
 
@@ -133,11 +128,12 @@ func choose_start() -> String:
 func generate_level():
 	var available_doors = get_remaining_doors()
 	while available_doors.size() > 0:
-		if _room_counter >= MAX_ROOM_COUNT:
-			break
 		var door = random_of(available_doors)
 		load_random_map(door)
 		available_doors = get_remaining_doors()
+		_room_counter += 1
+		print("rooms: " + str(_room_counter))
+	_generated = _room_counter > 1
 
 func get_remaining_doors() -> Array[Node]:
 	var doors = get_tree().get_nodes_in_group("door")
@@ -155,7 +151,6 @@ func load_random_map(door:ProceduralDoor):
 	add_map(door, choosen_map, choosen_door)
 	door.visible = false
 	choosen_door.visible = false
-	_room_counter += 1
 
 func add_map(parent_door: ProceduralDoor, map_to_move: ProceduralRoom, door_of_map: ProceduralDoor):
 	get_tree().current_scene.add_child(map_to_move)
