@@ -4335,8 +4335,11 @@ enemy_type = 1
 path_desired_distance = 0.5
 target_desired_distance = 2.0
 path_height_offset = 0.5
-path_max_distance = 5.01
+path_max_distance = 0.01
+avoidance_enabled = true
+debug_enabled = true
 
 [connection signal="timeout" from="visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/sightChecker" to="." method="check_sight"]
 [connection signal="healthReachedZero" from="shootable" to="." method="_die"]
 [connection signal="onDamageTaken" from="shootable" to="." method="_on_damage_taken"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

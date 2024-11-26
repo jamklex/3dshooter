@@ -19,7 +19,7 @@ func resetHealth():
 
 func takeDamage(damage:int):
 	onDamageTaken.emit(damage)
-	health -= damage
+	#health -= damage
 	onHealthChanged.emit(health)
 	if health <= 0 and not died:
 		_die()

@@ -4,7 +4,7 @@ class_name Enemy
 var damage:int = 3
 const SPEED = 3.0
 const ATTACK_RANGE = 1.7
-const ROUTINE_RANGE = 2.5
+const NEXT_RANDOM_POS_RANGE = 30
 @onready var _anim_player = $visuals/mixamo_base/AnimationPlayer
 @onready var _anim_tree = $visuals/mixamo_base/AnimationTree
 @onready var _visuals = $visuals
@@ -19,6 +19,7 @@ var playerSpotted = false
 var attacking = false
 var state_machine = null
 var start_pos = null
+var last_pos = null
 var routine_pos_use_time = 10000
 var rng = RandomNumberGenerator.new()
 @onready var sight_cone = $visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/sightCone
@@ -53,6 +54,7 @@ func _ready():
 	_shootable.setStartHealth(randi_range(1,10))
 	state_machine = _anim_tree.get("parameters/playback")
 	start_pos = global_position
+	last_pos = start_pos
 	rng.randomize()
 	process_enemy_type_attributes(rng.randi_range(0, ENEMY_TYPE.size()-1))
 	
@@ -71,19 +73,19 @@ func _get_next_pos_to_player():
 	return next_path_pos
 	
 func _get_random_next_pos():
-	var new_random_pos = start_pos
-	new_random_pos.x = rng.randi_range(start_pos.x - ROUTINE_RANGE, start_pos.x + ROUTINE_RANGE)
-	new_random_pos.z = rng.randi_range(start_pos.z - ROUTINE_RANGE, start_pos.z + ROUTINE_RANGE)
+	var new_random_pos = global_position
+	new_random_pos.x = rng.randi_range(new_random_pos.x - NEXT_RANDOM_POS_RANGE, new_random_pos.x + NEXT_RANDOM_POS_RANGE)
+	new_random_pos.z = rng.randi_range(new_random_pos.z - NEXT_RANDOM_POS_RANGE, new_random_pos.z + NEXT_RANDOM_POS_RANGE)
 	return new_random_pos
 
 func _routine_pos_reached():
 	if not nav_agent.target_position:
 		return false
-	return global_position.distance_to(nav_agent.target_position) < 1
+	return global_position.distance_to(nav_agent.get_final_position()) < 2
 
 func _get_next_routine_pos(delta):
 	routine_pos_use_time += delta
-	if routine_pos_use_time >= 1 or _routine_pos_reached():
+	if routine_pos_use_time >= 100 or _routine_pos_reached():
 		nav_agent.target_position = _get_random_next_pos()
 		routine_pos_use_time = 0
 	return nav_agent.get_next_path_position()
@@ -110,8 +112,9 @@ func _physics_process(delta):
 		next_pos = _get_next_routine_pos(delta)
 	_anim_tree.set("parameters/conditions/has_target", next_pos != null)
 	_anim_tree.set("parameters/conditions/in_range", (playerSpotted and _is_in_attack_range()))
+	next_pos.y = global_position.y
 	if next_pos and not dieing:
-		velocity = (next_pos - global_transform.origin).normalized()
+		nav_agent.velocity = (next_pos - global_transform.origin).normalized()
 		_visuals.look_at(next_pos)
 	match state_machine.get_current_node():
 		"die":
@@ -121,6 +124,7 @@ func _physics_process(delta):
 			hitPos.y = position.y
 			_visuals.look_at(hitPos)
 			return
+	last_pos = global_position
 	move_and_slide()
 
 func _hit():
@@ -143,6 +147,7 @@ func _can_see(node:Node3D):
 	return (collider is PlayerBody)
 
 func check_sight():
+	return
 	var overlaps = sight_cone.get_overlapping_bodies()
 	if overlaps.size() <= 0:
 		return
@@ -178,3 +183,7 @@ func _set_color(color: Color):
 	var new_material = StandardMaterial3D.new() as StandardMaterial3D
 	new_material.albedo_color = color
 	skin.set_surface_override_material(0, new_material)
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity = safe_velocity
