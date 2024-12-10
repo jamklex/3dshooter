@@ -3591,7 +3591,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(21, -34)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_85ely"]
-radius = 0.310034
+radius = 0.25
 height = 1.774
 
 [node name="simpleEnemy" type="CharacterBody3D" groups=["enemies"]]
@@ -4332,11 +4332,13 @@ max_health = 10
 enemy_type = 1
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 0.5
-target_desired_distance = 2.0
-path_height_offset = 0.5
-path_max_distance = 0.01
+target_desired_distance = 1.7
+path_max_distance = 2.01
 avoidance_enabled = true
+height = 1.77
+radius = 0.3
+neighbor_distance = 10.0
+avoidance_priority = 0.25
 debug_enabled = true
 
 [connection signal="timeout" from="visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/sightChecker" to="." method="check_sight"]

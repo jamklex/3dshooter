@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cbnn6u8j5hra6" path="res://assets/blender_meshes/theme_2/floors/floor_2.blend" id="1_5j704"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_16dls"]
-size = Vector3(1.99512, 0.1604, 2.99512)
+size = Vector3(2, 0.15, 3)
 
 [node name="floor_2" instance=ExtResource("1_5j704")]
 

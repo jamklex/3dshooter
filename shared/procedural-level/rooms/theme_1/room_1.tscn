@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgoxct3yelvnj"]
+[gd_scene load_steps=11 format=3 uid="uid://bgoxct3yelvnj"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_thtun"]
 [ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="2_bubp4"]
@@ -8,11 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/interact/chest/chest.tscn" id="7_jr427"]
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="7_qtdhh"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="8_ap3ue"]
+[ext_resource type="PackedScene" uid="uid://cs3a3ysfg0pku" path="res://shared/procedural-level/objects/invisible-floor.tscn" id="8_bmkqx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cp138"]
-vertices = PackedVector3Array(4.18437, 0.0830964, -8.12644, 4.43437, 0.0830964, -9.37644, 2.93437, 0.0830964, -8.87644, 1.43437, 0.0830964, 1.37356, 3.93437, 0.0830964, 1.12356, 3.68437, 0.0830964, 0.123561, 2.93437, 0.0830964, -10.1264, 0.184371, 0.0830964, -10.1264, -0.565629, 0.0830964, -9.12644, 4.43437, 0.0830964, -0.626439, -1.56563, 0.0830964, -9.37644, 5.43437, 0.0830964, -0.126439, 5.43437, 0.0830964, -8.12644, -1.56563, 0.0830964, 5.37356, 1.43437, 0.0830964, 5.37356, 5.43437, 0.583096, -9.37644, 5.43437, 0.583096, -9.87644, 4.68437, 0.583096, -10.1264, 4.68437, 0.583096, -8.37644, 5.18437, 0.583096, -8.37644, 3.18437, 0.583096, -9.87644, 3.18437, 0.583096, -9.37644, 3.93437, 0.583096, -9.62644, 4.18437, 0.583096, 0.123561, 4.18437, 0.583096, 0.623561, 4.93437, 0.583096, 0.123561, 4.68437, 0.0830964, 0.873561, 5.43437, 0.0830964, 1.12356, 5.43437, 0.0830964, 0.123561)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 2), PackedInt32Array(7, 2, 8), PackedInt32Array(8, 2, 0), PackedInt32Array(8, 0, 9), PackedInt32Array(5, 3, 9), PackedInt32Array(9, 3, 8), PackedInt32Array(8, 3, 10), PackedInt32Array(0, 12, 9), PackedInt32Array(9, 12, 11), PackedInt32Array(14, 13, 3), PackedInt32Array(3, 13, 10), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 19), PackedInt32Array(17, 19, 18), PackedInt32Array(22, 21, 20), PackedInt32Array(25, 24, 23), PackedInt32Array(28, 27, 26)]
-agent_radius = 0.2
+vertices = PackedVector3Array(4.12995, -0.243826, -8.13086, 4.32995, -0.243826, -9.23086, 2.92995, -0.243826, -8.83086, 1.72995, -0.243826, 0.969141, 3.82995, -0.243826, 0.969141, 3.62995, -0.243826, 0.769141, 3.62995, -0.243826, 0.269141, 4.62995, -0.243826, -7.73086, 2.52995, -0.243826, -9.93086, 0.129951, -0.243826, -9.93086, 0.129951, -0.243826, -9.73086, 2.52995, -0.243826, -9.33086, -0.570049, -0.243826, -9.13086, -0.970049, -0.243826, -8.93086, 4.32995, -0.243826, -0.730859, 4.72995, -0.243826, -0.730859, -1.37005, -0.243826, 2.06914, 1.42995, -0.243826, 2.06914, 1.42995, -0.243826, 1.26914, -1.37005, -0.243826, -9.03086, 5.32995, -0.243826, -0.230859, 5.32995, -0.243826, -7.73086, 4.92995, -0.243826, 0.869141, 5.32995, -0.243826, 0.969141, 5.32995, -0.243826, 0.369141, -1.37005, -0.243826, 5.46914, 1.42995, -0.243826, 5.46914)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(6, 5, 3), PackedInt32Array(2, 0, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(12, 2, 13), PackedInt32Array(13, 2, 7), PackedInt32Array(13, 7, 14), PackedInt32Array(14, 7, 15), PackedInt32Array(18, 17, 16), PackedInt32Array(11, 2, 10), PackedInt32Array(10, 2, 12), PackedInt32Array(6, 3, 14), PackedInt32Array(14, 3, 16), PackedInt32Array(14, 16, 13), PackedInt32Array(13, 16, 19), PackedInt32Array(3, 18, 16), PackedInt32Array(7, 21, 15), PackedInt32Array(15, 21, 20), PackedInt32Array(24, 23, 22), PackedInt32Array(26, 25, 17), PackedInt32Array(17, 25, 16)]
+geometry_parsed_geometry_type = 1
+cell_size = 0.1
+cell_height = 0.01
+agent_height = 1.77
+agent_radius = 0.4
+agent_max_climb = 0.0
+agent_max_slope = 1.0
 
 [node name="room_1" type="Node3D"]
 script = ExtResource("1_thtun")
@@ -132,6 +139,9 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.837923,
 
 [node name="chest5" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
 transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 4.5, 0, 0.298498)
+
+[node name="Invisible-floor" parent="NavigationRegion3D" instance=ExtResource("8_bmkqx")]
+transform = Transform3D(-2, 0, 8.15377e-08, 0, 0.29, 0, -3.01992e-07, 0, -0.54, -0.00728035, -0.300326, 5.36285)
 
 [node name="item" parent="." instance=ExtResource("8_ap3ue")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.148915, -7.5)

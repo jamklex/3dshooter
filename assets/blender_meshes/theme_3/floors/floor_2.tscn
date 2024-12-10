@@ -153,24 +153,25 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nw5ad")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3xmxp"]
-size = Vector3(2.00366, 0.0834351, 2.00233)
+size = Vector3(2.004, 0.075, 2.002)
 
 [node name="floor_2" type="Node3D"]
 
 [node name="panels_001" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0314128, 0)
 mesh = SubResource("ArrayMesh_e3rhs")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="panels_001"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="panels_001/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00400639, -0.0218635, 0.169801)
-shape = SubResource("BoxShape3D_3xmxp")
-
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.100338, 0.337065)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.0689252, 0.337065)
 light_color = Color(0.821634, 0.313495, 0.551035, 1)
 light_energy = 5.0
 spot_range = 4.9458
 spot_angle = 85.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0314128, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00400639, -0.0218635, 0.169801)
+shape = SubResource("BoxShape3D_3xmxp")
