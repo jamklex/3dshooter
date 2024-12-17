@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgpghyb3a7y1x"]
+[gd_scene load_steps=18 format=3 uid="uid://bgpghyb3a7y1x"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_jgw2e"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_hi4fa"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://csngg1cckwdw0" path="res://assets/blender_meshes/theme_3/walls/wall_6.tscn" id="10_lfch0"]
 [ext_resource type="PackedScene" uid="uid://cnr47t22qg4mr" path="res://assets/blender_meshes/theme_3/props/light_1.tscn" id="11_w8ohv"]
 [ext_resource type="PackedScene" uid="uid://dquqdmb0b0fb6" path="res://assets/blender_meshes/theme_3/floors/floor_6.tscn" id="11_x7j6i"]
+[ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="16_ust62"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_q0pom"]
 vertices = PackedVector3Array(-6.13117, 0.0106674, -5.81172, -6.13117, 0.0106674, -3.81172, -4.13117, 0.0106674, -5.71172, 3.06883, 0.0106674, -5.81172, 5.16883, 0.0106674, -3.71172, 5.16883, 0.0106674, -5.81172, -2.53117, 0.0106674, -5.51172, -1.13117, 0.0106674, -4.31172, -0.831171, 0.0106674, -4.61172, -1.13117, 0.0106674, -3.71172, -6.33117, 0.0106674, -1.51172, 1.56883, 0.0106674, -5.51172, -0.13117, 0.0106674, -4.61172, -6.03117, 0.0106674, 1.48828, -6.03117, 0.0106674, 1.78828, -2.43117, 0.0106674, 5.38828, -2.13117, 0.0106674, 5.38828, 0.168829, 0.0106674, -4.31172, 0.168829, 0.0106674, -3.81172, -7.03117, 0.0106674, -1.51172, -7.03117, 0.0106674, 1.18828, -6.33117, 0.0106674, 1.18828, -0.831171, 0.0106674, -3.41172, -1.83117, 0.0106674, 5.68828, -1.83117, 0.0106674, 6.38828, 0.86883, 0.0106674, 6.38828, 0.86883, 0.0106674, 5.68828, -0.231171, 0.0106674, -3.31172, 5.36883, 0.0106674, 1.18828, 6.06883, 0.0106674, 1.18828, 6.06883, 0.0106674, -1.51172, 5.36883, 0.0106674, -1.51172, 1.36883, 0.0106674, 5.38828, -22.4312, 0.0106674, -1.51172, -22.4312, 0.0106674, 1.18828, 21.4688, 0.0106674, 1.18828, 21.4688, 0.0106674, -1.51172, 3.06883, 0.0106674, 5.38828, 5.16883, 0.0106674, 5.48828, 5.16883, 0.0106674, 3.38828, -6.13117, 0.0106674, 3.58828, -6.13117, 0.0106674, 5.48828, -4.23117, 0.0106674, 5.48828, -1.83117, 0.0106674, 21.7883, 0.86883, 0.0106674, 21.7883)
@@ -45,6 +46,7 @@ transform = Transform3D(-1, 0, 2.62268e-07, 0, 1, 0, -2.62268e-07, 0, -1, -0.488
 map_options = Array[String](["res://shared/procedural-level/rooms/theme_3/room_2.tscn", "res://shared/procedural-level/rooms/theme_3/room_3.tscn", "res://shared/procedural-level/rooms/theme_3/room_4.tscn"])
 
 [node name="roof" type="Node3D" parent="."]
+visible = false
 
 [node name="floor_6" parent="roof" instance=ExtResource("11_x7j6i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 4, 7.5)
@@ -332,3 +334,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4921, 0.256239, -0.390411)
 
 [node name="item3" parent="." instance=ExtResource("8_7spev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492087, 0.256239, 13.6096)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("16_ust62")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -0.498724, 0.0244629, -0.13607)
+
+[node name="SpawnPoint2" parent="." instance=ExtResource("16_ust62")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 1, 13.4646, 0.0244629, -0.13607)
+
+[node name="SpawnPoint3" parent="." instance=ExtResource("16_ust62")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 1, -14.5354, 0.0244629, -0.13607)
+
+[node name="SpawnPoint4" parent="." instance=ExtResource("16_ust62")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 6, -0.535414, 0.0244629, 12.8639)

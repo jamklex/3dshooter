@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b4l6orf3fuojy"]
+[gd_scene load_steps=14 format=3 uid="uid://b4l6orf3fuojy"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_dfbyf"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_sf1fx"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cs3a3ysfg0pku" path="res://shared/procedural-level/objects/invisible-floor.tscn" id="10_54drs"]
 [ext_resource type="PackedScene" uid="uid://dhthtivn48jy2" path="res://assets/blender_meshes/theme_3/walls/wall_2.tscn" id="11_vc06i"]
 [ext_resource type="PackedScene" uid="uid://csngg1cckwdw0" path="res://assets/blender_meshes/theme_3/walls/wall_6.tscn" id="12_i7ckv"]
+[ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="12_nnkde"]
 [ext_resource type="PackedScene" uid="uid://cnr47t22qg4mr" path="res://assets/blender_meshes/theme_3/props/light_1.tscn" id="13_78wye"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="14_rlcjt"]
 
@@ -32,6 +33,7 @@ script = ExtResource("1_dfbyf")
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6.4564, 1.5, -0.140258)
 
 [node name="roof" type="Node3D" parent="."]
+visible = false
 
 [node name="floor_25" parent="roof" instance=ExtResource("3_l7kx7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 4, -0.5)
@@ -187,3 +189,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.4921, 0.256239, -0.390411)
 
 [node name="item3" parent="." instance=ExtResource("14_rlcjt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492087, 0.256239, 13.6096)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("12_nnkde")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -0.995832, 0.0244629, -0.373906)

@@ -19,7 +19,7 @@ var playerSpotted = false
 var state_machine = null
 var last_pos = null
 var not_moving_since = null
-var moving_timeout_until = null
+var simple_path_until = null
 var rng = RandomNumberGenerator.new()
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -77,7 +77,7 @@ func _is_target_pos_reached():
 func _is_in_attack_range():
 	if not player:
 		return false
-	return global_position.distance_to(player.global_position) < nav_agent.target_desired_distance
+	return global_position.distance_to(nav_agent.get_final_position()) < nav_agent.target_desired_distance
 	
 func _set_player_spotted_to_all_enemies():
 	var all_enemies = get_tree().get_nodes_in_group("enemies") as Array[Enemy]
@@ -96,22 +96,20 @@ func _is_attacking():
 	return playerSpotted and _is_in_attack_range()
 
 func _physics_process(delta):
-	if moving_timeout_until:
-		if Time.get_ticks_msec() < moving_timeout_until:
-			return
-		else:
-			moving_timeout_until = null
-	if not _moving() and not _is_attacking():
-		if not not_moving_since:
-			not_moving_since = Time.get_ticks_msec()
-		elif Time.get_ticks_msec() - not_moving_since > 2000:
-			not_moving_since = null
-			moving_timeout_until = Time.get_ticks_msec() + 1000
-			var new_pos = nav_agent.get_next_path_position()
-			new_pos.y = global_position.y
-			global_position = new_pos
+	if simple_path_until:
+		if Time.get_ticks_msec() >= simple_path_until:
+			nav_agent.path_postprocessing = 0
+			simple_path_until = null
 	else:
-		not_moving_since = null
+		if not _moving() and not _is_attacking():
+			if not not_moving_since:
+				not_moving_since = Time.get_ticks_msec()
+			elif Time.get_ticks_msec() - not_moving_since > 2000:
+				not_moving_since = null
+				simple_path_until = Time.get_ticks_msec() + 5000
+				nav_agent.path_postprocessing = 1
+		else:
+			not_moving_since = null
 	if dieing:
 		return
 	if not player:
