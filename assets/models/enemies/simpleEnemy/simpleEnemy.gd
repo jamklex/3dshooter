@@ -49,7 +49,6 @@ func _ready():
 	_shootable.healthReachedZero.connect(addKillCounter)
 	_shootable.setStartHealth(randi_range(1,10))
 	state_machine = _anim_tree.get("parameters/playback")
-	playerSpotted = true
 	rng.randomize()
 	process_enemy_type_attributes(rng.randi_range(0, ENEMY_TYPE.size()-1))
 

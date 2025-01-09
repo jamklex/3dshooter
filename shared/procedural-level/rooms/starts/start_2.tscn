@@ -37,7 +37,7 @@ sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.277528, 0.277528, 0.277528, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3vw3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtbaa"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [node name="Start2" type="Node3D"]
@@ -54,7 +54,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5
 map_options = Array[String](["res://shared/procedural-level/rooms/theme_2/room_1.tscn", "res://shared/procedural-level/rooms/theme_2/room_2.tscn", "res://shared/procedural-level/rooms/theme_2/room_3.tscn", "res://shared/procedural-level/rooms/theme_2/room_4.tscn", "res://shared/procedural-level/rooms/theme_2/room_5.tscn"])
 
 [node name="roof" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_1" parent="roof" instance=ExtResource("2_yjy8w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, -3)
@@ -223,7 +222,7 @@ environment = SubResource("Environment_tbx6h")
 
 [node name="airvent" parent="." instance=ExtResource("10_g5fqf")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.4435, 2.13752, -3.75274)
-material = SubResource("StandardMaterial3D_n3vw3")
+material = SubResource("StandardMaterial3D_wtbaa")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("11_rmbqs")]
 transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 3, 5.98546, 0.1604, -0.756324)
