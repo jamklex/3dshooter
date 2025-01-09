@@ -1,7 +1,6 @@
 extends CharacterBody3D
 class_name Enemy
 
-
 const NEXT_RANDOM_POS_RANGE = 50
 const VELOCITY_SMOOTHNESS = 0.2
 @onready var _anim_player = $visuals/mixamo_base/AnimationPlayer
@@ -47,12 +46,16 @@ func _getNextMoveVector2(prevMoveVector2:Vector2):
 		return Vector2.ZERO
 		
 func _ready():
+	_shootable.healthReachedZero.connect(addKillCounter)
 	_shootable.setStartHealth(randi_range(1,10))
 	state_machine = _anim_tree.get("parameters/playback")
 	playerSpotted = true
 	rng.randomize()
 	process_enemy_type_attributes(rng.randi_range(0, ENEMY_TYPE.size()-1))
-	
+
+func addKillCounter():
+	WorldUtil.addKillCounter(str(_shootable.id), 1)
+
 func _get_player():
 	if WorldUtil.player and WorldUtil.player.body:
 		return WorldUtil.player.body
@@ -163,6 +166,7 @@ func _on_damage_taken(damage):
 	_set_player_spotted_to_all_enemies()
 
 func process_enemy_type_attributes(enemyType: ENEMY_TYPE):
+	_shootable.id = enemyType
 	match enemyType:
 		ENEMY_TYPE.WEAK_SQUISHY:
 			damage = 3

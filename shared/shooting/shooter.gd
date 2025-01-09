@@ -17,7 +17,6 @@ var useRealMunition:bool = true
 @onready var _shotTimer:Timer = $shotTimer
 @onready var _magInfo:Label = $magInfo
 var soundPlayer:AudioStreamPlayer
-signal onShootableDie
 signal onHitShootable
 
 const _ITEM_WEAPON_MAP = {
@@ -321,12 +320,7 @@ func _shoot():
 		var damage = currentWeapon.damage
 		if criticalHit:
 			damage *= 2
-		var died = shootable.takeDamage(damage)
-		shootable = shootable as Shootable
-		if shootable:
-			onHitShootable.emit(died)
-		if shootable and died:
-			onShootableDie.emit(shootable)
+		shootable.takeDamage(damage)
 		
 func _cancelShotCooldown():
 	_shotTimer.stop()

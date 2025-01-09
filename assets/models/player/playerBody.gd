@@ -41,7 +41,6 @@ func _ready():
 	WorldUtil.player.run_inventory.onRemoveItem.connect(_on_run_inv_changed)
 	_shooter.setUseRealMunition(WorldUtil.player.inMissionMap)
 	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.equip_inventory)
-	_shooter.onShootableDie.connect(WorldUtil.player.onShootableKilled)
 	_shooter.onHitShootable.connect(_showHitMarker)
 	base_health = _shootable.max_health
 	_check_for_health_module(true)

@@ -3,6 +3,7 @@ class_name Shootable
 
 @export var max_health:int
 @export var enemy_type: EnemyType = EnemyType.DUMMY
+var id:int = -1
 var health:int
 var died:bool = false
 signal healthReachedZero
@@ -24,8 +25,6 @@ func takeDamage(damage:int):
 	if health <= 0 and not died:
 		_die()
 		died = true
-		return true
-	return false
 
 func setStartHealth(new_health:int):
 	max_health = new_health

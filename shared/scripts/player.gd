@@ -60,11 +60,6 @@ func setInMission(newInMissionMap:bool):
 
 func saveRunInventory():
 	run_inventory.moveAllItems(inventory, ["7"])
-	
-func onShootableKilled(shootable:Shootable):
-	WorldUtil.addKillCounter(str(shootable.enemy_type), 1)
-	if inMissionMap:
-		mission_kills += 1
 
 func addKillCounter(enemy_id: String, amount: int):
 	kills[enemy_id] = kills.get(enemy_id, 0) + amount
