@@ -33,7 +33,6 @@ script = ExtResource("1_x5ir3")
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6.4564, 1.5, -0.140258)
 
 [node name="roof" type="Node3D" parent="."]
-visible = false
 
 [node name="floor_49" parent="roof" instance=ExtResource("3_kj02h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 4, -8.5)
