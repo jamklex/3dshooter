@@ -44,7 +44,6 @@ map_options = Array[String](["res://shared/procedural-level/rooms/theme_2/room_1
 
 [node name="roof" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-visible = false
 
 [node name="floor_1" parent="roof" instance=ExtResource("3_xsrww")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.41725, 0, 0)
