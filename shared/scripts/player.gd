@@ -62,6 +62,8 @@ func saveRunInventory():
 	run_inventory.moveAllItems(inventory, ["7"])
 
 func addKillCounter(enemy_id: String, amount: int):
+	if inMissionMap:
+		mission_kills += amount
 	kills[enemy_id] = kills.get(enemy_id, 0) + amount
 
 func clearMissionInventories():

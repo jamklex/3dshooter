@@ -6,7 +6,6 @@ class_name Shootable
 var id:int = -1
 var health:int
 var died:bool = false
-signal healthReachedZero
 signal onDamageTaken(damage:int)
 signal onHealthChanged(health:int)
 
@@ -31,10 +30,7 @@ func setStartHealth(new_health:int):
 	health = max_health
 			
 func _die():
-	if healthReachedZero.get_connections().size() > 0:
-		healthReachedZero.emit()
-	else:
-		get_parent().queue_free()
+	WorldUtil.addKillCounter(str(id), 1)
 
 func _ready():
 	health = max_health
