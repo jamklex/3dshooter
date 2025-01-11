@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5miyjk5xtaim"
-path="res://.godot/imported/schrott-2.png-bf02952e1e5c5dcf2594ab916cab8711.ctex"
+uid="uid://dbbj01k4jf1jj"
+path="res://.godot/imported/bk-panel.png-e1f23b290fda2141d4526eddeca18e3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/items/img/schrott-2.png"
-dest_files=["res://.godot/imported/schrott-2.png-bf02952e1e5c5dcf2594ab916cab8711.ctex"]
+source_file="res://data/items/img/bk-panel.png"
+dest_files=["res://.godot/imported/bk-panel.png-e1f23b290fda2141d4526eddeca18e3a.ctex"]
 
 [params]
 

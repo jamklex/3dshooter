@@ -113,7 +113,8 @@ func refreshInventoryLabels():
 	rightInvNameLabel.text = rightInvName
 	
 func refreshMoneyLabels():
-	playerMoneyLabel.text = "Gold: " + str(playerMoney)
+	var gold_name = ItemHelper.get_item(Inventory.GOLD_ITEM).name
+	playerMoneyLabel.text = gold_name + ": " + str(playerMoney)
 	diffMoneyLabel.text = ("+" if diffMoney > 0 else "") + str(diffMoney)
 
 func closeTrade():
