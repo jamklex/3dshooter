@@ -4342,6 +4342,6 @@ avoidance_priority = 0.25
 debug_enabled = true
 
 [connection signal="timeout" from="visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/sightChecker" to="." method="check_sight"]
-[connection signal="healthReachedZero" from="shootable" to="." method="_die"]
 [connection signal="onDamageTaken" from="shootable" to="." method="_on_damage_taken"]
+[connection signal="onHealthChanged" from="shootable" to="." method="_on_health_changed"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

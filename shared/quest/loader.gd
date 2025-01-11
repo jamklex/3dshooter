@@ -10,7 +10,7 @@ func highlight_quest_npcs(_quests: Array[Quest]):
 	var quest_npcs:Array[String] = []
 	var all_npcs = get_tree().get_nodes_in_group("npc").filter(func(n): return n is NPC)
 	for q in _quests:
-		var active_tasks = q.get_activew_tasks()
+		var active_tasks = q.get_active_tasks()
 		if active_tasks.is_empty():
 			continue
 		for _t in active_tasks:

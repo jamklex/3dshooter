@@ -3995,5 +3995,4 @@ debug_shape_thickness = 5
 [node name="shootable" parent="." instance=ExtResource("4_o256r")]
 max_health = 20
 
-[connection signal="healthReachedZero" from="shootable" to="." method="_on_player_died"]
 [connection signal="onHealthChanged" from="shootable" to="." method="_on_health_changed"]

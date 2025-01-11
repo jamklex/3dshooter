@@ -51,6 +51,7 @@ func _exit_tree():
 	WorldUtil.player.body = null
 	WorldUtil.player_cam = null
 
+#var last_pos = Vector3.ZERO  # FOR DEBUGGING
 func _physics_process(delta):
 	handle_show_menu()
 	handle_show_inventory()
@@ -95,6 +96,11 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
 		sprinting = false
+#	=== FOR DEBUGGING ===
+	#if global_position != last_pos:
+		#last_pos = global_position
+		#print(global_position)
+#	=========
 	move_and_slide()
 
 func _playAnimation(animationName:String):
@@ -182,9 +188,6 @@ func _unhandled_input(event):
 		_camera_mount.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
 		_camera_mount.rotation_degrees.x = clamp(_camera_mount.rotation_degrees.x, -80.0, 60.0)
 
-func _on_player_died():
-	WorldUtil.player_died()
-
 func _showHitMarker(lastHit):
 	hitmarker.visible = true
 	hitmarker.modulate = Color(255,0,0) if lastHit else Color(255,255,255)
@@ -206,6 +209,8 @@ func _switchUiMenu(selectedTabIndex):
 
 func _on_health_changed(health):
 	health_bar.setHealth(health)
+	if health <= 0 and not _shootable.died:
+		WorldUtil.player_died()
 
 func _on_equip_inv_changed(payload:Array):
 	var item_id = payload[0]

@@ -197,3 +197,8 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	var look_at_pos = global_position + velocity
 	if global_position.distance_to(look_at_pos) > 0.001:
 		_visuals.look_at(global_position + velocity)
+
+
+func _on_health_changed(health: int) -> void:
+	if health <= 0:
+		_die()
