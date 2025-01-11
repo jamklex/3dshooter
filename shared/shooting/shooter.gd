@@ -321,6 +321,7 @@ func _shoot():
 		if criticalHit:
 			damage *= 2
 		shootable.takeDamage(damage)
+		onHitShootable.emit(shootable.health <= 0)
 		
 func _cancelShotCooldown():
 	_shotTimer.stop()

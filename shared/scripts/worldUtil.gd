@@ -177,9 +177,15 @@ func teleportToMissionMap(payload: Array):
 	loadingScreen.fade_out()
 	closeCurrentWindow()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+func removeAllEnemies():
+	var enemies = get_tree().get_nodes_in_group("enemies") as Array[Enemy]
+	for enemy in enemies:
+		enemy.queue_free()
 
 func teleportToLowerShip(_payload: Array = []):
 	await loadingScreen.fade_in()
+	removeAllEnemies()
 	player.setInMission(false)
 	player.teleport("ship", Vector3(-1,-3,-12))
 	loadingScreen.fade_out()
