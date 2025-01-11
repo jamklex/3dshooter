@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbbj01k4jf1jj"
-path="res://.godot/imported/schrott-1.png-1f5d5a6b66f760913c9ad32f6924daa8.ctex"
+uid="uid://cndr7tr6oux60"
+path="res://.godot/imported/carbon-tube.png-cad0124dc32b3d65521e03a0738ab3a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://data/items/img/schrott-1.png"
-dest_files=["res://.godot/imported/schrott-1.png-1f5d5a6b66f760913c9ad32f6924daa8.ctex"]
+source_file="res://data/items/img/carbon-tube.png"
+dest_files=["res://.godot/imported/carbon-tube.png-cad0124dc32b3d65521e03a0738ab3a0.ctex"]
 
 [params]
 

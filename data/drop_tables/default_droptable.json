@@ -2,38 +2,124 @@
 	"items": [
 		{
 			"id": "0",
-			"amount_min": 10,
-			"amount_max": 50,
-			"chance": 0.35
-		},
-		{
-			"id": "1",
-			"amount_min": 1,
-			"amount_max": 3,
-			"chance": 0.2
-		},
-		{
-			"id": "2",
-			"amount_min": 2,
-			"amount_max": 5,
-			"chance": 0.15
+			"amount_min": 3,
+			"amount_max": 12,
+			"chance": 0.595
 		},
 		{
 			"id": "3",
-			"amount_min": 1,
-			"amount_max": 5,
-			"chance": 0.15
+			"amount_min": 3,
+			"amount_max": 7,
+			"chance": 0.06
 		},
 		{
-			"id": "5",
-			"amount_min": 5,
-			"amount_max": 10,
+			"id": "1",
+			"amount_min": 2,
+			"amount_max": 5,
+			"chance": 0.06
+		},
+		{
+			"id": "2",
+			"amount_min": 1,
+			"amount_max": 3,
 			"chance": 0.05
 		},
 		{
+			"id": "5",
+			"amount_min": 1,
+			"amount_max": 3,
+			"chance": 0.03
+		},
+		{
+			"id": "27",
+			"amount_min": 2,
+			"amount_max": 11,
+			"chance": 0.023
+		},
+		{
+			"id": "26",
+			"amount_min": 2,
+			"amount_max": 11,
+			"chance": 0.022
+		},
+		{
 			"id": "7",
-			"amount_fix": 3,
-			"chance": 0.1
+			"amount_min": 1,
+			"amount_max": 8,
+			"chance": 0.02
+		},
+		{
+			"id": "24",
+			"amount_min": 2,
+			"amount_max": 9,
+			"chance": 0.015
+		},
+		{
+			"id": "21",
+			"amount_min": 2,
+			"amount_max": 8,
+			"chance": 0.015
+		},
+		{
+			"id": "11",
+			"amount_min": 1,
+			"amount_max": 8,
+			"chance": 0.015
+		},
+		{
+			"id": "20",
+			"amount_min": 2,
+			"amount_max": 5,
+			"chance": 0.015
+		},
+		{
+			"id": "23",
+			"amount_min": 1,
+			"fix_amount": 4,
+			"chance": 0.015
+		},
+		{
+			"id": "25",
+			"amount_min": 1,
+			"amount_max": 2,
+			"chance": 0.015
+		},
+		{
+			"id": "15",
+			"amount_min": 1,
+			"amount_max": 8,
+			"chance": 0.015
+		},
+		{
+			"id": "13",
+			"amount_min": 1,
+			"amount_max": 8,
+			"chance": 0.015
+		},
+		{
+			"id": "22",
+			"amount_fix": 1,
+			"chance": 0.015
+		},
+		{
+			"id": "6",
+			"amount_fix": 1,
+			"chance": 0.005
+		},
+		{
+			"id": "16",
+			"amount_fix": 1,
+			"chance": 0
+		},
+		{
+			"id": "18",
+			"amount_fix": 1,
+			"chance": 0
+		},
+		{
+			"id": "17",
+			"amount_fix": 1,
+			"chance": 0
 		}
 	]
 }

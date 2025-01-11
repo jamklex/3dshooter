@@ -6,19 +6,19 @@
 		"trade": false,
 	},
 	"1": {
-		"name": "Schrott #1",
-		"desc": "just sell it...",
-		"image": "res://data/items/img/schrott-1.png"
+		"name": "Copper Metal Scraps",
+		"desc": "Some Copper scraps, it's hard to identify it's origin",
+		"image": "res://data/items/img/copper.png"
 	},
 	"2": {
-		"name": "Schrott #2",
-		"desc": "just sell it...",
-		"image": "res://data/items/img/schrott-2.png"
+		"name": "Broken Panel",
+		"desc": "A broken panel, seems to be from a computer or a hand held device",
+		"image": "res://data/items/img/bk-panel.png"
 	},
 	"3": {
-		"name": "Schrott #3",
-		"desc": "just sell it...",
-		"image": "res://data/items/img/schrott-3.png"
+		"name": "Leaking Battery",
+		"desc": "Be careful and better get rid of it",
+		"image": "res://data/items/img/lk-battery.png"
 	},
 	"4": {
 		"name": "Golden Sphere",
@@ -27,9 +27,9 @@
 		"trade": false
 	},
 	"5": {
-		"name": "Schrott #4",
-		"desc": "just sell it...",
-		"image": "res://data/items/img/schrott-4.png"
+		"name": "Broken Metal Frame",
+		"desc": "Seems like a Part that could fit a Panel inside",
+		"image": "res://data/items/img/bk-frame.png"
 	},
 	"6": {
 		"name": "Small pistol",
@@ -61,7 +61,7 @@
 		"type": "WEAPON"
 	},
 	"11": {
-		"name": "Rifle munition",
+		"name": "Rifle ammo",
 		"desc": "Munition for rifle",
 		"image": "res://data/items/img/rifle-ammo.png",
 	},
@@ -72,7 +72,7 @@
 		"type": "WEAPON"
 	},
 	"13": {
-		"name": "Sniper munition",
+		"name": "Sniper ammo",
 		"desc": "Munition for sniper",
 		"image": "res://data/items/img/sniper-ammo.png",
 	},
@@ -83,7 +83,7 @@
 		"type": "WEAPON"
 	},
 	"15": {
-		"name": "Shotgun munition",
+		"name": "Shotgun ammo",
 		"desc": "Munition for shotgun",
 		"image": "res://data/items/img/shotgun-ammo.png",
 	},
@@ -95,22 +95,16 @@
 		"result_item_id": "10",
 		"amount": 1,
 		"recipe": {
-			"6": 2,
-			"8": 1
+			"8": 1,
+			"22": 1,
+			"24": 1,
+			"25": 5,
+			"21": 10,
+			"26": 30,
+			"27": 50
 		}
 	},
 	"17": {
-		"name": "Shotgun blueprint",
-		"desc": "A blueprint for creating a shotgun",
-		"image": "res://data/items/img/blueprint_shotgun.png",
-		"type": "BLUEPRINT",
-		"result_item_id": "14",
-		"amount": 1,
-		"recipe": {
-			"6": 2
-		}
-	},
-	"18": {
 		"name": "Sniper blueprint",
 		"desc": "A blueprint for creating a sniper",
 		"image": "res://data/items/img/blueprint_sniper.png",
@@ -118,8 +112,33 @@
 		"result_item_id": "12",
 		"amount": 1,
 		"recipe": {
-			"6": 2,
-			"8": 3
+			"8": 2,
+			"22": 3,
+			"21": 5,
+			"23": 5,
+			"25": 5,
+			"26": 5,
+			"20": 10,
+			"24": 20,
+			"27": 40
+		}
+	},
+	"18": {
+		"name": "Shotgun blueprint",
+		"desc": "A blueprint for creating a shotgun",
+		"image": "res://data/items/img/blueprint_shotgun.png",
+		"type": "BLUEPRINT",
+		"result_item_id": "14",
+		"amount": 1,
+		"recipe": {
+			"8": 2,
+			"25": 3,
+			"20": 5,
+			"23": 10,
+			"24": 10,
+			"21": 15,
+			"26": 20,
+			"27": 30
 		}
 	},
 	"19": {
@@ -128,4 +147,44 @@
 		"image": "res://data/items/img/health-module.png",
 		"type": "MODULE"
 	},
+	"20": {
+		"name": "Titanium plate",
+		"desc": "High quality plate made from Titanium",
+		"image": "res://data/items/img/titanium.png"
+	},
+	"21": {
+		"name": "Rubber Scraps",
+		"desc": "Some damaged pieces of Rubber",
+		"image": "res://data/items/img/rubber.png"
+	},
+	"22": {
+		"name": "Bottle of Grease",
+		"desc": "Some mechanical Grease in a Bottle",
+		"image": "res://data/items/img/grease.png"
+	},
+	"23": {
+		"name": "Carbon Tube",
+		"desc": "A tube made out of Carbon Fiber, handle with care!",
+		"image": "res://data/items/img/carbon-tube.png"
+	},
+	"24": {
+		"name": "Steel Metal scraps",
+		"desc": "Scraps of steel in all Variaties",
+		"image": "res://data/items/img/steel.png"
+	},
+	"25": {
+		"name": "Piston Head",
+		"desc": "An intact Piston Head from an unknown device",
+		"image": "res://data/items/img/piston-head.png"
+	},
+	"26": {
+		"name": "Plastic Sheet",
+		"desc": "A sheet of good old sturdy Plastic",
+		"image": "res://data/items/img/plastic.png"
+	},
+	"27": {
+		"name": "Aluminum Metal Scraps",
+		"desc": "Bent Aluminum, probably pretty useful",
+		"image": "res://data/items/img/aluminum.png"
+	}
 }
