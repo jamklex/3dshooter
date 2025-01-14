@@ -19,23 +19,8 @@ func spawn_random() -> Enemy:
 	return enemy
 
 func _get_random_position() -> Vector3:
-	return global_position
-	#print("== Pos & Scale ==")
-	#print(global_position.x)
-	#print(scale.x)
-	#print(global_position.z)
-	#print(scale.z)
-	#print("========")
-	#var random_x = randf_range(position.x - scale.x, position.x + scale.x)
-	#var random_z = randf_range(position.z - scale.z, position.z + scale.z)
-	#print("== Randoms ==")
-	#print(random_x)
-	#print(random_z)
-	#print("========")
-	#var random_pos_local_space = Vector3(random_x, position.y, random_z)
-	#var random_pos_to_global = to_global()
-	#var real_global_pos = Vector3.ZERO
-	#real_global_pos.x = random_pos_to_global.x + global_position.x
-	#real_global_pos.y = random_pos_to_global.y + global_position.y
-	#real_global_pos.z = random_pos_to_global.z + global_position.z
-	#return real_global_pos
+	var scale_x_range = scale.x / 2
+	var scale_z_range = scale.z / 2
+	var random_x = randf_range(-scale_x_range, scale_x_range) / scale.x
+	var random_z = randf_range(-scale_z_range, scale_z_range) / scale.z
+	return to_global(Vector3(random_x, 0, random_z))

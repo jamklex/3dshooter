@@ -94,6 +94,8 @@ func _is_attacking():
 	return playerSpotted and _is_in_attack_range()
 
 func _physics_process(delta):
+	if dieing:
+		return
 	if simple_path_until:
 		if Time.get_ticks_msec() >= simple_path_until:
 			nav_agent.path_postprocessing = 0
@@ -108,8 +110,6 @@ func _physics_process(delta):
 				nav_agent.path_postprocessing = 1
 		else:
 			not_moving_since = null
-	if dieing:
-		return
 	if not player:
 		player = _get_player()
 	if not nav_agent.target_position or _is_target_pos_reached() or playerSpotted:

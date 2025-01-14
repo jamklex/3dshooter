@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://cuingwts8hjty" path="res://assets/models/enemies/simpleEnemy/simpleEnemy.tscn" id="2_qriv0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3hupe"]
-size = Vector3(2, 0.5, 2)
+size = Vector3(1, 0.25, 1)
 
 [node name="SpawnPoint" type="Area3D" groups=["spawns"]]
 script = ExtResource("1_ojvk4")
 enemies = Array[PackedScene]([ExtResource("2_qriv0")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
 shape = SubResource("BoxShape3D_3hupe")
 disabled = true
