@@ -4,129 +4,129 @@
 			"id": "0",
 			"amount_min": 3,
 			"amount_max": 12,
-			"chance": 0.635
+			"chance": 63.5
 		},
 		{
 			"id": "0",
 			"amount_min": 200,
 			"amount_max": 300,
-			"chance": 0.002
+			"chance": 0.2
 		},
 		{
 			"id": "3",
 			"amount_min": 3,
 			"amount_max": 7,
-			"chance": 0.06
+			"chance": 6.0
 		},
 		{
 			"id": "1",
 			"amount_min": 2,
 			"amount_max": 5,
-			"chance": 0.06
+			"chance": 6.0
 		},
 		{
 			"id": "2",
 			"amount_min": 1,
 			"amount_max": 3,
-			"chance": 0.05
+			"chance": 5.0
 		},
 		{
 			"id": "5",
 			"amount_min": 1,
 			"amount_max": 3,
-			"chance": 0.03
+			"chance": 3.0
 		},
 		{
 			"id": "27",
 			"amount_min": 2,
 			"amount_max": 11,
-			"chance": 0.023
+			"chance": 2.3
 		},
 		{
 			"id": "26",
 			"amount_min": 2,
 			"amount_max": 11,
-			"chance": 0.022
+			"chance": 2.2
 		},
 		{
 			"id": "7",
 			"amount_min": 1,
 			"amount_max": 8,
-			"chance": 0.02
+			"chance": 2.0
 		},
 		{
 			"id": "24",
 			"amount_min": 2,
 			"amount_max": 9,
-			"chance": 0.015
+			"chance": 1.5
 		},
 		{
 			"id": "21",
 			"amount_min": 2,
 			"amount_max": 8,
-			"chance": 0.015
+			"chance": 1.5
 		},
 		{
 			"id": "11",
 			"amount_min": 1,
 			"amount_max": 8,
-			"chance": 0.015
+			"chance": 1.5
 		},
 		{
 			"id": "20",
 			"amount_min": 1,
 			"amount_max": 7,
-			"chance": 0.008
+			"chance": 0.8
 		},
 		{
 			"id": "23",
 			"amount_min": 1,
 			"amount_max": 7,
-			"chance": 0.008
+			"chance": 0.8
 		},
 		{
 			"id": "25",
 			"amount_min": 1,
 			"amount_max": 7,
-			"chance": 0.008
+			"chance": 0.8
 		},
 		{
 			"id": "15",
 			"amount_min": 1,
 			"amount_max": 8,
-			"chance": 0.008
+			"chance": 0.8
 		},
 		{
 			"id": "13",
 			"amount_min": 1,
 			"amount_max": 8,
-			"chance": 0.008
+			"chance": 0.8
 		},
 		{
 			"id": "22",
 			"amount_min": 1,
 			"amount_max": 4,
-			"chance": 0.008
+			"chance": 0.8
 		},
 		{
 			"id": "6",
 			"amount_fix": 1,
-			"chance": 0.005
+			"chance": 0.5
 		},
 		{
 			"id": "16",
 			"amount_fix": 1,
-			"chance": 0
+			"chance": 0.0
 		},
 		{
 			"id": "18",
 			"amount_fix": 1,
-			"chance": 0
+			"chance": 0.0
 		},
 		{
 			"id": "17",
 			"amount_fix": 1,
-			"chance": 0
+			"chance": 0.0
 		}
 	]
 }
