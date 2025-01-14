@@ -12,13 +12,20 @@ var rewards: Array[InventoryItem] = []
 var over: int
 const missionTime_min: int = 45
 
-const resource_options: Array = [ "1","2","3","5" ]
 const resource_worth_index = {
-	"0": 3.1,
-	"1": 3.5,
-	"2": 3.1,
-	"3": 4.0,
-	"5": 5.7
+	GameItem.Rarity.COMMON: 3.5,
+	GameItem.Rarity.UNCOMMON: 5.7,
+	GameItem.Rarity.RARE: 9.2
+}
+const resource_min_count_per_level = {
+	GameItem.Rarity.COMMON: 5,
+	GameItem.Rarity.UNCOMMON: 1,
+	GameItem.Rarity.RARE: 1
+}
+const resource_max_count_per_level = {
+	GameItem.Rarity.COMMON: 10,
+	GameItem.Rarity.UNCOMMON: 5,
+	GameItem.Rarity.RARE: 1
 }
 const enemy_worth_index = {
 	"0": 2.3,
@@ -58,7 +65,7 @@ static func generate(_rng: RandomNumberGenerator) -> Mission:
 	mission.difficulty = _rng.randi_range(0, Difficulty.values().max())
 	mission.generateKillCounter()
 	mission.generateResourceCounter()
-	mission.generateGoldReward()
+	mission.generateRewards()
 	return mission
 
 func allDone() -> bool:
@@ -104,28 +111,39 @@ func generateKillCounter():
 
 func generateResourceCounter():
 	var modulo = 5
-	var minCount = (difficulty + 1) * modulo
+	var difficulty_counter = difficulty + 1
+	var minCount = (difficulty_counter) * modulo
 	var maxCount = minCount * 3
-	var tmp_options = []
-	tmp_options.append_array(resource_options)
-	for n in difficulty + 1:
-		if tmp_options.is_empty():
+	var rarities = [GameItem.Rarity.COMMON, GameItem.Rarity.UNCOMMON] as Array[GameItem.Rarity]
+	var resource_options = ItemHelper.get_item_by_rarity(rarities) as Array[GameItem]
+	for n in difficulty_counter:
+		if resource_options.is_empty():
 			break
-		var id = tmp_options.pop_at(rng.randi_range(0,tmp_options.size()-1))
-		var total = rng.randi_range(minCount, maxCount)
+		var item = resource_options.pop_at(rng.randi_range(0,resource_options.size()-1)) as GameItem
+		var total = difficulty_counter * rng.randi_range(resource_min_count_per_level[item.rarity], resource_max_count_per_level[item.rarity])
 		total = max(total - (total % modulo), modulo)
-		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, str(id), total))
+		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, item.id, total))
 
-func generateGoldReward():
-	var reward = 0
+func generateRewards():
+	var gold = 0
+	if difficulty > Difficulty.EASY:
+		var reward_items = ItemHelper.get_item_by_rarity([GameItem.Rarity.UNCOMMON, GameItem.Rarity.RARE]).filter(func(item: GameItem): return !containsId(resources, item.id))
+		var item = reward_items.pop_at(rng.randi_range(0,reward_items.size()-1)) as GameItem
+		var amount = rng.randi_range(resource_min_count_per_level[item.rarity], resource_max_count_per_level[item.rarity])
+		rewards.push_back(InventoryItem.from(item.id, amount))
+		gold -= amount * resource_worth_index[item.rarity]
 	for r in resources:
-		reward += r.total * resource_worth_index[str(r.id)]
+		var item = ItemHelper.get_item_by_id(r.id)
+		gold += r.total * resource_worth_index[item.rarity]
 	for k in kills:
-		reward += k.total * enemy_worth_index[str(k.id)]
+		gold += k.total * enemy_worth_index[str(k.id)]
 	var minBonus = (difficulty + 1) * 15
 	var maxBonus = minBonus * 3
 	var bonus = rng.randi_range(minBonus, maxBonus)
-	rewards.push_back(InventoryItem.from("0", reward + bonus))
+	rewards.push_front(InventoryItem.from("0", gold + bonus))
+
+func containsId(steps: Array[MissionStep], id: String):
+	return steps.filter(func(step: MissionStep): return step.id == id).size() > 0
 
 func getPunishment() -> Array[InventoryItem]:
 	var punishment_ratio = 0.75

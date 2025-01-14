@@ -38,7 +38,7 @@ func _refresh_craft_output():
 		var blueprint = _blueprint_item.item as Blueprint
 		var recipe = blueprint.recipe as Dictionary
 		for item_id in recipe.keys():
-			var item = ItemHelper.get_item(item_id)
+			var item = ItemHelper.get_item_by_id(item_id)
 			var neededAmount = recipe[item_id]
 			var actualAmount = _crafting_inv.count(item_id)
 			if actualAmount >= neededAmount:
@@ -55,7 +55,7 @@ func _can_craft():
 	var blueprint = _blueprint_item.item as Blueprint
 	var recipe = blueprint.recipe as Dictionary
 	for item_id in recipe.keys():
-		var item = ItemHelper.get_item(item_id)
+		var item = ItemHelper.get_item_by_id(item_id)
 		var neededAmount = recipe[item_id]
 		var actualAmount = _crafting_inv.count(item_id)
 		if actualAmount < neededAmount:

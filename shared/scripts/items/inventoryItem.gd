@@ -7,7 +7,7 @@ var amount: int
 
 static func from(id: String, _amount: int) -> InventoryItem:
 	var _item = InventoryItem.new()
-	_item.item = ItemHelper.get_item(id)
+	_item.item = ItemHelper.get_item_by_id(id)
 	_item.amount = _amount
 	return _item
 

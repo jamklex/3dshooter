@@ -41,4 +41,4 @@ func get_amount():
 	return true_amount
 
 func pretty_name():
-	return ItemHelper.get_item(id).name
+	return ItemHelper.get_item_by_id(id).name

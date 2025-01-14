@@ -25,7 +25,7 @@ func isResourceType() -> bool:
 	return linked_step.type == MissionStep.MissionStepType.RESOURCE
 
 func getIdName() -> String:
-	return ItemHelper.get_item(linked_step.id).name
+	return ItemHelper.get_item_by_id(linked_step.id).name
 
 func getEnemyName() -> String:
 	return Enemy.ENEMY_NAME_MAP.get(int(linked_step.id), "Unknown")

@@ -8,17 +8,23 @@
 	"1": {
 		"name": "Copper Metal Scraps",
 		"desc": "Some Copper scraps, it's hard to identify it's origin",
-		"image": "res://data/items/img/copper.png"
+		"image": "res://data/items/img/copper.png",
+		"type": "RESOURCE",
+		"rarity": "COMMON"
 	},
 	"2": {
 		"name": "Broken Panel",
 		"desc": "A broken panel, seems to be from a computer or a hand held device",
-		"image": "res://data/items/img/bk-panel.png"
+		"image": "res://data/items/img/bk-panel.png",
+		"type": "RESOURCE",
+		"rarity": "COMMON"
 	},
 	"3": {
 		"name": "Leaking Battery",
 		"desc": "Be careful and better get rid of it",
-		"image": "res://data/items/img/lk-battery.png"
+		"image": "res://data/items/img/lk-battery.png",
+		"type": "RESOURCE",
+		"rarity": "COMMON"
 	},
 	"4": {
 		"name": "Golden Sphere",
@@ -29,7 +35,9 @@
 	"5": {
 		"name": "Broken Metal Frame",
 		"desc": "Seems like a Part that could fit a Panel inside",
-		"image": "res://data/items/img/bk-frame.png"
+		"image": "res://data/items/img/bk-frame.png",
+		"type": "RESOURCE",
+		"rarity": "COMMON"
 	},
 	"6": {
 		"name": "Small pistol",
@@ -150,41 +158,57 @@
 	"20": {
 		"name": "Titanium plate",
 		"desc": "High quality plate made from Titanium",
-		"image": "res://data/items/img/titanium.png"
+		"image": "res://data/items/img/titanium.png",
+		"type": "RESOURCE",
+		"rarity": "RARE"
 	},
 	"21": {
 		"name": "Rubber Scraps",
 		"desc": "Some damaged pieces of Rubber",
-		"image": "res://data/items/img/rubber.png"
+		"image": "res://data/items/img/rubber.png",
+		"type": "RESOURCE",
+		"rarity": "COMMON"
 	},
 	"22": {
 		"name": "Bottle of Grease",
 		"desc": "Some mechanical Grease in a Bottle",
-		"image": "res://data/items/img/grease.png"
+		"image": "res://data/items/img/grease.png",
+		"type": "RESOURCE",
+		"rarity": "RARE"
 	},
 	"23": {
 		"name": "Carbon Tube",
 		"desc": "A tube made out of Carbon Fiber, handle with care!",
-		"image": "res://data/items/img/carbon-tube.png"
+		"image": "res://data/items/img/carbon-tube.png",
+		"type": "RESOURCE",
+		"rarity": "RARE"
 	},
 	"24": {
 		"name": "Steel Metal scraps",
 		"desc": "Scraps of steel in all Variaties",
-		"image": "res://data/items/img/steel.png"
+		"image": "res://data/items/img/steel.png",
+		"type": "RESOURCE",
+		"rarity": "UNCOMMON"
 	},
 	"25": {
 		"name": "Piston Head",
 		"desc": "An intact Piston Head from an unknown device",
-		"image": "res://data/items/img/piston-head.png"
+		"image": "res://data/items/img/piston-head.png",
+		"type": "RESOURCE",
+		"rarity": "RARE"
 	},
 	"26": {
 		"name": "Plastic Sheet",
 		"desc": "A sheet of good old sturdy Plastic",
-		"image": "res://data/items/img/plastic.png"
+		"image": "res://data/items/img/plastic.png",
+		"type": "RESOURCE",
+		"rarity": "UNCOMMON"
 	},
 	"27": {
 		"name": "Aluminum Metal Scraps",
 		"desc": "Bent Aluminum, probably pretty useful",
-		"image": "res://data/items/img/aluminum.png"
+		"image": "res://data/items/img/aluminum.png",
+		"type": "RESOURCE",
+		"rarity": "UNCOMMON"
 	}
 }

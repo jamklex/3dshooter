@@ -1,21 +1,17 @@
 [gd_scene load_steps=2 format=3 uid="uid://cddhte11a1aff"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2cy75"]
+[ext_resource type="Script" path="res://shared/mission/reward.gd" id="1_wxunr"]
 
-[node name="Reward" type="PanelContainer"]
+[node name="Reward" type="HBoxContainer"]
 offset_right = 84.0
 offset_bottom = 23.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_2cy75")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-size_flags_horizontal = 0
 theme_override_constants/separation = 15
+script = ExtResource("1_wxunr")
 
-[node name="resource" type="Label" parent="HBoxContainer"]
+[node name="resource" type="Label" parent="."]
 layout_mode = 2
 text = "Gold:"
 
-[node name="amount" type="Label" parent="HBoxContainer"]
+[node name="amount" type="Label" parent="."]
 layout_mode = 2
 text = "500"

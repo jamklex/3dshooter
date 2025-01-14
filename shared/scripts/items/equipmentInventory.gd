@@ -13,7 +13,7 @@ static func from(data: Dictionary) -> EquipmentInventory:
 	return inv
 
 func can_store(id:String, amount:int) -> bool:
-	var item_type = ItemHelper.get_item(id).type
+	var item_type = ItemHelper.get_item_by_id(id).type
 	if not item_type in ALLOWED_ITEM_MAP.keys():
 		return false
 	return _get_places_for_type(item_type) >= amount

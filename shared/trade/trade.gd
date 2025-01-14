@@ -113,7 +113,7 @@ func refreshInventoryLabels():
 	rightInvNameLabel.text = rightInvName
 	
 func refreshMoneyLabels():
-	var gold_name = ItemHelper.get_item(Inventory.GOLD_ITEM).name
+	var gold_name = ItemHelper.get_item_by_id(Inventory.GOLD_ITEM).name
 	playerMoneyLabel.text = gold_name + ": " + str(playerMoney)
 	diffMoneyLabel.text = ("+" if diffMoney > 0 else "") + str(diffMoney)
 
