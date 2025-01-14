@@ -4,7 +4,13 @@
 			"id": "0",
 			"amount_min": 3,
 			"amount_max": 12,
-			"chance": 0.637
+			"chance": 0.635
+		},
+		{
+			"id": "0",
+			"amount_min": 200,
+			"amount_max": 300,
+			"chance": 0.002
 		},
 		{
 			"id": "3",
