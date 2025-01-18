@@ -75,7 +75,7 @@ func _is_target_pos_reached():
 func _is_in_attack_range():
 	if not player:
 		return false
-	return global_position.distance_to(nav_agent.get_final_position()) < nav_agent.target_desired_distance
+	return global_position.distance_to(player.position) < nav_agent.target_desired_distance
 	
 func _set_player_spotted_to_all_enemies():
 	var all_enemies = get_tree().get_nodes_in_group("enemies") as Array[Enemy]
