@@ -596,4 +596,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79637, 0.223625, -26.6992)
 transform = Transform3D(-2, 0, 7.54979e-08, 0, 0.29, 0, -3.01992e-07, 0, -0.5, 0, -0.30011, 5.41672)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("11_npt7r")]
-transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 5, -3.55441, 0.0244629, -30.5069)
+transform = Transform3D(12, 0, 0, 0, 1, 0, 0, 0, 10, -2.82593, 0.0244629, -29.6813)

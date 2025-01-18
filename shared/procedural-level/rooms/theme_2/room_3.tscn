@@ -326,13 +326,13 @@ transform = Transform3D(1, 0, -2.13163e-14, 0, 1, 0, 2.13163e-14, 0, 1, 15.5797,
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 15.5797, 0, -4.9846)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("9_nevt4")]
-transform = Transform3D(0.75, 0, 0, 0, 1, 0, 0, 0, 3, 15.5755, 0.0244629, 8.52666)
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 5, 15.5755, 0.0244629, 8.52666)
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("9_nevt4")]
-transform = Transform3D(0.75, 0, 0, 0, 1, 0, 0, 0, 2, 15.5755, 0.0244629, -8.19678)
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 4, 15.5755, 0.0244629, -8.11288)
 
 [node name="SpawnPoint3" parent="." instance=ExtResource("9_nevt4")]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 0.75, 7.57548, 0.0244629, -12.0022)
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.57548, 0.0244629, -12.0022)
 
 [node name="SpawnPoint4" parent="." instance=ExtResource("9_nevt4")]
-transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 0.75, 7.57548, 0.0244629, 11.9978)
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 1.5, 7.57548, 0.0244629, 11.9978)

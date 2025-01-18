@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cg7o2ww0sdim3"]
+[gd_scene load_steps=14 format=3 uid="uid://cg7o2ww0sdim3"]
 
 [ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_2dpix"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_g6tjs"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dyyem6sme235m" path="res://assets/blender_meshes/theme_3/props/prop_5.tscn" id="9_cv0ie"]
 [ext_resource type="PackedScene" uid="uid://cnr47t22qg4mr" path="res://assets/blender_meshes/theme_3/props/light_1.tscn" id="10_halpv"]
 [ext_resource type="PackedScene" uid="uid://bku3sctd6nig7" path="res://assets/blender_meshes/theme_3/props/prop_2.tscn" id="11_3xkrx"]
+[ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="12_c011r"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="12_k0446"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_q0pom"]
@@ -253,3 +254,6 @@ transform = Transform3D(-0.245703, 0, 0.435465, 0, 0.5, 0, -0.435465, 0, -0.2457
 
 [node name="item3" parent="." instance=ExtResource("12_k0446")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.479464, 2.46319, 6.91601)
+
+[node name="SpawnPoint" parent="." instance=ExtResource("12_c011r")]
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 4, 0.954369, 0.024, -6.999)

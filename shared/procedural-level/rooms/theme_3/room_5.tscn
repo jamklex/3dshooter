@@ -304,13 +304,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.256, 2.07859, -5.82991)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55792, 0.256239, 7.8611)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("12_wduk6")]
-transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -2.46865, 0.0244629, 1.44555)
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 8, -2.46865, 0.0244629, 0.994401)
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("12_wduk6")]
-transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 3, 11.2132, 0.0244629, -2.08949)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 6, 11.2132, 0.0244629, -2.08949)
 
 [node name="SpawnPoint3" parent="." instance=ExtResource("12_wduk6")]
-transform = Transform3D(1.25, 0, 0, 0, 1, 0, 0, 0, 4.5, 7.50687, 0.0244629, 4.27425)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 8, 7.50687, 0.0244629, 3.62445)
 
 [node name="SpawnPoint4" parent="." instance=ExtResource("12_wduk6")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 5.49982, 0.0244629, -6.15273)
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 5, 5.26101, 0.0244629, -6.81231)
