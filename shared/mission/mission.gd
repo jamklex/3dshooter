@@ -12,28 +12,6 @@ var rewards: Array[InventoryItem] = []
 var over: int
 const missionTime_min: int = 45
 
-const resource_worth_index = {
-	GameItem.Rarity.COMMON: 3.5,
-	GameItem.Rarity.UNCOMMON: 5.7,
-	GameItem.Rarity.RARE: 9.2
-}
-const resource_min_count_per_level = {
-	GameItem.Rarity.COMMON: 5,
-	GameItem.Rarity.UNCOMMON: 1,
-	GameItem.Rarity.RARE: 1
-}
-const resource_max_count_per_level = {
-	GameItem.Rarity.COMMON: 10,
-	GameItem.Rarity.UNCOMMON: 5,
-	GameItem.Rarity.RARE: 1
-}
-const enemy_worth_index = {
-	"0": 2.3,
-	"1": 2.7,
-	"2": 3.1,
-	"3": 3.7,
-}
-
 enum Difficulty {
 	EASY, MEDIUM, HARD
 }
@@ -110,18 +88,29 @@ func generateKillCounter():
 		kills.push_back(MissionStep.from(MissionStep.MissionStepType.MONSTER, str(id), total))
 
 func generateResourceCounter():
-	var modulo = 5
+	var rarities: Array[GameItem.Rarity] = []
+	var minCount = 0
+	var maxCount = 5
+	match difficulty:
+		Difficulty.EASY:
+			rarities.append(GameItem.Rarity.COMMON)
+			minCount = 5
+			maxCount = 5
+		Difficulty.MEDIUM:
+			rarities.append_array([GameItem.Rarity.COMMON, GameItem.Rarity.UNCOMMON])
+			minCount = 5
+			maxCount = 10
+		Difficulty.HARD:
+			rarities.append(GameItem.Rarity.UNCOMMON)
+			minCount = 10
+			maxCount = 25
 	var difficulty_counter = difficulty + 1
-	var minCount = (difficulty_counter) * modulo
-	var maxCount = minCount * 3
-	var rarities = [GameItem.Rarity.COMMON, GameItem.Rarity.UNCOMMON] as Array[GameItem.Rarity]
 	var resource_options = ItemHelper.get_item_by_rarity(rarities) as Array[GameItem]
 	for n in difficulty_counter:
 		if resource_options.is_empty():
 			break
 		var item = resource_options.pop_at(rng.randi_range(0,resource_options.size()-1)) as GameItem
-		var total = difficulty_counter * rng.randi_range(resource_min_count_per_level[item.rarity], resource_max_count_per_level[item.rarity])
-		total = max(total - (total % modulo), modulo)
+		var total = rng.randi_range(minCount, maxCount)
 		resources.push_back(MissionStep.from(MissionStep.MissionStepType.RESOURCE, item.id, total))
 
 func generateRewards():
@@ -129,18 +118,50 @@ func generateRewards():
 	if difficulty > Difficulty.EASY:
 		var reward_items = ItemHelper.get_item_by_rarity([GameItem.Rarity.UNCOMMON, GameItem.Rarity.RARE]).filter(func(item: GameItem): return !containsId(resources, item.id))
 		var item = reward_items.pop_at(rng.randi_range(0,reward_items.size()-1)) as GameItem
-		var amount = rng.randi_range(resource_min_count_per_level[item.rarity], resource_max_count_per_level[item.rarity])
+		var amount = getAmount(rng, item)
 		rewards.push_back(InventoryItem.from(item.id, amount))
-		gold -= amount * resource_worth_index[item.rarity]
+		gold -= amount * getWorth(item)
 	for r in resources:
 		var item = ItemHelper.get_item_by_id(r.id)
-		gold += r.total * resource_worth_index[item.rarity]
+		gold += r.total * getWorth(item)
 	for k in kills:
-		gold += k.total * enemy_worth_index[str(k.id)]
+		gold += k.total * getEnemyWorth(k.id)
 	var minBonus = (difficulty + 1) * 15
 	var maxBonus = minBonus * 3
 	var bonus = rng.randi_range(minBonus, maxBonus)
 	rewards.push_front(InventoryItem.from("0", gold + bonus))
+
+func getAmount(rng: RandomNumberGenerator, item: GameItem):
+	match item.rarity:
+		GameItem.Rarity.COMMON:
+			return rng.randi_range(5, 10)
+		GameItem.Rarity.UNCOMMON:
+			return rng.randi_range(2, 5)
+		GameItem.Rarity.RARE:
+			return 1
+	return 0
+
+func getWorth(item: GameItem):
+	match item.rarity:
+		GameItem.Rarity.COMMON:
+			return 3.5
+		GameItem.Rarity.UNCOMMON:
+			return 5.7
+		GameItem.Rarity.RARE:
+			return 9.2
+	return 0
+
+func getEnemyWorth(id: String):
+	match Enemy.ENEMY_TYPE.get(int(id)):
+		Enemy.ENEMY_TYPE.WEAK_SQUISHY:
+			return 5
+		Enemy.ENEMY_TYPE.STRONG_SQUISHY:
+			return 7
+		Enemy.ENEMY_TYPE.WEAK_TANK:
+			return 10
+		Enemy.ENEMY_TYPE.STRONG_TANK:
+			return 15
+	return 0
 
 func containsId(steps: Array[MissionStep], id: String):
 	return steps.filter(func(step: MissionStep): return step.id == id).size() > 0
@@ -149,6 +170,8 @@ func getPunishment() -> Array[InventoryItem]:
 	var punishment_ratio = 0.75
 	var items: Array[InventoryItem] = []
 	for r in rewards:
+		if r.item.id != Inventory.GOLD_ITEM:
+			continue
 		items.push_back(InventoryItem.from(r.item.id, r.amount * punishment_ratio))
 	return items
 
