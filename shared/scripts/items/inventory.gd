@@ -50,6 +50,8 @@ func moveAllItems(toInv:Inventory, exceptIds:Array=[]):
 		onRemoveItem.emit([id,amount])
 
 func remove(id:String, amount:int) -> bool:
+	if amount <= 0:
+		return true
 	if not check(id, amount):
 		return false
 	items.get(id).remove(amount)

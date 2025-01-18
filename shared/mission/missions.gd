@@ -85,6 +85,7 @@ func isReadyForMission() -> bool:
 	return true
 
 func _on_start_mission_pressed():
+	#var allTodoEnemies = getAllEnemies()
 	var random_mission = get_random_todo_mission()
 	if not random_mission:
 		return
