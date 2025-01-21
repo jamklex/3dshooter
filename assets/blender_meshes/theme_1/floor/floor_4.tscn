@@ -3,9 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://78ypm505svtm" path="res://assets/blender_meshes/theme_1/floor/floor_4.blend" id="1_7vy5y"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2vbu5"]
-size = Vector3(1.99902, 0.0778809, 1.99585)
+size = Vector3(2, 0.073, 1.996)
 
 [node name="floor_4" instance=ExtResource("1_7vy5y")]
+
+[node name="22" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.073, 0)
 
 [node name="CollisionShape3D" parent="22/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_2vbu5")

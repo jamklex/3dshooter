@@ -7,5 +7,8 @@ size = Vector3(1.99902, 0.0119629, 1.99976)
 
 [node name="floor_2" instance=ExtResource("1_etgf5")]
 
+[node name="16" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0119641, 0)
+
 [node name="CollisionShape3D" parent="16/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_su6xy")

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cs3a3ysfg0pku" path="res://shared/procedural-level/objects/invisible-floor.tscn" id="7_rlhh1"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tw0dl"]
-vertices = PackedVector3Array(-2.40954, 0.0371929, -4.64269, -2.30954, 0.0371929, -7.34269, -6.00954, 0.0371929, -7.34269, -6.00954, 0.0371929, -4.64269, -1.80954, 0.0371929, -4.64269, -1.40954, 0.0371929, -3.94269, 1.39046, 0.0371929, -3.94269, 1.39046, 0.0371929, -7.34269, 2.69046, 0.0371929, -0.642689, 2.69046, 0.0371929, -3.44269, 1.89046, 0.0371929, -3.44269, -1.40954, 0.0371929, -0.642689, 5.99046, 0.0371929, -0.642689, 5.99046, 0.0371929, -3.44269)
+vertices = PackedVector3Array(-2.40954, 0.0129757, -4.64269, -2.30954, 0.0129757, -7.34269, -6.00954, 0.0129757, -7.34269, -6.00954, 0.0129757, -4.64269, -1.80954, 0.0129757, -4.64269, -1.40954, 0.0129757, -3.94269, 1.39046, 0.0129757, -3.94269, 1.39046, 0.0129757, -7.34269, 2.69046, 0.0129757, -0.642689, 2.69046, 0.0129757, -3.44269, 1.89046, 0.0129757, -3.44269, -1.40954, 0.0129757, -0.642689, 5.99046, 0.0129757, -0.642689, 5.99046, 0.0129757, -3.44269)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(4, 0, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 1), PackedInt32Array(10, 9, 8), PackedInt32Array(6, 10, 5), PackedInt32Array(5, 10, 11), PackedInt32Array(11, 10, 8), PackedInt32Array(9, 13, 8), PackedInt32Array(8, 13, 12)]
 geometry_parsed_geometry_type = 1
 cell_size = 0.1
@@ -97,10 +97,10 @@ transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 4.01885,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00550997, 0, -4.00951)
 
 [node name="Invisible-floor" parent="NavigationRegion3D" instance=ExtResource("7_rlhh1")]
-transform = Transform3D(-0.5, 0, 3.01992e-07, 0, 0.29, 0, -7.54979e-08, 0, -2, -5.90954, -0.0193071, -5.99043)
+transform = Transform3D(-0.5, 0, 3.01992e-07, 0, 0.29, 0, -7.54979e-08, 0, -2, -5.90954, -0.043247, -5.99043)
 
 [node name="Invisible-floor2" parent="NavigationRegion3D" instance=ExtResource("7_rlhh1")]
-transform = Transform3D(-0.5, 0, 3.01992e-07, 0, 0.29, 0, -7.54979e-08, 0, -2, 5.93987, -0.0193071, -1.99043)
+transform = Transform3D(-0.5, 0, 3.01992e-07, 0, 0.29, 0, -7.54979e-08, 0, -2, 5.93987, -0.0435243, -1.99043)
 
 [node name="item" parent="." instance=ExtResource("6_8pjdw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275609, -6.55211)

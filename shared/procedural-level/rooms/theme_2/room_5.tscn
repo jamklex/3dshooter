@@ -27,7 +27,7 @@ script = ExtResource("1_p3yj1")
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -10.3652, 1.5, 0)
 
 [node name="roof" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84878, 0)
 
 [node name="floor_1" parent="roof" instance=ExtResource("4_xc0tl")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.41725, 0, 0)
@@ -54,7 +54,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.5827
 navigation_mesh = SubResource("NavigationMesh_q0pom")
 
 [node name="Invisible-floor" parent="NavigationRegion3D" instance=ExtResource("8_tndbu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, -9.87409, 0.000129595, -0.000553012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, -9.87409, -0.151087, -0.000553012)
 
 [node name="floor" type="Node3D" parent="NavigationRegion3D"]
 
@@ -80,7 +80,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6.5827
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.58275, 0, 0)
 
 [node name="walls" type="Node3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.848784, 0)
 
 [node name="wall_42" parent="NavigationRegion3D/walls" instance=ExtResource("5_i8ut2")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.42801, 0.129883, 1.47134)
@@ -134,6 +134,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 2.58323,
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1.41677, 0.129883, -5.45448)
 
 [node name="props" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.151216, 0)
 
 [node name="Lootbox" parent="NavigationRegion3D/props" instance=ExtResource("3_f86d1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05876, 0.12456, -4.62519)
@@ -187,4 +188,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.57585, 0.200128, 4.44574)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.112596, 0.200128, 4.93339)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("9_bqgkm")]
-transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 6, 2.02186, 0.0244629, -0.318844)
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 6, 2.02186, -0.126753, -0.318844)
