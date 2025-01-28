@@ -24,3 +24,7 @@ func hideAndStartRespawnTimer():
 		return
 	visible = false
 	_spawnTimer.start(respawnTime)
+
+func _on_shootable_on_health_changed(health: int) -> void:
+	if health <= 0:
+		hideAndStartRespawnTimer()
