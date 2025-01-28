@@ -10,12 +10,13 @@ var spawns_left: int = max_spawns
 func can_spawn() -> bool:
 	return !limit_spawns or spawns_left > 0
 
-func spawn_random() -> Enemy:
+func spawn_enemy(type: Enemy.ENEMY_TYPE) -> Enemy:
 	var enemy = enemies.pick_random().instantiate() as Enemy
 	get_tree().root.add_child(enemy)
 	enemy.global_position = _get_random_position()
 	if limit_spawns:
 		spawns_left -= 1
+	enemy.process_enemy_type_attributes(int(type))
 	return enemy
 
 func _get_random_position() -> Vector3:

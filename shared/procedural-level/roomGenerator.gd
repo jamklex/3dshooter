@@ -12,9 +12,8 @@ var _generated: bool = false
 var _room_counter: int = 0
 const MAX_ROOM_COUNT: int = 25
 var _enemies: Dictionary = {}
-var _initial_enemies_wave: int = 0
 var _additional_items: Dictionary = {}
-var _next_spawn_time:float
+var _next_spawn_time:float = 0
 
 static func from_seed(_seed: String) -> ProceduralRoomGenerator:
 	print("ProceduralRoomGenerator with seed: " + _seed)
@@ -29,11 +28,6 @@ func _ready():
 	
 func set_enemies(enemyDict:Dictionary):
 	_enemies = enemyDict
-	_initial_enemies_wave = int(_get_rest_num_of_enemies() / 4)
-	if _initial_enemies_wave < 5:
-		_initial_enemies_wave = 5
-	elif _initial_enemies_wave > 10:
-		_initial_enemies_wave = 10
 
 func set_additional_items(itemDict: Dictionary):
 	_additional_items = itemDict
@@ -41,50 +35,42 @@ func set_additional_items(itemDict: Dictionary):
 func _process(_delta):
 	if !_generated:
 		await generate_level()
-	if _generated && !_done:
+		return
+	if !_done:
 		if _room_counter > 1:
-			spawn_enemies(_initial_enemies_wave)
 			spawn_pickable_items(_additional_items)
 			set_container_items(_additional_items)
 			_done = true
-			_next_spawn_time = _next_random_spawn_time()
-	else:
-		if len(_enemies.keys()) == 0:
-			return
-		if _next_spawn_time and Time.get_unix_time_from_system() >= _next_spawn_time:
-			spawn_enemies(_rng.randi_range(1, _get_rest_num_of_enemies()))
-			_next_spawn_time = _next_random_spawn_time()
+		return
+	if len(_enemies.keys()) == 0:
+		return
+	spawn_enemies()
 
-func _next_random_spawn_time():
-	return Time.get_unix_time_from_system() + _rng.randi_range(3,10)
-	
 func _get_rest_num_of_enemies():
 	var num_of_enemies = 0
 	for enemy_type in _enemies:
 		num_of_enemies += _enemies[enemy_type]
 	return num_of_enemies
 
-func spawn_enemies(amount):
-	if amount <= 0 or len(_enemies.keys()) == 0:
+func spawn_enemies():
+	if len(_enemies.keys()) == 0:
 		return
+	if Time.get_unix_time_from_system() < _next_spawn_time:
+		return
+	var nextEnemy = _enemies.keys().pick_random()
+	var amount = 1
+	_enemies[nextEnemy] -= amount
+	if _enemies[nextEnemy] <= 0:
+		_enemies.erase(nextEnemy)
 	var spawns = get_tree().get_nodes_in_group("spawns").filter(func(s): return s is SpawnPoint)
-	for i in amount:
+	for i in range(amount):
 		var point = spawns.filter(func(s): return s.can_spawn()).pick_random() as SpawnPoint
 		if point == null:
 			return
-		var enemy = point.spawn_random()
-		var enemy_type = _pop_random_enemy_type()
-		enemy.process_enemy_type_attributes(int(enemy_type))
+		var enemy = point.spawn_enemy(nextEnemy)
 		if len(_enemies.keys()) == 0:
 			break
-
-func _pop_random_enemy_type():
-	var enemy_types = _enemies.keys()
-	var random_enemy_type = enemy_types[_rng.randi_range(0,len(enemy_types)-1)]
-	_enemies[random_enemy_type] -= 1
-	if _enemies[random_enemy_type] <= 0:
-		_enemies.erase(random_enemy_type)
-	return random_enemy_type
+	_next_spawn_time = Time.get_unix_time_from_system() + _rng.randi_range(5, 10)
 
 func spawn_pickable_items(itemDict: Dictionary):
 	var items = get_tree().get_nodes_in_group("items").filter(func(i): return i is Pickable)
