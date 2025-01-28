@@ -211,7 +211,7 @@ func getTodoItems():
 		todo_items_dict[todo_item_step.id] = todo_item_step.getRest()
 	return todo_items_dict
 	
-func getTodoEnemies():
+static func getTodoEnemies(kills: Array[MissionStep]):
 	var todo_enemy_steps = kills.filter(func (s: MissionStep): return !s.isDone())
 	var todo_enemies_dict = {}
 	for todo_enemy_step in todo_enemy_steps:

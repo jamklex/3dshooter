@@ -45,11 +45,14 @@ func clear_all_children(parent):
 		parent.remove_child(child)
 
 func generate_missions():
+	var knownSeeds = WorldUtil.getSavedMissions().map(func(m: Mission): return int(m.getSeed()))
 	clear_all_children(new_missions)
 	var time = getCurrentRotationEnd(missionRotation_mins)
 	for n in range(missionCount):
 		var rng = RandomNumberGenerator.new()
 		rng.set_seed(time + n)
+		if knownSeeds.has(rng.get_seed()):
+			continue
 		var mission = Mission.generate(rng)
 		var ui_wrapper = newMissionUi.instantiate()
 		ui_wrapper.link(mission, Callable(max_missions_reached))
@@ -73,26 +76,48 @@ func load_saved():
 		active_missions.add_child(ui_wrapper)
 		_known_seeds.push_back(mission.getSeed())
 		
-func get_random_todo_mission() -> Mission:
-	return WorldUtil.getSavedMissions().filter(func (m: Mission): return !m.allDone()).pick_random()
+func getCurrentEnemyTypes() -> Array[Enemy.ENEMY_TYPE]:
+	var availableEnemies: Array[Enemy.ENEMY_TYPE] = []
+	for mission in WorldUtil.getSavedMissions():
+		if mission.allDone():
+			continue
+		for enemy in mission.kills:
+			var type = Enemy.ENEMY_TYPE.values()[int(enemy.id)]
+			if !availableEnemies.has(type):
+				availableEnemies.append(type)
+	return availableEnemies
 
 func reload():
-	print("reload")
-	load_saved()
 	generate_missions()
+	load_saved()
 
 func isReadyForMission() -> bool:
 	return true
 
 func _on_start_mission_pressed():
-	#var allTodoEnemies = getAllEnemies()
-	var random_mission = get_random_todo_mission()
-	if not random_mission:
-		return
-	var enemies = random_mission.getTodoEnemies()
-	var additionalItems = random_mission.getTodoItems()
-	WorldUtil.teleportToMissionMap([random_mission.getSeed(), enemies, additionalItems])
+	var enemies = {}
+	var enemyTypes = getCurrentEnemyTypes()
+	for i in range(2):
+		var type = enemyTypes.pick_random()
+		var value = getCountForType(type)
+		if enemies.has(type):
+			value += enemies[type]
+		enemies[type] = value
+	WorldUtil.teleportToMissionMap([str(current_time()), enemies])
 	WorldUtil.closeCurrentWindow()
+
+func getCountForType(type: Enemy.ENEMY_TYPE) -> int:
+	var rng = RandomNumberGenerator.new()
+	match type:
+		Enemy.ENEMY_TYPE.WEAK_SQUISHY:
+			return rng.randi_range(10, 20)
+		Enemy.ENEMY_TYPE.STRONG_SQUISHY:
+			return rng.randi_range(5, 10)
+		Enemy.ENEMY_TYPE.WEAK_TANK:
+			return rng.randi_range(3, 8)
+		Enemy.ENEMY_TYPE.STRONG_TANK:
+			return rng.randi_range(1, 5)
+	return 0
 
 func _on_close_pressed():
 	WorldUtil.closeCurrentWindow()

@@ -54,7 +54,7 @@ func addKillCounter(enemy_id: String, amount: int):
 
 func getSavedMissions() -> Array[Mission]:
 	var _missions = []
-	var saves = FileUtil.getContentAsJson(missionsSavePath, true) as Dictionary
+	var saves = FileUtil.getContentAsJson(missionsSavePath, false) as Dictionary
 	for key in saves.keys():
 		_missions.push_back(Mission.from(saves[key]))
 	missions.clear()
@@ -62,7 +62,7 @@ func getSavedMissions() -> Array[Mission]:
 	return missions
 
 func save_mission(mission: Mission):
-	var missions = FileUtil.getContentAsJson(missionsSavePath, false)
+	var missions = FileUtil.getContentAsJson(missionsSavePath, false) as Dictionary
 	missions[mission.getSeed()] = mission.toDict()
 	FileUtil.saveJsonContent(missionsSavePath, missions)
 

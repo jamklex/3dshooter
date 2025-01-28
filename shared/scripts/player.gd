@@ -33,7 +33,6 @@ func _init():
 	unlocks = loadDict.get("unlocks", [])
 
 func save():
-	print("save player")
 	if body and body._shooter:
 		body._shooter.putBulletsToInventory()
 	var saveDict = {
