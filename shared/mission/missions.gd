@@ -82,6 +82,7 @@ func getCurrentEnemyTypes() -> Array[Enemy.ENEMY_TYPE]:
 		if mission.allDone():
 			continue
 		for enemy in mission.kills:
+			# wenn enemies bereits alle gekillt, bitte aus der Liste nehmen (?)
 			var type = Enemy.ENEMY_TYPE.values()[int(enemy.id)]
 			if !availableEnemies.has(type):
 				availableEnemies.append(type)
@@ -112,11 +113,11 @@ func getCountForType(type: Enemy.ENEMY_TYPE) -> int:
 		Enemy.ENEMY_TYPE.WEAK_SQUISHY:
 			return rng.randi_range(10, 20)
 		Enemy.ENEMY_TYPE.STRONG_SQUISHY:
-			return rng.randi_range(5, 10)
+			return rng.randi_range(10, 20)
 		Enemy.ENEMY_TYPE.WEAK_TANK:
-			return rng.randi_range(3, 8)
+			return rng.randi_range(5, 10)
 		Enemy.ENEMY_TYPE.STRONG_TANK:
-			return rng.randi_range(1, 5)
+			return rng.randi_range(5, 10)
 	return 0
 
 func _on_close_pressed():
