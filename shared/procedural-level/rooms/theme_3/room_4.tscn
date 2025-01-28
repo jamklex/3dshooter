@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="12_k0446"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_q0pom"]
-vertices = PackedVector3Array(-4.13984, 0.0199983, -4.24674, -3.53984, 0.0199983, -4.24674, -3.43984, 0.0199983, -4.44674, -5.93984, 0.0199983, -9.54674, -5.93984, 0.0199983, -2.64674, -4.73984, 0.0199983, -2.64674, -5.03984, 0.0199983, -3.54674, 0.960156, 0.0199983, -9.54674, 0.860156, 0.0199983, -4.44674, 1.76016, 0.0199983, -4.14674, 1.76016, 0.0199983, -3.34674, 4.96016, 0.0199983, -3.34674, 1.46016, 0.0199983, -4.44674, 4.96016, 0.0199983, -9.54674, 0.160156, 2.41, -3.34674, 0.460156, 2.41, -3.54674, -2.93984, 2.41, -3.64674, -2.93984, 2.41, -2.64674, 0.360156, 2.41, -2.64674, -2.83984, 0.0199983, -3.54674, -2.83984, 0.0199983, -2.74674, -2.23984, 0.0199983, -2.74674, -2.23984, 0.0199983, -3.54674, -1.23984, 0.0199983, -3.54674, -1.23984, 0.0199983, -2.74674, -0.739844, 0.0199983, -2.74674, -0.739844, 0.0199983, -3.54674, 0.260156, 0.0199983, -3.54674, 0.260156, 0.0199983, -2.74674, 0.860156, 0.0199983, -2.74674, 0.860156, 0.0199983, -3.54674, 1.76016, 0.0199983, -2.44674, 2.06016, 0.0199983, -2.24674, 4.96016, 0.0199983, 6.05326, 2.06016, 0.0199983, 6.05326, 1.46016, 0.0199983, 8.15326, 0.660156, 0.0199983, 8.15326, 0.660156, 0.0199983, 9.35326, 1.66016, 0.0199983, 9.35326, 1.96016, 0.0199983, 9.85326, 5.06016, 0.0199983, 9.85326, 5.36016, 0.0199983, 9.35326, 1.76016, 0.0199983, 7.85326, 1.76016, 0.0199983, 6.25326, 5.36016, 0.0199983, 6.45326, 6.06016, 0.0199983, 9.35326, 6.06016, 0.0199983, 6.45326, -1.93984, 0.0199983, 8.15326, -5.93984, 0.0199983, 9.35326, -2.23984, 0.0199983, 7.85326, -2.23984, 0.0199983, 6.45326, -5.93984, 0.0199983, 6.45326, -1.43984, 2.41, 6.45326, -1.43984, 2.41, 7.35326, 0.960156, 2.41, 7.35326, 0.960156, 2.41, 6.45326, -1.33984, 0.0199983, 6.45326, -1.33984, 0.0199983, 7.25326, -0.739844, 0.0199983, 7.25326, -0.739844, 0.0199983, 6.45326, 0.260156, 0.0199983, 6.45326, 0.260156, 0.0199983, 7.25326, 0.860156, 0.0199983, 7.25326, 0.860156, 0.0199983, 6.45326, 8.96016, 0.0199983, 9.35326, 8.96016, 0.0199983, 6.45326)
+vertices = PackedVector3Array(-4.13984, 0.0199983, -4.24674, -3.53984, 0.0199983, -4.24674, -3.43984, 0.0199983, -4.44674, -5.93984, 0.0199983, -9.54674, -5.93984, 0.0199983, -2.64674, -4.73984, 0.0199983, -2.64674, -5.03984, 0.0199983, -3.54674, 0.960156, 0.0199983, -9.54674, 0.860156, 0.0199983, -4.44674, 1.76016, 0.0199983, -4.14674, 1.76016, 0.0199983, -3.34674, 4.96016, 0.0199983, -3.34674, 1.46016, 0.0199983, -4.44674, 4.96016, 0.0199983, -9.54674, 0.160156, 2.4, -3.34674, 0.460156, 2.4, -3.54674, -2.93984, 2.4, -3.64674, -2.93984, 2.4, -2.64674, 0.360156, 2.4, -2.64674, -2.83984, 0.0199983, -3.54674, -2.83984, 0.0199983, -2.74674, -2.23984, 0.0199983, -2.74674, -2.23984, 0.0199983, -3.54674, -1.23984, 0.0199983, -3.54674, -1.23984, 0.0199983, -2.74674, -0.739844, 0.0199983, -2.74674, -0.739844, 0.0199983, -3.54674, 0.260156, 0.0199983, -3.54674, 0.260156, 0.0199983, -2.74674, 0.860156, 0.0199983, -2.74674, 0.860156, 0.0199983, -3.54674, 1.76016, 0.0199983, -2.44674, 2.06016, 0.0199983, -2.24674, 4.96016, 0.0199983, 6.05326, 2.06016, 0.0199983, 6.05326, 1.46016, 0.0199983, 8.15326, 0.660156, 0.0199983, 8.15326, 0.660156, 0.0199983, 9.35326, 1.66016, 0.0199983, 9.35326, 1.96016, 0.0199983, 9.85326, 5.06016, 0.0199983, 9.85326, 5.36016, 0.0199983, 9.35326, 1.76016, 0.0199983, 7.85326, 1.76016, 0.0199983, 6.25326, 5.36016, 0.0199983, 6.45326, 6.06016, 0.0199983, 9.35326, 6.06016, 0.0199983, 6.45326, -1.93984, 0.0199983, 8.15326, -5.93984, 0.0199983, 9.35326, -2.23984, 0.0199983, 7.85326, -2.23984, 0.0199983, 6.45326, -5.93984, 0.0199983, 6.45326, -1.43984, 2.4, 6.45326, -1.43984, 2.4, 7.35326, 0.960156, 2.4, 7.35326, 0.960156, 2.4, 6.45326, -1.33984, 0.0199983, 6.45326, -1.33984, 0.0199983, 7.25326, -0.739844, 0.0199983, 7.25326, -0.739844, 0.0199983, 6.45326, 0.260156, 0.0199983, 6.45326, 0.260156, 0.0199983, 7.25326, 0.860156, 0.0199983, 7.25326, 0.860156, 0.0199983, 6.45326, 8.96016, 0.0199983, 9.35326, 8.96016, 0.0199983, 6.45326)
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(6, 4, 3), PackedInt32Array(0, 6, 3), PackedInt32Array(8, 2, 7), PackedInt32Array(7, 2, 3), PackedInt32Array(11, 10, 9), PackedInt32Array(9, 12, 11), PackedInt32Array(11, 12, 13), PackedInt32Array(13, 12, 7), PackedInt32Array(12, 8, 7), PackedInt32Array(16, 15, 14), PackedInt32Array(18, 17, 14), PackedInt32Array(14, 17, 16), PackedInt32Array(22, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(30, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(31, 10, 32), PackedInt32Array(32, 10, 11), PackedInt32Array(34, 32, 33), PackedInt32Array(33, 32, 11), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(40, 39, 41), PackedInt32Array(41, 39, 42), PackedInt32Array(41, 42, 34), PackedInt32Array(41, 34, 33), PackedInt32Array(35, 42, 38), PackedInt32Array(38, 42, 39), PackedInt32Array(42, 43, 34), PackedInt32Array(41, 33, 44), PackedInt32Array(44, 46, 41), PackedInt32Array(41, 46, 45), PackedInt32Array(36, 37, 47), PackedInt32Array(47, 37, 48), PackedInt32Array(51, 50, 49), PackedInt32Array(47, 48, 49), PackedInt32Array(49, 48, 51), PackedInt32Array(55, 54, 52), PackedInt32Array(52, 54, 53), PackedInt32Array(59, 58, 56), PackedInt32Array(56, 58, 57), PackedInt32Array(63, 62, 60), PackedInt32Array(60, 62, 61), PackedInt32Array(46, 65, 45), PackedInt32Array(45, 65, 64)]
 geometry_parsed_geometry_type = 1
 cell_size = 0.1
@@ -73,34 +73,34 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 4, 7.5)
 [node name="lootboxes" type="Node3D" parent="."]
 
 [node name="Lootbox8" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(-0.499412, 0, -0.0242506, 0, 0.5, 0, 0.0242506, 0, -0.499412, 6.9599, 0.0625862, 7.50499)
+transform = Transform3D(-0.499412, 0, -0.0242506, 0, 0.5, 0, 0.0242506, 0, -0.499412, 6.9599, 0.000642434, 7.50499)
 
 [node name="Lootbox9" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(-0.452973, 0, 0.211697, 0, 0.5, 0, -0.211697, 0, -0.452973, 8.4193, 0.0625862, 7.71294)
+transform = Transform3D(-0.452973, 0, 0.211697, 0, 0.5, 0, -0.211697, 0, -0.452973, 8.4193, 0.000642434, 7.71294)
 
 [node name="Lootbox10" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(-0.46807, 0, -0.175815, 0, 0.5, 0, 0.175815, 0, -0.46807, 7.4918, 0.0625862, 8.89136)
+transform = Transform3D(-0.46807, 0, -0.175815, 0, 0.5, 0, 0.175815, 0, -0.46807, 7.4918, 0.000642434, 8.89136)
 
 [node name="Lootbox11" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(0.000890059, 0, 0.499999, 0, 0.5, 0, -0.499999, 0, 0.000890059, -3.553, 0.0625862, 8.88975)
+transform = Transform3D(0.000890059, 0, 0.499999, 0, 0.5, 0, -0.499999, 0, 0.000890059, -3.553, 0.000642434, 8.88975)
 
 [node name="Lootbox12" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(0.234204, 0, 0.441756, 0, 0.5, 0, -0.441756, 0, 0.234204, -5.20647, 0.0625862, 7.76457)
+transform = Transform3D(0.234204, 0, 0.441756, 0, 0.5, 0, -0.441756, 0, 0.234204, -5.20647, 0.000642434, 7.76457)
 
 [node name="Lootbox13" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(-0.152058, 0, 0.476317, 0, 0.5, 0, -0.476317, 0, -0.152058, -2.84119, 0.0625862, 6.95498)
+transform = Transform3D(-0.152058, 0, 0.476317, 0, 0.5, 0, -0.476317, 0, -0.152058, -2.84119, 0.000642434, 6.95498)
 
 [node name="Lootbox5" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(-0.195847, 0, -0.460048, 0, 0.5, 0, 0.460048, 0, -0.195847, -0.983, 2.316, -3.319)
+transform = Transform3D(-0.195847, 0, -0.460048, 0, 0.5, 0, 0.460048, 0, -0.195847, -0.983, 2.25406, -3.319)
 
 [node name="Lootbox6" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(0.460048, 0, -0.195847, 0, 0.5, 0, 0.195847, 0, 0.460048, -3.48316, 0.0625862, -7.63981)
+transform = Transform3D(0.460048, 0, -0.195847, 0, 0.5, 0, 0.195847, 0, 0.460048, -3.48316, 0.000642434, -7.63981)
 
 [node name="Lootbox7" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(0.463788, 0, 0.186818, 0, 0.5, 0, -0.186818, 0, 0.463788, -3.48316, 0.0625862, -6.13981)
+transform = Transform3D(0.463788, 0, 0.186818, 0, 0.5, 0, -0.186818, 0, 0.463788, -3.48316, 0.000642434, -6.13981)
 
 [node name="Lootbox4" parent="lootboxes" instance=ExtResource("4_udx4r")]
-transform = Transform3D(0.115942, 0, 0.486372, 0, 0.5, 0, -0.486372, 0, 0.115942, -2.5164, 2.31586, -3.44904)
+transform = Transform3D(0.115942, 0, 0.486372, 0, 0.5, 0, -0.486372, 0, 0.115942, -2.5164, 2.25392, -3.44904)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_q0pom")
@@ -214,46 +214,46 @@ transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -6.5, 0,
 [node name="props" type="Node3D" parent="NavigationRegion3D"]
 
 [node name="prop_5" parent="NavigationRegion3D/props" instance=ExtResource("9_cv0ie")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3.16358)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.0111554, -3.16358)
 
 [node name="prop_7" parent="NavigationRegion3D/props" instance=ExtResource("9_cv0ie")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -3.16358)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.0111554, -3.16358)
 
 [node name="prop_6" parent="NavigationRegion3D/props" instance=ExtResource("9_cv0ie")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -3.16358)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0111554, -3.16358)
 
 [node name="prop_8" parent="NavigationRegion3D/props" instance=ExtResource("9_cv0ie")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 6.83642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.0111554, 6.83642)
 
 [node name="prop_9" parent="NavigationRegion3D/props" instance=ExtResource("9_cv0ie")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 6.83642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.0111554, 6.83642)
 
 [node name="Light1" parent="NavigationRegion3D/props" instance=ExtResource("10_halpv")]
-transform = Transform3D(0.86613, 0, 0.499819, 0, 1, 0, -0.499819, 0, 0.86613, 0.812195, 2.3953, -3.13495)
+transform = Transform3D(0.86613, 0, 0.499819, 0, 1, 0, -0.499819, 0, 0.86613, 0.812195, 2.38414, -3.13495)
 
 [node name="Light4" parent="NavigationRegion3D/props" instance=ExtResource("10_halpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24021, 2.07859, 6.14505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24021, 2.06743, 6.14505)
 
 [node name="Light8" parent="NavigationRegion3D/props" instance=ExtResource("10_halpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24021, 2.07859, -2.35495)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24021, 2.06743, -2.35495)
 
 [node name="Light9" parent="NavigationRegion3D/props" instance=ExtResource("10_halpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24021, 2.07859, -9.85495)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24021, 2.06743, -9.85495)
 
 [node name="Light5" parent="NavigationRegion3D/props" instance=ExtResource("10_halpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24021, 2.07859, 9.64505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.24021, 2.06743, 9.64505)
 
 [node name="Light2" parent="NavigationRegion3D/props" instance=ExtResource("10_halpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.244, 2.07859, 6.17009)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.244, 2.06743, 6.17009)
 
 [node name="Light6" parent="NavigationRegion3D/props" instance=ExtResource("10_halpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.244, 2.07859, 9.67009)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.244, 2.06743, 9.67009)
 
 [node name="prop_2" parent="NavigationRegion3D/props" instance=ExtResource("11_3xkrx")]
-transform = Transform3D(-0.245703, 0, 0.435465, 0, 0.5, 0, -0.435465, 0, -0.245703, -4.02387, 0.0306773, -3.24263)
+transform = Transform3D(-0.245703, 0, 0.435465, 0, 0.5, 0, -0.435465, 0, -0.245703, -4.02387, 0.0195219, -3.24263)
 
 [node name="item3" parent="." instance=ExtResource("12_k0446")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.479464, 2.46319, 6.91601)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.479464, 2.47435, 6.91601)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("12_c011r")]
-transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 4, 0.954369, 0.024, -6.999)
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 4, 0.954, 0, -6.999)

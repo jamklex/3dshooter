@@ -39,4 +39,4 @@ mesh = SubResource("BoxMesh_2ldhc")
 [node name="shootable" parent="." instance=ExtResource("1_b43sj")]
 max_health = 10
 
-[connection signal="healthReachedZero" from="shootable" to="." method="hideAndStartRespawnTimer"]
+[connection signal="onHealthChanged" from="shootable" to="." method="_on_shootable_on_health_changed"]

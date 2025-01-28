@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="12_1oafj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0xjbm"]
-vertices = PackedVector3Array(-2.53984, 0.0899975, 6.69203, -3.13984, 0.0899975, 7.29203, -1.83984, 0.0899975, 7.29203, -5.43984, 0.0899975, 3.69203, -5.43984, 0.0899975, 5.29203, -4.73984, 0.0899975, 4.59203, -2.53984, 0.0899975, 6.39203, -2.63984, 0.0899975, 5.19203, -3.13984, 0.0899975, 4.69203, -1.53984, 0.0899975, 7.79203, 1.56016, 0.0899975, 7.79203, 1.86016, 0.0899975, 7.29203, -5.93984, 0.0899975, 3.39203, -5.43984, 0.0899975, -0.00797367, -5.93984, 0.0899975, 0.292027, 5.76016, 0.0899975, 3.39203, 6.06016, 0.0899975, 3.39203, 6.06016, 0.0899975, 0.292027, 5.76016, 0.0899975, 0.292027, -1.83984, 0.0899975, -3.60797, -5.43984, 0.0899975, -3.60797, 5.46016, 0.0899975, 3.69203, 5.46016, 0.0899975, -0.00797367, 5.46016, 0.0899975, 7.29203, 1.86016, 0.0899975, -3.60797, 1.56016, 0.0899975, -4.10797, -1.53984, 0.0899975, -4.10797, 5.46016, 0.0899975, -3.60797, -5.43984, 0.0899975, 7.29203, -4.83984, 0.0899975, 7.29203, -5.33984, 0.0899975, 6.79203, -5.43984, 0.0899975, 5.69203)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(2, 0, 6), PackedInt32Array(2, 6, 7), PackedInt32Array(8, 5, 3), PackedInt32Array(2, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(3, 12, 8), PackedInt32Array(8, 12, 14), PackedInt32Array(8, 14, 13), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(13, 20, 19), PackedInt32Array(15, 21, 18), PackedInt32Array(18, 21, 22), PackedInt32Array(21, 23, 11), PackedInt32Array(26, 25, 24), PackedInt32Array(22, 24, 27), PackedInt32Array(11, 7, 8), PackedInt32Array(26, 24, 19), PackedInt32Array(19, 24, 22), PackedInt32Array(21, 11, 22), PackedInt32Array(22, 11, 8), PackedInt32Array(22, 8, 13), PackedInt32Array(22, 13, 19), PackedInt32Array(30, 29, 28), PackedInt32Array(30, 28, 31)]
+vertices = PackedVector3Array(-2.53984, 0.0129249, 6.69203, -3.13984, 0.0129249, 7.29203, -1.83984, 0.0129249, 7.29203, -5.43984, 0.0129249, 3.69203, -5.43984, 0.0129249, 5.29203, -4.73984, 0.0129249, 4.59203, -2.53984, 0.0129249, 6.39203, -2.73984, 0.0129249, 5.09203, -3.13984, 0.0129249, 4.69203, -1.53984, 0.0129249, 7.79203, 1.56016, 0.0129249, 7.79203, 1.86016, 0.0129249, 7.29203, -5.93984, 0.0129249, 3.39203, -5.43984, 0.0129249, -0.00797367, -5.93984, 0.0129249, 0.292027, -1.83984, 0.0129249, -3.60797, -5.43984, 0.0129249, -3.60797, 5.46016, 0.0129249, 3.69203, 5.96016, 0.0129249, 3.39203, 5.96016, 0.0129249, 0.292027, 5.46016, 0.0129249, -0.00797367, 1.86016, 0.0129249, -3.60797, 1.56016, 0.0129249, -4.10797, -1.53984, 0.0129249, -4.10797, 5.46016, 0.0129249, 7.29203, 5.46016, 0.0129249, -3.60797, -5.43984, 0.0129249, 7.29203, -4.83984, 0.0129249, 7.29203, -5.23984, 0.0129249, 6.89203, -5.43984, 0.0129249, 5.69203)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(2, 0, 6), PackedInt32Array(7, 2, 6), PackedInt32Array(8, 5, 3), PackedInt32Array(2, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(3, 12, 8), PackedInt32Array(8, 12, 14), PackedInt32Array(8, 14, 13), PackedInt32Array(13, 16, 15), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(23, 22, 21), PackedInt32Array(17, 11, 20), PackedInt32Array(20, 11, 8), PackedInt32Array(20, 8, 13), PackedInt32Array(20, 13, 15), PackedInt32Array(11, 7, 8), PackedInt32Array(23, 21, 15), PackedInt32Array(15, 21, 20), PackedInt32Array(17, 24, 11), PackedInt32Array(20, 21, 25), PackedInt32Array(28, 27, 26), PackedInt32Array(28, 26, 29)]
 geometry_parsed_geometry_type = 1
 cell_size = 0.1
 cell_height = 0.01
@@ -24,7 +24,7 @@ agent_radius = 0.4
 agent_max_climb = 0.0
 agent_max_slope = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6fhp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcon8"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qpld3"]
@@ -152,7 +152,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 4, 0, 7.
 
 [node name="airvent" parent="NavigationRegion3D/props" instance=ExtResource("5_kqqsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.89988, 2, -2.17468)
-material = SubResource("StandardMaterial3D_v6fhp")
+material = SubResource("StandardMaterial3D_tcon8")
 
 [node name="Return" parent="NavigationRegion3D/props" instance=ExtResource("7_pfvxh")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -4, 0, 6)
@@ -170,16 +170,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8481, 2, -4.01912)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.84236, 2, 7.68466)
 
 [node name="Invisible-floor" parent="NavigationRegion3D" instance=ExtResource("9_idhrn")]
-transform = Transform3D(0.3, 0, 0, 0, 0.525, 0, 0, 0, 2, 6.1238, -0.000108518, 1.8403)
+transform = Transform3D(0.3, 0, 0, 0, 0.525, 0, 0, 0, 2, 6.09166, -0.078325, 1.8403)
 
 [node name="Invisible-floor2" parent="NavigationRegion3D" instance=ExtResource("9_idhrn")]
-transform = Transform3D(0.3, 0, 0, 0, 0.525, 0, 0, 0, 2, -6.03567, -0.000108518, 1.8403)
+transform = Transform3D(0.3, 0, 0, 0, 0.525, 0, 0, 0, 2, -6.03567, -0.0780441, 1.8403)
 
 [node name="Invisible-floor3" parent="NavigationRegion3D" instance=ExtResource("9_idhrn")]
-transform = Transform3D(2, 0, 0, 0, 0.525, 0, 0, 0, 0.3, -0.0356712, -0.000108518, 7.8403)
+transform = Transform3D(2, 0, 0, 0, 0.525, 0, 0, 0, 0.3, -0.0356712, -0.0783251, 7.8403)
 
 [node name="Invisible-floor4" parent="NavigationRegion3D" instance=ExtResource("9_idhrn")]
-transform = Transform3D(2, 0, 0, 0, 0.525, 0, 0, 0, 0.3, -0.0356712, -0.000108518, -4.18386)
+transform = Transform3D(2, 0, 0, 0, 0.525, 0, 0, 0, 0.3, -0.0356712, -0.0780622, -4.18386)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_q68x2")
@@ -188,4 +188,4 @@ environment = SubResource("Environment_q68x2")
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0.201257, 0.0501833, 1.83396)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("12_1oafj")]
-transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 1.13401, 0.1604, 0.840799)
+transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 1.134, 0, 0.841)

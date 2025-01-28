@@ -311,7 +311,7 @@ func _shoot():
 		var shootable = _raycastForShootable()
 		if not shootable:
 			continue
-		if shootable is Enemy and shootable.died:
+		if shootable.died:
 			continue
 		var criticalHit = false
 		if shootable is CharacterBody3D:
