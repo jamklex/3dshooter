@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="12_wduk6"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_q0pom"]
-vertices = PackedVector3Array(5.83861, 0.0199983, -2.54674, 9.13861, 0.0199983, -5.74674, 8.93861, 0.0199983, -5.94674, -2.36139, 0.0199983, -5.54674, 0.938611, 0.0199983, -2.24674, 1.33861, 0.0199983, -2.64674, -1.96139, 0.0199983, -5.94674, 2.73861, 0.0199983, -2.74674, 8.93861, 0.0199983, -9.54674, -1.96139, 0.0199983, -9.54674, 6.03861, 0.0199983, -2.34674, 9.33861, 0.0199983, -5.54674, 12.9386, 0.0199983, -5.54674, 6.03861, 0.0199983, 1.95326, 9.33861, 0.0199983, 5.35326, 12.9386, 0.0199983, 5.35326, 5.83861, 0.0199983, 2.25326, 9.13861, 0.0199983, 5.55326, -5.96139, 0.0199983, -1.94674, -6.46139, 0.0199983, -1.64674, -6.46139, 0.0199983, 1.45326, -5.96139, 0.0199983, 1.75326, 0.938611, 0.0199983, 2.05326, -2.36139, 0.0199983, 5.35326, -5.96139, 0.0199983, -5.54674, -5.96139, 0.0199983, 5.35326, 8.93861, 0.0199983, 5.75326, 5.63861, 0.0199983, 2.45326, -1.96139, 0.0199983, 9.35326, 8.93861, 0.0199983, 9.35326, 1.33861, 0.0199983, 2.45326, -1.96139, 0.0199983, 5.75326)
+vertices = PackedVector3Array(5.83861, 0.0199983, -2.54674, 9.13861, 0.0199983, -5.74674, 8.93861, 0.0199983, -5.94674, -2.36139, 0.0199983, -5.54674, 0.93861, 0.0199983, -2.24674, 1.33861, 0.0199983, -2.64674, -1.96139, 0.0199983, -5.94674, 2.73861, 0.0199983, -2.74674, 8.93861, 0.0199983, -9.54674, -1.96139, 0.0199983, -9.54674, 6.03861, 0.0199983, -2.34674, 9.33861, 0.0199983, -5.54674, 12.9386, 0.0199983, -5.54674, 6.03861, 0.0199983, 1.95326, 9.33861, 0.0199983, 5.35326, 12.9386, 0.0199983, 5.35326, 5.83861, 0.0199983, 2.25326, 9.13861, 0.0199983, 5.55326, -5.96139, 0.0199983, -1.94674, -6.46139, 0.0199983, -1.64674, -6.46139, 0.0199983, 1.45326, -5.96139, 0.0199983, 1.75326, 0.93861, 0.0199983, 2.05326, -2.36139, 0.0199983, 5.35326, -5.96139, 0.0199983, -5.54674, -5.96139, 0.0199983, 5.35326, 8.93861, 0.0199983, 5.75326, 5.63861, 0.0199983, 2.45326, -1.96139, 0.0199983, 9.35326, 8.93861, 0.0199983, 9.35326, 1.33861, 0.0199983, 2.45326, -1.96139, 0.0199983, 5.75326)
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(0, 7, 2), PackedInt32Array(2, 7, 8), PackedInt32Array(8, 7, 6), PackedInt32Array(8, 6, 9), PackedInt32Array(6, 7, 5), PackedInt32Array(11, 10, 1), PackedInt32Array(1, 10, 0), PackedInt32Array(11, 12, 10), PackedInt32Array(10, 12, 13), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 14), PackedInt32Array(14, 16, 13), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 18), PackedInt32Array(23, 21, 22), PackedInt32Array(22, 21, 18), PackedInt32Array(22, 18, 4), PackedInt32Array(4, 18, 3), PackedInt32Array(18, 24, 3), PackedInt32Array(23, 25, 21), PackedInt32Array(26, 27, 17), PackedInt32Array(17, 27, 16), PackedInt32Array(31, 30, 28), PackedInt32Array(28, 30, 27), PackedInt32Array(28, 27, 26), PackedInt32Array(28, 26, 29), PackedInt32Array(31, 23, 30), PackedInt32Array(30, 23, 22)]
 geometry_parsed_geometry_type = 1
 cell_size = 0.1
@@ -97,37 +97,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 4, 3.5)
 [node name="lootboxes" type="Node3D" parent="."]
 
 [node name="Lootbox" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(-0.280558, 0, 0.413869, 0, 0.5, 0, -0.413869, 0, -0.280558, 11.7903, 0.0625862, 3.72996)
+transform = Transform3D(-0.280558, 0, 0.413869, 0, 0.5, 0, -0.413869, 0, -0.280558, 11.7903, 0.0281731, 3.72996)
 
 [node name="Lootbox2" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(-0.0549019, 0, 0.496977, 0, 0.5, 0, -0.496977, 0, -0.0549019, 9.79033, 0.0625862, 3.72996)
+transform = Transform3D(-0.0549019, 0, 0.496977, 0, 0.5, 0, -0.496977, 0, -0.0549019, 9.79033, 0.0281731, 3.72996)
 
 [node name="Lootbox3" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(-0.393683, 0, 0.308243, 0, 0.5, 0, -0.308243, 0, -0.393683, 11.2903, 0.0625862, 1.72996)
+transform = Transform3D(-0.393683, 0, 0.308243, 0, 0.5, 0, -0.308243, 0, -0.393683, 11.2903, 0.0281731, 1.72996)
 
 [node name="Lootbox4" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(-0.491034, 0, 0.0942651, 0, 0.5, 0, -0.0942651, 0, -0.491034, 9.01763, 0.0625862, -2.55455)
+transform = Transform3D(-0.491034, 0, 0.0942651, 0, 0.5, 0, -0.0942651, 0, -0.491034, 9.01763, 0.0281731, -2.55455)
 
 [node name="Lootbox5" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(-0.390237, 0, 0.312594, 0, 0.5, 0, -0.312594, 0, -0.390237, 7.60344, 0.0625862, -1.14036)
+transform = Transform3D(-0.390237, 0, 0.312594, 0, 0.5, 0, -0.312594, 0, -0.390237, 7.60344, 0.0281731, -1.14036)
 
 [node name="Lootbox8" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(-0.496337, 0, -0.0604152, 0, 0.5, 0, 0.0604152, 0, -0.496337, 7.24986, 0.0625862, -3.61521)
+transform = Transform3D(-0.496337, 0, -0.0604152, 0, 0.5, 0, 0.0604152, 0, -0.496337, 7.24986, 0.0281731, -3.61521)
 
 [node name="Lootbox11" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(0.000890059, 0, 0.499999, 0, 0.5, 0, -0.499999, 0, 0.000890059, 3.947, 0.0625862, 8.88975)
+transform = Transform3D(0.000890059, 0, 0.499999, 0, 0.5, 0, -0.499999, 0, 0.000890059, 3.947, 0.0281731, 8.88975)
 
 [node name="Lootbox12" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(0.234204, 0, 0.441756, 0, 0.5, 0, -0.441756, 0, 0.234204, 2.29353, 0.0625862, 7.76457)
+transform = Transform3D(0.234204, 0, 0.441756, 0, 0.5, 0, -0.441756, 0, 0.234204, 2.29353, 0.0281731, 7.76457)
 
 [node name="Lootbox13" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(-0.152058, 0, 0.476317, 0, 0.5, 0, -0.476317, 0, -0.152058, 4.65881, 0.0625862, 6.95498)
+transform = Transform3D(-0.152058, 0, 0.476317, 0, 0.5, 0, -0.476317, 0, -0.152058, 4.65881, 0.0281731, 6.95498)
 
 [node name="Lootbox6" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(0.186818, 0, -0.463788, 0, 0.5, 0, 0.463788, 0, 0.186818, 1.04717, 0.0625862, -4.92014)
+transform = Transform3D(0.186818, 0, -0.463788, 0, 0.5, 0, 0.463788, 0, 0.186818, 1.04717, 0.0281731, -4.92014)
 
 [node name="Lootbox7" parent="lootboxes" instance=ExtResource("4_aongt")]
-transform = Transform3D(0.460048, 0, -0.195847, 0, 0.5, 0, 0.195847, 0, 0.460048, -0.0134898, 0.0625862, -3.85948)
+transform = Transform3D(0.460048, 0, -0.195847, 0, 0.5, 0, 0.195847, 0, 0.460048, -0.0134898, 0.0281731, -3.85948)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_q0pom")
@@ -301,16 +301,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.256, 2.07859, 5.67009)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.256, 2.07859, -5.82991)
 
 [node name="item3" parent="." instance=ExtResource("12_2tirk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55792, 0.256239, 7.8611)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55792, 0.124707, 7.8611)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("12_wduk6")]
-transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 8, -2.46865, 0.0244629, 0.994401)
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 8, -2.46865, 0, 0.994401)
 
 [node name="SpawnPoint2" parent="." instance=ExtResource("12_wduk6")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 6, 11.2132, 0.0244629, -2.08949)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 6, 11.2132, 0, -2.08949)
 
 [node name="SpawnPoint3" parent="." instance=ExtResource("12_wduk6")]
-transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 8, 7.50687, 0.0244629, 3.62445)
+transform = Transform3D(2.5, 0, 0, 0, 1, 0, 0, 0, 8, 7.50687, 0, 3.62445)
 
 [node name="SpawnPoint4" parent="." instance=ExtResource("12_wduk6")]
-transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 5, 5.26101, 0.0244629, -6.81231)
+transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 5, 5.26101, 0, -6.81231)
