@@ -81,6 +81,8 @@ func _on_craft_inv_item_clicked(inventory_item:InventoryItem):
 
 func _on_player_inv_item_clicked(inventory_item:InventoryItem):
 	if inventory_item.item.type == GameItem.GameItemType.BLUEPRINT:
+		if _blueprint_item:
+			_player_inv.addItem(_blueprint_item)
 		_blueprint_item = InventoryItem.from(inventory_item.item.id, 1)
 		_player_inv.remove(inventory_item.item.id, 1)
 		_refresh_craft_output()
