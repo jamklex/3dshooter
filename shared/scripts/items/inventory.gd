@@ -61,18 +61,16 @@ func remove(id:String, amount:int) -> bool:
 	return true
 
 func add(id:String, amount:int):
-	addItem(InventoryItem.from(id, amount))
-
-func addItem(item:InventoryItem):
-	var id = item.item.id
-	var amount = item.amount
 	if not can_store(id, amount):
 		return
 	if !items.has(id):
-		items[id] = item
+		items[id] = InventoryItem.from(id, amount)
 	else:
 		items.get(id).add(amount)
 	onAddItem.emit([id,count(id)])
+
+func addItem(item:InventoryItem):
+	add(item.item.id, item.amount)
 
 func set_total(id:String, amount:int):
 	if !items.has(id):
