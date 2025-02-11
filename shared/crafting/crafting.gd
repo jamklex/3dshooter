@@ -113,6 +113,9 @@ func _apply_item_move(move:MOVE, amount):
 	_refresh_craft_output()
 	
 func _close_crafting():
+	_crafting_inv.moveAllItems(_player_inv)
+	if _blueprint_item:
+		_player_inv.addItem(_blueprint_item)
 	WorldUtil.closeCurrentWindow()
 
 func _craft_():
