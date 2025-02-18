@@ -6,7 +6,7 @@
 		"trade": false,
 	},
 	"1": {
-		"name": "Copper Metal Scraps",
+		"name": "Copper Scraps",
 		"desc": "Some Copper scraps, it's hard to identify it's origin",
 		"image": "res://data/items/img/copper.png",
 		"type": "RESOURCE",
@@ -34,7 +34,7 @@
 	},
 	"5": {
 		"name": "Broken Metal Frame",
-		"desc": "Seems like a Part that could fit a Panel inside",
+		"desc": "Seems like a Part from an old era",
 		"image": "res://data/items/img/bk-frame.png",
 		"type": "RESOURCE",
 		"rarity": "COMMON"
@@ -57,7 +57,7 @@
 		"type": "WEAPON"
 	},
 	"9": {
-		"name": "Sprint module",
+		"name": "Sprint Module",
 		"desc": "With this module your robot can move faster",
 		"image": "res://data/items/img/sprint-module.png",
 		"type": "MODULE"
@@ -150,14 +150,14 @@
 		}
 	},
 	"19": {
-		"name": "Health module",
+		"name": "Health Module",
 		"desc": "With this module your robot have more health",
 		"image": "res://data/items/img/health-module.png",
 		"type": "MODULE"
 	},
 	"20": {
-		"name": "Titanium plate",
-		"desc": "High quality plate made from Titanium",
+		"name": "Titanium Orb",
+		"desc": "High quality Orb made from Titanium",
 		"image": "res://data/items/img/titanium.png",
 		"type": "RESOURCE",
 		"rarity": "RARE"
@@ -177,15 +177,15 @@
 		"rarity": "RARE"
 	},
 	"23": {
-		"name": "Carbon Tube",
-		"desc": "A tube made out of Carbon Fiber, handle with care!",
-		"image": "res://data/items/img/carbon-tube.png",
+		"name": "Carbon Tubes",
+		"desc": "Tubes made out of Carbon Fiber, handle with care!",
+		"image": "res://data/items/img/carbon-tubes.png",
 		"type": "RESOURCE",
 		"rarity": "RARE"
 	},
 	"24": {
-		"name": "Steel Metal scraps",
-		"desc": "Scraps of steel in all Variaties",
+		"name": "Steel Rods",
+		"desc": "Rods made out of Steel, they look really sturdy",
 		"image": "res://data/items/img/steel.png",
 		"type": "RESOURCE",
 		"rarity": "UNCOMMON"
@@ -198,15 +198,15 @@
 		"rarity": "RARE"
 	},
 	"26": {
-		"name": "Plastic Sheet",
-		"desc": "A sheet of good old sturdy Plastic",
+		"name": "Plastic Waste",
+		"desc": "A piece of good old sturdy Plastic",
 		"image": "res://data/items/img/plastic.png",
 		"type": "RESOURCE",
 		"rarity": "UNCOMMON"
 	},
 	"27": {
-		"name": "Aluminum Metal Scraps",
-		"desc": "Bent Aluminum, probably pretty useful",
+		"name": "Aluminum Scraps",
+		"desc": "Some Aluminum scraps, probably pretty useful",
 		"image": "res://data/items/img/aluminum.png",
 		"type": "RESOURCE",
 		"rarity": "UNCOMMON"
