@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://00nk2ax4faqq"]
 
-[ext_resource type="Script" path="res://shared/shooting/shooter.gd" id="1_o3u0v"]
+[ext_resource type="Script" uid="uid://cfprhd8rhjen" path="res://shared/shooting/shooter.gd" id="1_o3u0v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gbvd4"]
 font_size = 25

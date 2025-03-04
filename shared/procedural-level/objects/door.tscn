@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cuby5ypm6o33u"]
 
-[ext_resource type="Script" path="res://shared/procedural-level/door.gd" id="1_kftc8"]
+[ext_resource type="Script" uid="uid://caawtdg35jif4" path="res://shared/procedural-level/door.gd" id="1_kftc8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxl8c"]
 

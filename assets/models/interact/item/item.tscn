@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2dk5nxi2ti7c"]
 
-[ext_resource type="Script" path="res://shared/scripts/interactive/pickable.gd" id="1_thb8e"]
+[ext_resource type="Script" uid="uid://cryk2ohu7grb6" path="res://shared/scripts/interactive/pickable.gd" id="1_thb8e"]
 [ext_resource type="Material" uid="uid://vxuutc161cxa" path="res://assets/models/interact/item/item.tres" id="2_laofe"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vuup1"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://x3kaac56yn6d"]
 
-[ext_resource type="Script" path="res://shared/ui/loadingScreen.gd" id="1_2cyv5"]
+[ext_resource type="Script" uid="uid://d38xhcdb7sr8c" path="res://shared/ui/loadingScreen.gd" id="1_2cyv5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10klu"]
 bg_color = Color(0, 0, 0, 1)
@@ -61,8 +61,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2shoh"]
 _data = {
-"fade_in": SubResource("Animation_co6sn"),
-"fade_out": SubResource("Animation_gsn5j")
+&"fade_in": SubResource("Animation_co6sn"),
+&"fade_out": SubResource("Animation_gsn5j")
 }
 
 [node name="loadingScreen" type="Control"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://djt65pti7uct6"]
 
-[ext_resource type="Script" path="res://shared/procedural-level/start-room.gd" id="1_146wm"]
+[ext_resource type="Script" uid="uid://s5x7q3e665v4" path="res://shared/procedural-level/start-room.gd" id="1_146wm"]
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="2_b81ij"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="3_bk1h5"]
 [ext_resource type="PackedScene" uid="uid://cj6rwih0ie5mw" path="res://assets/models/player/player.tscn" id="4_2x5sh"]

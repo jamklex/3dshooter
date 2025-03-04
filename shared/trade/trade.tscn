@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1dgspiie0v1o"]
 
-[ext_resource type="Script" path="res://shared/trade/trade.gd" id="1_pov6p"]
+[ext_resource type="Script" uid="uid://bch2y2juqgc0a" path="res://shared/trade/trade.gd" id="1_pov6p"]
 [ext_resource type="StyleBox" uid="uid://cufqtj4raux37" path="res://shared/trade/inventoryBg.tres" id="2_cku0r"]
 [ext_resource type="PackedScene" uid="uid://xr66w7kj4beu" path="res://shared/ui/items_grid/items_grid.tscn" id="3_2vd3b"]
 [ext_resource type="PackedScene" uid="uid://b6xx3gbl0sid" path="res://shared/ui/items_grid/amount_slider.tscn" id="4_om6pe"]

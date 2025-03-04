@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dsk018800x020"]
 
-[ext_resource type="Script" path="res://shared/scripts/npc.gd" id="1_wjpcm"]
+[ext_resource type="Script" uid="uid://cak18kbr3rn01" path="res://shared/scripts/npc.gd" id="1_wjpcm"]
 [ext_resource type="PackedScene" uid="uid://b7dqffeclpvbf" path="res://assets/models/npcs/quest_marker.tscn" id="2_0h8ti"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1gmhh"]

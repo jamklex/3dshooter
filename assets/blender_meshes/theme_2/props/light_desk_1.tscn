@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cn0qjson1co7g"]
 
-[ext_resource type="PackedScene" path="res://assets/blender_meshes/theme_2/props/prop_6.tscn" id="1_f6dlv"]
+[ext_resource type="PackedScene" uid="uid://bs8e17iqtast7" path="res://assets/blender_meshes/theme_2/props/prop_6.tscn" id="1_f6dlv"]
 
 [node name="LightDesk1" type="Node3D"]
 

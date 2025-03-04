@@ -1,6 +1,6 @@
 [gd_scene load_steps=47 format=4 uid="uid://cuingwts8hjty"]
 
-[ext_resource type="Script" path="res://assets/models/enemies/simpleEnemy/simpleEnemy.gd" id="1_0ruj3"]
+[ext_resource type="Script" uid="uid://cmfletn7pry42" path="res://assets/models/enemies/simpleEnemy/simpleEnemy.gd" id="1_0ruj3"]
 [ext_resource type="PackedScene" uid="uid://btelwcsn53o55" path="res://shared/shooting/shootable.tscn" id="1_orssj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37qi0"]
@@ -3510,12 +3510,12 @@ tracks/74/keys = PackedFloat32Array(0, 1, 0.348095, 1.67506e-08, -1.2864e-07, 0.
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mfq0e"]
 _data = {
-"get_up": SubResource("Animation_qnjsq"),
-"idle": SubResource("Animation_ale1i"),
-"kick": SubResource("Animation_6sel0"),
-"knock_down": SubResource("Animation_tnvmm"),
-"running": SubResource("Animation_tvool"),
-"walking": SubResource("Animation_nsgy3")
+&"get_up": SubResource("Animation_qnjsq"),
+&"idle": SubResource("Animation_ale1i"),
+&"kick": SubResource("Animation_6sel0"),
+&"knock_down": SubResource("Animation_tnvmm"),
+&"running": SubResource("Animation_tvool"),
+&"walking": SubResource("Animation_nsgy3")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xgpur"]

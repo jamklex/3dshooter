@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://1qkfwaexm0lp"]
 
 [ext_resource type="PackedScene" uid="uid://ypruuaj828fh" path="res://assets/blender_meshes/theme_3/props/prop_6.blend" id="1_nrgv6"]
-[ext_resource type="Script" path="res://shared/scripts/interactive/interactable.gd" id="2_bvojf"]
+[ext_resource type="Script" uid="uid://o6h7qpwdri0j" path="res://shared/scripts/interactive/interactable.gd" id="2_bvojf"]
 
 [node name="Return" type="Node3D"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://djp71il113qrx"]
 
-[ext_resource type="Script" path="res://shared/dialog/answer.gd" id="1_7t3km"]
+[ext_resource type="Script" uid="uid://cfeuqfiwekuc5" path="res://shared/dialog/answer.gd" id="1_7t3km"]
 [ext_resource type="StyleBox" uid="uid://dl74vy0afrm06" path="res://shared/dialog/answerStyle.tres" id="1_xg8ta"]
 
 [node name="answer" type="Button"]

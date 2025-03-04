@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://cddhte11a1aff"]
 
-[ext_resource type="Script" path="res://shared/mission/reward.gd" id="1_wxunr"]
+[sub_resource type="Resource" id="Resource_iox8t"]
+metadata/__load_path__ = "res://shared/mission/reward.gd"
 
 [node name="Reward" type="HBoxContainer"]
 offset_right = 84.0
 offset_bottom = 23.0
 theme_override_constants/separation = 15
-script = ExtResource("1_wxunr")
+script = SubResource("Resource_iox8t")
 
 [node name="resource" type="Label" parent="."]
 layout_mode = 2

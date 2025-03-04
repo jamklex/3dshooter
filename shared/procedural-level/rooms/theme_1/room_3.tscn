@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://crepbn08mug3v"]
 
-[ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_wwr5b"]
+[ext_resource type="Script" uid="uid://ddtoh1wy2a5ge" path="res://shared/procedural-level/room.gd" id="1_wwr5b"]
 [ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="2_pq5oa"]
 [ext_resource type="PackedScene" uid="uid://d1odjsuew4od0" path="res://assets/blender_meshes/theme_1/walls/wall_7.tscn" id="3_67csm"]
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="4_2t52y"]

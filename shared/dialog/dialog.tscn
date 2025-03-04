@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://1dryl8nl23v3"]
 
-[ext_resource type="Script" path="res://shared/dialog/dialog.gd" id="1_gb7ce"]
+[ext_resource type="Script" uid="uid://bgjde7p0vj2hq" path="res://shared/dialog/dialog.gd" id="1_gb7ce"]
 
 [node name="dialogUI" type="Control"]
 layout_mode = 3

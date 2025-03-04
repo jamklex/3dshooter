@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://dd3ya1gwiy4uk"]
 
-[ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_xag3m"]
+[ext_resource type="Script" uid="uid://3xn5awyp6kuu" path="res://shared/procedural-level/dead-room.gd" id="1_xag3m"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_m8qdq"]
 [ext_resource type="PackedScene" uid="uid://cs3a3ysfg0pku" path="res://shared/procedural-level/objects/invisible-floor.tscn" id="3_tthcb"]
 [ext_resource type="PackedScene" uid="uid://com8rta3734cb" path="res://assets/blender_meshes/theme_2/walls/wall_5.tscn" id="4_bx66s"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpqubtt5d5838"]
 
-[ext_resource type="Script" path="res://shared/quest/quest.gd" id="1_cle2s"]
+[ext_resource type="Script" uid="uid://cy8hb8oht77hs" path="res://shared/quest/quest.gd" id="1_cle2s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbi0i"]
 content_margin_left = 5.0

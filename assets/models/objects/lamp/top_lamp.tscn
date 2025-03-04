@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0xarjkovxkuc"]
 
-[ext_resource type="Script" path="res://shared/scripts/interactive/glowable.gd" id="1_4xmsj"]
+[ext_resource type="Script" uid="uid://cs5re66nxowkg" path="res://shared/scripts/interactive/glowable.gd" id="1_4xmsj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yk6wy"]
 

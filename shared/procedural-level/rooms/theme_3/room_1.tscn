@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://bgpghyb3a7y1x"]
 
-[ext_resource type="Script" path="res://shared/procedural-level/room.gd" id="1_jgw2e"]
+[ext_resource type="Script" uid="uid://ddtoh1wy2a5ge" path="res://shared/procedural-level/room.gd" id="1_jgw2e"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_hi4fa"]
 [ext_resource type="PackedScene" uid="uid://cqsfi32tcn6sw" path="res://assets/blender_meshes/theme_3/props/lootbox.tscn" id="3_7hf0l"]
 [ext_resource type="PackedScene" uid="uid://de40boioexgp4" path="res://assets/blender_meshes/theme_3/floors/floor_2.tscn" id="3_37yh6"]

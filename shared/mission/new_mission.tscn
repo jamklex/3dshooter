@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dd625egoywrtl"]
 
-[ext_resource type="Script" path="res://shared/mission/new_mission.gd" id="1_gwt36"]
+[ext_resource type="Script" uid="uid://bq8ua0ldh84xp" path="res://shared/mission/new_mission.gd" id="1_gwt36"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bm2u0"]
 content_margin_left = 15.0

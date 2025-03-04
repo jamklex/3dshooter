@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://depl84a3hkmkb"]
 
-[ext_resource type="Script" path="res://shared/mission/missions.gd" id="1_mocrq"]
+[ext_resource type="Script" uid="uid://bi4aqv67vxib3" path="res://shared/mission/missions.gd" id="1_mocrq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijp77"]
 bg_color = Color(0.239216, 0.239216, 0.239216, 1)

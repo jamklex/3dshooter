@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="1_8qfpc"]
 [ext_resource type="PackedScene" uid="uid://cwctn7hpi4s3d" path="res://assets/blender_meshes/theme_3/floors/floor_3.tscn" id="1_gpq6j"]
-[ext_resource type="Script" path="res://shared/procedural-level/start-room.gd" id="1_ja847"]
+[ext_resource type="Script" uid="uid://s5x7q3e665v4" path="res://shared/procedural-level/start-room.gd" id="1_ja847"]
 [ext_resource type="PackedScene" uid="uid://csngg1cckwdw0" path="res://assets/blender_meshes/theme_3/walls/wall_6.tscn" id="2_wt1e2"]
 [ext_resource type="Texture2D" uid="uid://dcbcbfvfixlmb" path="res://assets/bg/start1.png" id="5_b4i7w"]
 [ext_resource type="PackedScene" uid="uid://dq7k23rt2b1yq" path="res://assets/models/interact/airvent/airvent.tscn" id="5_kqqsf"]

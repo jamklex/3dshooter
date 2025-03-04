@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://csn2mo4ev2mrv"]
 
-[ext_resource type="Script" path="res://shared/scripts/interactive/interactable.gd" id="1_pbeac"]
+[ext_resource type="Script" uid="uid://o6h7qpwdri0j" path="res://shared/scripts/interactive/interactable.gd" id="1_pbeac"]
 [ext_resource type="PackedScene" uid="uid://bj0dmkliaxidt" path="res://assets/models/objects/table/table.tscn" id="2_a44p8"]
 
 [node name="CraftingTable" type="CSGBox3D"]

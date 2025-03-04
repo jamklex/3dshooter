@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddj8qd6iog53t"]
 
-[ext_resource type="Script" path="res://scenes/ship/prefabs/dummy.gd" id="1_165v4"]
+[ext_resource type="Script" uid="uid://by82rj1ovr675" path="res://scenes/ship/prefabs/dummy.gd" id="1_165v4"]
 [ext_resource type="PackedScene" uid="uid://btelwcsn53o55" path="res://shared/shooting/shootable.tscn" id="2_8delb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eap1h"]

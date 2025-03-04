@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cugfwk4lt1bdd"]
 
-[ext_resource type="Script" path="res://shared/ui/control-segment.gd" id="1_os4rw"]
+[ext_resource type="Script" uid="uid://ba03e1mtorogp" path="res://shared/ui/control-segment.gd" id="1_os4rw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bb52c"]
 draw_center = false

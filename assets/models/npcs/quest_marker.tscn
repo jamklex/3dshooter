@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7dqffeclpvbf"]
 
-[ext_resource type="Script" path="res://assets/models/npcs/quest_marker.gd" id="1_avft7"]
+[ext_resource type="Script" uid="uid://c62pqjb5adcru" path="res://assets/models/npcs/quest_marker.gd" id="1_avft7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0ek7"]
 transparency = 1

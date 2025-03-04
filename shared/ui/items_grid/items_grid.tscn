@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://xr66w7kj4beu"]
 
 [ext_resource type="StyleBox" uid="uid://dm02jw4vwqpld" path="res://shared/ui/items_grid/background.tres" id="1_dv8vi"]
-[ext_resource type="Script" path="res://shared/ui/items_grid/items_grid.gd" id="2_hjvok"]
+[ext_resource type="Script" uid="uid://dmxkwnumdomps" path="res://shared/ui/items_grid/items_grid.gd" id="2_hjvok"]
 [ext_resource type="PackedScene" uid="uid://c7r4nqq3l5dlv" path="res://shared/ui/items_grid/item_infos.tscn" id="3_ka2nf"]
 
 [node name="ItemsGrid" type="Panel"]

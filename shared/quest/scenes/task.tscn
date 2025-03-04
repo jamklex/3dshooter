@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dx5vsjve6roxd"]
 
-[ext_resource type="Script" path="res://shared/quest/task.gd" id="1_ihugl"]
+[ext_resource type="Script" uid="uid://c6x87kywm7adj" path="res://shared/quest/task.gd" id="1_ihugl"]
 
 [node name="task" type="Control"]
 custom_minimum_size = Vector2(0, 25)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://brpciuojqvdyu"]
 
 [ext_resource type="StyleBox" uid="uid://co2lskcsho12m" path="res://shared/ui/items_grid/slot.tres" id="1_80f8l"]
-[ext_resource type="Script" path="res://shared/ui/items_grid/slot.gd" id="2_jgwy6"]
+[ext_resource type="Script" uid="uid://cefwe28ec0sj4" path="res://shared/ui/items_grid/slot.gd" id="2_jgwy6"]
 
 [node name="Slot" type="Button"]
 custom_minimum_size = Vector2(100, 100)

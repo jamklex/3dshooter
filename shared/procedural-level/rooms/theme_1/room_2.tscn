@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://qrlxjkhlahv1"]
 
-[ext_resource type="Script" path="res://shared/procedural-level/dead-room.gd" id="1_ir3sp"]
+[ext_resource type="Script" uid="uid://3xn5awyp6kuu" path="res://shared/procedural-level/dead-room.gd" id="1_ir3sp"]
 [ext_resource type="PackedScene" uid="uid://dfy1xb3n0tnm5" path="res://assets/blender_meshes/theme_1/walls/wall_5.tscn" id="1_wjhaw"]
 [ext_resource type="PackedScene" uid="uid://8111dv30rx4u" path="res://assets/blender_meshes/theme_1/walls/wall_2.tscn" id="2_5pe5l"]
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="3_llcqj"]

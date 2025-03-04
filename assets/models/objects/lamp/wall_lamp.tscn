@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6oqupr7ertgm"]
 
-[ext_resource type="Script" path="res://shared/scripts/interactive/glowable.gd" id="1_awe21"]
+[ext_resource type="Script" uid="uid://cs5re66nxowkg" path="res://shared/scripts/interactive/glowable.gd" id="1_awe21"]
 [ext_resource type="Material" uid="uid://1gwhllq1a4so" path="res://assets/models/objects/lamp/wall_lamp_base.tres" id="2_a1rsa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ko1xw"]

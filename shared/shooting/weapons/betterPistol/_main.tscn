@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://3l2k8y8vrfxe"]
 
-[ext_resource type="Script" path="res://shared/shooting/weapon.gd" id="1_3fm6f"]
+[ext_resource type="Script" uid="uid://b6v8h1hq8enbp" path="res://shared/shooting/weapon.gd" id="1_3fm6f"]
 [ext_resource type="AudioStream" uid="uid://xwyixr27prx0" path="res://shared/shooting/weapons/pistol/shot.mp3" id="2_kc314"]
 [ext_resource type="AudioStream" uid="uid://badxm5gt4jd51" path="res://shared/shooting/weapons/betterPistol/emptyShot.mp3" id="3_vta70"]
 [ext_resource type="Material" uid="uid://dox3f5n0qwghg" path="res://shared/shooting/weapons/betterPistol/material.tres" id="4_rfqmm"]

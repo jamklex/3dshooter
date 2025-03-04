@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cjwdxoka660b6"]
 
-[ext_resource type="Script" path="res://shared/trade/tradeItem.gd" id="1_y3ouk"]
+[ext_resource type="Script" uid="uid://c4ieofo5r7n8h" path="res://shared/trade/tradeItem.gd" id="1_y3ouk"]
 
 [node name="item" type="Button"]
 anchors_preset = 15

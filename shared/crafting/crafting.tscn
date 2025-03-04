@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://3ycdntt8wg2f"]
 
 [ext_resource type="PackedScene" uid="uid://b6xx3gbl0sid" path="res://shared/ui/items_grid/amount_slider.tscn" id="1_1npw0"]
-[ext_resource type="Script" path="res://shared/crafting/crafting.gd" id="1_ggssr"]
+[ext_resource type="Script" uid="uid://bj6lt76x18bse" path="res://shared/crafting/crafting.gd" id="1_ggssr"]
 [ext_resource type="StyleBox" uid="uid://cufqtj4raux37" path="res://shared/trade/inventoryBg.tres" id="2_kof8w"]
 [ext_resource type="PackedScene" uid="uid://brpciuojqvdyu" path="res://shared/ui/items_grid/slot.tscn" id="3_1xkrn"]
 [ext_resource type="PackedScene" uid="uid://xr66w7kj4beu" path="res://shared/ui/items_grid/items_grid.tscn" id="3_s30dl"]
