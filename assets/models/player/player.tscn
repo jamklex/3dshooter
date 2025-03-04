@@ -3960,7 +3960,7 @@ target_node = NodePath("../../../../../camera_mount/camera_arm/camera_rot/rightA
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="visuals/mixamo_base"]
 libraries = {
-"": SubResource("AnimationLibrary_mfq0e")
+&"": SubResource("AnimationLibrary_mfq0e")
 }
 
 [node name="camera_mount" type="Node3D" parent="."]

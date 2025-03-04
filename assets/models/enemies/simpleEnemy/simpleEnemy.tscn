@@ -1,8 +1,7 @@
-[gd_scene load_steps=49 format=4 uid="uid://cuingwts8hjty"]
+[gd_scene load_steps=48 format=4 uid="uid://cuingwts8hjty"]
 
 [ext_resource type="Script" uid="uid://cmfletn7pry42" path="res://assets/models/enemies/simpleEnemy/simpleEnemy.gd" id="1_0ruj3"]
 [ext_resource type="PackedScene" uid="uid://btelwcsn53o55" path="res://shared/shooting/shootable.tscn" id="1_orssj"]
-[ext_resource type="AudioStream" uid="uid://dxg2e87wu5bp" path="res://assets/models/enemies/simpleEnemy/die.mp3" id="3_g3kji"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3j5p"]
 emission = Color(0, 1, 1, 1)
@@ -345,18 +344,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../../AudioStreamPlayer3D:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_qnjsq"]
@@ -2528,7 +2515,7 @@ tracks/77/keys = {
 }
 tracks/78/type = "value"
 tracks/78/imported = false
-tracks/78/enabled = true
+tracks/78/enabled = false
 tracks/78/path = NodePath("AnimationPlayer:speed_scale")
 tracks/78/interp = 1
 tracks/78/loop_wrap = true
@@ -2537,18 +2524,6 @@ tracks/78/keys = {
 "transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
 "values": [1.0, 4.0, 0.1]
-}
-tracks/79/type = "value"
-tracks/79/imported = false
-tracks/79/enabled = true
-tracks/79/path = NodePath("../../AudioStreamPlayer3D:playing")
-tracks/79/interp = 1
-tracks/79/loop_wrap = true
-tracks/79/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_tvool"]
@@ -3700,9 +3675,6 @@ height = 1.774
 [node name="simpleEnemy" type="CharacterBody3D" groups=["enemies"]]
 collision_layer = 2
 script = ExtResource("1_0ruj3")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_g3kji")
 
 [node name="visuals" type="Node3D" parent="."]
 
