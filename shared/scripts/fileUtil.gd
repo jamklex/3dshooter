@@ -24,13 +24,16 @@ static func saveJsonContent(filePath:String, json:Variant):
 	file.store_line(JSON.stringify(json, "\t"))
 	cache[filePath] = JSON.stringify(json)
 
-static func getFilesAt(folder:String) -> Array[String]:
+static func getFilesAt(folder:String, withFolders: bool = false) -> Array[String]:
 	if !folder.ends_with("/"):
 		folder = folder + "/"
 	if cache.has(folder):
 		return cache.get(folder)
 	var files = [] as Array[String]
-	for file in DirAccess.get_files_at(folder):
+	var _files = DirAccess.get_files_at(folder)
+	if withFolders:
+		_files.append_array(DirAccess.get_directories_at(folder))
+	for file in _files:
 		file = file.replace(".remap", "")
 		files.push_back(folder + file)
 	cache[folder] = files
