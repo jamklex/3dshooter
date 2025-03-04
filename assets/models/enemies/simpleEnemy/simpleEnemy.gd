@@ -16,7 +16,7 @@ var damage:int = 0
 var dieing = false
 var player:Node3D = null
 var playerSpotted = false
-var state_machine = null
+var state_machine: AnimationNodeStateMachinePlayback
 var last_pos = null
 var not_moving_since = null
 var simple_path_until = null
@@ -37,6 +37,8 @@ func _wannaJump():
 	return false
 	
 func _die():
+	if dieing: 
+		return
 	dieing = true
 	_anim_tree.set("parameters/conditions/die", true)
 	audioPlayer.stream = SoundUtil.getSound(SoundUtil.SoundName.ENEMY_DEAD)
