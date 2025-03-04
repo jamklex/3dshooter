@@ -308,10 +308,15 @@ func _shoot():
 	_shotTimer.start(currentWeapon.shotCooldown)
 	currentWeapon.muzzleFlare.restart()
 	for i in range(currentWeapon.projecticles):
+<<<<<<< HEAD
 		var hittedObject = _raycastForHittedObject()
 		if not hittedObject:
 			continue
 		if hittedObject is Shootable and hittedObject.died:
+=======
+		var shootable = _raycastForShootable()
+		if not shootable or shootable.died:
+>>>>>>> 4732244d372d29929f4b1771b70b3befb929b605
 			continue
 		var criticalHit = false
 		if hittedObject is CharacterBody3D:
