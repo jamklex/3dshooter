@@ -31,5 +31,4 @@ static func getSound(name: SoundName) -> AudioStreamMP3:
 	return null
 
 static func read_sound(path: String):
-	print("using: " + path)
 	return AudioStreamMP3.load_from_file(path)

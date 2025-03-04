@@ -16,8 +16,6 @@ func _ready():
 	add_child(_spawnTimer)
 
 func _respawn():
-	SoundUtil.getSound(SoundUtil.SoundName.LOOT_PICKUP)
-	SoundUtil.getSound(SoundUtil.SoundName.AMBIENT_HOME)
 	visible = true
 	_shootable.resetHealth()
 
