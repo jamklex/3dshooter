@@ -11,6 +11,7 @@ const VELOCITY_SMOOTHNESS = 0.2
 @onready var sight_cone = $visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/sightCone
 @onready var sight_raycast = $visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/raycast
 @onready var skin: MeshInstance3D = $visuals/mixamo_base/Armature/Skeleton3D/Beta_Surface
+@onready var audioPlayer: AudioStreamPlayer3D = $AudioStreamPlayer3D
 var damage:int = 0
 var dieing = false
 var player:Node3D = null
@@ -50,6 +51,7 @@ func _ready():
 	state_machine = _anim_tree.get("parameters/playback")
 	rng.randomize()
 	process_enemy_type_attributes(rng.randi_range(0, ENEMY_TYPE.size()-1))
+	
 
 func _get_player():
 	if WorldUtil.player and WorldUtil.player.body:

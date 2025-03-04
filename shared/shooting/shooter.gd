@@ -308,20 +308,20 @@ func _shoot():
 	_shotTimer.start(currentWeapon.shotCooldown)
 	currentWeapon.muzzleFlare.restart()
 	for i in range(currentWeapon.projecticles):
-		var shootable = _raycastForShootable()
-		if not shootable:
+		var hittedObject = _raycastForHittedObject()
+		if not hittedObject:
 			continue
-		if shootable.died:
+		if hittedObject is Shootable and hittedObject.died:
 			continue
 		var criticalHit = false
-		if shootable is CharacterBody3D:
-			criticalHit = shootable.get_parent().name == "head"
-			shootable = get_enemy_base_for_bone(shootable).get_node("shootable")
+		if hittedObject is CharacterBody3D:
+			criticalHit = hittedObject.get_parent().name == "head"
+			hittedObject = get_enemy_base_for_bone(hittedObject).get_node("shootable")
 		var damage = currentWeapon.damage
 		if criticalHit:
 			damage *= 2
-		shootable.takeDamage(damage)
-		onHitShootable.emit(shootable.health <= 0)
+		hittedObject.takeDamage(damage)
+		onHitShootable.emit(hittedObject.health <= 0)
 		
 func _cancelShotCooldown():
 	_shotTimer.stop()
@@ -337,7 +337,7 @@ func _applyInaccuracy(ray_direction: Vector3, inaccuracy: float) -> Vector3:
 	return ray_direction + deviation
 	
 	
-func _raycastForShootable() -> Node:
+func _raycastForHittedObject() -> Node:
 	var space = get_world_3d().direct_space_state
 	var ray_direction = camera.global_transform.basis.z
 	var inaccuarcy = (1 - currentWeapon.accuracy) / 2
@@ -369,6 +369,8 @@ func _raycastForShootable() -> Node:
 	if collider.has_method("takeDamage"):
 		return collider
 	elif collider.has_node("shootable"):
+		return collider.get_node("shootable")
+	if collider.has_node("shootable"):
 		return collider.get_node("shootable")
 	return null
 	
