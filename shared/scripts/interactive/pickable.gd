@@ -16,11 +16,14 @@ const POPUP_MESSAGE_FORMAT = "Pick up <ITEM>"
 @export_placeholder(POPUP_MESSAGE_FORMAT) var default_popup_message: String
 const FEEDBACK_MESSAGE_FORMAT = "Collected: <ITEM>"
 @export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
+var audioPlayer: AudioStreamPlayer3D
 
 func _ready():
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
 	highlightTimer.one_shot = true
 	add_child(highlightTimer)
+	audioPlayer = AudioStreamPlayer3D.new()
+	add_child(audioPlayer)
 
 func can_interact():
 	return interactable
@@ -37,6 +40,7 @@ func interact(player: Player):
 			interact_feedback += " x" + str(amount)
 		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", interact_feedback)
 	self.queue_free()
+	SoundUtil.playAtRandomPitch(audioPlayer, SoundUtil.SoundName.LOOT_PICKUP)
 	return message
 
 func setVisible(state: bool):

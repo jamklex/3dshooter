@@ -14,6 +14,7 @@ const MAX_ROOM_COUNT: int = 25
 var _enemies: Dictionary = {}
 var _additional_items: Dictionary = {}
 var _next_spawn_time:float = 0
+var audioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 
 static func from_seed(_seed: String) -> ProceduralRoomGenerator:
 	print("ProceduralRoomGenerator with seed: " + _seed)
@@ -41,6 +42,9 @@ func _process(_delta):
 			spawn_pickable_items(_additional_items)
 			set_container_items(_additional_items)
 			_done = true
+			add_child(audioPlayer)
+			audioPlayer.set_max_db(-10)
+			SoundUtil.playAtConstantPitch(audioPlayer, SoundUtil.SoundName.ROUND_START)
 		return
 	if len(_enemies.keys()) == 0:
 		return

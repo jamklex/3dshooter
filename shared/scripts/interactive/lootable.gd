@@ -15,6 +15,7 @@ const POPUP_MESSAGE_FORMAT = "Open Container"
 const FEEDBACK_MESSAGE_FORMAT = "Collected: <ITEM>"
 @export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
 var loot: DropItem
+var audioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 
 func _ready():
 	if material:
@@ -24,6 +25,7 @@ func _ready():
 	add_child(highlightTimer)
 	if !WorldUtil.get_map_rng_visibility():
 		get_parent_node_3d().queue_free()
+	add_child(audioPlayer)
 
 func can_interact():
 	return interactable
@@ -46,6 +48,8 @@ func interact(player: Player):
 		if amount > 1:
 			loot_feedback += " x" + str(amount)
 		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", loot_feedback)
+	audioPlayer.set_max_db(-20)
+	SoundUtil.playAtRandomPitch(audioPlayer, SoundUtil.SoundName.LOOT_PICKUP)
 	return message
 
 func highlight():

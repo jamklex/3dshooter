@@ -4,6 +4,7 @@ class_name Interactable
 extends CSGBox3D
 
 var highlightTimer = Timer.new()
+var pingTimer = Timer.new()
 @onready var id = get_instance_id()
 @export var interactable = true
 @export var enable_highlight = true
@@ -16,6 +17,7 @@ const POPUP_MESSAGE_FORMAT = "Take Action"
 const FEEDBACK_MESSAGE_FORMAT = ""
 @export_placeholder(FEEDBACK_MESSAGE_FORMAT) var default_feedback_messages: String
 var highlighted = false
+var audioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 
 enum Actions {
 	PRINT_ON,
@@ -26,12 +28,22 @@ enum Actions {
 }
 
 func _ready():
+	add_child(audioPlayer)
+	if action == Actions.TELEPORT_TO_BASE:
+		add_child(pingTimer)
+		pingTimer.start(4.2)
+		audioPlayer.set_max_distance(50)
+		pingTimer.timeout.connect(play_ping)
 	if material:
 		material = material.duplicate(true)
 	if enable_highlight:
 		highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
 		highlightTimer.one_shot = true
 		add_child(highlightTimer)
+
+func play_ping():
+	audioPlayer.set_max_db(-20)
+	SoundUtil.playAtConstantPitch(audioPlayer, SoundUtil.SoundName.SPAWN_PING)
 
 func set_interactable(value: bool):
 	interactable = value
