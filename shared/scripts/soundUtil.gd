@@ -32,3 +32,19 @@ static func getSound(name: SoundName) -> AudioStreamMP3:
 
 static func read_sound(path: String):
 	return AudioStreamMP3.load_from_file(path)
+
+static func playAtConstantPitch(player: AudioStreamPlayer3D, name: SoundName, pitch: float = 1.0):
+	var old_pitch = player.get_pitch_scale()
+	player.set_stream(getSound(name))
+	player.set_pitch_scale(pitch)
+	player.play()
+	player.set_pitch_scale(old_pitch)
+
+static func playAtRandomPitch(player: AudioStreamPlayer3D, name: SoundName):
+	playAtConstantPitch(player, name, randomPitch())
+
+static func randomPitch() -> float:
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.randomize()
+	return rng.randf_range(0, 100)
+	
