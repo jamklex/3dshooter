@@ -249,16 +249,16 @@ func _playDeadSound():
 	_playSound(SoundUtil.SoundName.PLAYER_DEAD, -10, 0)
 
 func _playDamagedSound():
-	_playSound(SoundUtil.SoundName.PLAYER_DAMAGE, -7, 0)
+	_playSound(SoundUtil.SoundName.PLAYER_DAMAGE, -4, 0)
 
 func _playStepSound():
 	if is_on_floor():
-		_playSound(SoundUtil.SoundName.PLAYER_STEP, -10, 0)
+		_playSound(SoundUtil.SoundName.PLAYER_STEP, -3, 0)
 		
 func _playAmbientSound():
 	var inMissionMap = WorldUtil.player.inMissionMap
 	ambientAudioPlayer.stream = SoundUtil.getSound(SoundUtil.SoundName.AMBIENT_HOME if inMissionMap else SoundUtil.SoundName.AMBIENT_MISSION)
-	ambientAudioPlayer.volume_db = -30 if inMissionMap else -20
+	ambientAudioPlayer.volume_db = -20 if inMissionMap else -10
 	ambientAudioPlayer.play()
 
 func _playSound(soundName: SoundUtil.SoundName, max_db: float, max_distance: float):

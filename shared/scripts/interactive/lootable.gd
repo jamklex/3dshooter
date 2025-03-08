@@ -48,7 +48,7 @@ func interact(player: Player):
 		if amount > 1:
 			loot_feedback += " x" + str(amount)
 		message = FEEDBACK_MESSAGE_FORMAT.replace("<ITEM>", loot_feedback)
-	audioPlayer.set_max_db(-20)
+	audioPlayer.set_max_db(-10)
 	SoundUtil.playAtRandomPitch(audioPlayer, SoundUtil.SoundName.LOOT_PICKUP)
 	return message
 

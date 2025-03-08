@@ -21,6 +21,7 @@ var last_pos = null
 var not_moving_since = null
 var simple_path_until = null
 var rng = RandomNumberGenerator.new()
+var pingTimer = Timer.new()
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -33,7 +34,7 @@ const ENEMY_NAME_MAP = {
 	ENEMY_TYPE.STRONG_TANK: "ST4NK",
 }
 
-const PING_RATE_SECS = 5
+const PING_RATE_SECS = 3
 var lastPingTime = 0
 
 func _wannaJump():
@@ -53,12 +54,14 @@ func _getNextMoveVector2(prevMoveVector2:Vector2):
 		return Vector2.ZERO
 		
 func _ready():
+	add_child(pingTimer)
 	_shootable.setStartHealth(randi_range(1,10))
 	state_machine = _anim_tree.get("parameters/playback")
 	rng.randomize()
 	process_enemy_type_attributes(rng.randi_range(0, ENEMY_TYPE.size()-1))
 	audioPlayer = AudioStreamPlayer3D.new()
 	add_child(audioPlayer)
+	_pingLogic()
 
 func _get_player():
 	if WorldUtil.player and WorldUtil.player.body:
@@ -90,7 +93,7 @@ func _set_player_spotted_to_all_enemies():
 	var all_enemies = get_tree().get_nodes_in_group("enemies") as Array[Enemy]
 	for enemy in all_enemies:
 		enemy.playerSpotted = true
-		
+
 func _moving():
 	if not last_pos:
 		last_pos = global_position
@@ -107,7 +110,6 @@ func _physics_process(delta):
 		_anim_tree.set("parameters/conditions/has_target", false)
 		_anim_tree.set("parameters/conditions/in_range", false)
 		return
-	_pingLogic()
 	if simple_path_until:
 		if Time.get_ticks_msec() >= simple_path_until:
 			nav_agent.path_postprocessing = 0
@@ -140,10 +142,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _pingLogic():
-	var currentTime = Time.get_ticks_msec()
-	if (currentTime - lastPingTime) >= PING_RATE_SECS * 1000:
-		_playPingSound()
-		lastPingTime = currentTime
+	pingTimer.start(PING_RATE_SECS)
+	pingTimer.timeout.connect(_playPingSound)
 
 func _hit():
 	_playAttackSound()
@@ -222,13 +222,15 @@ func _on_health_changed(health: int) -> void:
 		_die()
 
 func _playDeadSound():
-	_playSound(SoundUtil.SoundName.ENEMY_DEAD, 7.0, 0)
+	_playSound(SoundUtil.SoundName.ENEMY_DEAD, 20, 0)
 	
 func _playAttackSound():
-	_playSound(SoundUtil.SoundName.ENEMY_ATTACK, -3, 20)
+	_playSound(SoundUtil.SoundName.ENEMY_ATTACK, -5, 20)
 	
 func _playPingSound():
 	if playerSpotted:
+		if pingTimer.get_wait_time() == PING_RATE_SECS:
+			pingTimer.start(PING_RATE_SECS/2)
 		_playSound(SoundUtil.SoundName.ENEMY_AGGRESSIVE, -1, 20)
 	else:
 		_playSound(SoundUtil.SoundName.ENEMY_IDLE, -1, 20)
