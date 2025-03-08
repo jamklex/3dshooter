@@ -22,9 +22,14 @@ extends CharacterBody3D
 @onready var quests_ui = _ui.get_node("QuestHolder/quests") as VBoxContainer
 @onready var hitmarker = _ui.get_node("Hitmarker") as TextureRect
 @onready var health_bar = _ui.get_node("health_bar") as HealthBar
+var audioPlayer: AudioStreamPlayer3D
+var ambientAudioPlayer: AudioStreamPlayer
 var sprinting = false
 var _reward_queue = []
 var base_health = 0
+
+func is_dead():
+	return _shootable.died
 
 func _ready():
 	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
@@ -44,6 +49,11 @@ func _ready():
 	_shooter.onHitShootable.connect(_showHitMarker)
 	base_health = _shootable.max_health
 	_check_for_health_module(true)
+	audioPlayer = AudioStreamPlayer3D.new()
+	add_child(audioPlayer)
+	ambientAudioPlayer = AudioStreamPlayer.new()
+	add_child(ambientAudioPlayer)
+	_playAmbientSound()
 
 func _exit_tree():
 	_shooter.putBulletsToInventory()
@@ -208,8 +218,12 @@ func _switchUiMenu(selectedTabIndex):
 			menu.menuTab.current_tab = selectedTabIndex
 
 func _on_health_changed(health):
+	if _shootable.died:
+		return
 	health_bar.setHealth(health)
+	_playDamagedSound()
 	if health <= 0 and not _shootable.died:
+		_playDeadSound()
 		WorldUtil.player_died()
 
 func _on_equip_inv_changed(payload:Array):
@@ -230,3 +244,25 @@ func _check_for_health_module(first_check:bool=false):
 	if not WorldUtil.player.inMissionMap or first_check:
 		_shootable.resetHealth()
 	health_bar.init(_shootable.health, _shootable.max_health)
+
+func _playDeadSound():
+	_playSound(SoundUtil.SoundName.PLAYER_DEAD, -10, 0)
+
+func _playDamagedSound():
+	_playSound(SoundUtil.SoundName.PLAYER_DAMAGE, -7, 0)
+
+func _playStepSound():
+	if is_on_floor():
+		_playSound(SoundUtil.SoundName.PLAYER_STEP, -10, 0)
+		
+func _playAmbientSound():
+	var inMissionMap = WorldUtil.player.inMissionMap
+	ambientAudioPlayer.stream = SoundUtil.getSound(SoundUtil.SoundName.AMBIENT_HOME if inMissionMap else SoundUtil.SoundName.AMBIENT_MISSION)
+	ambientAudioPlayer.volume_db = -30 if inMissionMap else -20
+	ambientAudioPlayer.play()
+
+func _playSound(soundName: SoundUtil.SoundName, max_db: float, max_distance: float):
+	audioPlayer.stream = SoundUtil.getSound(soundName)
+	audioPlayer.max_db = max_db
+	audioPlayer.max_distance = max_distance
+	audioPlayer.play()

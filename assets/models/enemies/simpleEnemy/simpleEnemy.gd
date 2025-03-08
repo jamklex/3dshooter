@@ -14,7 +14,7 @@ const VELOCITY_SMOOTHNESS = 0.2
 var audioPlayer: AudioStreamPlayer3D
 var damage:int = 0
 var dieing = false
-var player:Node3D = null
+var player:PlayerBody = null
 var playerSpotted = false
 var state_machine: AnimationNodeStateMachinePlayback
 var last_pos = null
@@ -33,6 +33,9 @@ const ENEMY_NAME_MAP = {
 	ENEMY_TYPE.STRONG_TANK: "ST4NK",
 }
 
+const PING_RATE_SECS = 5
+var lastPingTime = 0
+
 func _wannaJump():
 	return false
 	
@@ -41,8 +44,7 @@ func _die():
 		return
 	dieing = true
 	_anim_tree.set("parameters/conditions/die", true)
-	audioPlayer.stream = SoundUtil.getSound(SoundUtil.SoundName.ENEMY_DEAD)
-	audioPlayer.play()
+	_playDeadSound()
 	
 func _getNextMoveVector2(prevMoveVector2:Vector2):
 	if prevMoveVector2 == Vector2.ZERO:
@@ -101,8 +103,11 @@ func _is_attacking():
 	return playerSpotted and _is_in_attack_range()
 
 func _physics_process(delta):
-	if dieing:
+	if dieing or player and player.is_dead():
+		_anim_tree.set("parameters/conditions/has_target", false)
+		_anim_tree.set("parameters/conditions/in_range", false)
 		return
+	_pingLogic()
 	if simple_path_until:
 		if Time.get_ticks_msec() >= simple_path_until:
 			nav_agent.path_postprocessing = 0
@@ -134,8 +139,14 @@ func _physics_process(delta):
 		return
 	move_and_slide()
 	
+func _pingLogic():
+	var currentTime = Time.get_ticks_msec()
+	if (currentTime - lastPingTime) >= PING_RATE_SECS * 1000:
+		_playPingSound()
+		lastPingTime = currentTime
 
 func _hit():
+	_playAttackSound()
 	if _is_in_attack_range():
 		var shootable = player.get_node("shootable") as Shootable
 		shootable.takeDamage(damage)
@@ -209,3 +220,21 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 func _on_health_changed(health: int) -> void:
 	if health <= 0:
 		_die()
+
+func _playDeadSound():
+	_playSound(SoundUtil.SoundName.ENEMY_DEAD, 7.0, 0)
+	
+func _playAttackSound():
+	_playSound(SoundUtil.SoundName.ENEMY_ATTACK, -3, 20)
+	
+func _playPingSound():
+	if playerSpotted:
+		_playSound(SoundUtil.SoundName.ENEMY_AGGRESSIVE, -1, 20)
+	else:
+		_playSound(SoundUtil.SoundName.ENEMY_IDLE, -1, 20)
+	
+func _playSound(soundName: SoundUtil.SoundName, max_db: float, max_distance: float):
+	audioPlayer.stream = SoundUtil.getSound(soundName)
+	audioPlayer.max_db = max_db
+	audioPlayer.max_distance = max_distance
+	audioPlayer.play()
