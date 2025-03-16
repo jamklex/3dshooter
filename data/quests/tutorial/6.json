@@ -38,7 +38,7 @@
 									{
 										"method": "unlockQuest",
 										"payload": [
-											"airlock", "upgrade"
+											"airlock"
 										]
 									}
 								]

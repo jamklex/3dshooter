@@ -68,7 +68,7 @@ func remove_highlight():
 	material.emission_enabled = false
 
 func open_animation():
-	print("TODO: opening animation")
+	# TODO: opening animation
 	return true
 
 func get_random_item():

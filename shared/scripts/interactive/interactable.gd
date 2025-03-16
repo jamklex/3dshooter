@@ -78,7 +78,7 @@ func remove_highlight():
 	material.emission_enabled = false
 
 func click_animation():
-	print("TODO: click animation")
+	# TODO: click animation
 	return true
 
 func execute_action(_action: Interactable.Actions):

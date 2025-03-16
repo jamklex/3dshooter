@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c37c181ker7nb"]
+[gd_scene load_steps=15 format=3 uid="uid://c37c181ker7nb"]
 
 [ext_resource type="Script" uid="uid://ddtoh1wy2a5ge" path="res://shared/procedural-level/room.gd" id="1_4htk7"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_vxeou"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://csngg1cckwdw0" path="res://assets/blender_meshes/theme_3/walls/wall_6.tscn" id="8_ymk1v"]
 [ext_resource type="PackedScene" uid="uid://cnr47t22qg4mr" path="res://assets/blender_meshes/theme_3/props/light_1.tscn" id="9_ys6p2"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="10_dl7xr"]
-[ext_resource type="PackedScene" uid="uid://bku3sctd6nig7" path="res://assets/blender_meshes/theme_3/props/prop_2.tscn" id="11_3usna"]
 [ext_resource type="PackedScene" uid="uid://cs3a3ysfg0pku" path="res://shared/procedural-level/objects/invisible-floor.tscn" id="12_r8uu8"]
 [ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="14_e64fx"]
 
@@ -370,9 +369,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.98439, 2.07859, 5.40428)
 
 [node name="Light7" parent="NavigationRegion3D/props" instance=ExtResource("9_ys6p2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2247, 2.07859, 5.40428)
-
-[node name="prop_2" parent="NavigationRegion3D/props" instance=ExtResource("11_3usna")]
-transform = Transform3D(-0.245703, 0, 0.435465, 0, 0.5, 0, -0.435465, 0, -0.245703, 8.97613, 2.31672, -9.24263)
 
 [node name="Invisible-floor4" parent="NavigationRegion3D" instance=ExtResource("12_r8uu8")]
 transform = Transform3D(0.5, 0, 0, 0, 0.3, 0, 0, 0, 2, -6.389, -0.0446532, -0.177484)

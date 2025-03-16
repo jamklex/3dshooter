@@ -37,7 +37,7 @@ sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.277528, 0.277528, 0.277528, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wmmp7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4ndl"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [node name="Start2" type="Node3D"]
@@ -222,7 +222,7 @@ environment = SubResource("Environment_tbx6h")
 
 [node name="airvent" parent="." instance=ExtResource("10_g5fqf")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.4435, 2.13752, -3.75274)
-material = SubResource("StandardMaterial3D_wmmp7")
+material = SubResource("StandardMaterial3D_o4ndl")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("11_rmbqs")]
 transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 5.985, 0, -0.937)

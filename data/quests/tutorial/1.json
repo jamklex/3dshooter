@@ -33,9 +33,9 @@
 																		"payload": []
 																	},
 																	{
-																		"method": "unlock",
+																		"method": "unlockQuest",
 																		"payload": [
-																			"BODY_MANAGER"
+																			"upgrade"
 																		]
 																	}
 																]

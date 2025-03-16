@@ -98,6 +98,8 @@ func isReadyForMission() -> bool:
 func _on_start_mission_pressed():
 	var enemies = {}
 	var enemyTypes = getCurrentEnemyTypes()
+	if enemyTypes.is_empty():
+		enemyTypes = Enemy.ENEMY_TYPE.values()
 	for i in range(2):
 		var type = enemyTypes.pick_random()
 		var value = getCountForType(type)
