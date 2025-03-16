@@ -14,8 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="12_1oafj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_0xjbm"]
-vertices = PackedVector3Array(-2.53984, 0.0129249, 6.69203, -3.13984, 0.0129249, 7.29203, -1.83984, 0.0129249, 7.29203, -5.43984, 0.0129249, 3.69203, -5.43984, 0.0129249, 5.29203, -4.73984, 0.0129249, 4.59203, -2.53984, 0.0129249, 6.39203, -2.73984, 0.0129249, 5.09203, -3.13984, 0.0129249, 4.69203, -1.53984, 0.0129249, 7.79203, 1.56016, 0.0129249, 7.79203, 1.86016, 0.0129249, 7.29203, -5.93984, 0.0129249, 3.39203, -5.43984, 0.0129249, -0.00797367, -5.93984, 0.0129249, 0.292027, -1.83984, 0.0129249, -3.60797, -5.43984, 0.0129249, -3.60797, 5.46016, 0.0129249, 3.69203, 5.96016, 0.0129249, 3.39203, 5.96016, 0.0129249, 0.292027, 5.46016, 0.0129249, -0.00797367, 1.86016, 0.0129249, -3.60797, 1.56016, 0.0129249, -4.10797, -1.53984, 0.0129249, -4.10797, 5.46016, 0.0129249, 7.29203, 5.46016, 0.0129249, -3.60797, -5.43984, 0.0129249, 7.29203, -4.83984, 0.0129249, 7.29203, -5.23984, 0.0129249, 6.89203, -5.43984, 0.0129249, 5.69203)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(2, 0, 6), PackedInt32Array(7, 2, 6), PackedInt32Array(8, 5, 3), PackedInt32Array(2, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(3, 12, 8), PackedInt32Array(8, 12, 14), PackedInt32Array(8, 14, 13), PackedInt32Array(13, 16, 15), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(23, 22, 21), PackedInt32Array(17, 11, 20), PackedInt32Array(20, 11, 8), PackedInt32Array(20, 8, 13), PackedInt32Array(20, 13, 15), PackedInt32Array(11, 7, 8), PackedInt32Array(23, 21, 15), PackedInt32Array(15, 21, 20), PackedInt32Array(17, 24, 11), PackedInt32Array(20, 21, 25), PackedInt32Array(28, 27, 26), PackedInt32Array(28, 26, 29)]
+vertices = PackedVector3Array(-2.53984, 0.0193355, 6.69203, -3.13984, 0.0193355, 7.29203, -1.83984, 0.0193355, 7.29203, -5.43984, 0.0193355, 3.69203, -5.43984, 0.0193355, 5.29203, -4.73984, 0.0193355, 4.59203, -2.53984, 0.0193355, 5.29203, -3.23984, 0.0193355, 4.59203, -1.53984, 0.0193355, 7.79203, 1.56016, 0.0193355, 7.79203, 1.86016, 0.0193355, 7.29203, -5.93984, 0.0193355, 3.39203, -5.43984, 0.0193355, -0.00797367, -5.93984, 0.0193355, 0.292027, 5.46016, 0.0193355, -0.00797367, 5.46016, 0.0193355, -3.60797, 1.86016, 0.0193355, -3.60797, 5.46016, 0.0193355, 3.69203, 5.96016, 0.0193355, 3.39203, 5.96016, 0.0193355, 0.292027, 1.56016, 0.0193355, -4.10797, -1.53984, 0.0193355, -4.10797, -1.83984, 0.0193355, -3.60797, -5.43984, 0.0193355, -3.60797, 5.46016, 0.0193355, 7.29203, -5.43984, 0.0193355, 6.69203, -5.43984, 0.0193355, 7.29203, -4.83984, 0.0193355, 7.29203)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(2, 0, 6), PackedInt32Array(7, 5, 3), PackedInt32Array(2, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 10), PackedInt32Array(3, 11, 7), PackedInt32Array(7, 11, 13), PackedInt32Array(7, 13, 12), PackedInt32Array(14, 16, 15), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 14), PackedInt32Array(21, 20, 16), PackedInt32Array(12, 23, 22), PackedInt32Array(10, 6, 7), PackedInt32Array(21, 16, 22), PackedInt32Array(22, 16, 14), PackedInt32Array(17, 10, 14), PackedInt32Array(14, 10, 7), PackedInt32Array(14, 7, 12), PackedInt32Array(14, 12, 22), PackedInt32Array(17, 24, 10), PackedInt32Array(27, 26, 25)]
 geometry_parsed_geometry_type = 1
 cell_size = 0.1
 cell_height = 0.01
@@ -24,7 +24,7 @@ agent_radius = 0.4
 agent_max_climb = 0.0
 agent_max_slope = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcon8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3y3r"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qpld3"]
@@ -152,10 +152,10 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 4, 0, 7.
 
 [node name="airvent" parent="NavigationRegion3D/props" instance=ExtResource("5_kqqsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.89988, 2, -2.17468)
-material = SubResource("StandardMaterial3D_tcon8")
+material = SubResource("StandardMaterial3D_n3y3r")
 
 [node name="Return" parent="NavigationRegion3D/props" instance=ExtResource("7_pfvxh")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -4, 0, 6)
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -4, -0.668563, 6)
 
 [node name="Light1" parent="NavigationRegion3D/props" instance=ExtResource("9_4624y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.85473, 2, -4.01912)

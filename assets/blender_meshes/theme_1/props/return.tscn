@@ -15,4 +15,5 @@ size = Vector3(0.636597, 0.661987, 0.610962)
 script = ExtResource("1_r2f1j")
 enable_highlight = false
 action = 2
+interact_distance_m = 5
 default_popup_message = "Back To Base"

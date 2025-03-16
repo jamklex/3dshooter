@@ -37,6 +37,10 @@ _subresources={
 "light.022": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/blender_meshes/theme_2/materials/light_source.tres"
+},
+"plastic.033": {
+"use_external/enabled": true,
+"use_external/path": "uid://dv2lgxqejo3mo"
 }
 }
 }

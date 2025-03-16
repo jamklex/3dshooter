@@ -15,6 +15,7 @@ size = Vector3(0.207153, 0.348877, 0.180359)
 script = ExtResource("2_qr8i2")
 enable_highlight = false
 action = 2
+interact_distance_m = 5
 default_popup_message = "Back To Base"
 
 [node name="back" type="CSGBox3D" parent="."]
@@ -25,6 +26,7 @@ size = Vector3(0.207703, 0.348877, 0.180359)
 script = ExtResource("2_qr8i2")
 enable_highlight = false
 action = 2
+interact_distance_m = 5
 default_popup_message = "Back To Base"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
