@@ -4,31 +4,35 @@ class_name FileUtil
 static var cache = {} as Dictionary
 
 static func getContentAsString(filePath:String, cached:bool = true) -> String:
-	if cached and FileUtil.cache.has(filePath):
-		return FileUtil.cache.get(filePath)
+	setupCache()
+	if cached and cache.has(filePath):
+		return cache.get(filePath)
 	if not FileAccess.file_exists(filePath):
 		return ""
 	var file = FileAccess.open(filePath, FileAccess.READ)
 	var content = file.get_as_text()
-	FileUtil.cache[filePath] = content
+	cache[filePath] = content
 	return content
 
 static func getContentAsJson(filePath:String, cached:bool = true, defaultContent:String = "{}"):
+	setupCache()
 	var strContent = getContentAsString(filePath, cached)
 	if strContent.is_empty():
 		strContent = defaultContent
 	return JSON.parse_string(strContent)
 	
 static func saveJsonContent(filePath:String, json:Variant):
+	setupCache()
 	var file = FileAccess.open(filePath, FileAccess.WRITE)
 	file.store_line(JSON.stringify(json, "\t"))
-	FileUtil.cache[filePath] = JSON.stringify(json)
+	cache[filePath] = JSON.stringify(json)
 
-static func getFilesAt(folder:String, withFolders: bool = false) -> Array[String]:
+static func getFilesAt(folder:String, withFolders: bool = false, cached:bool = true) -> Array[String]:
+	setupCache()
 	if !folder.ends_with("/"):
 		folder = folder + "/"
-	if FileUtil.cache.has(folder):
-		return FileUtil.cache.get(folder)
+	if cached and cache.has(folder):
+		return cache.get(folder)
 	var files = [] as Array[String]
 	var _files = DirAccess.get_files_at(folder)
 	if withFolders:
@@ -36,5 +40,9 @@ static func getFilesAt(folder:String, withFolders: bool = false) -> Array[String
 	for file in _files:
 		file = file.replace(".remap", "")
 		files.push_back(folder + file)
-	FileUtil.cache[folder] = files
+	cache[folder] = files
 	return files
+
+static func setupCache():
+	if !cache:
+		cache = {}

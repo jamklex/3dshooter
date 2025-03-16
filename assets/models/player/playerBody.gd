@@ -257,7 +257,9 @@ func _playStepSound():
 		
 func _playAmbientSound():
 	var inMissionMap = WorldUtil.player.inMissionMap
-	ambientAudioPlayer.stream = SoundUtil.getSound(SoundUtil.SoundName.AMBIENT_HOME if inMissionMap else SoundUtil.SoundName.AMBIENT_MISSION)
+	var sound = SoundUtil.getSound(SoundUtil.SoundName.AMBIENT_MISSION if inMissionMap else SoundUtil.SoundName.AMBIENT_HOME)
+	sound.loop = true
+	ambientAudioPlayer.stream = sound
 	ambientAudioPlayer.volume_db = -20 if inMissionMap else -10
 	ambientAudioPlayer.play()
 
