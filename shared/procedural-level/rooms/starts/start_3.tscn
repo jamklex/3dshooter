@@ -152,6 +152,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 4, 0, 7.
 
 [node name="airvent" parent="NavigationRegion3D/props" instance=ExtResource("5_kqqsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.89988, 2, -2.17468)
+visible = false
 material = SubResource("StandardMaterial3D_n3y3r")
 
 [node name="Return" parent="NavigationRegion3D/props" instance=ExtResource("7_pfvxh")]

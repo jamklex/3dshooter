@@ -16,34 +16,35 @@
 				"answer": "I'm not one for pitty, so just do Your job okay?\nAnd by the way, You should came across Trish didn't You?",
 				"options": {
 					"You mean the one in the bottom of the ship?": {
-						"answer": "Yeah this Bi- beautiful woman...\nYou should get familiar with her too, because she will offer some help in completing missions.\nBut be aware that she want's money and that's on You! I'm paying enough for You even without her involvement.",
-						"options": {
-							"I will speak with her...": {
-								"answer": "Good, make sure send regards from me...",
-								"actions": [
-									{
-										"method": "removeItem",
-										"payload": [
-											"4", 1
-										]
-									},
-									{
-										"method": "succeedTask",
-										"payload": []
-									},
-									{
-										"method": "succeedQuest",
-										"payload": []
-									},
-									{
-										"method": "unlockQuest",
-										"payload": [
-											"airlock"
-										]
-									}
+						"answer": "Yeah this is our Salvager, maybe You can sell stuff You don't need anymore to her.",
+						"actions": [
+							{
+								"method": "removeItem",
+								"payload": [
+									"4", 1
+								]
+							},
+							{
+								"method": "succeedTask",
+								"payload": []
+							},
+							{
+								"method": "succeedQuest",
+								"payload": []
+							},
+							{
+								"method": "unlockQuest",
+								"payload": [
+									"itemSeller"
+								]
+							},
+							{
+								"method": "unlockQuest",
+								"payload": [
+									"missions"
 								]
 							}
-						}
+						]
 					}
 				}
 			}

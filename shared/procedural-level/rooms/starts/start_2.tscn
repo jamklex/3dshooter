@@ -222,6 +222,7 @@ environment = SubResource("Environment_tbx6h")
 
 [node name="airvent" parent="." instance=ExtResource("10_g5fqf")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.4435, 2.13752, -3.75274)
+visible = false
 material = SubResource("StandardMaterial3D_o4ndl")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("11_rmbqs")]
