@@ -28,7 +28,9 @@ func _ready():
 	_room_counter += 1
 	
 func set_enemies(enemyDict:Dictionary):
-	_enemies = enemyDict
+	_enemies.clear()
+	for key in enemyDict.keys():
+		_enemies[int(key)] = enemyDict[key]
 
 func set_additional_items(itemDict: Dictionary):
 	_additional_items = itemDict
