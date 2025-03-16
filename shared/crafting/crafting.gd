@@ -18,6 +18,11 @@ enum MOVE {
 	CRAFT_TO_PLAYER,PLAYER_TO_CRAFT
 }
 
+func on_close():
+	_crafting_inv.moveAllItems(_player_inv)
+	if _blueprint_item:
+		_player_inv.addItem(_blueprint_item)
+
 func _ready():
 	_craft_button.disabled = true
 	_recipe_text.text = ""
@@ -45,7 +50,7 @@ func _refresh_craft_output():
 				new_recipe_text += "[color=#00FF00]"
 			else:
 				new_recipe_text += "[color=#FF0000]"
-			new_recipe_text += str(actualAmount) + "/" + str(neededAmount) + " - " + item.name + "[/color]\n"
+			new_recipe_text += String.num(actualAmount, 0) + "/" + String.num(neededAmount, 0) + " - " + item.name + "[/color]\n"
 	_recipe_text.text = new_recipe_text
 	_craft_button.disabled = not _can_craft()
 	
@@ -115,9 +120,6 @@ func _apply_item_move(move:MOVE, amount):
 	_refresh_craft_output()
 	
 func _close_crafting():
-	_crafting_inv.moveAllItems(_player_inv)
-	if _blueprint_item:
-		_player_inv.addItem(_blueprint_item)
 	WorldUtil.closeCurrentWindow()
 
 func _craft_():

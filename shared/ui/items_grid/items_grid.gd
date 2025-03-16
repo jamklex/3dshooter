@@ -70,6 +70,8 @@ func refresh():
 		return
 	for item in _inventory.items.values():
 		var inventory_item = item as InventoryItem
+		if inventory_item.amount == 0:
+			continue
 		if not inventory_item.item.tradeable and not _show_non_tradeable:
 			continue
 		var empty_slot = _get_empty_slot()

@@ -69,10 +69,12 @@ func _physics_process(delta):
 	if WorldUtil.currentWindow:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		_ui.visible = false
+		_shooter.hideMagInfo()
 		_playAnimation("idle")
 		return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_ui.visible = true
+	_shooter.showMagInfo()
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	fade_interaction_feedback(0.5*delta)
@@ -204,9 +206,15 @@ func _showHitMarker(lastHit):
 	await get_tree().create_timer(0.1).timeout
 	hitmarker.visible = false
 
+func _closeCurrentWindow():
+	var dialog = WorldUtil.currentWindow as Dialog
+	if not dialog:
+		WorldUtil.closeCurrentWindow()
+
 func _switchUiMenu(selectedTabIndex):
 	var menu = WorldUtil.currentWindow as Menu
 	if WorldUtil.currentWindow and not menu:
+		_closeCurrentWindow()
 		return
 	if not menu:
 		menu = WorldUtil.showMenu()
