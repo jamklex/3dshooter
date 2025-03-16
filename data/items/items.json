@@ -1,7 +1,7 @@
 {
 	"0": {
 		"name": "Gold",
-		"desc": "It is goot to have plenty of it",
+		"desc": "It is good to have plenty of it",
 		"image": "res://data/items/img/gold.png",
 		"trade": false,
 	},
@@ -28,7 +28,7 @@
 	},
 	"4": {
 		"name": "Golden Sphere",
-		"desc": "Shiny little sphere, be careful not to brake it!",
+		"desc": "Shiny little sphere, be careful not to break it!",
 		"image": "res://data/items/img/golden-sphere.png",
 		"trade": false
 	},
