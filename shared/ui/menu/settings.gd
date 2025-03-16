@@ -7,7 +7,7 @@ extends Control
 func _ready():
 	windowSizeSelector.add_item("Fullscreen")
 	for windowSize in UserSettings.WINDOW_SIZES:
-		windowSizeSelector.add_item(String.num(windowSize.x) + " x " + String.num(windowSize.y))
+		windowSizeSelector.add_item(String.num(windowSize.x, 0) + " x " + String.num(windowSize.y, 0))
 		
 func _on_draw():
 	_show_settings()

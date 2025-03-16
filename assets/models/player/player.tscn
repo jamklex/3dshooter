@@ -3979,7 +3979,7 @@ mesh = SubResource("ArrayMesh_mf3cx")
 skin = SubResource("Skin_ujmdh")
 
 [node name="rightHandBind" type="BoneAttachment3D" parent="visuals/mixamo_base/Armature/Skeleton3D"]
-transform = Transform3D(0.295923, 0.235665, 0.925684, 0.0327558, 0.966015, -0.256403, -0.95465, 0.106198, 0.278147, -21.4955, 6.98164, -107.312)
+transform = Transform3D(0.295921, 0.235664, 0.925685, 0.0327556, 0.966015, -0.256403, -0.95465, 0.106196, 0.278145, -21.4955, 6.98164, -107.312)
 bone_name = "mixamorig_RightHand"
 bone_idx = 10
 

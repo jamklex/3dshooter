@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://nmsmltr0w7dn"]
+[gd_scene load_steps=8 format=3 uid="uid://nmsmltr0w7dn"]
 
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="1_hf0q4"]
 [ext_resource type="Texture2D" uid="uid://cmxy0f6ug5uie" path="res://assets/models/player/hitmarker.png" id="1_ofn52"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bpeijl7v72wod" path="res://shared/ui/img/backpack.png" id="5_3igrs"]
 [ext_resource type="Texture2D" uid="uid://cejarwx6x3djb" path="res://shared/ui/img/cog.png" id="6_33220"]
 [ext_resource type="PackedScene" uid="uid://1wrxq464mod0" path="res://shared/ui/health_bar/health_bar.tscn" id="7_7rtai"]
-[ext_resource type="Texture2D" uid="uid://cbtyvry7ty7m2" path="res://shared/ui/img/pay-money.png" id="7_cwwe2"]
 [ext_resource type="Texture2D" uid="uid://bkvoes8iaqhk6" path="res://shared/ui/img/scroll-unfurled.png" id="7_hx532"]
 
 [node name="ui_elements" type="Control"]
@@ -152,12 +151,6 @@ clip_contents = false
 layout_mode = 2
 key = "questlog"
 img = ExtResource("7_hx532")
-
-[node name="missions" parent="controls" instance=ExtResource("4_u8lla")]
-clip_contents = false
-layout_mode = 2
-key = "missions"
-img = ExtResource("7_cwwe2")
 
 [node name="menu" parent="controls" instance=ExtResource("4_u8lla")]
 clip_contents = false

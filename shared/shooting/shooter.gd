@@ -42,6 +42,12 @@ func _ready():
 	soundPlayer = AudioStreamPlayer.new()
 	add_child(soundPlayer)
 	
+func hideMagInfo():
+	_magInfo.visible = false
+	
+func showMagInfo():
+	_magInfo.visible = true
+	
 func addWeapon(scenePath:String):
 	var packedScene = load(scenePath) as PackedScene
 	if not packedScene:
