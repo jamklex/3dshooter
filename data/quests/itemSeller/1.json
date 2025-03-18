@@ -1,6 +1,6 @@
 {
-	"name": "Do You also buy Items?",
-	"desc": "Trish helps You in securing items, but You should be causious of using this service too often.\nBut maybe she also buys items from You, go ask her.",
+	"name": "Do You buy Items?",
+	"desc": "Trish is known as the salvager in Your Group, maybe she also buys items from You, go ask her.",
 	"short": "Talk to Trish",
 	"dialog": {
 		"npc": "SALVAGER",

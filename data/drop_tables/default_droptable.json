@@ -114,6 +114,11 @@
 			"chance": 0.5
 		},
 		{
+			"id": "4",
+			"amount_fix": 1,
+			"chance": 0.0
+		},
+		{
 			"id": "16",
 			"amount_fix": 1,
 			"chance": 0.0
