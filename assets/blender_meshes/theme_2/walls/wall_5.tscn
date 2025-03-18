@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://com8rta3734cb"]
+[gd_scene load_steps=9 format=4 uid="uid://com8rta3734cb"]
 
 [ext_resource type="Material" uid="uid://cgb0txgcbuei7" path="res://assets/blender_meshes/theme_2/materials/light_source.tres" id="1_xiv04"]
 
@@ -8,14 +8,6 @@ cull_mode = 2
 albedo_color = Color(0.143568, 0.143568, 0.143568, 1)
 metallic = 1.0
 roughness = 0.25
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_7cd01"]
-material = SubResource("StandardMaterial3D_f1wxn")
-size = Vector2(0.1, 0.91)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_neynm"]
-material = SubResource("StandardMaterial3D_f1wxn")
-size = Vector2(0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13x41"]
 resource_name = "steel.010"
@@ -117,20 +109,9 @@ size = Vector3(0.456, 0.069, 0.092)
 
 [node name="wall_5" type="Node3D"]
 
-[node name="filler" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.0359728, 1.81569, 0)
-mesh = SubResource("PlaneMesh_7cd01")
-
-[node name="filler2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.0359728, 1.097, 0.131459)
-mesh = SubResource("PlaneMesh_neynm")
-
-[node name="filler3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.0359728, 0.500799, 0.131459)
-mesh = SubResource("PlaneMesh_neynm")
-
 [node name="wall05" type="MeshInstance3D" parent="."]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2.54, 0, 2, 0, -8.74228e-08, 0, 0, 0)
+lod_bias = 5.0
 mesh = SubResource("ArrayMesh_ssg8o")
 skeleton = NodePath("")
 

@@ -140,6 +140,7 @@ size = Vector3(0.732529, 0.220764, 2.0072)
 
 [node name="walls_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 2, 0, 0, 0, -2, -2, 0, 0, 0, 0, 0)
+lod_bias = 5.0
 mesh = SubResource("ArrayMesh_hlj6x")
 skeleton = NodePath("")
 

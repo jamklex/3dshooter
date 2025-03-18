@@ -7,6 +7,9 @@ size = Vector3(0.158447, 1.99243, 0.38858)
 
 [node name="pillar_1" instance=ExtResource("1_gxtm7")]
 
+[node name="pillar01" parent="." index="0"]
+lod_bias = 5.0
+
 [node name="CollisionShape3D" parent="pillar01/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.0852814)
 shape = SubResource("BoxShape3D_kjddb")

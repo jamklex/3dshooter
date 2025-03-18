@@ -9,6 +9,7 @@ size = Vector3(2, 0.073, 1.996)
 
 [node name="22" parent="." index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.073, 0)
+lod_bias = 5.0
 
 [node name="CollisionShape3D" parent="22/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_2vbu5")

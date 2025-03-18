@@ -167,6 +167,7 @@ radius = 1.30945
 
 [node name="props_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+lod_bias = 5.0
 mesh = SubResource("ArrayMesh_2gt7i")
 skeleton = NodePath("")
 

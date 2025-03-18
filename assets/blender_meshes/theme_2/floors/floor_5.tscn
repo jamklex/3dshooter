@@ -9,6 +9,7 @@ size = Vector3(1.99805, 0.164917, 2.99902)
 
 [node name="floor05" parent="." index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.174, 0)
+lod_bias = 5.0
 
 [node name="CollisionShape3D" parent="floor05/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00445557, 0)

@@ -166,6 +166,7 @@ size = Vector3(1.99585, 0.0394897, 1.98743)
 
 [node name="panels_005" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+lod_bias = 5.0
 mesh = SubResource("ArrayMesh_jpag7")
 skeleton = NodePath("")
 

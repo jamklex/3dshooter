@@ -8,6 +8,9 @@ radius = 0.30467
 
 [node name="prop_4" instance=ExtResource("1_663lb")]
 
+[node name="prop04" parent="." index="0"]
+lod_bias = 5.0
+
 [node name="CollisionShape3D" parent="prop04/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.613923, 0)
 shape = SubResource("CylinderShape3D_fcamh")

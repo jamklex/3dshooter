@@ -4014,8 +4014,7 @@ transform = Transform3D(-0.154575, -0.106236, -0.982253, 0.984112, 0.0713408, -0
 
 [node name="camera" type="Camera3D" parent="camera_mount/camera_arm/camera_rot"]
 current = true
-fov = 50.0
-near = 0.019
+fov = 37.8493
 
 [node name="RayCast3D" type="RayCast3D" parent="camera_mount/camera_arm/camera_rot/camera"]
 transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)

@@ -7,6 +7,9 @@ size = Vector3(1, 0.335938, 1.99243)
 
 [node name="prop_6" instance=ExtResource("1_q7hat")]
 
+[node name="prop06" parent="." index="0"]
+lod_bias = 5.0
+
 [node name="CollisionShape3D" parent="prop06/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.209961, 0)
 shape = SubResource("BoxShape3D_l4ioq")

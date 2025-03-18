@@ -9,6 +9,7 @@ size = Vector3(2, 0.13, 3)
 
 [node name="floor01" parent="." index="0"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.128, 0)
+lod_bias = 5.0
 
 [node name="StaticBody3D" parent="floor01" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001, 0)

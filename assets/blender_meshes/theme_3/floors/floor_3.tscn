@@ -103,6 +103,7 @@ size = Vector3(2.012, 0.075, 1.995)
 
 [node name="panels_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0639907, 0)
+lod_bias = 5.0
 mesh = SubResource("ArrayMesh_quxn1")
 skeleton = NodePath("")
 
