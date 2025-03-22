@@ -14,6 +14,9 @@ const KEY_MOUSE_SENS = "mouse_sens"
 const DEFAULT_MOUSE_SENS = 0.05
 const KEY_WINDOW_SIZE_INDEX = "window_size_index"
 const DEFAULT_WINDOW_SIZE_INDEX = -1  # => fullscreen
+const AMBIENT_SOUND_LEVEL = "ambient_sound"
+const SOUND_EFFECTS_LEVEL = "sound_effects"
+const DEFAULT_SOUND_LEVEL = 0.1
 
 var _raw_settings = {}
 
@@ -36,6 +39,10 @@ func _fill_empty_settings():
 		set_setting(KEY_MOUSE_SENS, DEFAULT_MOUSE_SENS)
 	if not KEY_WINDOW_SIZE_INDEX in _raw_settings:
 		set_setting(KEY_WINDOW_SIZE_INDEX, DEFAULT_WINDOW_SIZE_INDEX)
+	if not AMBIENT_SOUND_LEVEL in _raw_settings:
+		set_setting(AMBIENT_SOUND_LEVEL, DEFAULT_SOUND_LEVEL)
+	if not SOUND_EFFECTS_LEVEL in _raw_settings:
+		set_setting(SOUND_EFFECTS_LEVEL, DEFAULT_SOUND_LEVEL)
 	
 func _load():
 	_raw_settings = FileUtil.getContentAsJson(SAVE_PATH)
@@ -46,6 +53,7 @@ func _save():
 func apply_settings():
 	_apply_video_settings()
 	_apply_mouse_settings()
+	_apply_sound_settings()
 	_save()
 	
 func _apply_video_settings():
@@ -59,3 +67,8 @@ func _apply_video_settings():
 func _apply_mouse_settings():
 	if WorldUtil.player and WorldUtil.player.body:
 		WorldUtil.player.body.mouse_sensitivity = get_setting(KEY_MOUSE_SENS)
+		
+func _apply_sound_settings():
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Ambient"), get_setting(UserSettings.AMBIENT_SOUND_LEVEL))
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Sound"), get_setting(UserSettings.SOUND_EFFECTS_LEVEL))
+	pass

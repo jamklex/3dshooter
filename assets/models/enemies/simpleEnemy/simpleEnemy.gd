@@ -237,6 +237,7 @@ func _playPingSound():
 	
 func _playSound(soundName: SoundUtil.SoundName, max_db: float, max_distance: float):
 	audioPlayer.stream = SoundUtil.getSound(soundName)
+	audioPlayer.bus = "Sound"
 	audioPlayer.max_db = max_db
 	audioPlayer.max_distance = max_distance
 	audioPlayer.play()

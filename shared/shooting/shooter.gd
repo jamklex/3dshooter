@@ -40,6 +40,7 @@ func _ready():
 	_shotTimer.timeout.connect(_shotCooldownDone)
 	_refreshMagInfo()
 	soundPlayer = AudioStreamPlayer.new()
+	soundPlayer.bus = "Sound"
 	add_child(soundPlayer)
 	
 func hideMagInfo():
@@ -311,7 +312,7 @@ func _shoot():
 	currentWeapon.loaded = false
 	soundPlayer.stream = currentWeapon.shotSound
 	soundPlayer.play(0)
-	_shotTimer.start(currentWeapon.shotCooldown)
+	_shotTimer.start(max(currentWeapon.shotCooldown, 0.001))
 	currentWeapon.muzzleFlare.restart()
 	for i in range(currentWeapon.projecticles):
 		var hittedObject = _raycastForHittedObject()
@@ -402,9 +403,6 @@ func _switchAim():
 func _handleWeaponSwitching():
 	if Input.is_action_just_pressed("putWeaponAway"):
 		putWeaponAway()
-	if weapons.size() < 1:
-		_checkFov()
-		return
 	if Input.is_action_just_pressed("nextWeapon"):
 		_nextWeapon()
 	elif Input.is_action_just_pressed("prevWeapon"):
