@@ -32,14 +32,14 @@
 		},
 		{
 			"id": "5",
-			"amount_min": 1,
-			"amount_max": 3,
+			"amount_min": 2,
+			"amount_max": 5,
 			"chance": 3.0
 		},
 		{
 			"id": "27",
-			"amount_min": 2,
-			"amount_max": 11,
+			"amount_min": 5,
+			"amount_max": 19,
 			"chance": 2.3
 		},
 		{
