@@ -41,8 +41,8 @@ func _process(_delta):
 		return
 	if !_done:
 		if _room_counter > 1:
-			spawn_pickable_items(_additional_items)
-			set_container_items(_additional_items)
+			if !spawn_pickable_items(_additional_items):
+				set_container_items(_additional_items)
 			_done = true
 			add_child(audioPlayer)
 			audioPlayer.set_max_db(-10)
@@ -78,8 +78,10 @@ func spawn_enemies():
 			break
 	_next_spawn_time = Time.get_unix_time_from_system() + _rng.randi_range(5, 10)
 
-func spawn_pickable_items(itemDict: Dictionary):
+func spawn_pickable_items(itemDict: Dictionary) -> bool:
 	var items = get_tree().get_nodes_in_group("items").filter(func(i): return i is Pickable)
+	if items.is_empty():
+		return false
 	for item in items:
 		item.setVisible(false)
 	for item in itemDict.keys():
@@ -94,7 +96,8 @@ func spawn_pickable_items(itemDict: Dictionary):
 	var invisible_items = items.filter(func(i): return !i.visible)
 	for item in invisible_items:
 		item.queue_free()
-		
+	return true
+
 func set_container_items(itemDict: Dictionary):
 	var lootables = get_tree().get_nodes_in_group("lootable") as Array[Lootable]
 	var num_of_items = len(itemDict)
