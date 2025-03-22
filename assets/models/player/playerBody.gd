@@ -22,6 +22,7 @@ extends CharacterBody3D
 @onready var quests_ui = _ui.get_node("QuestHolder/quests") as VBoxContainer
 @onready var hitmarker = _ui.get_node("Hitmarker") as TextureRect
 @onready var health_bar = _ui.get_node("health_bar") as HealthBar
+@onready var kill_counter = _ui.get_node("kill_counter") as KillCounter
 var audioPlayer: AudioStreamPlayer3D
 var ambientAudioPlayer: AudioStreamPlayer
 var sprinting = false
@@ -30,6 +31,12 @@ var base_health = 0
 
 func is_dead():
 	return _shootable.died
+	
+func refresh_kill_counter(list: Array):
+	if list.size() <= 0:
+		kill_counter.cleanEntries()
+	else:
+		kill_counter.addEntry("TEST", 1, 20)
 
 func _ready():
 	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
@@ -54,6 +61,8 @@ func _ready():
 	ambientAudioPlayer = AudioStreamPlayer.new()
 	add_child(ambientAudioPlayer)
 	_playAmbientSound()
+	if WorldUtil.player.inMissionMap:
+		refresh_kill_counter([{}])
 
 func _exit_tree():
 	_shooter.putBulletsToInventory()
