@@ -8,6 +8,7 @@ size = Vector3(0.601563, 0.677795, 0.587891)
 [node name="prop_2" instance=ExtResource("1_udqn8")]
 
 [node name="prop02" parent="." index="0"]
+layers = 2
 lod_bias = 5.0
 
 [node name="CollisionShape3D" parent="prop02/StaticBody3D" index="0"]

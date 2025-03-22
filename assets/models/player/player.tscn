@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://cj6rwih0ie5mw"]
+[gd_scene load_steps=20 format=4 uid="uid://cj6rwih0ie5mw"]
 
 [ext_resource type="Script" uid="uid://b01kfoc561mw" path="res://assets/models/player/playerBody.gd" id="1_xhk0a"]
 [ext_resource type="PackedScene" uid="uid://00nk2ax4faqq" path="res://shared/shooting/shooter.tscn" id="2_arsgg"]
 [ext_resource type="PackedScene" uid="uid://nmsmltr0w7dn" path="res://shared/ui/ui_elements.tscn" id="2_r4owu"]
+[ext_resource type="Texture2D" uid="uid://o4on8krlxiyd" path="res://assets/minimap/player.png" id="3_vj7qd"]
 [ext_resource type="PackedScene" uid="uid://btelwcsn53o55" path="res://shared/shooting/shootable.tscn" id="4_o256r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_px0iy"]
@@ -3971,10 +3972,12 @@ bones/64/rotation = Quaternion(-1.67117e-08, -0.0118691, -4.98073e-10, 0.99993)
 bones/64/scale = Vector3(1, 1, 1)
 
 [node name="Beta_Joints" type="MeshInstance3D" parent="visuals/mixamo_base/Armature/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_bt62t")
 skin = SubResource("Skin_ujmdh")
 
 [node name="Beta_Surface" type="MeshInstance3D" parent="visuals/mixamo_base/Armature/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_mf3cx")
 skin = SubResource("Skin_ujmdh")
 
@@ -3997,6 +4000,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_mfq0e")
 }
 
+[node name="Sprite3D" type="Sprite3D" parent="visuals"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 2, 0)
+layers = 4
+texture = ExtResource("3_vj7qd")
+
 [node name="camera_mount" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74, 0)
 
@@ -4013,6 +4021,7 @@ transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 
 transform = Transform3D(-0.154575, -0.106236, -0.982253, 0.984112, 0.0713408, -0.162583, 0.0873468, -0.991778, 0.0935203, -0.11089, -0.338813, -2.68516)
 
 [node name="camera" type="Camera3D" parent="camera_mount/camera_arm/camera_rot"]
+cull_mask = 1048571
 current = true
 fov = 37.8493
 
