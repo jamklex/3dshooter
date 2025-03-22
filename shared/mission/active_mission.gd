@@ -30,33 +30,32 @@ func _process(_delta):
 	rewards.visible = !is_over
 	remove_button.visible = is_over
 	punishments.visible = is_over
-	if not is_over:
-		refresh_timer()
-	else:
+	label.text = linked_mission._name
+	add_entities(kills_holder, kills)
+	add_entities(resources_holder, resources)
+	add_entities(rewards_holder, rewards)
+	add_entities(punishment_holder, punishments)
+	if is_over:
 		set_bg_color(expired_color)
 		expire.set_text("00:00:00")
-	label.text = linked_mission._name
-	for k in kills_holder:
-		if(!k.get_parent()):
-			kills.add_child(k)
-	for r in resources_holder:
-		if(!r.get_parent()):
-			resources.add_child(r)
-	for r in rewards_holder:
-		if(!r.get_parent()):
-			rewards.add_child(r)
-	for p in punishment_holder:
-		if(!p.get_parent()):
-			punishments.add_child(p)
-	if linked_mission and linked_mission.allDone() and !is_over:
-		set_bg_color(done_color)
-		collect_button.disabled = false
-	elif is_over:
 		remove_button.disabled = not linked_mission.can_pay_punishment()
+		return
+	else:
+		refresh_timer()
+	var is_done = linked_mission and linked_mission.allDone()
+	var color = done_color if is_done else active_color
+	set_bg_color(color)
+	collect_button.disabled = !is_done
 
 func clear(_parent: Node):
 	for c in _parent.get_children():
 		_parent.remove_child(c)
+
+func add_entities(entities: Array, container: VBoxContainer):
+	for e in entities:
+		if(!e.get_parent()):
+			container.add_child(e)
+
 
 func refresh_timer():
 	var now = int(Time.get_unix_time_from_system())

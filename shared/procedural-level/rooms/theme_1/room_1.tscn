@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://csicvvutb5f21" path="res://assets/models/enemies/spawnPoint.tscn" id="10_xn1wp"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cp138"]
-vertices = PackedVector3Array(-1.67005, 4.01306, 1.96914, 1.62995, 4.01306, 2.06914, 1.62995, 4.01306, 1.46914, 1.92995, 4.01306, 1.16914, -1.67005, 4.01306, -10.1309, 5.62995, 4.01306, 1.16914, 5.62995, 4.01306, -10.1309, 4.12995, 0.0130649, -8.13086, 4.32995, 0.0130649, -9.23086, 2.92995, 0.0130649, -8.83086, 1.72995, 0.0130649, 0.969141, 3.82995, 0.0130649, 0.969141, 3.62995, 0.0130649, 0.769141, 3.62995, 0.0130649, 0.269141, 4.62995, 0.0130649, -7.73086, 2.52995, 0.0130649, -9.93086, 0.129951, 0.0130649, -9.93086, 0.129951, 0.0130649, -9.73086, 2.52995, 0.0130649, -9.33086, -0.570049, 0.0130649, -9.13086, -0.970049, 0.0130649, -8.93086, 4.32995, 0.0130649, -0.730859, 4.72995, 0.0130649, -0.730859, -1.37005, 0.0130649, 2.06914, 1.42995, 0.0130649, 2.06914, 1.42995, 0.0130649, 1.26914, -1.37005, 0.0130649, -9.03086, 5.32995, 0.0130649, -0.230859, 5.32995, 0.0130649, -7.73086, 4.92995, 0.0130649, 0.869141, 5.32995, 0.0130649, 0.969141, 5.32995, 0.0130649, 0.369141, -1.67005, 4.01306, 5.16914, 1.62995, 4.01306, 5.16914, -1.37005, 0.0130649, 5.46914, 1.42995, 0.0130649, 5.46914)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 4), PackedInt32Array(9, 8, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(13, 12, 10), PackedInt32Array(9, 7, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(19, 9, 20), PackedInt32Array(20, 9, 14), PackedInt32Array(20, 14, 21), PackedInt32Array(21, 14, 22), PackedInt32Array(25, 24, 23), PackedInt32Array(18, 9, 17), PackedInt32Array(17, 9, 19), PackedInt32Array(13, 10, 21), PackedInt32Array(21, 10, 23), PackedInt32Array(21, 23, 20), PackedInt32Array(20, 23, 26), PackedInt32Array(10, 25, 23), PackedInt32Array(14, 28, 22), PackedInt32Array(22, 28, 27), PackedInt32Array(31, 30, 29), PackedInt32Array(33, 32, 1), PackedInt32Array(1, 32, 0), PackedInt32Array(35, 34, 24), PackedInt32Array(24, 34, 23)]
+vertices = PackedVector3Array(-1.37005, 0.0130649, 2.06914, 1.42995, 0.0130649, 2.06914, 1.42995, 0.0130649, 1.26914, 1.72995, 0.0130649, 0.969141, -1.37005, 0.0130649, -9.93086, 5.32995, 0.0130649, 0.969141, 5.32995, 0.0130649, -9.93086, -1.37005, 0.0130649, 5.46914, 1.42995, 0.0130649, 5.46914)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 4), PackedInt32Array(8, 7, 1), PackedInt32Array(1, 7, 0)]
 geometry_parsed_geometry_type = 1
 cell_size = 0.1
 cell_height = 0.01
@@ -30,32 +30,50 @@ script = ExtResource("1_thtun")
 [node name="door" parent="doors" instance=ExtResource("4_3bl1v")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 5.5)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_cp138")
-
-[node name="roof" type="Node3D" parent="NavigationRegion3D"]
+[node name="roof" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0244111, 0)
 
-[node name="floor_5" parent="NavigationRegion3D/roof" instance=ExtResource("7_qtdhh")]
+[node name="floor_5" parent="roof" instance=ExtResource("7_qtdhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -8.5)
 
-[node name="floor_6" parent="NavigationRegion3D/roof" instance=ExtResource("7_qtdhh")]
+[node name="floor_6" parent="roof" instance=ExtResource("7_qtdhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -8.5)
 
-[node name="floor_7" parent="NavigationRegion3D/roof" instance=ExtResource("7_qtdhh")]
+[node name="floor_7" parent="roof" instance=ExtResource("7_qtdhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -4.5)
 
-[node name="floor_8" parent="NavigationRegion3D/roof" instance=ExtResource("7_qtdhh")]
+[node name="floor_8" parent="roof" instance=ExtResource("7_qtdhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -0.5)
 
-[node name="floor_9" parent="NavigationRegion3D/roof" instance=ExtResource("7_qtdhh")]
+[node name="floor_9" parent="roof" instance=ExtResource("7_qtdhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3.5)
 
-[node name="floor_10" parent="NavigationRegion3D/roof" instance=ExtResource("7_qtdhh")]
+[node name="floor_10" parent="roof" instance=ExtResource("7_qtdhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -4.5)
 
-[node name="floor_11" parent="NavigationRegion3D/roof" instance=ExtResource("7_qtdhh")]
+[node name="floor_11" parent="roof" instance=ExtResource("7_qtdhh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 4, -0.5)
+
+[node name="lootboxes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0244111, 0)
+
+[node name="chest" parent="lootboxes" instance=ExtResource("7_jr427")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 5, 0, -9.7015)
+
+[node name="chest2" parent="lootboxes" instance=ExtResource("7_jr427")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 5, 0, -8.7015)
+
+[node name="chest3" parent="lootboxes" instance=ExtResource("7_jr427")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 3.5, 0, -9.7015)
+
+[node name="chest4" parent="lootboxes" instance=ExtResource("7_jr427")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.837923, 0, -9.89477)
+
+[node name="chest5" parent="lootboxes" instance=ExtResource("7_jr427")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 4.5, 0, 0.298498)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_cp138")
 
 [node name="floors" type="Node3D" parent="NavigationRegion3D"]
 
@@ -121,24 +139,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0244111, 0)
 
 [node name="Light1" parent="NavigationRegion3D/props" instance=ExtResource("6_ghprq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4.5)
-
-[node name="lootboxes" type="Node3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0244111, 0)
-
-[node name="chest" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 5, 0, -9.7015)
-
-[node name="chest2" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
-transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 5, 0, -8.7015)
-
-[node name="chest3" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
-transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 3.5, 0, -9.7015)
-
-[node name="chest4" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
-transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -0.837923, 0, -9.89477)
-
-[node name="chest5" parent="NavigationRegion3D/lootboxes" instance=ExtResource("7_jr427")]
-transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 4.5, 0, 0.298498)
 
 [node name="Invisible-floor" parent="NavigationRegion3D" instance=ExtResource("8_bmkqx")]
 transform = Transform3D(-2, 0, 8.15377e-08, 0, 0.29, 0, -3.01992e-07, 0, -0.54, -0.00728035, -0.0434351, 5.36285)
