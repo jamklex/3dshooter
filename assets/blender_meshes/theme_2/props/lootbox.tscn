@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://0rpvefhatotu"]
+[gd_scene load_steps=4 format=3 uid="uid://0rpvefhatotu"]
 
 [ext_resource type="PackedScene" uid="uid://cx2hrckardtlp" path="res://assets/blender_meshes/theme_2/props/prop_2.tscn" id="1_y2hdn"]
 [ext_resource type="Script" uid="uid://b5tuitmrh1hvy" path="res://shared/scripts/interactive/lootable.gd" id="2_5y3h8"]
+[ext_resource type="Texture2D" uid="uid://d014drr3kyvv7" path="res://assets/minimap/crate_close.png" id="3_4va5w"]
 
 [node name="Lootbox" type="Node3D"]
 
@@ -13,3 +14,8 @@ layers = 0
 use_collision = true
 size = Vector3(1.21155, 1.35446, 1.2207)
 script = ExtResource("2_5y3h8")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 2, 0)
+layers = 4
+texture = ExtResource("3_4va5w")

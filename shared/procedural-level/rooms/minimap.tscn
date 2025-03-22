@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf6maprhsgiuf"]
+
+[ext_resource type="Script" uid="uid://omcfbqf0xdfm" path="res://shared/procedural-level/rooms/minimap.gd" id="1_hv3ra"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nphda"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.218898, 0.141775, 0.00937704, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.2)
+shadow_size = 10
+
+[node name="Minimap" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_hv3ra")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nphda")
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="PanelContainer/ViewportContainer"]
+handle_input_locally = false
+size = Vector2i(200, 200)
+render_target_update_mode = 4
+
+[node name="MapCam" type="Camera3D" parent="PanelContainer/ViewportContainer/Viewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 2)
+cull_mask = 1048573
+projection = 1
+current = true
+size = 15.0

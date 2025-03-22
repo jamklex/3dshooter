@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dekmh6nb8bm48"]
+[gd_scene load_steps=19 format=3 uid="uid://dekmh6nb8bm48"]
 
 [ext_resource type="Script" uid="uid://s5x7q3e665v4" path="res://shared/procedural-level/start-room.gd" id="1_ysyqo"]
+[ext_resource type="PackedScene" uid="uid://cf6maprhsgiuf" path="res://shared/procedural-level/rooms/minimap.tscn" id="2_dul1o"]
 [ext_resource type="PackedScene" uid="uid://kcwaq8lf07dc" path="res://assets/blender_meshes/theme_2/floors/floor_1.tscn" id="2_yjy8w"]
 [ext_resource type="PackedScene" uid="uid://eaowx07af5l6" path="res://assets/blender_meshes/theme_2/floors/floor_2.tscn" id="3_v1i1w"]
 [ext_resource type="PackedScene" uid="uid://c3cet1o418p41" path="res://assets/blender_meshes/theme_2/walls/wall_2.tscn" id="4_enxl1"]
@@ -37,11 +38,14 @@ sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.277528, 0.277528, 0.277528, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4ndl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dul1o"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [node name="Start2" type="Node3D"]
 script = ExtResource("1_ysyqo")
+
+[node name="Minimap" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_dul1o")]
+target = NodePath("../player")
 
 [node name="doors" type="Node3D" parent="."]
 
@@ -54,36 +58,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.5
 map_options = Array[String](["res://shared/procedural-level/rooms/theme_2/room_1.tscn", "res://shared/procedural-level/rooms/theme_2/room_2.tscn", "res://shared/procedural-level/rooms/theme_2/room_3.tscn", "res://shared/procedural-level/rooms/theme_2/room_4.tscn", "res://shared/procedural-level/rooms/theme_2/room_5.tscn"])
 
 [node name="roof" type="Node3D" parent="."]
-
-[node name="floor_1" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, -3)
-
-[node name="floor_2" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -3)
-
-[node name="floor_3" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
-
-[node name="floor_4" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 3)
-
-[node name="floor_5" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 3)
-
-[node name="floor_6" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 3)
-
-[node name="floor_7" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 9)
-
-[node name="floor_9" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 9)
-
-[node name="floor_8" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -9)
-
-[node name="floor_10" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -15)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_40lrr")
@@ -223,7 +197,7 @@ environment = SubResource("Environment_tbx6h")
 [node name="airvent" parent="." instance=ExtResource("10_g5fqf")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.4435, 2.13752, -3.75274)
 visible = false
-material = SubResource("StandardMaterial3D_o4ndl")
+material = SubResource("StandardMaterial3D_dul1o")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("11_rmbqs")]
 transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 5.985, 0, -0.937)
