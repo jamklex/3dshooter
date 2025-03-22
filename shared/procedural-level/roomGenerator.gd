@@ -45,6 +45,7 @@ func _process(_delta):
 			set_container_items(_additional_items)
 			_done = true
 			add_child(audioPlayer)
+			audioPlayer.bus = "Sound"
 			audioPlayer.set_max_db(-10)
 			SoundUtil.playAtConstantPitch(audioPlayer, SoundUtil.SoundName.ROUND_START)
 		return

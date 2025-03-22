@@ -26,6 +26,7 @@ func _ready():
 	if !WorldUtil.get_map_rng_visibility():
 		get_parent_node_3d().queue_free()
 	add_child(audioPlayer)
+	audioPlayer.bus = "Sound"
 
 func can_interact():
 	return interactable

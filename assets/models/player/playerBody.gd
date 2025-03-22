@@ -267,12 +267,14 @@ func _playAmbientSound():
 	var inMissionMap = WorldUtil.player.inMissionMap
 	var sound = SoundUtil.getSound(SoundUtil.SoundName.AMBIENT_MISSION if inMissionMap else SoundUtil.SoundName.AMBIENT_HOME)
 	sound.loop = true
+	ambientAudioPlayer.bus = "Ambient"
 	ambientAudioPlayer.stream = sound
 	ambientAudioPlayer.volume_db = -20 if inMissionMap else -10
 	ambientAudioPlayer.play()
 
 func _playSound(soundName: SoundUtil.SoundName, max_db: float, max_distance: float):
 	audioPlayer.stream = SoundUtil.getSound(soundName)
+	audioPlayer.bus = "Sound"
 	audioPlayer.max_db = max_db
 	audioPlayer.max_distance = max_distance
 	audioPlayer.play()

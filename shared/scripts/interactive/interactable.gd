@@ -29,6 +29,7 @@ enum Actions {
 
 func _ready():
 	add_child(audioPlayer)
+	audioPlayer.bus = "Sound"
 	if action == Actions.TELEPORT_TO_BASE:
 		add_child(pingTimer)
 		pingTimer.start(4.2)
