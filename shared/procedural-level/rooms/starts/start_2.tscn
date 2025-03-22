@@ -55,35 +55,35 @@ map_options = Array[String](["res://shared/procedural-level/rooms/theme_2/room_1
 
 [node name="roof" type="Node3D" parent="."]
 
-[node name="floor_1" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, -3)
-
-[node name="floor_2" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -3)
-
-[node name="floor_3" parent="roof" instance=ExtResource("2_yjy8w")]
+[node name="floor_2" parent="roof" instance=ExtResource("3_v1i1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, -3)
 
-[node name="floor_4" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 3)
+[node name="floor_3" parent="roof" instance=ExtResource("3_v1i1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -3)
 
-[node name="floor_5" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 3)
+[node name="floor_4" parent="roof" instance=ExtResource("3_v1i1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, -3)
 
-[node name="floor_6" parent="roof" instance=ExtResource("2_yjy8w")]
+[node name="floor_7" parent="roof" instance=ExtResource("3_v1i1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 3)
 
-[node name="floor_7" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 9)
+[node name="floor_8" parent="roof" instance=ExtResource("3_v1i1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, 3)
 
-[node name="floor_9" parent="roof" instance=ExtResource("2_yjy8w")]
+[node name="floor_9" parent="roof" instance=ExtResource("3_v1i1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 3)
+
+[node name="floor_10" parent="roof" instance=ExtResource("3_v1i1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 9)
 
-[node name="floor_8" parent="roof" instance=ExtResource("2_yjy8w")]
+[node name="floor_12" parent="roof" instance=ExtResource("3_v1i1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4, 9)
+
+[node name="floor_5" parent="roof" instance=ExtResource("3_v1i1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -9)
 
-[node name="floor_10" parent="roof" instance=ExtResource("2_yjy8w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -15)
+[node name="floor_6" parent="roof" instance=ExtResource("3_v1i1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 4, -14)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_40lrr")

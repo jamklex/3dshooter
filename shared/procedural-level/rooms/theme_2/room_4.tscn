@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bnojom03ne754"]
+[gd_scene load_steps=12 format=3 uid="uid://bnojom03ne754"]
 
 [ext_resource type="Script" uid="uid://3xn5awyp6kuu" path="res://shared/procedural-level/dead-room.gd" id="1_1ws3n"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="2_m574k"]
+[ext_resource type="PackedScene" uid="uid://eaowx07af5l6" path="res://assets/blender_meshes/theme_2/floors/floor_2.tscn" id="3_k47i1"]
 [ext_resource type="PackedScene" uid="uid://kcwaq8lf07dc" path="res://assets/blender_meshes/theme_2/floors/floor_1.tscn" id="3_xsrww"]
 [ext_resource type="PackedScene" uid="uid://0rpvefhatotu" path="res://assets/blender_meshes/theme_2/props/lootbox.tscn" id="4_vtnai"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="5_if7rq"]
@@ -46,59 +47,59 @@ map_options = Array[String](["res://shared/procedural-level/rooms/theme_2/room_1
 [node name="roof" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.84927, 0)
 
-[node name="floor_1" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.41725, 0, 0)
+[node name="floor_2" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.417, 0, 0)
 
-[node name="floor_2" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.41725, 0, 0)
+[node name="floor_3" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.417, 0, 0)
 
-[node name="floor_5" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.58275, 0, 0)
+[node name="floor_4" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.417, 0, -4)
 
-[node name="floor_8" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.5828, 0, 0)
+[node name="floor_5" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.417, 0, 4)
 
-[node name="floor_7" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.58275, 0, 4)
+[node name="floor_6" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.583, 0, 0)
 
-[node name="floor_13" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.41725, 0, 4)
+[node name="floor_7" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.583, 0, -4)
 
-[node name="floor_10" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.5828, 0, 4)
+[node name="floor_8" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.583, 0, 4)
 
-[node name="floor_11" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.5828, 0, 4)
+[node name="floor_9" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.583, 0, 0)
 
-[node name="floor_6" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.58275, 0, -4)
+[node name="floor_10" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.583, 0, -4)
 
-[node name="floor_14" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.41725, 0, -4)
+[node name="floor_11" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.583, 0, 4)
 
-[node name="floor_9" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.5828, 0, -4)
+[node name="floor_12" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.583, 0, 0)
 
-[node name="floor_12" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.5828, 0, -4)
+[node name="floor_15" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 22.583, 0, 0)
 
-[node name="floor_16" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16.5828, 0, 0)
+[node name="floor_16" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.583, 0, 9)
 
-[node name="floor_17" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22.5828, 0, 0)
+[node name="floor_17" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.583, 0, 15)
 
-[node name="floor_20" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 7.58275, 0, 8.99761)
+[node name="floor_18" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.583, 0, -15)
 
-[node name="floor_22" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 7.58275, 0, 14.9976)
+[node name="floor_19" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.583, 0, -9)
 
-[node name="floor_21" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 7.58275, 0, -9)
+[node name="floor_13" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.583, 0, -4)
 
-[node name="floor_23" parent="roof" instance=ExtResource("3_xsrww")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 7.58275, 0, -15)
+[node name="floor_14" parent="roof" instance=ExtResource("3_k47i1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.583, 0, 4)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_q0pom")

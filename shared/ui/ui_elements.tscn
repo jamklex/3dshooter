@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://nmsmltr0w7dn"]
+[gd_scene load_steps=9 format=3 uid="uid://nmsmltr0w7dn"]
 
 [ext_resource type="Texture2D" uid="uid://cjrstycol3egw" path="res://assets/models/player/crosshair.png" id="1_hf0q4"]
 [ext_resource type="Texture2D" uid="uid://cmxy0f6ug5uie" path="res://assets/models/player/hitmarker.png" id="1_ofn52"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cejarwx6x3djb" path="res://shared/ui/img/cog.png" id="6_33220"]
 [ext_resource type="PackedScene" uid="uid://1wrxq464mod0" path="res://shared/ui/health_bar/health_bar.tscn" id="7_7rtai"]
 [ext_resource type="Texture2D" uid="uid://bkvoes8iaqhk6" path="res://shared/ui/img/scroll-unfurled.png" id="7_hx532"]
+[ext_resource type="PackedScene" uid="uid://cyf3540fcwcpv" path="res://shared/ui/kill_counter/kill_counter.tscn" id="8_r710d"]
 
 [node name="ui_elements" type="Control"]
 layout_mode = 3
@@ -157,3 +158,11 @@ clip_contents = false
 layout_mode = 2
 key = "menu"
 img = ExtResource("6_33220")
+
+[node name="kill_counter" parent="." instance=ExtResource("8_r710d")]
+layout_mode = 1
+anchors_preset = 9
+anchor_right = 0.0
+offset_right = 300.0
+offset_bottom = 0.0
+grow_horizontal = 1

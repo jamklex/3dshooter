@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyf3540fcwcpv"]
+
+[ext_resource type="Script" uid="uid://qjs3t524jnew" path="res://shared/ui/kill_counter/kill_counter.gd" id="1_tk1uh"]
+
+[node name="KillCounter" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1420.0
+offset_bottom = -580.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tk1uh")
+
+[node name="header" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = "Kill Counter"
+horizontal_alignment = 1
+
+[node name="entriesHolder" type="Container" parent="."]
+layout_mode = 2
