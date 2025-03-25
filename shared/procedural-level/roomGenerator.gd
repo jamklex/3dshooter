@@ -3,7 +3,7 @@ extends Node
 class_name ProceduralRoomGenerator
 
 const ROOMS_PATH: String = "res://shared/procedural-level/rooms/starts/"
-const MOST_DISTANCE_CANDIDATES: int = 3
+const SPAWN_USAGE_MIN: int = 3
 
 var _rng := RandomNumberGenerator.new()
 var min_rooms: int
@@ -72,7 +72,8 @@ func spawn_enemies():
 	for i in range(amount):
 		var availableSpawns = spawns.filter(func(s): return s.can_spawn())
 		availableSpawns.sort_custom(func(a,b): return _distanceToPlayer(a) > _distanceToPlayer(b))
-		availableSpawns.resize(min(MOST_DISTANCE_CANDIDATES, availableSpawns.size()))
+		var spawn_size = min(max(availableSpawns.size()/2, SPAWN_USAGE_MIN), availableSpawns.size())
+		availableSpawns.resize(min(spawn_size, availableSpawns.size()))
 		var point = availableSpawns.pick_random() as SpawnPoint
 		if point == null:
 			return
@@ -82,7 +83,7 @@ func spawn_enemies():
 	_next_spawn_time = Time.get_unix_time_from_system() + _rng.randi_range(5, 10)
 
 func _distanceToPlayer(node: Node3D) -> float:
-	var offset =  node.get_global_position() - WorldUtil.player.get_global_position()
+	var offset = WorldUtil.player.body.get_global_position() - node.get_global_position()
 	var distance = abs(offset.x) + abs(offset.y) + abs(offset.z)
 	return distance
 
