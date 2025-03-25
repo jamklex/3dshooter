@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name Player
 
 var body: PlayerBody
@@ -17,7 +17,6 @@ var kills: Dictionary
 var mission_kills = 0
 
 func _init():
-	print("load player")
 	var loadDict = {}
 	if FileAccess.file_exists(_savePath):
 		var file = FileAccess.open(_savePath, FileAccess.READ)
@@ -54,8 +53,6 @@ func setInMission(newInMissionMap:bool):
 	inMissionMap = newInMissionMap
 	if inMissionMap:
 		mission_kills = 0
-	else:
-		print("killed ", mission_kills, " in a mission")
 
 func saveRunInventory():
 	run_inventory.moveAllItems(inventory, ["7"])

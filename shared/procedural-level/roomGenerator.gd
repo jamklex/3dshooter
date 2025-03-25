@@ -3,6 +3,7 @@ extends Node
 class_name ProceduralRoomGenerator
 
 const ROOMS_PATH: String = "res://shared/procedural-level/rooms/starts/"
+const MOST_DISTANCE_CANDIDATES: int = 3
 
 var _rng := RandomNumberGenerator.new()
 var min_rooms: int
@@ -18,10 +19,8 @@ var _next_spawn_time:float = 0
 var audioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 
 static func from_seed(_seed: String) -> ProceduralRoomGenerator:
-	print("ProceduralRoomGenerator with seed: " + _seed)
 	var prg = ProceduralRoomGenerator.new()
 	prg._rng.set_seed(hash(_seed))
-	print("internal seed: " + str(prg._rng.get_seed()))
 	return prg
 	
 func get_total_enemies():
@@ -77,13 +76,21 @@ func spawn_enemies():
 		_rest_enemies.erase(nextEnemy)
 	var spawns = get_tree().get_nodes_in_group("spawns").filter(func(s): return s is SpawnPoint)
 	for i in range(amount):
-		var point = spawns.filter(func(s): return s.can_spawn()).pick_random() as SpawnPoint
+		var availableSpawns = spawns.filter(func(s): return s.can_spawn())
+		availableSpawns.sort_custom(func(a,b): return _distanceToPlayer(a) > _distanceToPlayer(b))
+		availableSpawns.resize(min(MOST_DISTANCE_CANDIDATES, availableSpawns.size()))
+		var point = availableSpawns.pick_random() as SpawnPoint
 		if point == null:
 			return
 		var enemy = point.spawn_enemy(nextEnemy)
 		if len(_rest_enemies.keys()) == 0:
 			break
 	_next_spawn_time = Time.get_unix_time_from_system() + _rng.randi_range(5, 10)
+
+func _distanceToPlayer(node: Node3D) -> float:
+	var offset =  node.get_global_position() - WorldUtil.player.get_global_position()
+	var distance = abs(offset.x) + abs(offset.y) + abs(offset.z)
+	return distance
 
 func spawn_pickable_items(itemDict: Dictionary) -> bool:
 	var items = get_tree().get_nodes_in_group("items").filter(func(i): return i is Pickable)
@@ -134,7 +141,6 @@ func generate_level():
 		load_random_map(door)
 		available_doors = get_remaining_doors()
 		_room_counter += 1
-		print("rooms: " + str(_room_counter))
 	_generated = _room_counter > 1
 
 func get_remaining_doors() -> Array[Node]:

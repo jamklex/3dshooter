@@ -11,6 +11,8 @@ const VELOCITY_SMOOTHNESS = 0.2
 @onready var sight_cone = $visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/sightCone
 @onready var sight_raycast = $visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/raycast
 @onready var skin: MeshInstance3D = $visuals/mixamo_base/Armature/Skeleton3D/Beta_Surface
+@onready var triggerd_icon = $visuals/minimap_icon/triggered
+@onready var untriggerd_icon = $visuals/minimap_icon/untriggered
 var audioPlayer: AudioStreamPlayer3D
 var damage:int = 0
 var dieing = false
@@ -55,6 +57,7 @@ func _getNextMoveVector2(prevMoveVector2:Vector2):
 		return Vector2.ZERO
 		
 func _ready():
+	set_triggered(false)
 	add_child(pingTimer)
 	_shootable.setStartHealth(randi_range(1,10))
 	state_machine = _anim_tree.get("parameters/playback")
@@ -63,6 +66,12 @@ func _ready():
 	audioPlayer = AudioStreamPlayer3D.new()
 	add_child(audioPlayer)
 	_pingLogic()
+
+func set_triggered(val: bool):
+	if triggerd_icon:
+		triggerd_icon.visible = val
+	if untriggerd_icon:
+		untriggerd_icon.visible = not val
 
 func _get_player():
 	if WorldUtil.player and WorldUtil.player.body:
@@ -93,6 +102,7 @@ func _is_in_attack_range():
 func _set_player_spotted_to_all_enemies():
 	var all_enemies = get_tree().get_nodes_in_group("enemies") as Array[Enemy]
 	for enemy in all_enemies:
+		enemy.set_triggered(true)
 		enemy.playerSpotted = true
 
 func _moving():

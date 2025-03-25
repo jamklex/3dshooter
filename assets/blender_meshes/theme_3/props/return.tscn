@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://1qkfwaexm0lp"]
+[gd_scene load_steps=5 format=3 uid="uid://1qkfwaexm0lp"]
 
 [ext_resource type="PackedScene" uid="uid://dnid5puuojmtb" path="res://assets/blender_meshes/theme_3/props/prop_6.tscn" id="1_nrgv6"]
 [ext_resource type="Script" uid="uid://o6h7qpwdri0j" path="res://shared/scripts/interactive/interactable.gd" id="2_bvojf"]
 [ext_resource type="Material" uid="uid://dv2lgxqejo3mo" path="res://assets/blender_meshes/teleport-material.tres" id="2_cl7ci"]
+[ext_resource type="Texture2D" uid="uid://byk8u45m0tfoo" path="res://assets/minimap/home_call.png" id="4_20aqh"]
 
 [node name="Return" type="Node3D"]
 
@@ -33,3 +34,8 @@ enable_highlight = false
 action = 2
 interact_distance_m = 5
 default_popup_message = "Back To Base"
+
+[node name="minimap_icon" type="Sprite3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, -3.0598e-08, -0.7, 0, 0.7, -3.0598e-08, 0, 8, 0)
+layers = 4
+texture = ExtResource("4_20aqh")

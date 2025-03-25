@@ -3,6 +3,8 @@ class_name Lootable
 
 extends CSGBox3D
 var highlightTimer = Timer.new()
+@onready var unlooted_icon = $minimap_icon/unlooted
+@onready var looted_icon = $minimap_icon/looted
 @onready var id = get_instance_id()
 @export var interactable = true
 @export var highlighted = false
@@ -18,6 +20,7 @@ var loot: DropItem
 var audioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 
 func _ready():
+	set_looted(false)
 	if material:
 		material = material.duplicate(true) # individual material
 	highlightTimer.connect("timeout", Callable(self, "remove_highlight"), 0)
@@ -27,6 +30,12 @@ func _ready():
 		get_parent_node_3d().queue_free()
 	add_child(audioPlayer)
 	audioPlayer.bus = "Sound"
+
+func set_looted(val: bool):
+	if looted_icon:
+		looted_icon.visible = val
+	if unlooted_icon:
+		unlooted_icon.visible = not val
 
 func can_interact():
 	return interactable
@@ -38,6 +47,7 @@ func interact(player: Player):
 	if not loot:
 		loot = get_random_item()
 	InteractionHelper.add_drop(player, loot)
+	set_looted(true)
 	if await open_animation():
 		interactable = false
 		remove_highlight()
