@@ -10,6 +10,7 @@
 bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
 
 [node name="Menu" type="Control"]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,11 +37,13 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_ctkae")
 tab_alignment = 1
+current_tab = 0
 
 [node name="Inventory" type="Panel" parent="menu/tabs"]
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_3t0jw")
+metadata/_tab_index = 0
 
 [node name="Inventory" parent="menu/tabs/Inventory" instance=ExtResource("2_4ketg")]
 layout_mode = 1
@@ -52,6 +55,7 @@ visible = false
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_3t0jw")
+metadata/_tab_index = 1
 
 [node name="Quests" parent="menu/tabs/Quests" instance=ExtResource("3_4f6it")]
 layout_mode = 1
@@ -63,6 +67,7 @@ visible = false
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_3t0jw")
+metadata/_tab_index = 2
 
 [node name="Settings" parent="menu/tabs/Settings" instance=ExtResource("4_5apgd")]
 layout_mode = 1

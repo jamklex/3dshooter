@@ -77,15 +77,12 @@ var enemy_died_callbacks: Array[Callable] = []
 func enemy_died(enemy_type: Enemy.ENEMY_TYPE):
 	for enemy_died_callback in enemy_died_callbacks:
 		enemy_died_callback.call(enemy_type)
-	print("Called enemy died callbacks. Total callbacks: " + str(enemy_died_callbacks.size()))
 	
 func add_on_enemy_died_callback(callback: Callable):
 	enemy_died_callbacks.append(callback)
-	print("Added enemy died callback. Total callbacks: " + str(enemy_died_callbacks.size()))
 	
 func remove_on_enemy_died_callback(callback: Callable):
 	enemy_died_callbacks.erase(callback)
-	print("Removed enemy died callback. Total callbacks: " + str(enemy_died_callbacks.size()))
 
 # generic methods under this line #
 ###################################

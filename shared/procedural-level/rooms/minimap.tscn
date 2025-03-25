@@ -16,6 +16,7 @@ shadow_color = Color(0, 0, 0, 0.2)
 shadow_size = 10
 
 [node name="Minimap" type="MarginContainer"]
+z_as_relative = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,6 +30,7 @@ theme_override_constants/margin_bottom = 15
 script = ExtResource("1_hv3ra")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+z_as_relative = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -36,6 +38,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nphda")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="PanelContainer"]
+z_as_relative = false
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 mouse_filter = 2
