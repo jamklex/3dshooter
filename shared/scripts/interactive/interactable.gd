@@ -85,10 +85,6 @@ func click_animation():
 func execute_action(_action: Interactable.Actions):
 	var player = WorldUtil.player as Player
 	match (_action):
-		Actions.PRINT_ON:
-			print("on")
-		Actions.PRINT_OFF:
-			print("off")
 		Actions.TELEPORT_TO_BASE:
 			player.saveRunInventory()
 			WorldUtil.teleportToLowerShip()
