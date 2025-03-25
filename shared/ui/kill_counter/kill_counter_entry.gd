@@ -1,7 +1,7 @@
 extends HBoxContainer
 class_name KillCounterEntry
 
-const DONE_COLOR = Color("#4a76424b")
+const DONE_COLOR = Color("#4a7642")
 @onready var nameLabel = $nameLabel
 @onready var counterLabel = $counterLabel
 var enemyName = ""
