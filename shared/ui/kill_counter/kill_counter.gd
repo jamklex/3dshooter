@@ -23,8 +23,6 @@ func _ready():
 	_refresh_kill_counter()
 
 func _exit_tree() -> void:
-	if not WorldUtil.player.inMissionMap:
-		return
 	WorldUtil.remove_on_enemy_died_callback(on_enemy_killed_callback)
 		
 func _refresh_kill_counter():
