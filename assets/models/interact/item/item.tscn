@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2dk5nxi2ti7c"]
+[gd_scene load_steps=6 format=3 uid="uid://d2dk5nxi2ti7c"]
 
 [ext_resource type="Script" uid="uid://cryk2ohu7grb6" path="res://shared/scripts/interactive/pickable.gd" id="1_thb8e"]
 [ext_resource type="Material" uid="uid://vxuutc161cxa" path="res://assets/models/interact/item/item.tres" id="2_laofe"]
+[ext_resource type="Texture2D" uid="uid://die7uk8kx1g31" path="res://assets/minimap/special.png" id="3_w2boi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vuup1"]
 radius = 0.1
@@ -19,6 +20,15 @@ script = ExtResource("1_thb8e")
 shape = SubResource("SphereShape3D_vuup1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+layers = 2
 mesh = SubResource("CapsuleMesh_nc7h6")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_laofe")
+
+[node name="minimap_icon" type="Node3D" parent="."]
+transform = Transform3D(-0.1, 1.50996e-08, -6.60024e-16, 0, -4.37114e-09, -0.1, -1.50996e-08, -0.1, 4.37114e-09, 0, 5, 0)
+
+[node name="unlooted" type="Sprite3D" parent="minimap_icon"]
+transform = Transform3D(1, 0, 4.23516e-22, 0, 1, 0, 8.47033e-22, 0, 1, 0, 0, 0)
+layers = 4
+texture = ExtResource("3_w2boi")
