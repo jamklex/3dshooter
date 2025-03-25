@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://273kyhp38k81"]
+[gd_scene load_steps=4 format=3 uid="uid://273kyhp38k81"]
 
 [ext_resource type="PackedScene" uid="uid://vxc2i27o0hey" path="res://assets/blender_meshes/theme_2/props/prop_4.tscn" id="1_02iva"]
 [ext_resource type="Script" uid="uid://o6h7qpwdri0j" path="res://shared/scripts/interactive/interactable.gd" id="2_qr8i2"]
+[ext_resource type="Texture2D" uid="uid://byk8u45m0tfoo" path="res://assets/minimap/home_call.png" id="3_yknca"]
 
 [node name="Return" type="Node3D"]
 
@@ -34,3 +35,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 light_color = Color(0, 0.741176, 0.745098, 1)
 light_energy = 2.0
 light_indirect_energy = 2.0
+
+[node name="minimap_icon" type="Sprite3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, -3.0598e-08, -0.7, 0, 0.7, -3.0598e-08, 0, 8, 0)
+layers = 4
+texture = ExtResource("3_yknca")

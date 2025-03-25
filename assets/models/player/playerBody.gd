@@ -15,6 +15,7 @@ extends CharacterBody3D
 @onready var _camera_mount = $camera_mount
 @onready var _raycast = $camera_mount/camera_arm/camera_rot/camera/RayCast3D
 @onready var _ui = $camera_mount/camera_arm/camera_rot/camera/ui
+@onready var minimap_icon = $visuals/minimap_icon
 
 @onready var inventory_output = _ui.get_node("RunInventory") as RichTextLabel
 @onready var interactionPopup = _ui.get_node("InteractionPopup") as Label
@@ -39,6 +40,8 @@ func refresh_kill_counter(list: Array):
 		kill_counter.addEntry("TEST", 1, 20)
 
 func _ready():
+	if minimap_icon:
+		minimap_icon.visible = true
 	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
 		position = WorldUtil.player.bodyStartPos
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED # locks mouse to screen

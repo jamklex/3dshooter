@@ -9,6 +9,7 @@ radius = 0.30467
 [node name="prop_4" instance=ExtResource("1_663lb")]
 
 [node name="prop04" parent="." index="0"]
+layers = 2
 lod_bias = 5.0
 
 [node name="CollisionShape3D" parent="prop04/StaticBody3D" index="0"]

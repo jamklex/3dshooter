@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf6maprhsgiuf"]
 
-[ext_resource type="Script" path="res://shared/procedural-level/rooms/minimap.gd" id="1_hv3ra"]
+[ext_resource type="Script" uid="uid://omcfbqf0xdfm" path="res://shared/procedural-level/rooms/minimap.gd" id="1_hv3ra"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nphda"]
 content_margin_left = 5.0
@@ -35,13 +35,13 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nphda")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="PanelContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(350, 350)
 layout_mode = 2
 stretch = true
 
 [node name="Viewport" type="SubViewport" parent="PanelContainer/ViewportContainer"]
 handle_input_locally = false
-size = Vector2i(200, 200)
+size = Vector2i(350, 350)
 render_target_update_mode = 4
 
 [node name="MapCam" type="Camera3D" parent="PanelContainer/ViewportContainer/Viewport"]
@@ -49,4 +49,4 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10,
 cull_mask = 1048573
 projection = 1
 current = true
-size = 15.0
+size = 30.0
