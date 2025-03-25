@@ -1,6 +1,7 @@
 extends HBoxContainer
 class_name KillCounterEntry
 
+const DONE_COLOR = Color("#4a76424b")
 @onready var nameLabel = $nameLabel
 @onready var counterLabel = $counterLabel
 var enemyName = ""
@@ -34,7 +35,10 @@ func setTotalAmount(new_amount: int):
 	_refreshLabels()
 	
 func _refreshLabels():
-	if nameLabel:
-		nameLabel.text = enemyName
-	if counterLabel:
-		counterLabel.text = str(killed) + "/" + str(total)
+	if not nameLabel or not counterLabel:
+		return
+	nameLabel.text = enemyName
+	counterLabel.text = str(killed) + "/" + str(total)
+	if killed == total:
+		nameLabel.add_theme_color_override("font_color", DONE_COLOR)
+		counterLabel.add_theme_color_override("font_color", DONE_COLOR)

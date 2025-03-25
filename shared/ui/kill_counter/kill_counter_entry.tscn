@@ -14,9 +14,9 @@ script = ExtResource("1_b0qkd")
 [node name="nameLabel" type="Label" parent="."]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "naaaaaaame"
 
 [node name="counterLabel" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "0/10"

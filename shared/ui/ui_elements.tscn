@@ -162,7 +162,7 @@ img = ExtResource("6_33220")
 [node name="kill_counter" parent="." instance=ExtResource("8_r710d")]
 layout_mode = 1
 anchors_preset = 9
-anchor_right = 0.0
-offset_right = 300.0
+anchor_bottom = 1.0
+offset_top = 285.0
 offset_bottom = 0.0
-grow_horizontal = 1
+grow_vertical = 2

@@ -31,12 +31,6 @@ var base_health = 0
 
 func is_dead():
 	return _shootable.died
-	
-func refresh_kill_counter(list: Array):
-	if list.size() <= 0:
-		kill_counter.cleanEntries()
-	else:
-		kill_counter.addEntry("TEST", 1, 20)
 
 func _ready():
 	if WorldUtil.player.bodyStartPos and WorldUtil.player.bodyStartPos != Vector3.ZERO:
@@ -61,8 +55,6 @@ func _ready():
 	ambientAudioPlayer = AudioStreamPlayer.new()
 	add_child(ambientAudioPlayer)
 	_playAmbientSound()
-	if WorldUtil.player.inMissionMap:
-		refresh_kill_counter([{}])
 
 func _exit_tree():
 	_shooter.putBulletsToInventory()

@@ -11,7 +11,8 @@ var _done: bool = false
 var _generated: bool = false
 var _room_counter: int = 0
 const MAX_ROOM_COUNT: int = 25
-var _enemies: Dictionary = {}
+var _rest_enemies: Dictionary = {}
+var _total_enemies: Dictionary = {}
 var _additional_items: Dictionary = {}
 var _next_spawn_time:float = 0
 var audioPlayer: AudioStreamPlayer3D = AudioStreamPlayer3D.new()
@@ -22,15 +23,20 @@ static func from_seed(_seed: String) -> ProceduralRoomGenerator:
 	prg._rng.set_seed(hash(_seed))
 	print("internal seed: " + str(prg._rng.get_seed()))
 	return prg
+	
+func get_total_enemies():
+	return _total_enemies
 
 func _ready():
 	get_tree().change_scene_to_file(choose_start())
 	_room_counter += 1
 	
 func set_enemies(enemyDict:Dictionary):
-	_enemies.clear()
+	_rest_enemies.clear()
+	_total_enemies.clear()
 	for key in enemyDict.keys():
-		_enemies[int(key)] = enemyDict[key]
+		_rest_enemies[int(key)] = enemyDict[key]
+		_total_enemies[int(key)] = enemyDict[key]
 
 func set_additional_items(itemDict: Dictionary):
 	_additional_items = itemDict
@@ -49,33 +55,33 @@ func _process(_delta):
 			audioPlayer.set_max_db(-10)
 			SoundUtil.playAtConstantPitch(audioPlayer, SoundUtil.SoundName.ROUND_START)
 		return
-	if len(_enemies.keys()) == 0:
+	if len(_rest_enemies.keys()) == 0:
 		return
 	spawn_enemies()
 
 func _get_rest_num_of_enemies():
 	var num_of_enemies = 0
-	for enemy_type in _enemies:
-		num_of_enemies += _enemies[enemy_type]
+	for enemy_type in _rest_enemies:
+		num_of_enemies += _rest_enemies[enemy_type]
 	return num_of_enemies
 
 func spawn_enemies():
-	if len(_enemies.keys()) == 0:
+	if len(_rest_enemies.keys()) == 0:
 		return
 	if Time.get_unix_time_from_system() < _next_spawn_time:
 		return
-	var nextEnemy = _enemies.keys().pick_random()
+	var nextEnemy = _rest_enemies.keys().pick_random()
 	var amount = 1
-	_enemies[nextEnemy] -= amount
-	if _enemies[nextEnemy] <= 0:
-		_enemies.erase(nextEnemy)
+	_rest_enemies[nextEnemy] -= amount
+	if _rest_enemies[nextEnemy] <= 0:
+		_rest_enemies.erase(nextEnemy)
 	var spawns = get_tree().get_nodes_in_group("spawns").filter(func(s): return s is SpawnPoint)
 	for i in range(amount):
 		var point = spawns.filter(func(s): return s.can_spawn()).pick_random() as SpawnPoint
 		if point == null:
 			return
 		var enemy = point.spawn_enemy(nextEnemy)
-		if len(_enemies.keys()) == 0:
+		if len(_rest_enemies.keys()) == 0:
 			break
 	_next_spawn_time = Time.get_unix_time_from_system() + _rng.randi_range(5, 10)
 

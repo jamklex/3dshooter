@@ -46,6 +46,7 @@ func _die():
 	dieing = true
 	_anim_tree.set("parameters/conditions/die", true)
 	_playDeadSound()
+	WorldUtil.enemy_died(_shootable.id)
 	
 func _getNextMoveVector2(prevMoveVector2:Vector2):
 	if prevMoveVector2 == Vector2.ZERO:

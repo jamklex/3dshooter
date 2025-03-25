@@ -3,21 +3,31 @@
 [ext_resource type="Script" uid="uid://qjs3t524jnew" path="res://shared/ui/kill_counter/kill_counter.gd" id="1_tk1uh"]
 
 [node name="KillCounter" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1420.0
-offset_bottom = -580.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 300.0
+offset_bottom = 37.0
+size_flags_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_tk1uh")
 
-[node name="header" type="Label" parent="."]
+[node name="Background" type="PanelContainer" parent="."]
 visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin" type="MarginContainer" parent="Background"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="Content" type="VBoxContainer" parent="Background/Margin"]
+layout_mode = 2
+
+[node name="header" type="Label" parent="Background/Margin/Content"]
 layout_mode = 2
 text = "Kill Counter"
 horizontal_alignment = 1
 
-[node name="entriesHolder" type="Container" parent="."]
+[node name="entriesHolder" type="VBoxContainer" parent="Background/Margin/Content"]
 layout_mode = 2

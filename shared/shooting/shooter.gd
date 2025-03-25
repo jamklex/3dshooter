@@ -354,21 +354,8 @@ func _raycastForHittedObject() -> Node:
 	var collision = space.intersect_ray(query)
 	if not collision:
 		return
-	########## DEBUG PROJECTILES
-	## Create a sphere at the collision position
-	#var sphere = SphereMesh.new()
-	#var sphere_instance = MeshInstance3D.new()
-	#sphere_instance.mesh = sphere
-	#sphere_instance.transform.origin = collision.position
-	#sphere_instance.scale = Vector3(0.1,0.1,0.1)
-	## Create a ShaderMaterial with a red color
-	#var red_material = StandardMaterial3D.new()
-	#red_material.albedo_color = Color.RED
-	## Assign the material to the sphere
-	#sphere_instance.material_override = red_material
-	## Add the sphere to the scene
-	#get_tree().get_root().add_child(sphere_instance)
-	#############
+	#	see where the projectiles collide
+	#_show_projectiles_collision(collision)
 	var collider = collision.collider as Node
 	var bone = collision.collider as CharacterBody3D
 	if bone:
@@ -416,6 +403,8 @@ func putWeaponAway():
 	_refreshMagInfo()
 	
 func _nextWeapon():
+	if weapons.size() == 0:
+		return
 	var currentIndex = _getCurrentWeaponIndex()
 	_putCurrentWeaponAway()
 	currentIndex += 1
@@ -425,6 +414,8 @@ func _nextWeapon():
 	
 	
 func _prevWeapon():
+	if weapons.size() == 0:
+		return
 	var currentIndex = _getCurrentWeaponIndex()
 	_putCurrentWeaponAway()
 	currentIndex -= 1
@@ -454,3 +445,14 @@ func _checkFov():
 	if aiming and currentWeapon and currentWeapon.weaponType == currentWeapon.WeaponType.SNIPER:
 		fov = 30
 	WorldUtil.player_cam.fov = fov
+
+func _show_projectiles_collision(collision):
+	var sphere = SphereMesh.new()
+	var sphere_instance = MeshInstance3D.new()
+	sphere_instance.mesh = sphere
+	sphere_instance.transform.origin = collision.position
+	sphere_instance.scale = Vector3(0.1,0.1,0.1)
+	var red_material = StandardMaterial3D.new()
+	red_material.albedo_color = Color.RED
+	sphere_instance.material_override = red_material
+	get_tree().get_root().add_child(sphere_instance)
