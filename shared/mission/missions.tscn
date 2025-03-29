@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://depl84a3hkmkb"]
+[gd_scene load_steps=7 format=3 uid="uid://depl84a3hkmkb"]
 
 [ext_resource type="Script" uid="uid://bi4aqv67vxib3" path="res://shared/mission/missions.gd" id="1_mocrq"]
 
@@ -6,8 +6,14 @@
 bg_color = Color(0.239216, 0.239216, 0.239216, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
-corner_radius_bottom_right = 5
+corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e4rd0"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb2o8"]
 content_margin_left = 15.0
@@ -19,6 +25,20 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4rd0"]
+bg_color = Color(0.137255, 0.364706, 0.384314, 0.678431)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a0i3i"]
+bg_color = Color(0.138608, 0.363536, 0.385317, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="Missions" type="PanelContainer"]
 anchors_preset = 15
@@ -52,7 +72,13 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="list" type="VBoxContainer" parent="wrapper/new/wrapper/scroll"]
+[node name="pc" type="PanelContainer" parent="wrapper/new/wrapper/scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e4rd0")
+
+[node name="list" type="VBoxContainer" parent="wrapper/new/wrapper/scroll/pc"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -68,7 +94,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_eb2o8")
 [node name="wrapper" type="VBoxContainer" parent="wrapper/active"]
 layout_mode = 2
 
+[node name="start_mission" type="Button" parent="wrapper/active/wrapper"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_e4rd0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_a0i3i")
+text = "Go to a Shipwreck"
+
 [node name="close" type="Button" parent="wrapper/active/wrapper"]
+visible = false
 layout_mode = 2
 text = "Close Missions"
 
@@ -81,15 +115,17 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="list" type="VBoxContainer" parent="wrapper/active/wrapper/scroll"]
+[node name="pc" type="PanelContainer" parent="wrapper/active/wrapper/scroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_e4rd0")
+
+[node name="list" type="VBoxContainer" parent="wrapper/active/wrapper/scroll/pc"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
 theme_override_constants/separation = 30
 
-[node name="start_mission" type="Button" parent="wrapper/active/wrapper"]
-layout_mode = 2
-text = "Find Shipwreck"
-
-[connection signal="pressed" from="wrapper/active/wrapper/close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="wrapper/active/wrapper/start_mission" to="." method="_on_start_mission_pressed"]
+[connection signal="pressed" from="wrapper/active/wrapper/close" to="." method="_on_close_pressed"]

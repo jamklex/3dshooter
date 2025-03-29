@@ -4,8 +4,8 @@ const missionCount: int = 10
 const missionRotation_mins: int = 15
 const max_active: int = 5
 
-@onready var new_missions = $wrapper/new/wrapper/scroll/list
-@onready var active_missions = $wrapper/active/wrapper/scroll/list
+@onready var new_missions = $wrapper/new/wrapper/scroll/pc/list
+@onready var active_missions = $wrapper/active/wrapper/scroll/pc/list
 @onready var expire = $wrapper/new/wrapper/expire
 @onready var active_counter = $wrapper/active/wrapper/count
 @onready var start_mission = $wrapper/active/wrapper/start_mission
