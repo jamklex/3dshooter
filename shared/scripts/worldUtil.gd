@@ -175,6 +175,7 @@ func onSellLootAction(action: Trade.Actions, payload: Array = []):
 	return true
 
 func teleportToMissionMap(payload: Array):
+	print(payload)
 	await loadingScreen.fade_in()
 	player.save()
 	player.bodyStartPos = Vector3.ZERO

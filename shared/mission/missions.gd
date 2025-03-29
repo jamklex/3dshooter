@@ -11,11 +11,13 @@ const max_active: int = 5
 @onready var start_mission = $wrapper/active/wrapper/start_mission
 var newMissionUi = preload("res://shared/mission/new_mission.tscn")
 var activeMissionUi = preload("res://shared/mission/active_mission.tscn")
+var _rng = RandomNumberGenerator.new()
 
 var lastRotationEnd: int
 var _known_seeds: Array
 
 func _ready():
+	_rng.randomize()
 	reload()
 
 func _process(_delta):
@@ -73,6 +75,7 @@ func load_saved():
 	for mission in WorldUtil.getSavedMissions():
 		var ui_wrapper = activeMissionUi.instantiate()
 		ui_wrapper.link(mission)
+		ui_wrapper.on_teleport.connect(teleport_to_mission)
 		active_missions.add_child(ui_wrapper)
 		_known_seeds.push_back(mission.getSeed())
 		
@@ -95,7 +98,7 @@ func reload():
 func isReadyForMission() -> bool:
 	return true
 
-func _on_start_mission_pressed():
+func _on_start_random_mission_pressed():
 	var enemies = {}
 	var enemyTypes = getCurrentEnemyTypes()
 	if enemyTypes.is_empty():
@@ -107,6 +110,22 @@ func _on_start_mission_pressed():
 			value += enemies[type]
 		enemies[type] = value
 	WorldUtil.teleportToMissionMap([str(current_time()), enemies])
+	WorldUtil.closeCurrentWindow()
+
+func teleport_to_mission(mission: Mission):
+	var enemies = {}
+	var targets = mission.kills.filter(func(step: MissionStep): return !step.isDone()) as Array[MissionStep]
+	for target in targets:
+		var type = Enemy.ENEMY_TYPE.values()[int(target.id)]
+		enemies[type] = target.getRest()
+	var items = mission.resources.filter(func(step: MissionStep): return !step.isDone()) as Array[MissionStep]
+	var additional_item = items.pick_random() as MissionStep
+	var additional_items = {}
+	if additional_item:
+		additional_items = {
+			additional_item.id: _rng.randi_range(1, additional_item.getRest())
+		}
+	WorldUtil.teleportToMissionMap([mission.getSeed(), enemies, additional_items])
 	WorldUtil.closeCurrentWindow()
 
 func getCountForType(type: Enemy.ENEMY_TYPE) -> int:

@@ -99,7 +99,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/hover = SubResource("StyleBoxFlat_e4rd0")
 theme_override_styles/normal = SubResource("StyleBoxFlat_a0i3i")
-text = "Go to a Shipwreck"
+text = "Browse Nearby Shipwrecks"
 
 [node name="close" type="Button" parent="wrapper/active/wrapper"]
 visible = false
@@ -127,5 +127,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 2
 theme_override_constants/separation = 30
 
-[connection signal="pressed" from="wrapper/active/wrapper/start_mission" to="." method="_on_start_mission_pressed"]
+[connection signal="pressed" from="wrapper/active/wrapper/start_mission" to="." method="_on_start_random_mission_pressed"]
 [connection signal="pressed" from="wrapper/active/wrapper/close" to="." method="_on_close_pressed"]
