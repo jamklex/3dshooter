@@ -2,6 +2,7 @@ extends PanelContainer
 
 @onready var label = $ordering/header/label as Label
 @onready var expire = $ordering/expire as Label
+@onready var teleport_button = $ordering/header/teleport_button as Button
 @onready var collect_button = $ordering/header/collect_button as Button
 @onready var remove_button = $ordering/header/remove_button as Button
 @onready var kills = $ordering/body/kills as VBoxContainer
@@ -13,6 +14,7 @@ var kills_holder: Array
 var resources_holder: Array
 var rewards_holder: Array
 var punishment_holder: Array
+signal on_teleport
 
 const active_color = Color("#9558224b")
 const expired_color = Color("#b5323b4b")
@@ -26,7 +28,8 @@ func _ready():
 
 func _process(_delta):
 	var is_over = linked_mission.isOver()
-	collect_button.visible = !is_over
+	collect_button.visible = linked_mission.allDone() && !is_over
+	teleport_button.visible = !linked_mission.allDone() && !is_over
 	rewards.visible = !is_over
 	remove_button.visible = is_over
 	punishments.visible = is_over
@@ -45,7 +48,6 @@ func _process(_delta):
 	var is_done = linked_mission and linked_mission.allDone()
 	var color = done_color if is_done else active_color
 	set_bg_color(color)
-	collect_button.disabled = !is_done
 
 func clear(_parent: Node):
 	for c in _parent.get_children():
@@ -114,3 +116,6 @@ func _on_collect_button_pressed():
 		WorldUtil.addToPlayerInventory([resource_id, amount])
 	WorldUtil.remove_mission(linked_mission)
 	queue_free()
+
+func _on_teleport_button_pressed() -> void:
+	on_teleport.emit(linked_mission)

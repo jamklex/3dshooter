@@ -1,19 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf6maprhsgiuf"]
+[gd_scene load_steps=6 format=3 uid="uid://cf6maprhsgiuf"]
 
 [ext_resource type="Script" uid="uid://omcfbqf0xdfm" path="res://shared/procedural-level/rooms/minimap.gd" id="1_hv3ra"]
+[ext_resource type="Shader" uid="uid://cxxq0ep2bu3i3" path="res://shared/procedural-level/rooms/minimap.gdshader" id="3_6y7uq"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nphda"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.218898, 0.141775, 0.00937704, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_color = Color(0, 0, 0, 0.2)
-shadow_size = 10
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hv3ra"]
+shader = ExtResource("3_6y7uq")
+shader_parameter/radius = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xf0y"]
+bg_color = Color(0.387953, 0.36889, 0.113571, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+anti_aliasing_size = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_elr1y"]
+shader = ExtResource("3_6y7uq")
+shader_parameter/radius = 1.0
 
 [node name="Minimap" type="MarginContainer"]
 z_as_relative = false
@@ -31,14 +35,16 @@ script = ExtResource("1_hv3ra")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 z_as_relative = false
+material = SubResource("ShaderMaterial_hv3ra")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nphda")
+theme_override_styles/panel = SubResource("StyleBoxFlat_3xf0y")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="PanelContainer"]
 z_as_relative = false
+material = SubResource("ShaderMaterial_elr1y")
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 mouse_filter = 2
