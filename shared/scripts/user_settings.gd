@@ -16,7 +16,7 @@ const KEY_WINDOW_SIZE_INDEX = "window_size_index"
 const DEFAULT_WINDOW_SIZE_INDEX = -1  # => fullscreen
 const AMBIENT_SOUND_LEVEL = "ambient_sound"
 const SOUND_EFFECTS_LEVEL = "sound_effects"
-const DEFAULT_SOUND_LEVEL = 0.1
+const DEFAULT_SOUND_LEVEL = 0.8
 
 var _raw_settings = {}
 

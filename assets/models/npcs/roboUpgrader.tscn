@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsk018800x020"]
+[gd_scene load_steps=9 format=3 uid="uid://dsk018800x020"]
 
 [ext_resource type="Script" uid="uid://cak18kbr3rn01" path="res://shared/scripts/npc.gd" id="1_wjpcm"]
 [ext_resource type="PackedScene" uid="uid://b7dqffeclpvbf" path="res://assets/models/npcs/quest_marker.tscn" id="2_0h8ti"]
+[ext_resource type="PackedScene" uid="uid://byctkvh5bufen" path="res://assets/models/npcs/floatingLabel.tscn" id="2_gr8wp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1gmhh"]
 height = 1.72733
@@ -37,3 +38,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.406, -0.453)
 mesh = SubResource("BoxMesh_88mvh")
 
 [node name="QuestMarker" parent="." instance=ExtResource("2_0h8ti")]
+visible = false
+
+[node name="FloatingLabel" parent="." instance=ExtResource("2_gr8wp")]
+text = "Igor"

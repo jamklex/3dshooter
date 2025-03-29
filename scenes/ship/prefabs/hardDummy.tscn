@@ -21,7 +21,7 @@ material = SubResource("StandardMaterial3D_8g3xh")
 
 [node name="hardDummy" type="StaticBody3D"]
 script = ExtResource("1_165v4")
-respawn_scene_path = "res://scenes/ship/prefabs/hardDummy.tscn"
+respawn_scene_path = "uid://ddj8qd6iog53t"
 respawnTime = 10
 
 [node name="Collission" type="CollisionShape3D" parent="."]

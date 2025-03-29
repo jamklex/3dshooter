@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bge5rdgqiyq6i"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yqef1"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_71wk8"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_yqef1")
+
+[sub_resource type="QuadMesh" id="QuadMesh_xtwnf"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_71wk8")
+size = Vector2(1, 0.1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71wk8"]
+bg_color = Color(0, 0, 0, 0.784314)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqef1"]
+bg_color = Color(0.415686, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="FloatingHealthBar" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.85, 0)
+mesh = SubResource("QuadMesh_xtwnf")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+gui_embed_subwindows = true
+size = Vector2i(500, 50)
+
+[node name="health" type="ProgressBar" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_71wk8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yqef1")
+step = 1.0
+value = 50.0
+show_percentage = false
