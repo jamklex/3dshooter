@@ -1223,7 +1223,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.333
 
 [node name="hardDummy" parent="upperShip" instance=ExtResource("14_ymjtc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.333, 0, -5.208)
-respawnTime = 3
 
 [node name="roboUpgrader" parent="upperShip" groups=["npc"] instance=ExtResource("12_3y0wg")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -21.889)

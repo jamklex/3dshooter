@@ -13,6 +13,7 @@ const VELOCITY_SMOOTHNESS = 0.2
 @onready var skin: MeshInstance3D = $visuals/mixamo_base/Armature/Skeleton3D/Beta_Surface
 @onready var triggerd_icon = $visuals/minimap_icon/triggered
 @onready var untriggerd_icon = $visuals/minimap_icon/untriggered
+@onready var _floatingHealthBar: FloatingHealthBar = $FloatingHealthBar
 var audioPlayer: AudioStreamPlayer3D
 var damage:int = 0
 var dieing = false
@@ -194,19 +195,19 @@ func process_enemy_type_attributes(enemyType: ENEMY_TYPE):
 	match enemyType:
 		ENEMY_TYPE.WEAK_SQUISHY:
 			damage = 3
-			_shootable.health = 10
+			_shootable.setStartHealth(10)
 			_set_color(Color.SKY_BLUE)
 		ENEMY_TYPE.STRONG_SQUISHY:
 			damage = 6
-			_shootable.health = 12
+			_shootable.setStartHealth(12)
 			_set_color(Color.LEMON_CHIFFON)
 		ENEMY_TYPE.WEAK_TANK:
 			damage = 4
-			_shootable.health = 20
+			_shootable.setStartHealth(20)
 			_set_color(Color.INDIAN_RED)
 		ENEMY_TYPE.STRONG_TANK:
 			damage = 8
-			_shootable.health = 30
+			_shootable.setStartHealth(30)
 			_set_color(Color.PURPLE)
 
 func _set_color(color: Color):
@@ -229,6 +230,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 
 
 func _on_health_changed(health: int) -> void:
+	_refreshHealthBar()
 	if health <= 0:
 		_die()
 
@@ -252,3 +254,8 @@ func _playSound(soundName: SoundUtil.SoundName, max_db: float, max_distance: flo
 	audioPlayer.max_db = max_db
 	audioPlayer.max_distance = max_distance
 	audioPlayer.play()
+	
+func _refreshHealthBar():
+	print(str(_shootable.health) + "/" + str(_shootable.max_health))
+	_floatingHealthBar.setMaxHealth(_shootable.max_health)
+	_floatingHealthBar.setHealth(_shootable.health)

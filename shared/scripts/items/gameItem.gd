@@ -2,7 +2,7 @@ extends Object
 
 class_name GameItem
 
-enum GameItemType {UNDEFINIED,MODULE,WEAPON,BLUEPRINT,RESOURCE}
+enum GameItemType {UNDEFINIED,MODULE,WEAPON,BLUEPRINT,RESOURCE,AMMO}
 enum Rarity {UNDEFINIED,COMMON,UNCOMMON,RARE}
 
 var id: String

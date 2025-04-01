@@ -48,7 +48,8 @@
 	"7": {
 		"name": "Pistol ammo",
 		"desc": "Ammo for pistols",
-		"image": "res://data/items/img/pistol-ammo.png"
+		"image": "res://data/items/img/pistol-ammo.png",
+		"type": "AMMO"
 	},
 	"8": {
 		"name": "Better pistol",
@@ -72,6 +73,7 @@
 		"name": "Rifle ammo",
 		"desc": "Munition for rifle",
 		"image": "res://data/items/img/rifle-ammo.png",
+		"type": "AMMO"
 	},
 	"12": {
 		"name": "Sniper",
@@ -83,6 +85,7 @@
 		"name": "Sniper ammo",
 		"desc": "Munition for sniper",
 		"image": "res://data/items/img/sniper-ammo.png",
+		"type": "AMMO"
 	},
 	"14": {
 		"name": "Shotgun",
@@ -94,6 +97,7 @@
 		"name": "Shotgun ammo",
 		"desc": "Munition for shotgun",
 		"image": "res://data/items/img/shotgun-ammo.png",
+		"type": "AMMO"
 	},
 	"16": {
 		"name": "Rifle blueprint",

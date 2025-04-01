@@ -8,6 +8,7 @@ class_name FloatingLabel
 		$SubViewport/PanelContainer/MarginContainer/Label.text = text
 var last_cam_pos: Vector3
 var current_cam_pos: Vector3
+@onready var _meshInstance: MeshInstance3D = $MeshInstance3D
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -18,6 +19,4 @@ func _physics_process(delta: float) -> void:
 	if current_cam_pos == last_cam_pos:
 		return
 	last_cam_pos = current_cam_pos
-	look_at(current_cam_pos)
-	rotation.x = 0
-	rotation.z = 0
+	_meshInstance.look_at(current_cam_pos, Vector3.UP, true)

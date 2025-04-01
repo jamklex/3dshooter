@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bge5rdgqiyq6i"]
+[gd_scene load_steps=7 format=3 uid="uid://bge5rdgqiyq6i"]
+
+[ext_resource type="Script" uid="uid://escn2tsom1m3" path="res://shared/shooting/floating_health_bar.gd" id="1_71wk8"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yqef1"]
 viewport_path = NodePath("SubViewport")
@@ -7,6 +9,8 @@ viewport_path = NodePath("SubViewport")
 resource_local_to_scene = true
 transparency = 1
 albedo_texture = SubResource("ViewportTexture_yqef1")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.09
 
 [sub_resource type="QuadMesh" id="QuadMesh_xtwnf"]
 resource_local_to_scene = true
@@ -21,16 +25,21 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqef1"]
-bg_color = Color(0.415686, 0, 0, 1)
+bg_color = Color(1, 0, 0, 1)
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="FloatingHealthBar" type="Node3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_71wk8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.85, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
+visible = false
+layers = 2
 mesh = SubResource("QuadMesh_xtwnf")
 
 [node name="SubViewport" type="SubViewport" parent="."]

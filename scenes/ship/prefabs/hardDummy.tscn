@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddj8qd6iog53t"]
+[gd_scene load_steps=9 format=3 uid="uid://ddj8qd6iog53t"]
 
 [ext_resource type="Script" uid="uid://by82rj1ovr675" path="res://scenes/ship/prefabs/dummy.gd" id="1_165v4"]
 [ext_resource type="PackedScene" uid="uid://btelwcsn53o55" path="res://shared/shooting/shootable.tscn" id="2_8delb"]
+[ext_resource type="PackedScene" uid="uid://bge5rdgqiyq6i" path="res://shared/shooting/floatingHealthBar.tscn" id="3_gg7ax"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eap1h"]
 height = 1.72733
@@ -22,7 +23,7 @@ material = SubResource("StandardMaterial3D_8g3xh")
 [node name="hardDummy" type="StaticBody3D"]
 script = ExtResource("1_165v4")
 respawn_scene_path = "uid://ddj8qd6iog53t"
-respawnTime = 10
+respawnTime = 3
 
 [node name="Collission" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0136678, 0.850179, 0.0339056)
@@ -38,5 +39,7 @@ mesh = SubResource("BoxMesh_2ldhc")
 
 [node name="shootable" parent="." instance=ExtResource("2_8delb")]
 max_health = 30
+
+[node name="FloatingHealthBar" parent="." instance=ExtResource("3_gg7ax")]
 
 [connection signal="onHealthChanged" from="shootable" to="." method="_on_shootable_on_health_changed"]

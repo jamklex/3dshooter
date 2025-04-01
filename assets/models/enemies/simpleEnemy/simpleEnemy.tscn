@@ -1,9 +1,10 @@
-[gd_scene load_steps=56 format=4 uid="uid://cuingwts8hjty"]
+[gd_scene load_steps=57 format=4 uid="uid://cuingwts8hjty"]
 
 [ext_resource type="Script" uid="uid://cmfletn7pry42" path="res://assets/models/enemies/simpleEnemy/simpleEnemy.gd" id="1_0ruj3"]
 [ext_resource type="PackedScene" uid="uid://btelwcsn53o55" path="res://shared/shooting/shootable.tscn" id="1_orssj"]
 [ext_resource type="Texture2D" uid="uid://1rhddqsmjf0q" path="res://assets/minimap/enemy_calm.png" id="2_f755j"]
 [ext_resource type="Texture2D" uid="uid://lsk8yv63tydg" path="res://assets/minimap/enemy_allert.png" id="3_vdygg"]
+[ext_resource type="PackedScene" uid="uid://bge5rdgqiyq6i" path="res://shared/shooting/floatingHealthBar.tscn" id="5_vdygg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l3j5p"]
 emission = Color(0, 1, 1, 1)
@@ -4485,6 +4486,9 @@ height = 1.77
 radius = 0.3
 neighbor_distance = 10.0
 avoidance_priority = 0.25
+
+[node name="FloatingHealthBar" parent="." instance=ExtResource("5_vdygg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [connection signal="timeout" from="visuals/mixamo_base/Armature/Skeleton3D/sightAttachment/sightHolder/sightChecker" to="." method="check_sight"]
 [connection signal="onDamageTaken" from="shootable" to="." method="_on_damage_taken"]

@@ -71,6 +71,10 @@ func add(id:String, amount:int):
 
 func addItem(item:InventoryItem):
 	add(item.item.id, item.amount)
+	
+func addItems(items: Array[InventoryItem]):
+	for item in items:
+		addItem(item)
 
 func set_total(id:String, amount:int):
 	if !items.has(id):

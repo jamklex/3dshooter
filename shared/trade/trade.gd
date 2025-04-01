@@ -16,6 +16,7 @@ var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
 @onready var leftInvNameLabel = $bg/leftInvName
 @onready var rightInvNameLabel = $bg/rightInvName
 @onready var amountSlider:AmountSlider = $bg/AmountSlider
+var shopMode = false
 
 enum Actions {
 	SAVE_TRADE, # has to return boolean true to close trade
@@ -26,7 +27,7 @@ enum Actions {
 
 static func new_instance(playerInv: Inventory, otherInv: Inventory,
 		onTradeAction: Callable, _leftInvName: String = "", _rightInvName: String = "",
-		_priceList: Dictionary = {}):
+		_priceList: Dictionary = {}, shopMode: bool = false):
 	var trade = load("res://shared/trade/trade.tscn").instantiate() as Trade
 	trade.playerInventory = playerInv.duplicate()
 	trade.otherInventory = otherInv.duplicate()
@@ -34,6 +35,7 @@ static func new_instance(playerInv: Inventory, otherInv: Inventory,
 	trade.onAction = onTradeAction
 	trade.leftInvName = _leftInvName
 	trade.rightInvName = _rightInvName
+	trade.shopMode = shopMode
 	return trade
 
 func _ready():
