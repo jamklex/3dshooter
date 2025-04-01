@@ -3707,7 +3707,7 @@ graph_offset = Vector2(-294, -132)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_85ely"]
 radius = 0.25
-height = 1.774
+height = 1.82687
 
 [node name="simpleEnemy" type="CharacterBody3D" groups=["enemies"]]
 collision_layer = 2

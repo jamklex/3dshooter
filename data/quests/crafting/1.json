@@ -1,0 +1,40 @@
+{
+	"name": "Get a better Weapon",
+	"desc": "A small pistol is fine and all but You probably need bigger guns in the future.\nHead to Henry and find out if he can sell You any.",
+	"short": "Ask Henry on where to get better weapons",
+	"dialog": {
+		"npc": "WEAPON_SHOP",
+		"answer": "I can't give Y-you better weapons right now b-but I have some Blueprints lying a-around, which I could sell to Y-you.",
+		"options": {
+			"Great... so more Money I need to get first...": {
+				"Y-yea What did Y-you expect? We all need to g-get by somehow...\nB-but I can give Y-you one for free if Y-you like...": {
+					"options": {
+						"Thank You, I really mean it! I still need to adjust a bit, I'm sorry...": {
+							"I-it's ok we all need to adjust..": {
+								"options": {
+									"Where do I craft this?": {
+										"B-behind me is a crafting table, just go there and c-craft it": {
+											"actions": [
+												{
+													"method": "succeedTask",
+													"payload": []
+												},
+												{
+													"method": "nextInLine",
+													"payload": []
+												}
+											]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"rewards": [
+		{"28": 1}
+	]
+}
