@@ -52,7 +52,7 @@
 		"type": "AMMO"
 	},
 	"8": {
-		"name": "Better pistol",
+		"name": "Better Pistol",
 		"desc": "Just a better version of the pistol",
 		"image": "res://data/items/img/better-pistol.png",
 		"type": "WEAPON"
@@ -100,7 +100,7 @@
 		"type": "AMMO"
 	},
 	"16": {
-		"name": "Rifle blueprint",
+		"name": "Rifle Blueprint",
 		"desc": "A blueprint for creating a rifle",
 		"image": "res://data/items/img/blueprint_rifle.png",
 		"type": "BLUEPRINT",
@@ -117,7 +117,7 @@
 		}
 	},
 	"17": {
-		"name": "Sniper blueprint",
+		"name": "Sniper Blueprint",
 		"desc": "A blueprint for creating a sniper",
 		"image": "res://data/items/img/blueprint_sniper.png",
 		"type": "BLUEPRINT",
@@ -136,7 +136,7 @@
 		}
 	},
 	"18": {
-		"name": "Shotgun blueprint",
+		"name": "Shotgun Blueprint",
 		"desc": "A blueprint for creating a shotgun",
 		"image": "res://data/items/img/blueprint_shotgun.png",
 		"type": "BLUEPRINT",
@@ -214,5 +214,18 @@
 		"image": "res://data/items/img/aluminum.png",
 		"type": "RESOURCE",
 		"rarity": "UNCOMMON"
+	},
+	"28": {
+		"name": "Better Pistol blueprint",
+		"desc": "A blueprint for creating a better Pistol",
+		"image": "res://data/items/img/blueprint_better_pistol.png",
+		"type": "BLUEPRINT",
+		"result_item_id": "8",
+		"amount": 1,
+		"recipe": {
+			"2": 2,
+			"3": 3,
+			"1": 4
+		}
 	}
 }

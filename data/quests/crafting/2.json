@@ -1,0 +1,46 @@
+{
+	"name": "Crafting the Better Pistol",
+	"desc": "Now that You got a Blueprint from Henry, You need to craft the Blueprint at the Workstation behind him.",
+	"short": "Craft the Better Pistol",
+	"dialog": {
+		"npc": "WEAPON_SHOP",
+		"answer": "I can't give Y-you better weapons right now b-but I have some Blueprints lying a-around, which I could sell to Y-you.",
+		"options": {
+			"Great... so more Money I need to get first...": {
+				"Y-yea What did Y-you expect? We all need to g-get by somehow...\nB-but I can give Y-you one for free if Y-you like...": {
+					"options": {
+						"Yeah You should, because without me, who knows how You'd get by": {
+							"actions": [
+								{
+									"method": "succeedTask",
+									"payload": []
+								},
+								{
+									"method": "nextInLine",
+									"payload": []
+								}
+							]
+						},
+						"Thank You, I really mean it! I still need to adjust a bit, I'm sorry...": {
+							"actions": [
+								{
+									"method": "succeedTask",
+									"payload": []
+								},
+								{
+									"method": "nextInLine",
+									"payload": []
+								}
+							]
+						}
+					}
+				}
+			}
+		}
+	},
+	"rewards": [
+		{"2": 2},
+		{"3": 3},
+		{"1": 4}
+	]
+}
