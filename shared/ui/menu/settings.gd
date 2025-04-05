@@ -8,12 +8,43 @@ extends Control
 @onready var ambientSoundSliderValue = $CenterContainer/VBoxContainer/ambientSound/ambientSoundValue as Label
 @onready var soundEffectSlider = $CenterContainer/VBoxContainer/soundEffects/soundEffects as HSlider
 @onready var soundEffectSliderValue = $CenterContainer/VBoxContainer/soundEffects/soundEffectsValue as Label
+@onready var inputPanel = $CenterContainer/inputPanel as Panel
+@onready var inputHolder = $CenterContainer/inputPanel/MarginContainer/VBoxContainer2/Inputs as VBoxContainer
+var inputEntryScene = preload("res://shared/ui/menu/input-entry.tscn")
+
+
+const ACTION_MAP = {
+	"forward": "Move forwards",
+	"back": "Move backwards",
+	"left": "Move left",
+	"right": "Move right",
+	"jump": "Jump",
+	"interact": "Talk / Interact / Use",
+	"inventory": "Open inventory",
+	"nextWeapon": "Next weapon",
+	"prevWeapon": "Previous weapon",
+	"putWeaponAway": "Put weapon away",
+	"shoot": "Shoot",
+	"aim": "Aim",
+	"questlog": "Open questlog",
+	"reload": "Reload weapon",
+	"sprint": "Sprint",
+}
+
+const KEY_MAP = {
+	1: "Left mouse button",
+	2: "Right mouse button",
+	3: "Middle mouse button",
+	4: "Mouse wheel up",
+	5: "Mouse wheel down",
+}
 
 
 func _ready():
 	windowSizeSelector.add_item("Fullscreen")
 	for windowSize in UserSettings.WINDOW_SIZES:
 		windowSizeSelector.add_item(String.num(windowSize.x, 0) + " x " + String.num(windowSize.y, 0))
+	_load_keys()
 		
 func _on_draw():
 	_show_settings()
@@ -50,7 +81,43 @@ func _on_mouse_sens_value_changed(value):
 	mouseSensSliderValue.text = sensAsText
 
 func _on_ambient_sound_value_changed(value: float) -> void:
-	ambientSoundSliderValue.text = String.num(value, 0) + "%" 
+	ambientSoundSliderValue.text = String.num(value, 0) + "%"
 
 func _on_sound_effects_value_changed(value: float) -> void:
-	soundEffectSliderValue.text = String.num(value, 0) + "%" 
+	soundEffectSliderValue.text = String.num(value, 0) + "%"
+	
+func _getInputMap():
+	var inputMap = {}
+	for action in InputMap.get_actions():
+		if action.begins_with("ui_"):
+			continue
+		for event in InputMap.action_get_events(action):
+			if not event is InputEventKey and not event is InputEventMouseButton:
+				continue
+			var keyText = null
+			if event is InputEventMouseButton:
+				keyText = KEY_MAP.get(event.button_index, event.button_index)
+			elif event is InputEventKey:
+				keyText = KEY_MAP.get(event.physical_keycode, event.as_text_physical_keycode())
+			var actionText = ACTION_MAP.get(action)
+			if actionText:
+				inputMap.set(actionText, keyText)
+			break
+	return inputMap
+	
+func _load_keys():
+	for input in inputHolder.get_children():
+		input.free()
+	var inputMap = _getInputMap()
+	for actionText in inputMap.keys():
+		var keyText = inputMap.get(actionText)
+		var inputEntry = inputEntryScene.instantiate() as InputEntry
+		inputEntry.keyText = keyText
+		inputEntry.actionText = actionText
+		inputHolder.add_child(inputEntry)
+
+func _on_show_settings_btn_pressed() -> void:
+	inputPanel.visible = true
+
+func _on_close_inputs_button_pressed() -> void:
+	inputPanel.visible = false

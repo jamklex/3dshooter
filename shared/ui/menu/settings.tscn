@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce48caxhixn3"]
+[gd_scene load_steps=3 format=3 uid="uid://ce48caxhixn3"]
 
 [ext_resource type="Script" uid="uid://debpuvof1cuvb" path="res://shared/ui/menu/settings.gd" id="1_7toyl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y0jff"]
+bg_color = Color(0.266667, 0.266667, 0.266667, 1)
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -24,6 +27,13 @@ grow_vertical = 2
 custom_minimum_size = Vector2(400, 300)
 layout_mode = 2
 
+[node name="InputHeader" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Input"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="MouseSens" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -45,6 +55,33 @@ value = 0.05
 [node name="mouseSensValue" type="Label" parent="CenterContainer/VBoxContainer/MouseSens"]
 layout_mode = 2
 text = "0.05"
+
+[node name="MouseSens2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="margin2" type="Container" parent="CenterContainer/VBoxContainer/MouseSens2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="showSettingsBtn" type="Button" parent="CenterContainer/VBoxContainer/MouseSens2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_font_sizes/font_size = 15
+text = "Show keybindings"
+
+[node name="margin3" type="Container" parent="CenterContainer/VBoxContainer/MouseSens2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VisualsHeader" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Visuals"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WindowSize" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -117,9 +154,47 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Exit game"
 
+[node name="inputPanel" type="Panel" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y0jff")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/inputPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/inputPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="InputsHeader" type="Label" parent="CenterContainer/inputPanel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Keybindings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Inputs" type="VBoxContainer" parent="CenterContainer/inputPanel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="closeBtn" type="Button" parent="CenterContainer/inputPanel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Close"
+
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/MouseSens/mouseSens" to="." method="_on_mouse_sens_value_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MouseSens2/showSettingsBtn" to="." method="_on_show_settings_btn_pressed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/ambientSound/ambientSound" to="." method="_on_ambient_sound_value_changed"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/soundEffects/soundEffects" to="." method="_on_sound_effects_value_changed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/applyBtn" to="." method="_apply_btn"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/exitBtn" to="." method="_exit_btn"]
+[connection signal="pressed" from="CenterContainer/inputPanel/MarginContainer/VBoxContainer2/closeBtn" to="." method="_on_close_inputs_button_pressed"]
