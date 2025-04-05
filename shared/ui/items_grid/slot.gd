@@ -1,7 +1,7 @@
 extends Button
 class_name Slot
 
-signal clicked(inventory_item:InventoryItem)
+signal clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool)
 signal mouseHovered(inventory_item:InventoryItem)
 signal mouseExited(inventory_item:InventoryItem)
 @onready var _image:TextureRect = $image
@@ -32,12 +32,16 @@ func refresh():
 func is_empty():
 	return _inventory_item == null
 
-
-func _on_pressed():
-	clicked.emit(_inventory_item)
-
 func _on_mouse_entered():
 	mouseHovered.emit(_inventory_item)
 
 func _on_mouse_exited():
 	mouseExited.emit(_inventory_item)
+
+func _on_gui_input(event: InputEvent) -> void:
+	if not event is InputEventMouseButton:
+		return
+	var mouseButtonEvent = event as InputEventMouseButton
+	if not mouseButtonEvent.is_released():
+		return
+	clicked.emit(_inventory_item, mouseButtonEvent.button_index, mouseButtonEvent.shift_pressed)

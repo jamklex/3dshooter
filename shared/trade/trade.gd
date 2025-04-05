@@ -53,27 +53,36 @@ func amountSlider_apply(inventory_item:InventoryItem, amount:int, rightToLeft:bo
 	else:
 		_moveItemLeftToRightInv_(inventory_item.item.id, amount)
 
-func _moveItemLeftToRightInv(inventory_item:InventoryItem):
-	if inventory_item.amount > 1:
-		amountSlider.show_slider(inventory_item, false)
-	else:
-		_moveItemLeftToRightInv_(inventory_item.item.id, 1)
+#func _moveItemLeftToRightInv(inventory_item:InventoryItem):
+	#if inventory_item.amount > 1:
+		#amountSlider.show_slider(inventory_item, false)
+	#else:
+		#_moveItemLeftToRightInv_(inventory_item.item.id, 1)
 	
 func _moveItemLeftToRightInv_(id:String, amount:int):
-	playerInventory.moveItemSome(otherInventory, id, amount)
+	if shopMode:
+		playerInventory.remove(id, amount)
+	else:
+		playerInventory.moveItemSome(otherInventory, id, amount)
 	if priceList:
 		var itemPrice = getPrice(id)
 		diffMoney += itemPrice * amount
 	refreshUi()
 	
 func _moveItemRightToLeftInv(inventory_item:InventoryItem):
-	if inventory_item.amount > 1:
-		amountSlider.show_slider(inventory_item, true)
+	if shopMode:
+		_moveItemRightToLeftInv_(inventory_item.item.id, inventory_item.amount)
 	else:
-		_moveItemRightToLeftInv_(inventory_item.item.id, 1)
+		if inventory_item.amount > 1:
+			amountSlider.show_slider(inventory_item, true)
+		else:
+			_moveItemRightToLeftInv_(inventory_item.item.id, 1)
 	
 func _moveItemRightToLeftInv_(id:String, amount:int):
-	otherInventory.moveItemSome(playerInventory, id, amount)
+	if shopMode:
+		playerInventory.add(id, amount)
+	else:
+		otherInventory.moveItemSome(playerInventory, id, amount)
 	if priceList:
 		var itemPrice = getPrice(id)
 		diffMoney -= itemPrice * amount
@@ -84,15 +93,54 @@ func getPrice(id):
 		return priceList[id]
 	return 0
 
+func _onLeftInventoryItemClicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
+	if mouse_key == 1:
+		print("Left clicked")
+		if shift_hold:
+			amountSlider.show_slider(inventory_item, false)
+		else:
+			_moveItemLeftToRightInv_(inventory_item.item.id, 1)
+	elif mouse_key == 2:
+		print("Right clicked")
+		var amount = int(inventory_item.amount/2)
+		if amount == 0:
+			amount = 1
+		_moveItemLeftToRightInv_(inventory_item.item.id, amount)
+	elif mouse_key == 3:
+		print("Middle clicked")
+		_moveItemLeftToRightInv_(inventory_item.item.id, inventory_item.amount)
+		
+func _onRightInventoryItemClicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
+	if shopMode:
+		if mouse_key == 1:
+			_moveItemRightToLeftInv(inventory_item)
+	else:
+		if mouse_key == 1:
+			print("Left clicked")
+			if shift_hold:
+				amountSlider.show_slider(inventory_item, true)
+			else:
+				_moveItemRightToLeftInv_(inventory_item.item.id, 1)
+		elif mouse_key == 2:
+			print("Right clicked")
+			var amount = int(inventory_item.amount/2)
+			if amount == 0:
+				amount = 1
+			_moveItemRightToLeftInv_(inventory_item.item.id, amount)
+		elif mouse_key == 3:
+			print("Middle clicked")
+			_moveItemRightToLeftInv_(inventory_item.item.id, inventory_item.amount)
+	
+
 func refreshPlayerInventory():
 	var itemsGrid = $bg/leftInv/items as ItemsGrid
 	itemsGrid.show_inventory(playerInventory)
-	itemsGrid.on_item_clicked.connect(_moveItemLeftToRightInv)
+	itemsGrid.on_item_clicked.connect(_onLeftInventoryItemClicked)
 
 func refreshOtherInventory():
-	var itemsGrid = $bg/rightInv/items
+	var itemsGrid = $bg/rightInv/items as ItemsGrid
 	itemsGrid.show_inventory(otherInventory)
-	itemsGrid.on_item_clicked.connect(_moveItemRightToLeftInv)
+	itemsGrid.on_item_clicked.connect(_onRightInventoryItemClicked)
 
 func clearItems(itemGrid: VBoxContainer):
 	for child in itemGrid.get_children():

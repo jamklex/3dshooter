@@ -2,7 +2,7 @@
 extends Panel
 class_name ItemsGrid
 
-signal on_item_clicked(inventory_item:InventoryItem)
+signal on_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool)
 var _inventory:Inventory = null
 var _show_non_tradeable = false
 @onready var _container:GridContainer = $ScrollContainer/CenterContainer/slots
@@ -33,10 +33,10 @@ func _init_slots():
 		slot.mouseHovered.connect(_on_slot_hovered)
 		slot.mouseExited.connect(_on_slot_left)
 		
-func _on_slot_clicked(inventory_item:InventoryItem):
+func _on_slot_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
 	if not inventory_item:
 		return
-	on_item_clicked.emit(inventory_item)
+	on_item_clicked.emit(inventory_item, mouse_key, shift_hold)
 	
 func _on_slot_hovered(inventory_item:InventoryItem):
 	if not inventory_item:
@@ -68,6 +68,25 @@ func refresh():
 		slot.clear()
 	if not _inventory:
 		return
+	var shopInventory = _inventory as ShopInventory
+	if shopInventory:
+		refreshShopInventory()
+	else:
+		refreshInventory()
+		
+func refreshShopInventory():
+	var shopInventory = _inventory as ShopInventory
+	for inventory_item in shopInventory.itemList:
+		if inventory_item.amount == 0:
+			continue
+		if not inventory_item.item.tradeable and not _show_non_tradeable:
+			continue
+		var empty_slot = _get_empty_slot()
+		if not empty_slot:
+			return
+		empty_slot.show_item(inventory_item)
+		
+func refreshInventory():
 	for item in _inventory.items.values():
 		var inventory_item = item as InventoryItem
 		if inventory_item.amount == 0:

@@ -124,9 +124,9 @@ func openShop(payload: Array):
 	var playerInv = Inventory.from({
 		Inventory.GOLD_ITEM: player.inventory.count(Inventory.GOLD_ITEM)
 	})
-	var shopInv = Shop.create_shop_inventory(shopDetails["items"])
+	var shopInv = ShopInventory.createForItemIds(shopDetails["items"])
 	currentTrade = Trade.new_instance(playerInv, shopInv,
-		onShopAction, "Shopping cart", shopDetails["name"], priceList)
+		onShopAction, "Shopping cart", shopDetails["name"], priceList, true)
 	add_child(currentTrade)
 	currentWindow = currentTrade
 	return currentTrade
