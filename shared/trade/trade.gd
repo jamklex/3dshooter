@@ -53,11 +53,6 @@ func amountSlider_apply(inventory_item:InventoryItem, amount:int, rightToLeft:bo
 	else:
 		_moveItemLeftToRightInv_(inventory_item.item.id, amount)
 
-#func _moveItemLeftToRightInv(inventory_item:InventoryItem):
-	#if inventory_item.amount > 1:
-		#amountSlider.show_slider(inventory_item, false)
-	#else:
-		#_moveItemLeftToRightInv_(inventory_item.item.id, 1)
 	
 func _moveItemLeftToRightInv_(id:String, amount:int):
 	if shopMode:
@@ -69,15 +64,7 @@ func _moveItemLeftToRightInv_(id:String, amount:int):
 		diffMoney += itemPrice * amount
 	refreshUi()
 	
-func _moveItemRightToLeftInv(inventory_item:InventoryItem):
-	if shopMode:
-		_moveItemRightToLeftInv_(inventory_item.item.id, inventory_item.amount)
-	else:
-		if inventory_item.amount > 1:
-			amountSlider.show_slider(inventory_item, true)
-		else:
-			_moveItemRightToLeftInv_(inventory_item.item.id, 1)
-	
+
 func _moveItemRightToLeftInv_(id:String, amount:int):
 	if shopMode:
 		playerInventory.add(id, amount)
@@ -95,40 +82,34 @@ func getPrice(id):
 
 func _onLeftInventoryItemClicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
 	if mouse_key == 1:
-		print("Left clicked")
 		if shift_hold:
 			amountSlider.show_slider(inventory_item, false)
 		else:
 			_moveItemLeftToRightInv_(inventory_item.item.id, 1)
 	elif mouse_key == 2:
-		print("Right clicked")
 		var amount = int(inventory_item.amount/2)
 		if amount == 0:
 			amount = 1
 		_moveItemLeftToRightInv_(inventory_item.item.id, amount)
 	elif mouse_key == 3:
-		print("Middle clicked")
 		_moveItemLeftToRightInv_(inventory_item.item.id, inventory_item.amount)
 		
 func _onRightInventoryItemClicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
 	if shopMode:
 		if mouse_key == 1:
-			_moveItemRightToLeftInv(inventory_item)
+			_moveItemRightToLeftInv_(inventory_item.item.id, inventory_item.amount)
 	else:
 		if mouse_key == 1:
-			print("Left clicked")
 			if shift_hold:
 				amountSlider.show_slider(inventory_item, true)
 			else:
 				_moveItemRightToLeftInv_(inventory_item.item.id, 1)
 		elif mouse_key == 2:
-			print("Right clicked")
 			var amount = int(inventory_item.amount/2)
 			if amount == 0:
 				amount = 1
 			_moveItemRightToLeftInv_(inventory_item.item.id, amount)
 		elif mouse_key == 3:
-			print("Middle clicked")
 			_moveItemRightToLeftInv_(inventory_item.item.id, inventory_item.amount)
 	
 
