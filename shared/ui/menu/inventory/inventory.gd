@@ -42,42 +42,66 @@ func _show_inventory():
 		_side_items_grid.show_inventory(_side_inv, true)
 	_player_items_grid.show_equip_inventory(_equip_inv)
 	
-func _on_main_inventory_clicked(inventory_item:InventoryItem):
-	if _side_inv:
-		_on_inventory_item_clicked(inventory_item)
-	else:
-		_on_run_inventory_item_clicked(inventory_item)
+func _on_main_inventory_clicked(inventory_item: InventoryItem, mouse_key: int, shift_hold:bool):
+	if inventory_item.item.type in [GameItem.GameItemType.MODULE, GameItem.GameItemType.WEAPON]:
+		if _equip_inv.can_store(inventory_item.item.id, 1):
+			_main_inv.moveItemSome(_equip_inv, inventory_item.item.id, 1)
+			_show_inventory()
+		return
+	if not _side_inv or not inventory_item.item.type == GameItem.GameItemType.AMMO:
+		return
+	if mouse_key == 1:
+		if shift_hold:
+			_selected_inventory_item = inventory_item
+			_preselected_move = MOVE.MAIN_TO_SIDE
+			_show_amount_slider()
+		else:
+			_main_inv.moveItemSome(_side_inv, inventory_item.item.id, 1)
+	elif mouse_key == 2:
+		var amount = int(inventory_item.amount/2)
+		if amount == 0:
+			amount = 1
+		_main_inv.moveItemSome(_side_inv, inventory_item.item.id, amount)
+	elif mouse_key == 3:
+		_main_inv.moveItem(_side_inv, inventory_item.item.id)
+	_show_inventory()
 
 func _on_inventory_item_clicked(inventory_item:InventoryItem):
 	if not inventory_item:
 		return
 	_selected_inventory_item = inventory_item
 	_clear_menu()
-	_menu.add_item("Move to run inventory", MOVE.MAIN_TO_SIDE) # TODO: use enum
+	_menu.add_item("Move to run inventory", MOVE.MAIN_TO_SIDE)
 	if _equip_inv.can_store(inventory_item.item.id, 1):
-		_menu.add_item("Equip", MOVE.MAIN_TO_EQUIP) # TODO: use enum...
+		_menu.add_item("Equip", MOVE.MAIN_TO_EQUIP)
 	_show_menu()
 	
-func _on_run_inventory_item_clicked(inventory_item:InventoryItem):
+func _on_run_inventory_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
 	if not inventory_item:
 		return
 	_selected_inventory_item = inventory_item
-	_clear_menu()
-	if not WorldUtil.player.inMissionMap:
-		_menu.add_item("Move to player inventory", MOVE.SIDE_TO_MAIN)
-	if _equip_inv.can_store(inventory_item.item.id, 1):
-		_menu.add_item("Equip", MOVE.SIDE_TO_EQUIP if _side_inv else MOVE.MAIN_TO_EQUIP)
-	_show_menu()
+	if mouse_key == 1:
+		if shift_hold:
+			_preselected_move = MOVE.SIDE_TO_MAIN
+			_show_amount_slider()
+		else:
+			_side_inv.moveItemSome(_main_inv, inventory_item.item.id, 1)
+	elif mouse_key == 2:
+		var amount = int(inventory_item.amount/2)
+		if amount == 0:
+			amount = 1
+		_side_inv.moveItemSome(_main_inv, inventory_item.item.id, amount)
+	elif mouse_key == 3:
+		_side_inv.moveItem(_main_inv, inventory_item.item.id)
+	_show_inventory()
 	
-func _on_equipment_inventory_item_clicked(inventory_item:InventoryItem):
-	if not inventory_item:
+func _on_equipment_inventory_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
+	if not inventory_item or WorldUtil.player.inMissionMap:
 		return
-	_selected_inventory_item = inventory_item
-	_clear_menu()
-	if not WorldUtil.player.inMissionMap:
-		_menu.add_item("Move to player inventory", MOVE.EQUIP_TO_MAIN)
-	_menu.add_item("Move to run inventory", MOVE.EQUIP_TO_SIDE if _side_inv else MOVE.EQUIP_TO_MAIN)
-	_show_menu()
+	if mouse_key != 1:
+		return
+	_equip_inv.moveItemSome(_main_inv, inventory_item.item.id, 1)
+	_show_inventory()
 	
 func _clear_menu():
 	_menu.clear()

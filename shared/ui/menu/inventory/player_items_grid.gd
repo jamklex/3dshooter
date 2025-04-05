@@ -1,7 +1,7 @@
 extends Panel
 class_name PlayerItemsGrid
 
-signal on_item_clicked(inventory_item:InventoryItem)
+signal on_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool)
 var _equip_inv:EquipmentInventory = null
 @onready var _itemInfos:ItemInfos = $ItemInfos
 
@@ -35,10 +35,10 @@ func _get_slots_by_type(item_type:GameItem.GameItemType):
 func _get_slots():
 	return find_children("*", "Slot")
 
-func _on_slot_clicked(inventory_item:InventoryItem):
+func _on_slot_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
 	if not inventory_item:
 		return
-	on_item_clicked.emit(inventory_item)
+	on_item_clicked.emit(inventory_item, mouse_key, shift_hold)
 	
 func _on_slot_hovered(inventory_item:InventoryItem):
 	if not inventory_item:
