@@ -67,7 +67,7 @@ func _can_craft():
 			return false
 	return true
 
-func _on_blueprint_clicked(inventory_item:InventoryItem):
+func _on_blueprint_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
 	if !inventory_item:
 		return
 	_player_inv.add(inventory_item.item.id,inventory_item.amount)
@@ -75,29 +75,54 @@ func _on_blueprint_clicked(inventory_item:InventoryItem):
 	_refresh_item_grids()
 	_refresh_craft_output()
 
-func _on_craft_inv_item_clicked(inventory_item:InventoryItem):
+func _on_craft_inv_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
 	_selected_inventory_item = inventory_item
 	if inventory_item.amount == 1:
 		_apply_item_move(MOVE.CRAFT_TO_PLAYER, 1)
 	else:
-		_preselected_move = MOVE.CRAFT_TO_PLAYER
-		_show_amount_slider()
+		if mouse_key == 1:
+			if shift_hold:
+				_selected_inventory_item = inventory_item
+				_preselected_move = MOVE.CRAFT_TO_PLAYER
+				_show_amount_slider()
+			else:
+				_crafting_inv.moveItemSome(_player_inv, inventory_item.item.id, 1)
+		elif mouse_key == 2:
+			var amount = int(inventory_item.amount / 2)
+			if amount == 0:
+				amount = 1
+			_crafting_inv.moveItemSome(_player_inv, inventory_item.item.id, amount)
+		elif mouse_key == 3:
+			_crafting_inv.moveItem(_player_inv, inventory_item.item.id)
+	_refresh_craft_output()
 	_refresh_item_grids()
 
-func _on_player_inv_item_clicked(inventory_item:InventoryItem):
+func _on_player_inv_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
 	if inventory_item.item.type == GameItem.GameItemType.BLUEPRINT:
 		if _blueprint_item:
 			_player_inv.addItem(_blueprint_item)
 		_blueprint_item = InventoryItem.from(inventory_item.item.id, 1)
 		_player_inv.remove(inventory_item.item.id, 1)
-		_refresh_craft_output()
 	else:
 		_selected_inventory_item = inventory_item
 		if inventory_item.amount == 1:
 			_apply_item_move(MOVE.PLAYER_TO_CRAFT, 1)
 		else:
-			_preselected_move = MOVE.PLAYER_TO_CRAFT
-			_show_amount_slider()
+			if mouse_key == 1:
+				if shift_hold:
+					_selected_inventory_item = inventory_item
+					_preselected_move = MOVE.PLAYER_TO_CRAFT
+					_show_amount_slider()
+				else:
+					_player_inv.moveItemSome(_crafting_inv, inventory_item.item.id, 1)
+			elif mouse_key == 2:
+				var amount = int(inventory_item.amount / 2)
+				if amount == 0:
+					amount = 1
+				_player_inv.moveItemSome(_crafting_inv, inventory_item.item.id, amount)
+			elif mouse_key == 3:
+				_player_inv.moveItem(_crafting_inv, inventory_item.item.id)
+	_refresh_craft_output()
 	_refresh_item_grids()
 	
 func amount_slider_apply(inventory_item:InventoryItem, amount:int, rightToLeft:bool):
@@ -114,10 +139,10 @@ func _apply_item_move(move:MOVE, amount):
 			_player_inv.moveItemSome(_crafting_inv, _selected_inventory_item.item.id, amount)
 		MOVE.CRAFT_TO_PLAYER:
 			_crafting_inv.moveItemSome(_player_inv, _selected_inventory_item.item.id, amount)
-	_refresh_item_grids()
 	_selected_inventory_item = null
 	_preselected_move = 0
 	_refresh_craft_output()
+	_refresh_item_grids()
 	
 func _close_crafting():
 	WorldUtil.closeCurrentWindow()

@@ -93,7 +93,17 @@ func refreshInventory():
 			continue
 		if not inventory_item.item.tradeable and not _show_non_tradeable:
 			continue
-		var empty_slot = _get_empty_slot()
-		if not empty_slot:
-			return
-		empty_slot.show_item(inventory_item)
+		if inventory_item.item.type in [GameItem.GameItemType.WEAPON, GameItem.GameItemType.MODULE, GameItem.GameItemType.BLUEPRINT]:
+			for i in inventory_item.amount:
+				var one_inventory_item = InventoryItem.from(inventory_item.item.id, 1)
+				var empty_slot = _get_empty_slot()
+				if not empty_slot:
+					print("Not enough slots!")
+					return
+				empty_slot.show_item(one_inventory_item)
+		else:
+			var empty_slot = _get_empty_slot()
+			if not empty_slot:
+				print("Not enough slots!")
+				return
+			empty_slot.show_item(inventory_item)

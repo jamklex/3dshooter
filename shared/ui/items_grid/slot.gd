@@ -24,7 +24,7 @@ func refresh():
 		_amount.text = ""
 		return
 	_image.texture = _inventory_item.item.image
-	if show_amount:
+	if show_amount and _inventory_item.amount > 1:
 		_amount.text = str(_inventory_item.amount) + "x"
 	else:
 		_amount.text = ""
