@@ -4,43 +4,51 @@
 	"short": "Craft the Better Pistol",
 	"dialog": {
 		"npc": "WEAPON_SHOP",
-		"answer": "I can't give Y-you better weapons right now b-but I have some Blueprints lying a-around, which I could sell to Y-you.",
+		"answer": "Did Y-you craft the weapon already?",
 		"options": {
-			"Great... so more Money I need to get first...": {
-				"Y-yea What did Y-you expect? We all need to g-get by somehow...\nB-but I can give Y-you one for free if Y-you like...": {
-					"options": {
-						"Yeah You should, because without me, who knows how You'd get by": {
-							"actions": [
-								{
-									"method": "succeedTask",
-									"payload": []
-								},
-								{
-									"method": "nextInLine",
-									"payload": []
-								}
-							]
-						},
-						"Thank You, I really mean it! I still need to adjust a bit, I'm sorry...": {
-							"actions": [
-								{
-									"method": "succeedTask",
-									"payload": []
-								},
-								{
-									"method": "nextInLine",
-									"payload": []
-								}
-							]
-						}
+			"Yes I got one here!": {
+				"conditions": [
+					{
+						"method": "hasItemCount",
+						"payload": ["8", 1]
+					}
+				],
+				"answer": "Y-yea What did Y-you expect? We all need to g-get by somehow...\nB-but I can give Y-you one for free if Y-you like...",
+				"options": {
+					"Yeah You should, because without me, who knows how You'd get by": {
+						"actions": [
+							{
+								"method": "succeedQuest",
+								"payload": []
+							}
+						]
+					},
+					"Thank You, I really mean it! I still need to adjust a bit, I'm sorry...": {
+						"answer": "I-i'm sorry, maybe I was a bit h-harsh earlier...\nPlease take Y-your resources back.",
+						"actions": [
+							
+							{
+								"method": "giveRewards",
+								"payload": []
+							},
+							{
+								"method": "succeedQuest",
+								"payload": []
+							}
+						]
 					}
 				}
+			},
+			"No, where do I find the materials for that?": {
+				"answer": "Just ask th Caption for a M-mission and find them in there somwhere."
 			}
 		}
 	},
 	"rewards": [
-		{"2": 2},
-		{"3": 3},
-		{"1": 4}
+		{
+			"2": 2,
+			"3": 3,
+			"1": 4
+		}
 	]
 }
