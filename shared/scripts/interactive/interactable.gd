@@ -86,7 +86,6 @@ func execute_action(_action: Interactable.Actions):
 	var player = WorldUtil.player as Player
 	match (_action):
 		Actions.TELEPORT_TO_BASE:
-			player.saveRunInventory()
 			WorldUtil.teleportToLowerShip()
 		Actions.AIR_VENT:
 			initiate_airvent()
@@ -97,17 +96,17 @@ func execute_action(_action: Interactable.Actions):
 
 func initiate_airvent():
 	var player = get_player()
-	WorldUtil.setCurrentWindow(Trade.new_instance(player.run_inventory, Inventory.empty(), exit_airvent))
+	WorldUtil.setCurrentWindow(Trade.new_instance(player.inventory, Inventory.empty(), exit_airvent))
 
 func exit_airvent(_action: Trade.Actions, params: Array = []):
 	var player = get_player()
 	match (_action):
 		Trade.Actions.SAVE_TRADE:
-			player.run_inventory = params[0]
+			player.inventory = params[0]
 			var airlock_inv = params[1] as Inventory
 			if airlock_inv.is_empty():
 				set_interactable(true)
-			airlock_inv.moveAllItems(player.store_inventory)
+			airlock_inv.moveAllItems(player.salvager)
 			WorldUtil.closeCurrentWindow()
 			player.body.refresh_inventory_output()
 		Trade.Actions.CANCEL_PRESSED:

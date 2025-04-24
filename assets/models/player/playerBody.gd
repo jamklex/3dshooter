@@ -32,6 +32,9 @@ var base_health = 0
 
 func is_dead():
 	return _shootable.died
+	
+func hasWeaponWithAmmo():
+	return _shooter.hasWeaponWithAmmo()
 
 func _ready():
 	if minimap_icon:
@@ -44,12 +47,12 @@ func _ready():
 	refresh_inventory_output()
 	fade_interaction_feedback(1)
 	QuestLoader.attach_quests(quests_ui)
-	WorldUtil.player.equip_inventory.onAddItem.connect(_on_equip_inv_changed)
-	WorldUtil.player.equip_inventory.onRemoveItem.connect(_on_equip_inv_changed)
-	WorldUtil.player.run_inventory.onAddItem.connect(_on_run_inv_changed)
-	WorldUtil.player.run_inventory.onRemoveItem.connect(_on_run_inv_changed)
+	WorldUtil.player.equipment.onAddItem.connect(_on_equipment_changed)
+	WorldUtil.player.equipment.onRemoveItem.connect(_on_equipment_changed)
+	WorldUtil.player.inventory.onAddItem.connect(_on_inventory_changed)
+	WorldUtil.player.inventory.onRemoveItem.connect(_on_inventory_changed)
 	_shooter.setUseRealMunition(WorldUtil.player.inMissionMap)
-	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.equip_inventory)
+	_shooter.unlockPlayerInventoryWeapons(WorldUtil.player.equipment)
 	_shooter.onHitShootable.connect(_showHitMarker)
 	base_health = _shootable.max_health
 	_check_for_health_module(true)
@@ -85,7 +88,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_strength
 	if Input.is_action_just_pressed("sprint") and is_on_floor():
-		sprinting = WorldUtil.player.equip_inventory.check("9", 1)
+		sprinting = WorldUtil.player.equipment.check("9", 1)
 
 	handle_interaction()
 	handle_reward_queue()
@@ -182,12 +185,12 @@ func handle_reward_queue():
 
 func refresh_inventory_output():
 	var inventory_text = ""
-	if !WorldUtil.player.run_inventory.is_empty():
-		inventory_text += "RunInventory: " + JSON.stringify(WorldUtil.player.run_inventory.to_readable_dict(), "\t") + "\n"
 	if !WorldUtil.player.inventory.is_empty():
 		inventory_text += "Inventory: " + JSON.stringify(WorldUtil.player.inventory.to_readable_dict(), "\t") + "\n"
-	if !WorldUtil.player.store_inventory.is_empty():
-		inventory_text += "StoreInventory: " + JSON.stringify(WorldUtil.player.store_inventory.to_readable_dict(), "\t") + "\n"
+	if !WorldUtil.player.storage.is_empty():
+		inventory_text += "Storage: " + JSON.stringify(WorldUtil.player.storage.to_readable_dict(), "\t") + "\n"
+	if !WorldUtil.player.salvager.is_empty():
+		inventory_text += "Salvager: " + JSON.stringify(WorldUtil.player.salvager.to_readable_dict(), "\t") + "\n"
 	if inventory_text == "":
 		inventory_text = "no items collected"
 	inventory_output.text = inventory_text
@@ -238,20 +241,20 @@ func _on_health_changed(health):
 		_playDeadSound()
 		WorldUtil.player_died()
 
-func _on_equip_inv_changed(payload:Array):
+func _on_equipment_changed(payload:Array):
 	var item_id = payload[0]
 	var new_amount = int(payload[1])
 	_shooter.checkForWeaponChanged(item_id, new_amount)
 	_check_for_health_module()
 
-func _on_run_inv_changed(payload:Array):
+func _on_inventory_changed(payload:Array):
 	var item_id = payload[0]
 	var new_amount = int(payload[1])
 	_shooter.checkForMunitionChanged(item_id, new_amount)
 
 func _check_for_health_module(first_check:bool=false):
 	var new_max_health = base_health
-	new_max_health += WorldUtil.player.equip_inventory.count("19") * 10
+	new_max_health += WorldUtil.player.equipment.count("19") * 10
 	_shootable.max_health = new_max_health
 	if not WorldUtil.player.inMissionMap or first_check:
 		_shootable.resetHealth()

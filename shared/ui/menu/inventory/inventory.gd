@@ -27,13 +27,9 @@ func _visible():
 
 func _load_inventory():
 	var player = WorldUtil.player as Player
-	_equip_inv = player.equip_inventory
-	if player.inMissionMap:
-		_main_inv = player.run_inventory
-		_side_inv = null
-	else:
-		_main_inv = player.inventory
-		_side_inv = player.run_inventory
+	_equip_inv = player.equipment
+	_main_inv = player.inventory
+	_side_inv = null
 
 func _show_inventory():
 	_main_items_grid.show_inventory(_main_inv, true)

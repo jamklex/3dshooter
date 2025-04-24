@@ -147,7 +147,7 @@ func _on_event(event_name: String, payload: Array = []):
 				WorldUtil.player.unlocks.push_back(key)
 			WorldUtil.player.save()
 		"giveSalvagerItems":
-			var salvager_inventory = WorldUtil.player.store_inventory as Inventory
+			var salvager_inventory = WorldUtil.player.salvager as Inventory
 			var player_inventory = WorldUtil.player.inventory as Inventory
 			salvager_inventory.moveAllItems(player_inventory)
 		"setSalvagerFee":

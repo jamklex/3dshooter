@@ -1,7 +1,7 @@
 class_name InteractionHelper
 
 static func add_drop(player: Player, drop: DropItem):
-	player.run_inventory.add(drop.id, drop.get_amount())
+	player.inventory.add(drop.id, drop.get_amount())
 	player.body.refresh_inventory_output()
 
 static func add_drop_directly(player: Player, drop: DropItem):

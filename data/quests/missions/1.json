@@ -12,10 +12,10 @@
 					"No worries, I get it." : {
 						"answer": "Perfect, ready to go?",
 						"options": {
-							"Just give me some seconds, i equip a weapon first.": {
+							"Just give me some seconds, i equip a weapon and some ammo first.": {
 								"conditions": [
 									{
-										"method": "noWeaponEquipped",
+										"method": "noWeaponWithAmmoEquipped",
 										"payload": []
 									}
 								]
@@ -23,7 +23,7 @@
 							"Ok, get me on the ship": {
 								"conditions": [
 									{
-										"method": "weaponEquipped",
+										"method": "weaponWithAmmoEquipped",
 										"payload": []
 									}
 								],
@@ -56,10 +56,10 @@
 					"Actually I'm not sure..." : {
 						"answer": "Well... loot what You can and don't feel bad about it!",
 						"options": {
-							"Just give me some seconds, i equip a weapon first.": {
+							"Just give me some seconds, i equip a weapon and some ammo first.": {
 								"conditions": [
 									{
-										"method": "noWeaponEquipped",
+										"method": "noWeaponWithAmmoEquipped",
 										"payload": []
 									}
 								]
@@ -67,7 +67,7 @@
 							"Ok, get me on the ship": {
 								"conditions": [
 									{
-										"method": "weaponEquipped",
+										"method": "weaponWithAmmoEquipped",
 										"payload": []
 									}
 								],

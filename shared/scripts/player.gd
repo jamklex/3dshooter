@@ -7,10 +7,10 @@ var bodyLastPos: Vector3
 var money:int = 0
 var taxes:float
 var unlocks:Array
-var run_inventory: Inventory
+var storage: Inventory
 var inventory: Inventory
-var store_inventory: Inventory
-var equip_inventory: EquipmentInventory
+var salvager: Inventory
+var equipment: EquipmentInventory
 var _savePath = "user://player.json" #"user://settings.json"
 var inMissionMap = false
 var kills: Dictionary
@@ -23,10 +23,10 @@ func _init():
 		var fileText = file.get_as_text()
 		if fileText and len(fileText) > 0:
 			loadDict = JSON.parse_string(file.get_as_text()) as Dictionary
-	run_inventory = Inventory.from(loadDict.get("runInv", {}))
-	inventory = Inventory.from(loadDict.get("inv", {}))
-	store_inventory = Inventory.from(loadDict.get("storeInv", {}))
-	equip_inventory = EquipmentInventory.from(loadDict.get("equipInv", {}))
+	storage = Inventory.from(loadDict.get("storage", {}))
+	inventory = Inventory.from(loadDict.get("inventory", {}))
+	salvager = Inventory.from(loadDict.get("salvager", {}))
+	equipment = EquipmentInventory.from(loadDict.get("equipment", {}))
 	kills = loadDict.get("kills", {})
 	taxes = loadDict.get("taxes", 100)
 	unlocks = loadDict.get("unlocks", [])
@@ -35,10 +35,10 @@ func save():
 	if body and body._shooter:
 		body._shooter.putBulletsToInventory()
 	var saveDict = {
-		"runInv": run_inventory.to_dict(),
-		"inv": inventory.to_dict(),
-		"storeInv": store_inventory.to_dict(),
-		"equipInv": equip_inventory.to_dict(),
+		"storage": storage.to_dict(),
+		"inventory": inventory.to_dict(),
+		"salvager": salvager.to_dict(),
+		"equipment": equipment.to_dict(),
 		"kills": kills,
 		"taxes": taxes,
 		"unlocks": unlocks
@@ -54,9 +54,6 @@ func setInMission(newInMissionMap:bool):
 	if inMissionMap:
 		mission_kills = 0
 
-func saveRunInventory():
-	run_inventory.moveAllItems(inventory, ["7"])
-
 func addKillCounter(enemy_id: String, amount: int):
 	if inMissionMap:
 		mission_kills += amount
@@ -64,6 +61,6 @@ func addKillCounter(enemy_id: String, amount: int):
 
 func clearMissionInventories():
 	body._shooter.removeBullets()
-	run_inventory.clear()
-	equip_inventory.clear()
+	inventory.clear()
+	equipment.clear()
 	save()

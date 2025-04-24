@@ -43,6 +43,14 @@ func _ready():
 	soundPlayer.bus = "Sound"
 	add_child(soundPlayer)
 	
+func hasWeaponWithAmmo():
+	if len(weapons) <= 0:
+		return false
+	for weapon in weapons:
+		if _getAmmoInInventory(weapon.weaponType) > 0:
+			return true
+	return false
+	
 func hideMagInfo():
 	_magInfo.visible = false
 	
@@ -50,13 +58,13 @@ func showMagInfo():
 	_magInfo.visible = true
 	
 func addWeapon(scenePath:String):
+	if _getWeaponForScenePath(scenePath):
+		return
 	var packedScene = load(scenePath) as PackedScene
 	if not packedScene:
 		return
 	var weapon = packedScene.instantiate() as Weapon
 	if not weapon:
-		return
-	if _getWeaponForScenePath(scenePath):
 		return
 	weapon.visible = false
 	_reloadWeapon(weapon)
@@ -177,7 +185,7 @@ func _handleReloadingMag():
 		return
 	if currentWeapon.isMagFull():
 		return
-	if _getAmmoInInventory(currentWeapon.weaponType) <= 0 and useRealMunition:
+	if useRealMunition and _getAmmoInInventory(currentWeapon.weaponType) <= 0:
 		return
 	if aiming:
 		aimOverride.stop()
@@ -243,14 +251,14 @@ func _removeRestAmmo(weaponType:Weapon.WeaponType, removeShoots:int):
 	var munitionId = _MUNITION_MAP.get(weaponType)
 	if not munitionId:
 		return
-	var playerInv = WorldUtil.player.run_inventory as Inventory
+	var playerInv = WorldUtil.player.inventory as Inventory
 	playerInv.remove(munitionId, removeShoots)
 	
 func _addRestAmmo(weaponType:Weapon.WeaponType, addShoots:int):
 	var munitionId = _MUNITION_MAP.get(weaponType)
 	if not munitionId:
 		return
-	var playerInv = WorldUtil.player.run_inventory as Inventory
+	var playerInv = WorldUtil.player.inventory as Inventory
 	playerInv.add(munitionId, addShoots)
 
 func _refreshMagInfo():
@@ -268,7 +276,7 @@ func _getAmmoInInventory(weaponType:Weapon.WeaponType):
 	var munitionId = _MUNITION_MAP.get(weaponType)
 	if not munitionId:
 		return currentWeapon.magSize
-	var playerInv = WorldUtil.player.run_inventory as Inventory
+	var playerInv = WorldUtil.player.inventory as Inventory
 	return playerInv.count(munitionId)
 	
 func _shoot_triggered():
