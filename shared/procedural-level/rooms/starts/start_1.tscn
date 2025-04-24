@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://djt65pti7uct6"]
+[gd_scene load_steps=22 format=3 uid="uid://djt65pti7uct6"]
 
 [ext_resource type="Script" uid="uid://s5x7q3e665v4" path="res://shared/procedural-level/start-room.gd" id="1_146wm"]
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="2_b81ij"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://l4p1kjacpsmi" path="res://assets/blender_meshes/theme_1/lights/light_3.tscn" id="6_fngku"]
 [ext_resource type="PackedScene" uid="uid://b4f58i82ovh0y" path="res://assets/blender_meshes/theme_1/lights/light_2.tscn" id="7_4l1st"]
 [ext_resource type="PackedScene" uid="uid://mlsm0t4oqsrl" path="res://assets/blender_meshes/theme_1/props/return.tscn" id="8_3dmim"]
+[ext_resource type="PackedScene" uid="uid://dfy1xb3n0tnm5" path="res://assets/blender_meshes/theme_1/walls/wall_5.tscn" id="8_hydsr"]
 [ext_resource type="PackedScene" uid="uid://2a67nbwv3l23" path="res://assets/blender_meshes/theme_1/floor/floor_3.tscn" id="10_ic3o0"]
 [ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="11_5giik"]
 [ext_resource type="Texture2D" uid="uid://dcbcbfvfixlmb" path="res://assets/bg/start1.png" id="11_q3kp3"]
@@ -43,7 +44,7 @@ ambient_light_color = Color(0.270222, 0.270222, 0.270222, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wx8ki"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
-[node name="start_2" type="Node3D"]
+[node name="start_1" type="Node3D"]
 script = ExtResource("1_146wm")
 
 [node name="Minimap" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_wx8ki")]
@@ -94,11 +95,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.57837, 4, -14)
 
 [node name="door2" parent="doors" instance=ExtResource("3_bk1h5")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4, 1.5, 6)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_3.tscn", "res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn"])
 
 [node name="door3" parent="doors" instance=ExtResource("3_bk1h5")]
 transform = Transform3D(0.999941, 0, 0.0108208, 0, 1, 0, -0.0108208, 0, 0.999941, 7.57766, 1.5, -16)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_3.tscn", "res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn"])
 
 [node name="player" parent="." instance=ExtResource("4_2x5sh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97455, 0.26453, -1.10821)
@@ -147,9 +148,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.2296
 [node name="wall_19" parent="NavigationRegion3D/walls" instance=ExtResource("5_8q0c7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.22965, 0, -10)
 
-[node name="wall_20" parent="NavigationRegion3D/walls" instance=ExtResource("5_8q0c7")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.22965, 0, -6)
-
 [node name="wall_21" parent="NavigationRegion3D/walls" instance=ExtResource("5_8q0c7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 9.22965, 0, -2)
 
@@ -171,8 +169,11 @@ transform = Transform3D(-1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, -1, 1.5, 0
 [node name="wall_17" parent="NavigationRegion3D/walls" instance=ExtResource("5_8q0c7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.62269, 0, -0.5)
 
-[node name="wall_29" parent="NavigationRegion3D/walls" instance=ExtResource("5_8q0c7")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.10674, 0, -7.85425)
+[node name="wall_20" parent="NavigationRegion3D/walls" instance=ExtResource("8_hydsr")]
+transform = Transform3D(1, 0, 1.74845e-07, 0, 1, 0, -1.74845e-07, 0, 1, 9.5, 0, -6)
+
+[node name="wall_22" parent="NavigationRegion3D/walls" instance=ExtResource("8_hydsr")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -0.0997598, 0, -8.12058)
 
 [node name="props" type="Node3D" parent="NavigationRegion3D"]
 

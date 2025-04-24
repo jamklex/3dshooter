@@ -42,11 +42,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -6)
 
 [node name="door" parent="doors" instance=ExtResource("4_w1sa2")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.99736, 1.5, -2)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
 
 [node name="door2" parent="doors" instance=ExtResource("4_w1sa2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 1.5, -6)
-map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_1.tscn", "res://shared/procedural-level/rooms/theme_1/room_2.tscn", "res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
+map_options = Array[String](["res://shared/procedural-level/rooms/theme_1/room_4.tscn", "res://shared/procedural-level/rooms/theme_1/room_5.tscn"])
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_tw0dl")
