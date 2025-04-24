@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgoxct3yelvnj"]
+[gd_scene load_steps=12 format=3 uid="uid://bgoxct3yelvnj"]
 
 [ext_resource type="Script" uid="uid://3xn5awyp6kuu" path="res://shared/procedural-level/dead-room.gd" id="1_thtun"]
 [ext_resource type="PackedScene" uid="uid://3p4hi7bqtauy" path="res://assets/blender_meshes/theme_1/floor/floor_2.tscn" id="2_bubp4"]
 [ext_resource type="PackedScene" uid="uid://cuby5ypm6o33u" path="res://shared/procedural-level/objects/door.tscn" id="4_3bl1v"]
 [ext_resource type="PackedScene" uid="uid://d1odjsuew4od0" path="res://assets/blender_meshes/theme_1/walls/wall_7.tscn" id="5_cv3ud"]
+[ext_resource type="PackedScene" uid="uid://jc0lcn4nnvxd" path="res://assets/blender_meshes/theme_1/lights/light_1.tscn" id="6_ghprq"]
 [ext_resource type="PackedScene" uid="uid://k7hsukw5eo7h" path="res://assets/models/interact/chest/chest.tscn" id="7_jr427"]
 [ext_resource type="PackedScene" uid="uid://c5wkylfelxopo" path="res://assets/blender_meshes/theme_1/floor/floor_5.tscn" id="7_qtdhh"]
 [ext_resource type="PackedScene" uid="uid://d2dk5nxi2ti7c" path="res://assets/models/interact/item/item.tscn" id="8_ap3ue"]
@@ -183,6 +184,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.405806, -8.5)
 
 [node name="item5" parent="NavigationRegion3D/props" instance=ExtResource("8_ap3ue")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.405806, -11)
+
+[node name="Light2" parent="NavigationRegion3D/props" instance=ExtResource("6_ghprq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.99449, -0.0194898, -8.50951)
+
+[node name="Light3" parent="NavigationRegion3D/props" instance=ExtResource("6_ghprq")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.00551, -0.0194898, -12.5095)
+
+[node name="Light4" parent="NavigationRegion3D/props" instance=ExtResource("6_ghprq")]
+transform = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, -0.00550985, -0.0194898, 1.49049)
 
 [node name="Invisible-floor" parent="NavigationRegion3D" instance=ExtResource("8_bmkqx")]
 transform = Transform3D(-2, 0, 8.15377e-08, 0, 0.29, 0, -3.01992e-07, 0, -0.54, -0.00728035, -0.0434351, 5.36285)
