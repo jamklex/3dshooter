@@ -2,7 +2,7 @@ extends Node3D
 class_name FloatingHealthBar
 
 @onready var _meshInstance: MeshInstance3D = $MeshInstance3D
-@onready var _progressBar: ProgressBar = $SubViewport/health
+@onready var _progressBar: ProgressBar = $SubViewport/MarginContainer/health
 var _health: int = 0
 var _maxHealth: int = 0
 var _last_cam_pos: Vector3

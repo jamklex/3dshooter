@@ -8,6 +8,7 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xsad0"]
 resource_local_to_scene = true
 transparency = 1
+shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_t476b")
 
 [sub_resource type="QuadMesh" id="QuadMesh_t476b"]
@@ -22,7 +23,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="LabelSettings" id="LabelSettings_t476b"]
+[sub_resource type="LabelSettings" id="LabelSettings_ryf7d"]
 font_size = 75
 
 [node name="FloatingLabel" type="Node3D"]
@@ -30,33 +31,42 @@ script = ExtResource("1_xsad0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.85, 0)
-layers = 2
+layers = 8
 mesh = SubResource("QuadMesh_t476b")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
+handle_input_locally = false
 gui_embed_subwindows = true
 size = Vector2i(500, 150)
 
-[node name="PanelContainer" type="PanelContainer" parent="SubViewport"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -44.0
-offset_right = 44.0
-offset_bottom = 43.0
+offset_left = -78.5
+offset_right = 78.5
+offset_bottom = 133.0
 grow_horizontal = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewport/MarginContainer"]
+clip_contents = true
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xsad0")
 
-[node name="MarginContainer" type="MarginContainer" parent="SubViewport/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/MarginContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Label" type="Label" parent="SubViewport/PanelContainer/MarginContainer"]
+[node name="Label" type="Label" parent="SubViewport/MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 text = "NAME HERE"
-label_settings = SubResource("LabelSettings_t476b")
+label_settings = SubResource("LabelSettings_ryf7d")
 horizontal_alignment = 1

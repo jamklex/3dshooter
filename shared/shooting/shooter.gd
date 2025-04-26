@@ -355,14 +355,14 @@ func _applyInaccuracy(ray_direction: Vector3, inaccuracy: float) -> Vector3:
 func _raycastForHittedObject() -> Node:
 	var space = get_world_3d().direct_space_state
 	var ray_direction = camera.global_transform.basis.z
-	var inaccuarcy = (1 - currentWeapon.accuracy) / 2
+	var accuracy = max(0.01, currentWeapon.accuracy)
+	var inaccuarcy = (1 - accuracy) / 2
 	ray_direction = _applyInaccuracy(ray_direction,inaccuarcy)
 	var query = PhysicsRayQueryParameters3D.create(camera.global_position,
 		camera.global_position - ray_direction * raycastMeters, 0b101)
 	var collision = space.intersect_ray(query)
 	if not collision:
 		return
-	#	see where the projectiles collide
 	#_show_projectiles_collision(collision)
 	var collider = collision.collider as Node
 	var bone = collision.collider as CharacterBody3D
@@ -450,8 +450,8 @@ func _putCurrentWeaponAway():
 	
 func _checkFov():
 	var fov = 50
-	if aiming and currentWeapon and currentWeapon.weaponType == currentWeapon.WeaponType.SNIPER:
-		fov = 30
+	if currentWeapon and aiming:
+		fov = 30 if currentWeapon.weaponType == currentWeapon.WeaponType.SNIPER else 40
 	WorldUtil.player_cam.fov = fov
 
 func _show_projectiles_collision(collision):

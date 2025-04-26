@@ -256,6 +256,5 @@ func _playSound(soundName: SoundUtil.SoundName, max_db: float, max_distance: flo
 	audioPlayer.play()
 	
 func _refreshHealthBar():
-	print(str(_shootable.health) + "/" + str(_shootable.max_health))
 	_floatingHealthBar.setMaxHealth(_shootable.max_health)
 	_floatingHealthBar.setHealth(_shootable.health)

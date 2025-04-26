@@ -122,9 +122,6 @@ func set_container_items(itemDict: Dictionary):
 			print("More items than lootables")
 			return
 		var lootable = lootables[index]
-		var storage = lootable as Storage
-		if storage:
-			print("FOUND STORAGE")
 		var item_id = item_ids[index]
 		var amount = itemDict[item_id]
 		lootable.setDropItem(DropItem.create_fix(item_id, amount))
