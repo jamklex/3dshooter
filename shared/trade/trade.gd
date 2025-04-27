@@ -115,12 +115,12 @@ func _onRightInventoryItemClicked(inventory_item:InventoryItem, mouse_key: int, 
 
 func refreshPlayerInventory():
 	var itemsGrid = $bg/leftInv/items as ItemsGrid
-	itemsGrid.show_inventory(playerInventory)
+	itemsGrid.show_inventory(playerInventory, not priceList)
 	itemsGrid.on_item_clicked.connect(_onLeftInventoryItemClicked)
 
 func refreshOtherInventory():
 	var itemsGrid = $bg/rightInv/items as ItemsGrid
-	itemsGrid.show_inventory(otherInventory)
+	itemsGrid.show_inventory(otherInventory, not priceList)
 	itemsGrid.on_item_clicked.connect(_onRightInventoryItemClicked)
 
 func clearItems(itemGrid: VBoxContainer):
@@ -157,6 +157,7 @@ func _on_cancel_pressed():
 	closeTrade()
 
 func _on_done_pressed():
-	playerInventory.set_total(Inventory.GOLD_ITEM, playerMoney + diffMoney)
+	if priceList:
+		playerInventory.set_total(Inventory.GOLD_ITEM, playerMoney + diffMoney)
 	if (onAction.call(Actions.SAVE_TRADE, [playerInventory, otherInventory])):
 		closeTrade()

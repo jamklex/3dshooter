@@ -32,10 +32,32 @@ size_flags_stretch_ratio = 1.95
 columns = 12
 rows = 9
 
+[node name="Headline" type="Label" parent="HBoxContainer/ItemsGrid"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "Inventory"
+horizontal_alignment = 1
+
 [node name="player_inv" type="Panel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_yca81")
+
+[node name="Headline" type="Label" parent="HBoxContainer/player_inv"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 20
+text = "Equipment"
+horizontal_alignment = 1
 
 [node name="VBoxCon" type="VBoxContainer" parent="HBoxContainer/player_inv"]
 layout_mode = 1
@@ -49,6 +71,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="ItemsGrid" parent="HBoxContainer/player_inv/VBoxCon" instance=ExtResource("1_2vvbi")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

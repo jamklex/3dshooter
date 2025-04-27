@@ -93,27 +93,21 @@ func hasUnlocked(payload: Array):
 			return false
 	return true
 
-func openLastLoot(payload: Array):
+func openStorage():
 	if currentTrade:
 		return null
-	player.store_inventory.moveItem(player.inventory, Inventory.GOLD_ITEM)
-	var tradeInv = Inventory.from({
-		Inventory.GOLD_ITEM: player.inventory.count(Inventory.GOLD_ITEM)
-	})
-	var taxList = Trader.get_taxes(FileUtil.getContentAsJson(payload[0]))
-	currentTrade = Trade.new_instance(tradeInv, player.store_inventory,
-		onLastLootAction, "Inventory", "Your saved loot", taxList)
+	currentTrade = Trade.new_instance(player.inventory, player.storage,
+		onStorageAction, "Inventory", "Storage")
 	add_child(currentTrade)
 	currentWindow = currentTrade
 	return currentTrade
 
-func onLastLootAction(action: Trade.Actions, payload: Array = []):
+func onStorageAction(action: Trade.Actions, payload: Array = []):
 	if action != Trade.Actions.SAVE_TRADE and action != Trade.Actions.CANCEL_PRESSED:
 		return
 	if action == Trade.Actions.SAVE_TRADE:
-		if not savePlayerTrade(payload[0]):
-			return false
-		player.store_inventory = Inventory.empty()
+		player.inventory = payload[0]
+		player.storage = payload[1]
 	return true
 	
 func openShop(payload: Array):
@@ -219,7 +213,7 @@ func checkPlayerInventory(payload: Array):
 	return player.inventory.check(payload[0], payload[1])
 	
 func hasStoreInventoryItems(_payload: Array = []):
-	return !player.store_inventory.is_empty()
+	return !player.salvager.is_empty()
 
 func quitGame():
 	save()
@@ -235,7 +229,7 @@ func showMenu():
 	return menu
 	
 func respawn():
-	player.run_inventory = Inventory.empty()
+	player.inventory = Inventory.empty()
 	teleportToLowerShip()
 	
 func setCurrentWindow(new_current_window):
