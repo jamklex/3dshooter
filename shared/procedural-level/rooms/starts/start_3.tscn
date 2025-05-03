@@ -25,7 +25,7 @@ agent_radius = 0.4
 agent_max_climb = 0.0
 agent_max_slope = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3y3r"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7je8j"]
 albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qpld3"]
@@ -158,7 +158,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 4, 0, 7.
 [node name="airvent" parent="NavigationRegion3D/props" instance=ExtResource("5_kqqsf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.89988, 2, -2.17468)
 visible = false
-material = SubResource("StandardMaterial3D_n3y3r")
+material = SubResource("StandardMaterial3D_7je8j")
 
 [node name="Return" parent="NavigationRegion3D/props" instance=ExtResource("7_pfvxh")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -4, -0.668563, 6)

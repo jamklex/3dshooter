@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1odjsuew4od0"]
+[gd_scene load_steps=4 format=3 uid="uid://d1odjsuew4od0"]
 
 [ext_resource type="PackedScene" uid="uid://b48bk58sf6rxf" path="res://assets/blender_meshes/theme_1/walls/wall_7.blend" id="1_ulmh7"]
+[ext_resource type="Texture2D" uid="uid://bjxtfbrgtiwf4" path="res://assets/minimap/black_rectangle.png" id="2_t0brb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nxicy"]
 size = Vector3(0.108026, 2.011, 1.997)
@@ -8,8 +9,14 @@ size = Vector3(0.108026, 2.011, 1.997)
 [node name="wall_7" instance=ExtResource("1_ulmh7")]
 
 [node name="8" parent="." index="0"]
+layers = 2
 lod_bias = 5.0
 
 [node name="CollisionShape3D" parent="8/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0887665, 0.99942, 0)
 shape = SubResource("BoxShape3D_nxicy")
+
+[node name="minimap_icon" type="Sprite3D" parent="8" index="1"]
+transform = Transform3D(-0.15, 3.01992e-07, -1.32005e-14, 0, -8.74228e-08, -2, -2.26494e-08, -2, 8.74228e-08, -0.071, 2.2, -0.003)
+layers = 4
+texture = ExtResource("2_t0brb")

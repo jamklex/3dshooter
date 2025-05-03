@@ -132,7 +132,7 @@ func next_loot_visible() -> bool:
 func choose_start() -> String:
 	var room_paths = FileUtil.getFilesAt(ROOMS_PATH)
 	var room_instances = room_paths.map(func(s: String): return load(s).instantiate() as ProceduralRoom)
-	var starting_rooms = room_instances.filter(func(p: ProceduralRoom): return p is ProceduralStartRoom)
+	var starting_rooms = room_instances.filter(func(p: ProceduralRoom): return p is ProceduralStartRoom and (p as ProceduralStartRoom).is_enabled())
 	return random_of(starting_rooms).scene_file_path
 
 func generate_level():
