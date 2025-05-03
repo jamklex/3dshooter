@@ -29,14 +29,10 @@ const ACTION_MAP = {
 	"questlog": "Open questlog",
 	"reload": "Reload weapon",
 	"sprint": "Sprint",
-}
-
-const KEY_MAP = {
-	1: "Left mouse button",
-	2: "Right mouse button",
-	3: "Middle mouse button",
-	4: "Mouse wheel up",
-	5: "Mouse wheel down",
+	"moveSingleItem": "Move one item",
+	"moveAllItems": "Move all items",
+	"moveHalfItems": "Move half amount of items",
+	"moveCustomAmountItems": "Move custom amount of items",
 }
 
 
@@ -94,14 +90,10 @@ func _getInputMap():
 		for event in InputMap.action_get_events(action):
 			if not event is InputEventKey and not event is InputEventMouseButton:
 				continue
-			var keyText = null
-			if event is InputEventMouseButton:
-				keyText = KEY_MAP.get(event.button_index, event.button_index)
-			elif event is InputEventKey:
-				keyText = KEY_MAP.get(event.physical_keycode, event.as_text_physical_keycode())
 			var actionText = ACTION_MAP.get(action)
-			if actionText:
-				inputMap.set(actionText, keyText)
+			if not actionText:
+				continue
+			inputMap.set(actionText, event.as_text().replace("(Physical)", "").replace("+", " + "))
 			break
 	return inputMap
 	

@@ -156,7 +156,7 @@ text = "Exit game"
 
 [node name="inputPanel" type="Panel" parent="CenterContainer"]
 visible = false
-custom_minimum_size = Vector2(400, 500)
+custom_minimum_size = Vector2(550, 625)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y0jff")
 

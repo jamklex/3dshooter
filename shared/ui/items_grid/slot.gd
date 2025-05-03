@@ -1,13 +1,20 @@
 extends Button
 class_name Slot
 
-signal clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool)
+signal clicked(inventory_item:InventoryItem, slot_action: Slot.Action)
 signal mouseHovered(inventory_item:InventoryItem)
 signal mouseExited(inventory_item:InventoryItem)
 @onready var _image:TextureRect = $image
 @onready var _amount:Label = $amount
 @export var show_amount: bool = true
 var _inventory_item: InventoryItem = null
+
+enum Action {
+	MOVE_ALL_ITEMS,
+	MOVE_HALF_ITEMS,
+	MOVE_SINGLE_ITEM,
+	MOVE_CUSTOM_AMOUNT_ITEMS,
+}
 
 func clear():
 	_inventory_item = null
@@ -42,6 +49,12 @@ func _on_gui_input(event: InputEvent) -> void:
 	if not event is InputEventMouseButton:
 		return
 	var mouseButtonEvent = event as InputEventMouseButton
-	if not mouseButtonEvent.is_released():
-		return
-	clicked.emit(_inventory_item, mouseButtonEvent.button_index, mouseButtonEvent.shift_pressed)
+	if Input.is_action_just_pressed("moveAllItems"):
+		clicked.emit(_inventory_item, Action.MOVE_ALL_ITEMS)
+	elif Input.is_action_just_pressed("moveHalfItems"):
+		clicked.emit(_inventory_item, Action.MOVE_HALF_ITEMS)
+	elif Input.is_action_just_pressed("moveCustomAmountItems"):
+		clicked.emit(_inventory_item, Action.MOVE_CUSTOM_AMOUNT_ITEMS)
+	elif Input.is_action_just_pressed("moveSingleItem"):
+		clicked.emit(_inventory_item, Action.MOVE_SINGLE_ITEM)
+	

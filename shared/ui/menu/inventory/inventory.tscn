@@ -70,14 +70,6 @@ grow_vertical = 2
 [node name="player_items_grid" parent="HBoxContainer/player_inv/VBoxCon" instance=ExtResource("3_0hw7n")]
 layout_mode = 2
 
-[node name="ItemsGrid" parent="HBoxContainer/player_inv/VBoxCon" instance=ExtResource("1_2vvbi")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 5
-rows = 4
-
 [node name="menu" type="PopupMenu" parent="."]
 
 [node name="AmountSlider" parent="." instance=ExtResource("4_qnmcp")]
@@ -95,7 +87,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="draw" from="." to="." method="_visible"]
-[connection signal="on_item_clicked" from="HBoxContainer/ItemsGrid" to="." method="_on_main_inventory_clicked"]
+[connection signal="on_item_clicked" from="HBoxContainer/ItemsGrid" to="." method="_on_inventory_clicked"]
 [connection signal="on_item_clicked" from="HBoxContainer/player_inv/VBoxCon/player_items_grid" to="." method="_on_equipment_inventory_item_clicked"]
-[connection signal="on_item_clicked" from="HBoxContainer/player_inv/VBoxCon/ItemsGrid" to="." method="_on_run_inventory_item_clicked"]
 [connection signal="id_pressed" from="menu" to="." method="_on_menu_id_pressed"]

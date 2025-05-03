@@ -11,11 +11,13 @@ var leftInvName:String
 var rightInvName:String
 
 var tradeItemScene = preload("res://shared/trade/tradeItem.tscn")
-@onready var playerMoneyLabel = $bg/playerMoney
+@onready var playerMoneyElement = $bg/playerMoney
+@onready var playerMoneyLabel = $bg/playerMoney/value
 @onready var diffMoneyLabel = $bg/diffMoney
 @onready var leftInvNameLabel = $bg/leftInvName
 @onready var rightInvNameLabel = $bg/rightInvName
 @onready var amountSlider:AmountSlider = $bg/AmountSlider
+@onready var doneButton:Button = $bg/done
 var shopMode = false
 
 enum Actions {
@@ -80,36 +82,33 @@ func getPrice(id):
 		return priceList[id]
 	return 0
 
-func _onLeftInventoryItemClicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
-	if mouse_key == 1:
-		if shift_hold:
-			amountSlider.show_slider(inventory_item, false)
-		else:
-			_moveItemLeftToRightInv_(inventory_item.item.id, 1)
-	elif mouse_key == 2:
+func _onLeftInventoryItemClicked(inventory_item:InventoryItem, slot_action: Slot.Action):
+	if slot_action == Slot.Action.MOVE_CUSTOM_AMOUNT_ITEMS:
+		amountSlider.show_slider(inventory_item, false)
+	elif slot_action == Slot.Action.MOVE_SINGLE_ITEM:
+		_moveItemLeftToRightInv_(inventory_item.item.id, 1)
+	elif slot_action == Slot.Action.MOVE_HALF_ITEMS:
 		var amount = int(inventory_item.amount/2)
 		if amount == 0:
 			amount = 1
 		_moveItemLeftToRightInv_(inventory_item.item.id, amount)
-	elif mouse_key == 3:
+	elif slot_action == Slot.Action.MOVE_ALL_ITEMS:
 		_moveItemLeftToRightInv_(inventory_item.item.id, inventory_item.amount)
 		
-func _onRightInventoryItemClicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
-	if shopMode:
-		if mouse_key == 1:
-			_moveItemRightToLeftInv_(inventory_item.item.id, inventory_item.amount)
+func _onRightInventoryItemClicked(inventory_item:InventoryItem, slot_action: Slot.Action):
+	if shopMode and slot_action == Slot.Action.MOVE_SINGLE_ITEM:
+		_moveItemRightToLeftInv_(inventory_item.item.id, inventory_item.amount)
 	else:
-		if mouse_key == 1:
-			if shift_hold:
+		if slot_action == Slot.Action.MOVE_CUSTOM_AMOUNT_ITEMS:
 				amountSlider.show_slider(inventory_item, true)
-			else:
-				_moveItemRightToLeftInv_(inventory_item.item.id, 1)
-		elif mouse_key == 2:
+		elif slot_action == Slot.Action.MOVE_SINGLE_ITEM:
+			_moveItemRightToLeftInv_(inventory_item.item.id, 1)
+		elif slot_action == Slot.Action.MOVE_HALF_ITEMS:
 			var amount = int(inventory_item.amount/2)
 			if amount == 0:
 				amount = 1
 			_moveItemRightToLeftInv_(inventory_item.item.id, amount)
-		elif mouse_key == 3:
+		elif slot_action == Slot.Action.MOVE_ALL_ITEMS:
 			_moveItemRightToLeftInv_(inventory_item.item.id, inventory_item.amount)
 	
 
@@ -131,12 +130,17 @@ func refreshUi():
 	refreshInventoryLabels()
 	refreshPlayerInventory()
 	refreshOtherInventory()
+	refreshDoneButton()
 	if priceList:
 		setMoneyLabelVisibility(true)
 		refreshMoneyLabels()
+
+func refreshDoneButton():
+	var canDoTrade = playerMoney + diffMoney >= 0
+	doneButton.disabled = !canDoTrade
 		
 func setMoneyLabelVisibility(_visible:bool):
-	playerMoneyLabel.visible = _visible
+	playerMoneyElement.visible = _visible
 	diffMoneyLabel.visible = _visible
 	
 func refreshInventoryLabels():
@@ -146,7 +150,17 @@ func refreshInventoryLabels():
 func refreshMoneyLabels():
 	var gold_name = ItemHelper.get_item_by_id(Inventory.GOLD_ITEM).name
 	playerMoneyLabel.text = gold_name + ": " + str(playerMoney)
-	diffMoneyLabel.text = ("+" if diffMoney > 0 else "") + str(diffMoney)
+	var diffGoldText = ""
+	var diffGoldColor = Color.WHITE
+	if diffMoney > 0:
+		diffGoldText = "+ "
+		diffGoldColor = Color.GREEN
+	elif diffMoney < 0:
+		diffGoldColor = Color.RED
+	diffGoldText += str(diffMoney)
+	diffGoldText = diffGoldText.replace("-", "- ")
+	diffMoneyLabel.text = diffGoldText
+	diffMoneyLabel.add_theme_color_override("font_color", diffGoldColor)
 
 func closeTrade():
 	onAction.call(Actions.CLOSE_TRADE)

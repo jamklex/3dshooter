@@ -67,7 +67,7 @@ func _can_craft():
 			return false
 	return true
 
-func _on_blueprint_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
+func _on_blueprint_clicked(inventory_item:InventoryItem, slot_action: Slot.Action):
 	if !inventory_item:
 		return
 	_player_inv.add(inventory_item.item.id,inventory_item.amount)
@@ -75,29 +75,28 @@ func _on_blueprint_clicked(inventory_item:InventoryItem, mouse_key: int, shift_h
 	_refresh_item_grids()
 	_refresh_craft_output()
 
-func _on_craft_inv_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
+func _on_craft_inv_item_clicked(inventory_item:InventoryItem, slot_action: Slot.Action):
 	_selected_inventory_item = inventory_item
 	if inventory_item.amount == 1:
 		_apply_item_move(MOVE.CRAFT_TO_PLAYER, 1)
 	else:
-		if mouse_key == 1:
-			if shift_hold:
-				_selected_inventory_item = inventory_item
-				_preselected_move = MOVE.CRAFT_TO_PLAYER
-				_show_amount_slider()
-			else:
-				_crafting_inv.moveItemSome(_player_inv, inventory_item.item.id, 1)
-		elif mouse_key == 2:
+		if slot_action == Slot.Action.MOVE_CUSTOM_AMOUNT_ITEMS:
+			_selected_inventory_item = inventory_item
+			_preselected_move = MOVE.CRAFT_TO_PLAYER
+			_show_amount_slider()
+		elif slot_action == Slot.Action.MOVE_SINGLE_ITEM:
+			_crafting_inv.moveItemSome(_player_inv, inventory_item.item.id, 1)
+		elif slot_action == Slot.Action.MOVE_HALF_ITEMS:
 			var amount = int(inventory_item.amount / 2)
 			if amount == 0:
 				amount = 1
 			_crafting_inv.moveItemSome(_player_inv, inventory_item.item.id, amount)
-		elif mouse_key == 3:
+		elif slot_action == Slot.Action.MOVE_ALL_ITEMS:
 			_crafting_inv.moveItem(_player_inv, inventory_item.item.id)
 	_refresh_craft_output()
 	_refresh_item_grids()
 
-func _on_player_inv_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
+func _on_player_inv_item_clicked(inventory_item:InventoryItem, slot_action: Slot.Action):
 	if inventory_item.item.type == GameItem.GameItemType.BLUEPRINT:
 		if _blueprint_item:
 			_player_inv.addItem(_blueprint_item)
@@ -108,19 +107,18 @@ func _on_player_inv_item_clicked(inventory_item:InventoryItem, mouse_key: int, s
 		if inventory_item.amount == 1:
 			_apply_item_move(MOVE.PLAYER_TO_CRAFT, 1)
 		else:
-			if mouse_key == 1:
-				if shift_hold:
-					_selected_inventory_item = inventory_item
-					_preselected_move = MOVE.PLAYER_TO_CRAFT
-					_show_amount_slider()
-				else:
-					_player_inv.moveItemSome(_crafting_inv, inventory_item.item.id, 1)
-			elif mouse_key == 2:
+			if slot_action == Slot.Action.MOVE_CUSTOM_AMOUNT_ITEMS:
+				_selected_inventory_item = inventory_item
+				_preselected_move = MOVE.PLAYER_TO_CRAFT
+				_show_amount_slider()
+			elif slot_action == Slot.Action.MOVE_SINGLE_ITEM:
+				_player_inv.moveItemSome(_crafting_inv, inventory_item.item.id, 1)
+			elif slot_action == Slot.Action.MOVE_HALF_ITEMS:
 				var amount = int(inventory_item.amount / 2)
 				if amount == 0:
 					amount = 1
 				_player_inv.moveItemSome(_crafting_inv, inventory_item.item.id, amount)
-			elif mouse_key == 3:
+			elif slot_action == Slot.Action.MOVE_ALL_ITEMS:
 				_player_inv.moveItem(_crafting_inv, inventory_item.item.id)
 	_refresh_craft_output()
 	_refresh_item_grids()

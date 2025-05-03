@@ -22,7 +22,7 @@
 					"SALVAGER"
 				]
 			},
-			"method": "openLastLoot",
+			"method": "openSellLoot",
 			"payload": [
 				"res://data/price_lists/default.json"
 			]

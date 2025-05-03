@@ -2,11 +2,13 @@
 extends Panel
 class_name ItemsGrid
 
-signal on_item_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool)
+signal on_item_clicked(inventory_item:InventoryItem, slot_action: Slot.Action)
 var _inventory:Inventory = null
 var _show_non_tradeable = false
 @onready var _container:GridContainer = $ScrollContainer/CenterContainer/slots
 @onready var _itemInfos:ItemInfos = $ItemInfos
+var slot_scene = preload("res://shared/ui/items_grid/slot.tscn") as PackedScene
+
 
 @export_range(1,20) var columns = 1:
 	set(new_columns):
@@ -24,7 +26,6 @@ func _init_slots():
 		_container.remove_child(slot)
 	_container.columns = columns
 	var total_slots = rows * columns
-	var slot_scene = load("res://shared/ui/items_grid/slot.tscn") as PackedScene
 	for i in range(total_slots):
 		var slot = slot_scene.instantiate() as Slot
 		_container.add_child(slot)
@@ -33,10 +34,10 @@ func _init_slots():
 		slot.mouseHovered.connect(_on_slot_hovered)
 		slot.mouseExited.connect(_on_slot_left)
 		
-func _on_slot_clicked(inventory_item:InventoryItem, mouse_key: int, shift_hold: bool):
+func _on_slot_clicked(inventory_item:InventoryItem, slot_action: Slot.Action):
 	if not inventory_item:
 		return
-	on_item_clicked.emit(inventory_item, mouse_key, shift_hold)
+	on_item_clicked.emit(inventory_item, slot_action)
 	
 func _on_slot_hovered(inventory_item:InventoryItem):
 	if not inventory_item:
