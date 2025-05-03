@@ -180,6 +180,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00526428, -0.0123291, 0.166
 shape = SubResource("BoxShape3D_ig3im")
 
 [node name="minimap_icon" type="Sprite3D" parent="."]
-transform = Transform3D(-4, 6.03983e-07, -1.32005e-14, 0, -1.74846e-07, -2, -6.03983e-07, -4, 8.74228e-08, 0.01, 4.1, 0.328)
+transform = Transform3D(-4.1, 6.19083e-07, -1.32005e-14, 0, -1.79217e-07, -2, -6.19083e-07, -4.1, 8.74228e-08, 0.01, 4.1, 0.335)
 layers = 4
 texture = ExtResource("2_nve7u")
