@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://com8rta3734cb"]
+[gd_scene load_steps=10 format=4 uid="uid://com8rta3734cb"]
 
 [ext_resource type="Material" uid="uid://cgb0txgcbuei7" path="res://assets/blender_meshes/theme_2/materials/light_source.tres" id="1_xiv04"]
+[ext_resource type="Texture2D" uid="uid://bjxtfbrgtiwf4" path="res://assets/minimap/black_rectangle.png" id="2_eby4q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1wxn"]
 resource_name = "steel black.010"
@@ -111,6 +112,7 @@ size = Vector3(0.456, 0.069, 0.092)
 
 [node name="wall05" type="MeshInstance3D" parent="."]
 transform = Transform3D(-8.74228e-08, 0, -2, 0, 2.54, 0, 2, 0, -8.74228e-08, 0, 0, 0)
+layers = 2
 lod_bias = 5.0
 mesh = SubResource("ArrayMesh_ssg8o")
 skeleton = NodePath("")
@@ -128,3 +130,8 @@ shape = SubResource("BoxShape3D_mrfnf")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="wall05/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.759192, 0.650867, 0, -0.650867, 0.759192, 0, 1.19879, -0.150779)
 shape = SubResource("BoxShape3D_h77eg")
+
+[node name="minimap_icon" type="Sprite3D" parent="."]
+transform = Transform3D(0.8, -1.79131e-07, -1.70218e-14, 0, -4.02145e-08, 2, -1.55766e-07, -0.92, -8.74228e-08, 0.3, 4.4, -0.001)
+layers = 4
+texture = ExtResource("2_eby4q")
