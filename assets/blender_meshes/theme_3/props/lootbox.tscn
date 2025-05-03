@@ -11,10 +11,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 [node name="prop_1" parent="." instance=ExtResource("1_flbe5")]
 
 [node name="Lootable" type="CSGBox3D" parent="." groups=["lootable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0406489, 0.547546, 0.00994873)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0054939, 0.547546, 0.00994873)
 layers = 0
 use_collision = true
-size = Vector3(1.64063, 1.12402, 1.875)
+size = Vector3(1.71094, 1.12402, 1.875)
 script = ExtResource("2_8s5k4")
 
 [node name="minimap_icon" type="Node3D" parent="Lootable"]
