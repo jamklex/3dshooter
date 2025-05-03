@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://csngg1cckwdw0"]
+[gd_scene load_steps=10 format=4 uid="uid://csngg1cckwdw0"]
 
 [ext_resource type="Material" uid="uid://d33n5cobxlg3l" path="res://assets/blender_meshes/theme_3/materials/copper.tres" id="1_wmrip"]
+[ext_resource type="Texture2D" uid="uid://bjxtfbrgtiwf4" path="res://assets/minimap/black_rectangle.png" id="2_s3nmy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oysse"]
 resource_name = "steel.055"
@@ -166,6 +167,7 @@ size = Vector3(2.00015, 0.225525, 2.00482)
 
 [node name="walls_005" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 2, 0, 0, 0, -2, -2, 0, 0, 0, 0, 0)
+layers = 2
 lod_bias = 5.0
 mesh = SubResource("ArrayMesh_rll3b")
 skeleton = NodePath("")
@@ -175,3 +177,8 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_005/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00392151, -0.0571594, -0.995758)
 shape = SubResource("BoxShape3D_drbky")
+
+[node name="minimap_icon" type="Sprite3D" parent="."]
+transform = Transform3D(0.45, -4.29138e-07, 9.3791e-15, 0, -1.74846e-07, -2, 4.8278e-08, 4, -8.74228e-08, -0.10786, 4.2, 0.000703871)
+layers = 4
+texture = ExtResource("2_s3nmy")

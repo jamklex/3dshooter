@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://dhthtivn48jy2"]
+[gd_scene load_steps=9 format=4 uid="uid://dhthtivn48jy2"]
+
+[ext_resource type="Texture2D" uid="uid://bjxtfbrgtiwf4" path="res://assets/minimap/black_rectangle.png" id="1_8pmdh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjqix"]
 resource_name = "steel.048"
@@ -149,3 +151,8 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="walls_001/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0162125, -0.0721741, -0.995422)
 shape = SubResource("BoxShape3D_77wj6")
+
+[node name="minimap_icon" type="Sprite3D" parent="."]
+transform = Transform3D(0.45, -1.60927e-07, 9.3791e-15, 0, -6.55671e-08, -2, 4.8278e-08, 1.5, -8.74228e-08, -0.1418, 4.2, -0.0169578)
+layers = 4
+texture = ExtResource("1_8pmdh")

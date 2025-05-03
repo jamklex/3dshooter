@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://de40boioexgp4"]
+[gd_scene load_steps=10 format=4 uid="uid://de40boioexgp4"]
 
 [ext_resource type="Material" uid="uid://d33n5cobxlg3l" path="res://assets/blender_meshes/theme_3/materials/copper.tres" id="1_2hthy"]
 [ext_resource type="Material" uid="uid://dlbp5yry1pesu" path="res://assets/blender_meshes/theme_3/materials/light_source.tres" id="2_e86qs"]
+[ext_resource type="Texture2D" uid="uid://68iu8arc7kpo" path="res://assets/minimap/purple_rectangle.png" id="3_5lv8y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1i10"]
 resource_name = "steel.066"
@@ -159,6 +160,7 @@ size = Vector3(2.004, 0.075, 2.002)
 
 [node name="panels_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0314128, 0)
+layers = 2
 lod_bias = 5.0
 mesh = SubResource("ArrayMesh_e3rhs")
 skeleton = NodePath("")
@@ -176,3 +178,8 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0314128, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00400639, -0.0218635, 0.169801)
 shape = SubResource("BoxShape3D_3xmxp")
+
+[node name="minimap_icon" type="Sprite3D" parent="."]
+transform = Transform3D(-4, 6.03983e-07, -1.32005e-14, 0, -1.74846e-07, -2, -6.03983e-07, -4, 8.74228e-08, 0.01, 4.1, 0.328)
+layers = 4
+texture = ExtResource("3_5lv8y")
