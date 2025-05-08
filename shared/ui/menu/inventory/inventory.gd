@@ -39,7 +39,7 @@ func _on_inventory_clicked(inventory_item: InventoryItem, slot_action: Slot.Acti
 		return
 
 func _on_equipment_inventory_item_clicked(inventory_item:InventoryItem, slot_action:Slot.Action):
-	if not inventory_item or WorldUtil.player.inMissionMap:
+	if not inventory_item:
 		return
 	if slot_action != Slot.Action.MOVE_SINGLE_ITEM:
 		return

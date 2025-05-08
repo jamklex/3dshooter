@@ -308,9 +308,6 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 [node name="Lootbox4" parent="NavigationRegion3D/props" instance=ExtResource("7_hkj3y")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4.50376, 0.12456, -6.94622)
 
-[node name="Lootbox3" parent="NavigationRegion3D/props" instance=ExtResource("7_hkj3y")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4.50376, 1.47411, -6.12907)
-
 [node name="Lootbox2" parent="NavigationRegion3D/props" instance=ExtResource("7_hkj3y")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 3.69834, 0.12456, -5.94622)
 
@@ -325,9 +322,6 @@ transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107
 
 [node name="Lootbox6" parent="NavigationRegion3D/props" instance=ExtResource("7_hkj3y")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 4.60105, 0.12456, 6.7325)
-
-[node name="Lootbox7" parent="NavigationRegion3D/props" instance=ExtResource("7_hkj3y")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 4.60105, 1.47411, 5.91535)
 
 [node name="Lootbox8" parent="NavigationRegion3D/props" instance=ExtResource("7_hkj3y")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 5.40648, 0.12456, 5.7325)

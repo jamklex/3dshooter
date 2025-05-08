@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://com8rta3734cb"]
+[gd_scene load_steps=11 format=4 uid="uid://com8rta3734cb"]
 
 [ext_resource type="Material" uid="uid://cgb0txgcbuei7" path="res://assets/blender_meshes/theme_2/materials/light_source.tres" id="1_xiv04"]
 [ext_resource type="Texture2D" uid="uid://bjxtfbrgtiwf4" path="res://assets/minimap/black_rectangle.png" id="2_eby4q"]
@@ -99,11 +99,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_y62ud")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_eby4q"]
+size = Vector3(0.456, 0.119385, 0.096875)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_imb7i"]
-size = Vector3(0.456, 1.225, 0.1)
+size = Vector3(0.456, 1.2325, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mrfnf"]
-size = Vector3(0.456, 0.496, 0.102)
+size = Vector3(0.456, 0.496, 0.0948359)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h77eg"]
 size = Vector3(0.456, 0.069, 0.092)
@@ -119,12 +122,16 @@ skeleton = NodePath("")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="wall05"]
 
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="wall05/StaticBody3D"]
+transform = Transform3D(0.999984, 0, 0, 0, 1, 0, 0, 0, 0.999984, -1.28863e-08, 1.5216, -0.296367)
+shape = SubResource("BoxShape3D_eby4q")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="wall05/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.611838, 0)
+transform = Transform3D(0.999998, 0, 0, 0, 1, 0, 0, 0, 0.999998, 0, 0.615586, 0)
 shape = SubResource("BoxShape3D_imb7i")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="wall05/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.759192, 0.650867, 0, -0.650867, 0.759192, 0, 1.30695, -0.148438)
+transform = Transform3D(0.999999, 1.06581e-14, 1.42109e-14, 0, 0.759192, 0.650867, 0, -0.650866, 0.759191, 0, 1.3073, -0.148026)
 shape = SubResource("BoxShape3D_mrfnf")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="wall05/StaticBody3D"]

@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3cet1o418p41"]
+[gd_scene load_steps=8 format=3 uid="uid://c3cet1o418p41"]
 
 [ext_resource type="PackedScene" uid="uid://clm63ehyc7jx8" path="res://assets/blender_meshes/theme_2/walls/wall_2.blend" id="1_aj2kq"]
 [ext_resource type="Texture2D" uid="uid://bjxtfbrgtiwf4" path="res://assets/minimap/black_rectangle.png" id="2_essvc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r81d4"]
-size = Vector3(1.98633, 1.98633, 0.513916)
+size = Vector3(2.00879, 1.23376, 0.0978241)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_essvc"]
+size = Vector3(2.01221, 0.430241, 0.0978431)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_io0xj"]
+size = Vector3(2.01221, 0.462288, 0.128303)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mg1c"]
+size = Vector3(2.01221, 0.113926, 0.0974083)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nldvx"]
+size = Vector3(2.01221, 0.113926, 0.0969162)
 
 [node name="wall_2" instance=ExtResource("1_aj2kq")]
 
@@ -12,15 +24,33 @@ size = Vector3(1.98633, 1.98633, 0.513916)
 lod_bias = 5.0
 
 [node name="CollisionShape3D" parent="wall02/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.998833, -0.202759)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01123, 1.00365, 0.000938207)
 shape = SubResource("BoxShape3D_r81d4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="wall02/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.833452, -0.552592, 0, 0.552592, 0.833452, -0.012939, 0.235058, -0.109407)
+shape = SubResource("BoxShape3D_essvc")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="wall02/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, -0.713312, -0.700847, 0, 0.700847, -0.713312, -0.012939, 1.74113, -0.160125)
+shape = SubResource("BoxShape3D_io0xj")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="wall02/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012939, 0.0569738, -0.1991)
+shape = SubResource("BoxShape3D_7mg1c")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="wall02/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012939, 1.94348, -0.296024)
+shape = SubResource("BoxShape3D_nldvx")
 
 [node name="minimap_icon" type="Sprite3D" parent="wall02" index="1"]
 transform = Transform3D(2.18557e-08, 8.74228e-08, 2, -7.54979e-08, -2, 8.74228e-08, 0.5, -3.01992e-07, -8.74228e-08, -1.2, 1, -0.203)
+visible = false
 layers = 4
 texture = ExtResource("2_essvc")
 
 [node name="minimap_icon2" type="Sprite3D" parent="wall02" index="2"]
 transform = Transform3D(2.18557e-08, 8.74228e-08, 2, -7.54979e-08, -2, 8.74228e-08, 0.5, -3.01992e-07, -8.74228e-08, 1.2, 1, -0.203)
+visible = false
 layers = 4
 texture = ExtResource("2_essvc")
