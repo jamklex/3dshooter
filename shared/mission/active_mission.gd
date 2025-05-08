@@ -2,13 +2,22 @@ extends PanelContainer
 
 @onready var label = $ordering/header/label as Label
 @onready var expire = $ordering/expire as Label
+
 @onready var teleport_button = $ordering/header/teleport_button as Button
 @onready var collect_button = $ordering/header/collect_button as Button
 @onready var remove_button = $ordering/header/remove_button as Button
-@onready var kills = $ordering/body/kills as VBoxContainer
-@onready var resources = $ordering/body/resources as VBoxContainer
-@onready var rewards = $ordering/body/rewards as VBoxContainer
-@onready var punishments = $ordering/body/punishments as VBoxContainer
+
+@onready var kills = $ordering/body/kills/body as VBoxContainer
+@onready var resources = $ordering/body/resources/body as VBoxContainer
+@onready var rewards = $ordering/body/rewards/body as VBoxContainer
+@onready var punishments = $ordering/body/punishments/body as VBoxContainer
+
+@export_category("Steps")
+@export var resourcesColor: Color = Color("fff")
+@export var killsColor: Color = Color("fff")
+@export var rewardsColor: Color = Color("fff")
+@export var punishmentsColor: Color = Color("fff")
+
 var linked_mission: Mission
 var kills_holder: Array
 var resources_holder: Array
@@ -16,10 +25,11 @@ var rewards_holder: Array
 var punishment_holder: Array
 signal on_teleport
 
-const active_color = Color("#9558224b")
-const expired_color = Color("#b5323b4b")
-const done_color = Color("#4a76424b")
-const colors = [active_color, expired_color, done_color]
+@export_category("Backgrounds")
+@export var active_color = Color("#6390f24b")
+@export var done_color = Color("#4a76424b")
+@export var expired_color = Color("#b5323b4b")
+var colors = [active_color, expired_color, done_color]
 var stepUi = preload("res://shared/mission/active_step.tscn")
 
 func _ready():
@@ -32,8 +42,10 @@ func _process(_delta):
 	teleport_button.visible = !linked_mission.allDone() && !is_over
 	rewards.visible = !is_over
 	remove_button.visible = is_over
-	punishments.visible = is_over
-	label.text = linked_mission._name
+	punishments.get_parent().visible = remove_button.visible
+	rewards.get_parent().visible = rewards.visible
+	var difficulty = Mission.Difficulty.find_key(linked_mission.difficulty)
+	label.text = "[" + difficulty + "]\n" + linked_mission._name
 	add_entities(kills_holder, kills)
 	add_entities(resources_holder, resources)
 	add_entities(rewards_holder, rewards)
@@ -58,7 +70,6 @@ func add_entities(entities: Array, container: VBoxContainer):
 		if(!e.get_parent()):
 			container.add_child(e)
 
-
 func refresh_timer():
 	var now = int(Time.get_unix_time_from_system())
 	var time = Time.get_datetime_dict_from_unix_time(linked_mission.over - now)
@@ -70,22 +81,27 @@ func refresh_timer():
 func link(mission: Mission):
 	linked_mission = mission
 	for k in linked_mission.kills:
-		add_step(k, kills_holder)
+		add_step(k, kills_holder, killsColor)
 	for r in linked_mission.resources:
-		add_step(r, resources_holder)
+		add_step(r, resources_holder, resourcesColor)
 	for r in linked_mission.rewards:
 		var _label = Label.new()
+		set_color(_label, rewardsColor)
 		_label.text = r.item.name + ": " + str(r.amount)
 		rewards_holder.push_back(_label)
 	for p in linked_mission.getPunishment():
 		var _label = Label.new()
-		_label.add_theme_color_override("font_color", Color.RED)
+		set_color(_label, punishmentsColor)
 		_label.text = p.item.name + ": -" + str(p.amount)
 		punishment_holder.push_back(_label)
 
-func add_step(s: MissionStep, _parent: Array):
+func set_color(label: Label, color: Color):
+	label.add_theme_color_override("font_color", color)
+
+func add_step(s: MissionStep, _parent: Array, color: Color):
 	var step = stepUi.instantiate()
 	step.add_link(s)
+	step.color = color
 	_parent.push_back(step)
 
 func _is_done() -> bool:

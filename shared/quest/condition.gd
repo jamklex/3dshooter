@@ -18,7 +18,10 @@ func check() -> bool:
 
 func hasItemCount(_payload: Array) -> bool:
 	var main_inventory = WorldUtil.player.inventory as Inventory
-	return main_inventory.check(_payload[0], _payload[1])
+	var equipment = WorldUtil.player.equipment as Inventory
+	var item = _payload[0]
+	var count = _payload[1]
+	return main_inventory.check(item, count) or equipment.check(item, count)
 
 func hasNotItemCount(_payload: Array) -> bool:
 	var main_inventory = WorldUtil.player.inventory as Inventory
