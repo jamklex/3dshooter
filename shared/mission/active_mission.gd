@@ -44,7 +44,8 @@ func _process(_delta):
 	remove_button.visible = is_over
 	punishments.get_parent().visible = remove_button.visible
 	rewards.get_parent().visible = rewards.visible
-	label.text = linked_mission._name
+	var difficulty = Mission.Difficulty.find_key(linked_mission.difficulty)
+	label.text = "[" + difficulty + "]\n" + linked_mission._name
 	add_entities(kills_holder, kills)
 	add_entities(resources_holder, resources)
 	add_entities(rewards_holder, rewards)

@@ -63,7 +63,7 @@ func set_background():
 
 func _process(_delta):
 	var difficulty = Mission.Difficulty.find_key(linked_mission.difficulty)
-	label.text = "[" + difficulty + "]\n" +linked_mission._name
+	label.text = "[" + difficulty + "]\n" + linked_mission._name
 	for r in resources_holder:
 		if(!r.get_parent()):
 			resources.add_child(r)
