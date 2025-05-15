@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="3 Dshooter"
-run/main_scene="res://scenes/ship/_main.tscn"
+run/main_scene="uid://vv5vrq33li6k"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

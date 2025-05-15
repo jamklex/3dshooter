@@ -1,5 +1,5 @@
 extends Control
-
+class_name Settings
 
 @onready var windowSizeSelector = $CenterContainer/VBoxContainer/WindowSize/windowSize as OptionButton
 @onready var mouseSensSlider = $CenterContainer/VBoxContainer/MouseSens/mouseSens as HSlider
@@ -10,8 +10,9 @@ extends Control
 @onready var soundEffectSliderValue = $CenterContainer/VBoxContainer/soundEffects/soundEffectsValue as Label
 @onready var inputPanel = $CenterContainer/inputPanel as Panel
 @onready var inputHolder = $CenterContainer/inputPanel/MarginContainer/VBoxContainer2/Inputs as VBoxContainer
+@onready var exitBtn = $CenterContainer/VBoxContainer/exitBtn as Button
 var inputEntryScene = preload("res://shared/ui/menu/input-entry.tscn")
-
+var _on_apply: Callable
 
 const ACTION_MAP = {
 	"forward": "Move forwards",
@@ -35,28 +36,32 @@ const ACTION_MAP = {
 	"moveCustomAmountItems": "Move custom amount of items",
 }
 
+func hide_exit_button():
+	exitBtn.visible = false
+
+func set_on_apply(on_apply: Callable):
+	_on_apply = on_apply
 
 func _ready():
 	windowSizeSelector.add_item("Fullscreen")
 	for windowSize in UserSettings.WINDOW_SIZES:
 		windowSizeSelector.add_item(String.num(windowSize.x, 0) + " x " + String.num(windowSize.y, 0))
 	_load_keys()
-		
+
 func _on_draw():
 	_show_settings()
-	
+
 func _show_settings():
 	windowSizeSelector.selected = UserSettings.get_setting(UserSettings.KEY_WINDOW_SIZE_INDEX) + 1
 	mouseSensSlider.value = UserSettings.get_setting(UserSettings.KEY_MOUSE_SENS)
 	mouseSensSliderValue.text = str(UserSettings.get_setting(UserSettings.KEY_MOUSE_SENS))
 	_set_sound_value(UserSettings.get_setting(UserSettings.AMBIENT_SOUND_LEVEL), ambientSoundSlider, ambientSoundSliderValue)
 	_set_sound_value(UserSettings.get_setting(UserSettings.SOUND_EFFECTS_LEVEL), soundEffectSlider, soundEffectSliderValue)
-	
+
 func _set_sound_value(value:float, slider:HSlider, label:Label):
 	value *= 100
 	slider.value = value
 	label.text = String.num(value, 0) + "%"
-	
 
 func _exit_btn():
 	WorldUtil.quitGame()
@@ -67,6 +72,8 @@ func _apply_btn():
 	UserSettings.set_setting(UserSettings.AMBIENT_SOUND_LEVEL, ambientSoundSlider.value / 100)
 	UserSettings.set_setting(UserSettings.SOUND_EFFECTS_LEVEL, soundEffectSlider.value / 100)
 	UserSettings.apply_settings()
+	if _on_apply:
+		_on_apply.call()
 
 func _on_mouse_sens_value_changed(value):
 	var sensAsText = str(value)
@@ -81,7 +88,7 @@ func _on_ambient_sound_value_changed(value: float) -> void:
 
 func _on_sound_effects_value_changed(value: float) -> void:
 	soundEffectSliderValue.text = String.num(value, 0) + "%"
-	
+
 func _getInputMap():
 	var inputMap = {}
 	for action in InputMap.get_actions():
@@ -96,7 +103,7 @@ func _getInputMap():
 			inputMap.set(actionText, event.as_text().replace("(Physical)", "").replace("+", " + "))
 			break
 	return inputMap
-	
+
 func _load_keys():
 	for input in inputHolder.get_children():
 		input.free()
