@@ -16,6 +16,9 @@ extends CharacterBody3D
 @onready var _raycast = $camera_mount/camera_arm/camera_rot/camera/RayCast3D
 @onready var _ui = $camera_mount/camera_arm/camera_rot/camera/ui
 @onready var minimap_icon = $visuals/minimap_icon
+@onready var _player_mesh_1 = $visuals/mixamo_base/Armature/Skeleton3D/Beta_Surface as MeshInstance3D
+@onready var _player_mesh_2 = $visuals/mixamo_base/Armature/Skeleton3D/Beta_Joints as MeshInstance3D
+@onready var _camera = $camera_mount/camera_arm/camera_rot/camera as Camera3D
 
 @onready var inventory_output = _ui.get_node("RunInventory") as RichTextLabel
 @onready var interactionPopup = _ui.get_node("InteractionPopup") as Label
@@ -76,12 +79,12 @@ func _physics_process(delta):
 	if WorldUtil.currentWindow:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		_ui.visible = false
-		_shooter.hideMagInfo()
+		_shooter.hideUi()
 		_playAnimation("idle")
 		return
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_ui.visible = true
-	_shooter.showMagInfo()
+	_shooter.showUi()
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	fade_interaction_feedback(0.5*delta)
@@ -115,12 +118,19 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
 		sprinting = false
+	var visualsToCameraDistance = _camera.global_position.distance_to(_visuals.global_position)
+	var cameraTooNear = visualsToCameraDistance < 1.9
+	var visualsTransparency = 0
+	if cameraTooNear:
+		visualsTransparency = 0.9
+	_player_mesh_1.transparency = visualsTransparency
+	_player_mesh_2.transparency = visualsTransparency
+	move_and_slide()
 #	=== FOR DEBUGGING ===
 	#if global_position != last_pos:
 		#last_pos = global_position
 		#print(global_position)
 #	=========
-	move_and_slide()
 
 func _playAnimation(animationName:String):
 	if _animation_player.current_animation != animationName:

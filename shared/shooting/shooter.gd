@@ -1,6 +1,7 @@
 extends Node3D
 class_name Shooter
 
+const RELOAD_SOUND: AudioStream = preload("res://shared/shooting/switch.mp3")
 @export var raycastMeters:int
 @export var camera:Camera3D
 @export var weaponHolder:Node3D
@@ -16,6 +17,7 @@ var useRealMunition:bool = true
 @onready var _reloadTimer:Timer = $reloadTimer
 @onready var _shotTimer:Timer = $shotTimer
 @onready var _magInfo:Label = $magInfo
+@onready var _spreadCircle: Panel = $spreadCircle
 var soundPlayer:AudioStreamPlayer
 signal onHitShootable
 
@@ -51,11 +53,13 @@ func hasWeaponWithAmmo():
 			return true
 	return false
 	
-func hideMagInfo():
+func hideUi():
 	_magInfo.visible = false
+	_spreadCircle.visible = false
 	
-func showMagInfo():
+func showUi():
 	_magInfo.visible = true
+	_refreshSpreadCircle()
 	
 func addWeapon(scenePath:String):
 	if _getWeaponForScenePath(scenePath):
@@ -363,7 +367,7 @@ func _raycastForHittedObject() -> Node:
 	var collision = space.intersect_ray(query)
 	if not collision:
 		return
-	#_show_projectiles_collision(collision)
+	_show_projectiles_collision(collision)
 	var collider = collision.collider as Node
 	var bone = collision.collider as CharacterBody3D
 	if bone:
@@ -405,31 +409,41 @@ func _handleWeaponSwitching():
 	_checkFov()
 		
 func putWeaponAway():
+	if currentWeapon == null:
+		return
 	_putCurrentWeaponAway()
 	if aiming:
 		_switchAim()
 	_refreshMagInfo()
+	_playWeaponSwitchSound()
+	_refreshSpreadCircle()
+	
+func _switchWeapon(newIndex: int):
+	if _getCurrentWeaponIndex() == newIndex:
+		return
+	_putCurrentWeaponAway()
+	_setCurrentWeapon(weapons[newIndex])
+	_playWeaponSwitchSound()
+	_refreshSpreadCircle()
 	
 func _nextWeapon():
 	if weapons.size() == 0:
 		return
-	var currentIndex = _getCurrentWeaponIndex()
-	_putCurrentWeaponAway()
-	currentIndex += 1
-	if currentIndex >= weapons.size():
-		currentIndex = 0
-	_setCurrentWeapon(weapons[currentIndex])
-	
+	var nextIndex = _getCurrentWeaponIndex()
+	nextIndex += 1
+	if nextIndex >= weapons.size():
+		nextIndex = 0
+	_switchWeapon(nextIndex)
 	
 func _prevWeapon():
 	if weapons.size() == 0:
 		return
-	var currentIndex = _getCurrentWeaponIndex()
-	_putCurrentWeaponAway()
-	currentIndex -= 1
-	if currentIndex < 0:
-		currentIndex = weapons.size() - 1
-	_setCurrentWeapon(weapons[currentIndex])
+	var previousIndex = _getCurrentWeaponIndex()
+	previousIndex -= 1
+	if previousIndex < 0:
+		previousIndex = weapons.size() - 1
+	_switchWeapon(previousIndex)
+	
 	
 func _setCurrentWeapon(weapon:Weapon):
 	currentWeapon = weapon
@@ -453,7 +467,33 @@ func _checkFov():
 	if currentWeapon and aiming:
 		fov = 30 if currentWeapon.weaponType == currentWeapon.WeaponType.SNIPER else 40
 	WorldUtil.player_cam.fov = fov
-
+	
+func _playWeaponSwitchSound():
+	soundPlayer.stream = RELOAD_SOUND
+	soundPlayer.play(0)
+	
+func _refreshSpreadCircle():
+	if currentWeapon == null:
+		_spreadCircle.visible = false
+		return
+	var weaponAccuracy = currentWeapon.accuracy
+	if weaponAccuracy == 1:
+		_spreadCircle.visible = false
+		return
+	_spreadCircle.visible = true
+	var circleSizeInScreenHeightPercent = 1 - weaponAccuracy
+	var windowWidth = ProjectSettings.get_setting("display/window/size/viewport_width")
+	var windowHeight = ProjectSettings.get_setting("display/window/size/viewport_height")
+	var size = windowHeight * circleSizeInScreenHeightPercent
+	_spreadCircle.size = Vector2(size, size)
+	var style = _spreadCircle.get_theme_stylebox("panel") as StyleBoxFlat
+	style.corner_radius_top_left = size
+	style.corner_radius_top_right = size
+	style.corner_radius_bottom_right = size
+	style.corner_radius_bottom_left = size
+	var newPos = Vector2(windowWidth/2-size/2, windowHeight/2-size/2)
+	_spreadCircle.position = newPos
+	
 func _show_projectiles_collision(collision):
 	var sphere = SphereMesh.new()
 	var sphere_instance = MeshInstance3D.new()
