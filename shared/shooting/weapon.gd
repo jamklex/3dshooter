@@ -17,6 +17,7 @@ enum WeaponType {PISTOL, RIFLE, SNIPER, SHOTGUN}
 @export var shotCooldown:float = 0
 @export var accuracy:float = 1.0 # 1.0 = 100%
 @export var projecticles:int = 1
+@export var recoil = 0
 var manualLoading = false
 var singleShot = false
 var loaded = false

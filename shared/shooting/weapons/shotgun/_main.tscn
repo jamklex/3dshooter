@@ -52,7 +52,7 @@ weaponName = "Shotgun"
 description = "Shotgun desc here"
 magSize = 7
 weaponType = 3
-damage = 1
+damage = 2
 shotSound = ExtResource("2_qxrot")
 emptyShotSound = ExtResource("3_8d312")
 reloadMagSound = ExtResource("4_5titq")
@@ -60,7 +60,8 @@ reloadSound = ExtResource("5_b1quy")
 muzzleFlare = NodePath("muzzleFlare")
 shotCooldown = 1.0
 accuracy = 0.75
-projecticles = 8
+projecticles = 15
+recoil = 40
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0890601, -0.244512)
@@ -79,8 +80,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0
 mesh = SubResource("CylinderMesh_qoj00")
 
 [node name="muzzleFlare" type="GPUParticles3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.100344, -0.393198)
-visible = false
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0933066, -0.620559)
 emitting = false
 amount = 100
 lifetime = 0.1

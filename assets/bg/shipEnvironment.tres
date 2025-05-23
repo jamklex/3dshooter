@@ -7,13 +7,10 @@ panorama = ExtResource("1_cu5ox")
 
 [sub_resource type="Sky" id="Sky_tqcj1"]
 sky_material = SubResource("PanoramaSkyMaterial_q0x54")
-process_mode = 1
-radiance_size = 0
 
 [resource]
 background_mode = 2
 sky = SubResource("Sky_tqcj1")
-sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.337255, 0.337255, 0.337255, 1)
 glow_intensity = 4.25

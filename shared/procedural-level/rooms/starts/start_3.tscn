@@ -37,7 +37,6 @@ sky_material = SubResource("PanoramaSkyMaterial_qpld3")
 [sub_resource type="Environment" id="Environment_q68x2"]
 background_mode = 2
 sky = SubResource("Sky_2vaj2")
-sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.270222, 0.270222, 0.270222, 1)
 
@@ -187,11 +186,11 @@ transform = Transform3D(2, 0, 0, 0, 0.525, 0, 0, 0, 0.3, -0.0356712, -0.0783251,
 [node name="Invisible-floor4" parent="NavigationRegion3D" instance=ExtResource("9_idhrn")]
 transform = Transform3D(2, 0, 0, 0, 0.525, 0, 0, 0, 0.3, -0.0356712, -0.0780622, -4.18386)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_q68x2")
-
 [node name="player" parent="." instance=ExtResource("6_5terg")]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0.201257, 0.0501833, 1.83396)
 
 [node name="SpawnPoint" parent="." instance=ExtResource("12_1oafj")]
 transform = Transform3D(8, 0, 0, 0, 1, 0, 0, 0, 8, 1.134, 0, 0.841)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q68x2")

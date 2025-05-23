@@ -71,13 +71,14 @@ weaponName = "Sniper"
 description = "Sniper descc"
 magSize = 5
 weaponType = 2
-damage = 1
+damage = 30
 shotSound = ExtResource("2_uivmb")
 emptyShotSound = ExtResource("3_nml67")
 reloadMagSound = ExtResource("4_owhdu")
 reloadSound = ExtResource("5_6absd")
 muzzleFlare = NodePath("muzzleFlare")
 shotCooldown = 1.0
+recoil = 30
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0741099, -0.375419)
@@ -108,8 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0336265, -0.20391)
 mesh = SubResource("BoxMesh_s4mf1")
 
 [node name="muzzleFlare" type="GPUParticles3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0641582, -0.727703)
-visible = false
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0745554, -1.19318)
 emitting = false
 amount = 100
 lifetime = 0.1

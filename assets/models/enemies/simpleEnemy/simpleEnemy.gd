@@ -126,6 +126,8 @@ func _physics_process(delta):
 		if Time.get_ticks_msec() >= simple_path_until:
 			nav_agent.path_postprocessing = 0
 			simple_path_until = null
+			if not _moving():
+				nav_agent.target_position = player.global_position if playerSpotted else _get_next_random_pos()
 	else:
 		if not _moving() and not _is_attacking():
 			if not not_moving_since:

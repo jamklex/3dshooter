@@ -26,6 +26,9 @@ agent_radius = 0.4
 agent_max_climb = 0.1
 agent_max_slope = 0.02
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i7uw"]
+albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wceub"]
 panorama = ExtResource("9_k1gxg")
 
@@ -35,12 +38,8 @@ sky_material = SubResource("PanoramaSkyMaterial_wceub")
 [sub_resource type="Environment" id="Environment_tbx6h"]
 background_mode = 2
 sky = SubResource("Sky_1l0ip")
-sky_custom_fov = 73.0
 ambient_light_source = 2
 ambient_light_color = Color(0.277528, 0.277528, 0.277528, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4i7uw"]
-albedo_color = Color(0.411765, 0.643137, 0.494118, 1)
 
 [node name="Start2" type="Node3D"]
 script = ExtResource("1_ysyqo")
@@ -222,9 +221,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -15.5)
 [node name="player" parent="." instance=ExtResource("7_esb3n")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.93983, 0.272539, -12.815)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_tbx6h")
-
 [node name="airvent" parent="." instance=ExtResource("10_g5fqf")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.4435, 2.13752, -3.75274)
 visible = false
@@ -232,3 +228,6 @@ material = SubResource("StandardMaterial3D_4i7uw")
 
 [node name="SpawnPoint" parent="." instance=ExtResource("11_rmbqs")]
 transform = Transform3D(7, 0, 0, 0, 1, 0, 0, 0, 7, 5.985, 0, -0.937)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tbx6h")

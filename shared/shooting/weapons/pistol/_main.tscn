@@ -41,12 +41,13 @@ script = ExtResource("1_ufd74")
 weaponName = "Pistol"
 description = "This is just a standard pistol"
 magSize = 14
-damage = 1
+damage = 2
 shotSound = ExtResource("2_pe5ph")
 emptyShotSound = ExtResource("3_ybh3s")
 reloadMagSound = ExtResource("4_qh3qq")
 muzzleFlare = NodePath("muzzleFlare")
 accuracy = 0.95
+recoil = 5
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099, -0.0554742)

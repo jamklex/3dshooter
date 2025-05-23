@@ -341,7 +341,15 @@ func _shoot():
 			damage *= 2
 		hittedObject.takeDamage(damage)
 		onHitShootable.emit(hittedObject.health <= 0)
+	_recoil()
 		
+func _recoil():
+	var max_recoil = currentWeapon.recoil
+	var min_recoil = max_recoil / 2
+	var vertical_recoil = randf_range(min_recoil, max_recoil)
+	var horizontal_recoil = randf_range(-min_recoil, min_recoil)
+	WorldUtil.movePlayerCamera(horizontal_recoil, vertical_recoil)
+	
 func _cancelShotCooldown():
 	_shotTimer.stop()
 		
@@ -367,7 +375,7 @@ func _raycastForHittedObject() -> Node:
 	var collision = space.intersect_ray(query)
 	if not collision:
 		return
-	_show_projectiles_collision(collision)
+	#_show_projectiles_collision(collision)
 	var collider = collision.collider as Node
 	var bone = collision.collider as CharacterBody3D
 	if bone:
@@ -503,4 +511,10 @@ func _show_projectiles_collision(collision):
 	var red_material = StandardMaterial3D.new()
 	red_material.albedo_color = Color.RED
 	sphere_instance.material_override = red_material
+	var despawner = Timer.new()
+	despawner.autostart = true
+	despawner.one_shot = true
+	despawner.wait_time = 1
+	despawner.timeout.connect(sphere_instance.free)
+	sphere_instance.add_child(despawner)
 	get_tree().get_root().add_child(sphere_instance)

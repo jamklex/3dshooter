@@ -118,8 +118,8 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
 		sprinting = false
-	var visualsToCameraDistance = _camera.global_position.distance_to(_visuals.global_position)
-	var cameraTooNear = visualsToCameraDistance < 1.9
+	var visualsToCameraDistance = _camera.global_position.distance_to(_camera_mount.global_position)
+	var cameraTooNear = visualsToCameraDistance < 0.7
 	var visualsTransparency = 0
 	if cameraTooNear:
 		visualsTransparency = 0.9
@@ -208,15 +208,18 @@ func refresh_inventory_output():
 func add_reward_to_queue(reward: DropItem):
 	_reward_queue.push_back(reward)
 
+func moveCamera(relative_x: float, relative_y: float):
+	var yRot = deg_to_rad(relative_x * mouse_sensitivity)
+	rotate_y(-yRot)
+	if not _shooter.aiming:
+		_visuals.rotate_y(yRot)
+	_camera_mount.rotate_x(deg_to_rad(-relative_y * mouse_sensitivity))
+	_camera_mount.rotation_degrees.x = clamp(_camera_mount.rotation_degrees.x, -80.0, 60.0)
+
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		var yRot = deg_to_rad(event.relative.x * mouse_sensitivity)
-		rotate_y(-yRot)
-		if not _shooter.aiming:
-			_visuals.rotate_y(yRot)
-		_camera_mount.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity))
-		_camera_mount.rotation_degrees.x = clamp(_camera_mount.rotation_degrees.x, -80.0, 60.0)
-
+		moveCamera(event.relative.x,event.relative.y)
+	
 func _showHitMarker(lastHit):
 	hitmarker.visible = true
 	hitmarker.modulate = Color(255,0,0) if lastHit else Color(255,255,255)

@@ -252,3 +252,8 @@ func player_died():
 	WorldUtil.player.clearMissionInventories()
 	WorldUtil.setCurrentWindow(deathScreen.instantiate())
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+func movePlayerCamera(relative_x: float, relative_y: float):
+	if not player or not player.body:
+		return
+	player.body.moveCamera(relative_x, -relative_y)

@@ -76,13 +76,14 @@ weaponName = "Rifle"
 description = "Riiiifle"
 magSize = 30
 weaponType = 1
-damage = 1
+damage = 5
 shotSound = ExtResource("2_il73m")
 emptyShotSound = ExtResource("3_hriod")
 reloadMagSound = ExtResource("4_56m1e")
 muzzleFlare = NodePath("muzzleFlare")
 shotCooldown = 0.1
 accuracy = 0.94
+recoil = 10
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0753891, -0.724417)
@@ -117,8 +118,7 @@ transform = Transform3D(1, 0, 0, 0, 0.982884, -0.184226, 0, 0.184226, 0.982884, 
 mesh = SubResource("BoxMesh_s4mf1")
 
 [node name="muzzleFlare" type="GPUParticles3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0641582, -0.412543)
-visible = false
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0727699, -0.821599)
 emitting = false
 amount = 100
 lifetime = 0.1

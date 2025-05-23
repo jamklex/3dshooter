@@ -25,9 +25,9 @@ script = ExtResource("1_gwt36")
 resourcesColor = Color(1, 0.376471, 0.396078, 1)
 killsColor = Color(0.901961, 0.74902, 0.105882, 1)
 rewardsColor = Color(0.327872, 0.703579, 0.5244, 1)
-easyBackground = Color(0.304844, 0.320285, 0.0645481, 0.588235)
-mediumBackground = Color(0.427001, 0.233097, 0.158476, 0.588235)
-hardBackground = Color(0.538615, 0.14291, 0.161975, 0.588235)
+easyBackground = Color(0, 1, 0, 0.196078)
+mediumBackground = Color(1, 1, 0.156863, 0.196078)
+hardBackground = Color(1, 0, 0, 0.196078)
 
 [node name="wrapper" type="VBoxContainer" parent="."]
 layout_mode = 2
