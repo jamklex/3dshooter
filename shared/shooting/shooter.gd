@@ -189,7 +189,7 @@ func _handleReloadingMag():
 		return
 	if currentWeapon.isMagFull():
 		return
-	if useRealMunition and _getAmmoInInventory(currentWeapon.weaponType) <= 0:
+	if useRealMunition and _getAmmoInInventory(currentWeapon.weaponType) - currentWeapon.restMagShoots <= 0:
 		return
 	if aiming:
 		aimOverride.stop()
@@ -247,7 +247,7 @@ func _reloadWeapon(weapon:Weapon):
 		var restAmmo = _getAmmoInInventory(weapon.weaponType)
 		if restAmmo <= 0:
 			return
-		_removeRestAmmo(weapon.weaponType, weapon.reload(restAmmo))
+		weapon.reload(restAmmo)
 	else:
 		weapon.reload(weapon.magSize)
 	
@@ -272,7 +272,7 @@ func _refreshMagInfo():
 	elif currentWeapon:
 		var restAmmo = "∞"
 		if useRealMunition:
-			restAmmo = _getAmmoInInventory(currentWeapon.weaponType)
+			restAmmo = _getAmmoInInventory(currentWeapon.weaponType) - currentWeapon.restMagShoots
 		magInfoText = str(currentWeapon.restMagShoots," / ", restAmmo)
 	_magInfo.text = magInfoText
 	
@@ -320,6 +320,8 @@ func get_enemy_base_for_bone(enemyBone: CharacterBody3D):
 	return null
 
 func _shoot():
+	if useRealMunition:
+		_removeRestAmmo(currentWeapon.weaponType, 1)
 	currentWeapon.restMagShoots -= 1
 	currentWeapon.loaded = false
 	soundPlayer.stream = currentWeapon.shotSound
