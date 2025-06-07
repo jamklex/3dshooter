@@ -13,7 +13,7 @@ config_version=5
 config/name="3 Dshooter"
 run/main_scene="uid://vv5vrq33li6k"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://ddp143srl6s7j"
 
 [autoload]
 
