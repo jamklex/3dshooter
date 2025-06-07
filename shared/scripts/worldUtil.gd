@@ -48,7 +48,8 @@ func get_map_rng_visibility() -> bool:
 
 func addKillCounter(enemy_id: String, amount: int):
 	for mission in missions:
-		mission.addKillCounter(enemy_id, amount)
+		if mission:
+			mission.addKillCounter(enemy_id, amount)
 	player.addKillCounter(enemy_id, amount)
 	save()
 
