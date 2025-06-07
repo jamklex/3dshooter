@@ -5,6 +5,11 @@ class_name ProceduralRoomGenerator
 const ROOMS_PATH: String = "res://shared/procedural-level/rooms/starts/"
 const SPAWN_USAGE_MIN: int = 3
 
+const MIN_SPAWN_PARALLEL = 1
+const MAX_SPAWN_PARALLEL = 3
+const MIN_SPAWN_DELAY = 2
+const MAX_SPAWN_DELAY = 8
+
 var _rng := RandomNumberGenerator.new()
 var min_rooms: int
 var max_rooms: int
@@ -69,11 +74,7 @@ func spawn_enemies():
 		return
 	if Time.get_unix_time_from_system() < _next_spawn_time:
 		return
-	var nextEnemy = _rest_enemies.keys().pick_random()
-	var amount = 1
-	_rest_enemies[nextEnemy] -= amount
-	if _rest_enemies[nextEnemy] <= 0:
-		_rest_enemies.erase(nextEnemy)
+	var amount = _rng.randi_range(MIN_SPAWN_PARALLEL, MAX_SPAWN_PARALLEL)
 	var spawns = get_tree().get_nodes_in_group("spawns").filter(func(s): return s is SpawnPoint)
 	for i in range(amount):
 		var availableSpawns = spawns.filter(func(s): return s.can_spawn())
@@ -83,10 +84,14 @@ func spawn_enemies():
 		var point = availableSpawns.pick_random() as SpawnPoint
 		if point == null:
 			return
+		var nextEnemy = _rest_enemies.keys().pick_random()
+		_rest_enemies[nextEnemy] -= 1
+		if _rest_enemies[nextEnemy] <= 0:
+			_rest_enemies.erase(nextEnemy)
 		var enemy = point.spawn_enemy(nextEnemy)
 		if len(_rest_enemies.keys()) == 0:
 			break
-	_next_spawn_time = Time.get_unix_time_from_system() + _rng.randi_range(5, 10)
+	_next_spawn_time = Time.get_unix_time_from_system() + _rng.randi_range(MIN_SPAWN_DELAY, MAX_SPAWN_DELAY)
 
 func _distanceToPlayer(node: Node3D) -> float:
 	var offset = WorldUtil.player.body.get_global_position() - node.get_global_position()
